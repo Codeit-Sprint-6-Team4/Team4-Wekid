@@ -1,11 +1,8 @@
-
+import React from 'react';
+import test from '@hooks/test';
 
 function App() {
-
-
-  return (<>
-  </>
-  )
+  return <></>;
 }
 
-export default App
+export default App;
