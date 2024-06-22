@@ -12,10 +12,12 @@ import UpLoadBoard from '@pages/UpLoadBoard/UpLoadBoard';
 import Weki from '@pages/Weki/Weki';
 import WekiList from '@pages/WekiList/WekiList';
 import { theme } from '@styles/theme';
+import GlobalStyle from './styles/global-styles';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
