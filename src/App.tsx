@@ -1,14 +1,13 @@
 import React from 'react';
 import test from '@hooks/test';
-import { ThemeProvider } from 'styled-components';
-import { theme } from '@styles/theme';
+import GlobalStyle from './styles/global-styles';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <div>
-      </div>
-    </ThemeProvider>
+    <>
+      <GlobalStyle />
+      <h1>ddd</h1>
+    </>
   );
 }
 
