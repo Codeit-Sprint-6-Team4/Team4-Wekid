@@ -35,44 +35,44 @@ declare module 'styled-components' {
       };
     };
     fonts: {
-      '48px-600': string;
+      'pretendard/5xl-48px-semibold': string;
 
-      '40px-700': string;
+      'pretendard/4xl-40px-bold': string;
 
-      '32px-700': string;
-      '32px-600': string;
+      'pretendard/3xl-32px-bold': string;
+      'pretendard/3xl-32px-semibold': string;
 
-      '24px-700': string;
-      '24px-600': string;
-      '24px-500': string;
-      '24px-400': string;
+      'pretendard/2xl-24px-bold': string;
+      'pretendard/2xl-24px-semibold': string;
+      'pretendard/2xl-24px-medium': string;
+      'pretendard/2xl-24px-regular': string;
 
-      '20px-700': string;
-      '20px-600': string;
-      '20px-500': string;
-      '20px-400': string;
+      'pretendard/xl-20px-bold': string;
+      'pretendard/xl-20px-semibold': string;
+      'pretendard/xl-20px-medium': string;
+      'pretendard/xl-20px-regular': string;
 
-      '18px-700': string;
-      '18px-600': string;
-      '18px-500': string;
-      '18px-400': string;
+      'pretendard/2lg-18px-bold': string;
+      'pretendard/2lg-18px-semibold': string;
+      'pretendard/2lg-18px-medium': string;
+      'pretendard/2lg-18px-regular': string;
 
-      '16px-700': string;
-      '16px-600': string;
-      '16px-500': string;
-      '16px-400': string;
+      'pretendard/lg-16px-bold': string;
+      'pretendard/lg-16px-semibold': string;
+      'pretendard/lg-16px-medium': string;
+      'pretendard/lg-16px-regular': string;
 
-      '14px-700': string;
-      '14px-600': string;
-      '14px-500': string;
-      '14px-400': string;
+      'pretendard/md-14px-bold': string;
+      'pretendard/md-14px-semibold': string;
+      'pretendard/md-14px-medium': string;
+      'pretendard/md-14px-regular': string;
 
-      '13px-600': string;
-      '13px-500': string;
+      'pretendard/sm-13px-semibold': string;
+      'pretendard/sm-13px-medium': string;
 
-      '12px-600': string;
-      '12px-500': string;
-      '12px-400': string;
+      'pretendard/xs-12px-semibold': string;
+      'pretendard/xs-12px-medium': string;
+      'pretendard/xs-12px-regular': string;
     };
   }
 }
@@ -110,43 +110,43 @@ export const theme: DefaultTheme = {
     },
   },
   fonts: {
-    '48px-600': 'normal normal 600 48px/46px Pretendard',
+    'pretendard/5xl-48px-semibold': 'normal normal 600 48px/46px Pretendard',
 
-    '40px-700': 'normal normal 700 40px/42px Pretendard',
+    'pretendard/4xl-40px-bold': 'normal normal 700 40px/42px Pretendard',
 
-    '32px-700': 'normal normal 700 32px/46px Pretendard',
-    '32px-600': 'normal normal 600 32px/42px Pretendard',
+    'pretendard/3xl-32px-bold': 'normal normal 700 32px/46px Pretendard',
+    'pretendard/3xl-32px-semibold': 'normal normal 600 32px/42px Pretendard',
 
-    '24px-700': 'normal normal 700 24px/32px Pretendard',
-    '24px-600': 'normal normal 600 24px/32px Pretendard',
-    '24px-500': 'normal normal 500 24px/32px Pretendard',
-    '24px-400': 'normal normal 400 24px/32px Pretendard',
+    'pretendard/2xl-24px-bold': 'normal normal 700 24px/32px Pretendard',
+    'pretendard/2xl-24px-semibold': 'normal normal 600 24px/32px Pretendard',
+    'pretendard/2xl-24px-medium': 'normal normal 500 24px/32px Pretendard',
+    'pretendard/2xl-24px-regular': 'normal normal 400 24px/32px Pretendard',
 
-    '20px-700': 'normal normal 700 20px/32px Pretendard',
-    '20px-600': 'normal normal 600 20px/32px Pretendard',
-    '20px-500': 'normal normal 500 20px/32px Pretendard',
-    '20px-400': 'normal normal 400 20px/32px Pretendard',
+    'pretendard/xl-20px-bold': 'normal normal 700 20px/32px Pretendard',
+    'pretendard/xl-20px-semibold': 'normal normal 600 20px/32px Pretendard',
+    'pretendard/xl-20px-medium': 'normal normal 500 20px/32px Pretendard',
+    'pretendard/xl-20px-regular': 'normal normal 400 20px/32px Pretendard',
 
-    '18px-700': 'normal normal 700 18px/26px Pretendard',
-    '18px-600': 'normal normal 600 18px/26px Pretendard',
-    '18px-500': 'normal normal 500 18px/26px Pretendard',
-    '18px-400': 'normal normal 400 18px/26px Pretendard',
+    'pretendard/2lg-18px-bold': 'normal normal 700 18px/26px Pretendard',
+    'pretendard/2lg-18px-semibold': 'normal normal 600 18px/26px Pretendard',
+    'pretendard/2lg-18px-medium': 'normal normal 500 18px/26px Pretendard',
+    'pretendard/2lg-18px-regular': 'normal normal 400 18px/26px Pretendard',
 
-    '16px-700': 'normal normal 700 16px/26px Pretendard',
-    '16px-600': 'normal normal 600 16px/26px Pretendard',
-    '16px-500': 'normal normal 500 16px/26px Pretendard',
-    '16px-400': 'normal normal 400 16px/26px Pretendard',
+    'pretendard/lg-16px-bold': 'normal normal 700 16px/26px Pretendard',
+    'pretendard/lg-16px-semibold': 'normal normal 600 16px/26px Pretendard',
+    'pretendard/lg-16px-medium': 'normal normal 500 16px/26px Pretendard',
+    'pretendard/lg-16px-regular': 'normal normal 400 16px/26px Pretendard',
 
-    '14px-700': 'normal normal 700 14px/24px Pretendard',
-    '14px-600': 'normal normal 600 14px/24px Pretendard',
-    '14px-500': 'normal normal 500 14px/24px Pretendard',
-    '14px-400': 'normal normal 400 14px/24px Pretendard',
+    'pretendard/md-14px-bold': 'normal normal 700 14px/24px Pretendard',
+    'pretendard/md-14px-semibold': 'normal normal 600 14px/24px Pretendard',
+    'pretendard/md-14px-medium': 'normal normal 500 14px/24px Pretendard',
+    'pretendard/md-14px-regular': 'normal normal 400 14px/24px Pretendard',
 
-    '13px-600': 'normal normal 600 13px/22px Pretendard',
-    '13px-500': 'normal normal 500 13px/22px Pretendard',
+    'pretendard/sm-13px-semibold': 'normal normal 600 13px/22px Pretendard',
+    'pretendard/sm-13px-medium': 'normal normal 500 13px/22px Pretendard',
 
-    '12px-600': 'normal normal 600 12px/20px Pretendard',
-    '12px-500': 'normal normal 500 12px/20px Pretendard',
-    '12px-400': 'normal normal 400 12px/20px Pretendard',
+    'pretendard/xs-12px-semibold': 'normal normal 600 12px/20px Pretendard',
+    'pretendard/xs-12px-medium': 'normal normal 500 12px/20px Pretendard',
+    'pretendard/xs-12px-regular': 'normal normal 400 12px/20px Pretendard',
   },
 };

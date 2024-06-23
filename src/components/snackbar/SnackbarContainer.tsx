@@ -44,7 +44,7 @@ const Container = styled.div<{
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
   z-index: 10;
   transition: all 0.3s ease-in-out;
-  font: ${({ theme }) => theme.fonts['14px-600']};
+  font: ${({ theme }) => theme.fonts['pretendard/md-14px-regular']};
   white-space: nowrap;
 
   &::before {
@@ -71,7 +71,7 @@ const Container = styled.div<{
     top: auto;
     bottom: 80px;
     padding: 11px 15px;
-    font: ${({ theme }) => theme.fonts['12px-600']};
+    font: ${({ theme }) => theme.fonts['pretendard/xs-12px-regular']};
 
     &::before {
       width: 14px;
