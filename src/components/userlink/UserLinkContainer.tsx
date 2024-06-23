@@ -7,6 +7,8 @@ interface UserLinkProps {
 }
 
 const UserLinkStyled = styled.a`
+  display: flex;
+  align-items: center;
   padding: 3px 10px;
   background-color: ${({ theme }) => theme.colors.main[50]};
   border-radius: 10px;
