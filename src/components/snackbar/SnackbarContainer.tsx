@@ -4,13 +4,13 @@ import successIcon from '@assets/icons/icon-check-green.svg';
 import errorIcon from '@assets/icons/icon-error-red.svg';
 import infoIcon from '@assets/icons/icon-info.svg';
 
-interface SanckbarContainerProps {
+interface SnackbarContainerProps {
   message: string;
   type: 'info' | 'success' | 'error';
   visible: boolean;
 }
 
-const Container = styled.div<{
+const SnackbarStyled = styled.div<{
   type: string;
   visible: boolean;
 }>`
@@ -81,15 +81,15 @@ const Container = styled.div<{
   }
 `;
 
-const SnackbarContainer: React.FC<SanckbarContainerProps> = ({
+const SnackbarContainer: React.FC<SnackbarContainerProps> = ({
   message,
   type,
   visible,
 }) => {
   return (
-    <Container type={type} visible={visible}>
+    <SnackbarStyled type={type} visible={visible}>
       {message}
-    </Container>
+    </SnackbarStyled>
   );
 };
 
