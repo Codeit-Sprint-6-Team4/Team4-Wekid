@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '@styles/theme';
+import { media } from '@utils/media';
 
 const Footer = () => {
   return (
@@ -24,13 +25,21 @@ const StyledFooter = styled.footer`
   padding: 40px;
   color: ${theme.colors.gray[0]};
   background-color: ${theme.colors.gray[900]};
-  font-size: 1.6rem;
+  font-size: ${theme.fonts['pretendard/lg-16px-bold']};
   ul {
     display: flex;
+    flex-wrap: wrap;
     li {
-      font-size: 1.4rem;
+      font-size: ${theme.fonts['pretendard/md-14px-semibold']};
+    }
+    &:last-child {
+      gap: 20px;
     }
   }
+  ${media('tablet')`
+  padding: 20px;
+line-height:2;
+  `}
 `;
 
 const StyledUl = styled.ul`
@@ -43,10 +52,12 @@ const StyledUl = styled.ul`
       margin-right: 5px;
       color: #fff;
     }
-
     &:last-child::after {
       content: '';
     }
+    ${media('tablet')`
+padding:0;
+  `}
   }
 `;
 
