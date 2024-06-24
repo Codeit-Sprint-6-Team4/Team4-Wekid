@@ -4,35 +4,41 @@ import { DefaultTheme } from 'styled-components';
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
-      grayscale: {
+      gray: {
+        0: string;
+        50: string;
+        100: string;
+        300: string;
+        600: string;
+        800: string;
+        900: string;
+      };
+      green: {
         100: string;
         200: string;
         300: string;
-        400: string;
+      };
+      main: {
+        50: string;
         500: string;
         600: string;
       };
-      primaryGreen: {
-        100: string;
-        200: string;
-        300: string;
+      red: {
+        50: string;
+        500: string;
       };
-      secondaryRed: {
-        100: string;
-        200: string;
-      };
-      secondaryPurple: {
+      purple: {
         100: string;
       };
-      secondaryYellow: {
+      yellow: {
         100: string;
       };
     };
     fonts: {
       'pretendard/5xl-48px-semibold': string;
-      
+
       'pretendard/4xl-40px-bold': string;
-      
+
       'pretendard/3xl-32px-bold': string;
       'pretendard/3xl-32px-semibold': string;
 
@@ -66,75 +72,81 @@ declare module 'styled-components' {
 
       'pretendard/xs-12px-semibold': string;
       'pretendard/xs-12px-medium': string;
-      'pretendard/xs-12px-regular': string; 
-    }
+      'pretendard/xs-12px-regular': string;
+    };
   }
 }
 
 export const theme: DefaultTheme = {
   colors: {
-    grayscale: {
-      100: '#F7F7FA',
-      200: '#E4E5F0',
+    gray: {
+      0: '#FFFFFF',
+      50: '#F7F7FA',
+      100: '#E4E5F0',
       300: '#C6CADA',
-      400: '#8F95B2',
-      500: '#474D66',
-      600: '#38415B',
+      600: '#8F95B2',
+      800: '#474D66',
+      900: '#38415B',
     },
-    primaryGreen: {
+    green: {
       100: '#EEF9F6',
       200: '#4CBFA4',
-      300: '#1B92FF',
+      300: '#32A68A',
     },
-    secondaryRed: {
-      100: '#FBEDED',
-      200: '#D14343',
+    main: {
+      50: '#EEF9F6',
+      500: '#4CBFA4',
+      600: '#32A68A',
     },
-    secondaryPurple: {
+    red: {
+      50: '#FBEDED',
+      500: '#D14343',
+    },
+    purple: {
       100: '#8E66FF',
     },
-    secondaryYellow: {
+    yellow: {
       100: '#FDD181',
     },
   },
   fonts: {
-    'pretendard/5xl-48px-semibold': 'semibold 48px/46px Pretendard',
+    'pretendard/5xl-48px-semibold': 'normal normal 600 48px/46px Pretendard',
 
-    'pretendard/4xl-40px-bold': 'bold 40px/42px Pretendard',
+    'pretendard/4xl-40px-bold': 'normal normal 700 40px/42px Pretendard',
 
-    'pretendard/3xl-32px-bold': 'bold 32px/46px Pretendard',
-    'pretendard/3xl-32px-semibold': 'semibold 32px/42px Pretendard',
+    'pretendard/3xl-32px-bold': 'normal normal 700 32px/46px Pretendard',
+    'pretendard/3xl-32px-semibold': 'normal normal 600 32px/42px Pretendard',
 
-    'pretendard/2xl-24px-bold': 'bold 24px/32px Pretendard',
-    'pretendard/2xl-24px-semibold': 'semibold 24px/32px Pretendard',
-    'pretendard/2xl-24px-medium': 'medium 24px/32px Pretendard',
-    'pretendard/2xl-24px-regular': 'regular 24px/32px Pretendard',
+    'pretendard/2xl-24px-bold': 'normal normal 700 24px/32px Pretendard',
+    'pretendard/2xl-24px-semibold': 'normal normal 600 24px/32px Pretendard',
+    'pretendard/2xl-24px-medium': 'normal normal 500 24px/32px Pretendard',
+    'pretendard/2xl-24px-regular': 'normal normal 400 24px/32px Pretendard',
 
-    'pretendard/xl-20px-bold': 'bold 20px/32px Pretendard',
-    'pretendard/xl-20px-semibold': 'semibold 20px/32px Pretendard',
-    'pretendard/xl-20px-medium': 'medium 20px/32px Pretendard',
-    'pretendard/xl-20px-regular': 'regular 20px/32px Pretendard',
+    'pretendard/xl-20px-bold': 'normal normal 700 20px/32px Pretendard',
+    'pretendard/xl-20px-semibold': 'normal normal 600 20px/32px Pretendard',
+    'pretendard/xl-20px-medium': 'normal normal 500 20px/32px Pretendard',
+    'pretendard/xl-20px-regular': 'normal normal 400 20px/32px Pretendard',
 
-    'pretendard/2lg-18px-bold': 'bold 18px/26px Pretendard',
-    'pretendard/2lg-18px-semibold': 'semibold 18px/26px Pretendard',
-    'pretendard/2lg-18px-medium': 'medium 18px/26px Pretendard',
-    'pretendard/2lg-18px-regular': 'regular 18px/26px Pretendard',
-    
-    'pretendard/lg-16px-bold': 'bold 16px/26px Pretendard',
-    'pretendard/lg-16px-semibold': 'semibold 16px/26px Pretendard',
-    'pretendard/lg-16px-medium': 'medium 16px/26px Pretendard',
-    'pretendard/lg-16px-regular': 'regular 16px/26px Pretendard',
-    
-    'pretendard/md-14px-bold': 'bold 14px/24px Pretendard',
-    'pretendard/md-14px-semibold': 'semibold 14px/24px Pretendard',
-    'pretendard/md-14px-medium': 'medium 14px/24px Pretendard',
-    'pretendard/md-14px-regular': 'regular 14px/24px Pretendard',
+    'pretendard/2lg-18px-bold': 'normal normal 700 18px/26px Pretendard',
+    'pretendard/2lg-18px-semibold': 'normal normal 600 18px/26px Pretendard',
+    'pretendard/2lg-18px-medium': 'normal normal 500 18px/26px Pretendard',
+    'pretendard/2lg-18px-regular': 'normal normal 400 18px/26px Pretendard',
 
-    'pretendard/sm-13px-semibold': 'semibold 13px/22px Pretendard',
-    'pretendard/sm-13px-medium': 'medium 13px/22px Pretendard',
+    'pretendard/lg-16px-bold': 'normal normal 700 16px/26px Pretendard',
+    'pretendard/lg-16px-semibold': 'normal normal 600 16px/26px Pretendard',
+    'pretendard/lg-16px-medium': 'normal normal 500 16px/26px Pretendard',
+    'pretendard/lg-16px-regular': 'normal normal 400 16px/26px Pretendard',
 
-    'pretendard/xs-12px-semibold': 'semibold 12px/20px Pretendard',
-    'pretendard/xs-12px-medium': 'medium 12px/20px Pretendard',
-    'pretendard/xs-12px-regular': 'regular 12px/20px Pretendard'
-  }
+    'pretendard/md-14px-bold': 'normal normal 700 14px/24px Pretendard',
+    'pretendard/md-14px-semibold': 'normal normal 600 14px/24px Pretendard',
+    'pretendard/md-14px-medium': 'normal normal 500 14px/24px Pretendard',
+    'pretendard/md-14px-regular': 'normal normal 400 14px/24px Pretendard',
+
+    'pretendard/sm-13px-semibold': 'normal normal 600 13px/22px Pretendard',
+    'pretendard/sm-13px-medium': 'normal normal 500 13px/22px Pretendard',
+
+    'pretendard/xs-12px-semibold': 'normal normal 600 12px/20px Pretendard',
+    'pretendard/xs-12px-medium': 'normal normal 500 12px/20px Pretendard',
+    'pretendard/xs-12px-regular': 'normal normal 400 12px/20px Pretendard',
+  },
 };
