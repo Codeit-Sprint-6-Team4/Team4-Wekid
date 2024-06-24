@@ -1,14 +1,22 @@
 import React from 'react';
-import Footer from '@components/layout/Footer';
+import styled from 'styled-components';
 //Components
+import Footer from '@components/layout/Footer';
 import Header from '@components/layout/Header';
 
 const Layout = (props: { children: React.ReactNode }) => {
   return (
     <>
-      <main>{props.children}</main>
+      <Header />
+      <StyledLayout>{props.children}</StyledLayout>
+      <Footer />
     </>
   );
 };
+
+const StyledLayout = styled.main`
+  height: auto;
+  min-height: calc(100vh - 165px);
+`;
 
 export default Layout;
