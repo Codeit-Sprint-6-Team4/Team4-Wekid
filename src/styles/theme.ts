@@ -62,8 +62,8 @@ declare module 'styled-components' {
       'pretendard/lg-16px-medium': string;
       'pretendard/lg-16px-regular': string;
 
-      'pretendard/md-14px-bold': string;
-      'pretendard/md-14px-semibold': string;
+      'pretendard/lg-14px-bold': string;
+      'pretendard/lg-14px-semibold': string;
       'pretendard/md-14px-medium': string;
       'pretendard/md-14px-regular': string;
 
@@ -137,8 +137,8 @@ export const theme: DefaultTheme = {
     'pretendard/lg-16px-medium': 'normal normal 500 16px/26px Pretendard',
     'pretendard/lg-16px-regular': 'normal normal 400 16px/26px Pretendard',
 
-    'pretendard/md-14px-bold': 'normal normal 700 14px/24px Pretendard',
-    'pretendard/md-14px-semibold': 'normal normal 600 14px/24px Pretendard',
+    'pretendard/lg-14px-bold': 'normal normal 700 14px/24px Pretendard',
+    'pretendard/lg-14px-semibold': 'normal normal 600 14px/24px Pretendard',
     'pretendard/md-14px-medium': 'normal normal 500 14px/24px Pretendard',
     'pretendard/md-14px-regular': 'normal normal 400 14px/24px Pretendard',
 
