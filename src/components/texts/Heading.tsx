@@ -24,10 +24,13 @@ const Heading: React.FC<StyledHeadingProps> = ({
 };
 
 const StyledHeading = styled.h2<StyledHeadingProps>`
+  padding: 10px 0;
   font: ${(props) => props.font || 'pretendard/lg-16px-medium'};
   color: ${(props) => props.color || '#000'};
   text-align: ${(props) => props.align || 'left'};
-  ${media('tablet')`font:${theme.fonts['pretendard/3xl-32px-bold']};`}
+  ${media('tablet')`font:${theme.fonts['pretendard/2xl-24px-bold']};
+  padding:0;`}
+  ${media('mobile')`font:${theme.fonts['pretendard/2lg-18px-bold']};`}
 `;
 
 export default Heading;

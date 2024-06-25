@@ -1,16 +1,15 @@
-import React from 'react';
 import styled from 'styled-components';
 import LandImg4 from '@assets/images/bg_list.png';
 import LandImg1 from '@assets/images/main-hero-imgae.png';
 import LandImg5 from '@assets/images/main-view-image03.png';
 import LandImg2 from '@assets/images/main-write-image01.png';
-import LandImg3 from '@assets/images/main-write-image02.png';
 //Components
 import Grid from '@components/layout/Grid';
 import Layout from '@components/layout/Layout';
 import Heading from '@components/texts/Heading';
 import Paragraph from '@components/texts/Paragraph';
 import { theme } from '@styles/theme';
+import { media } from '@utils/media';
 
 const Home = () => {
   return (
@@ -35,7 +34,7 @@ const Home = () => {
         </ImgWrap>
       </Grid>
       <Grid bgColor={`${theme.colors.gray[800]}`}>
-        <div>
+        <Divide>
           <Paragraph
             font={`${theme.fonts['pretendard/2xl-24px-semibold']}`}
             color={`${theme.colors.main[500]}`}
@@ -46,12 +45,13 @@ const Home = () => {
             font={`${theme.fonts['pretendard/5xl-48px-semibold']}`}
             color={`${theme.colors.gray[0]}`}
           >
-            친구의 위키, 직접 작성해 봐요
+            친구의 위키,
+            <br />
+            직접 작성해 봐요
           </Heading>
-          <img src={LandImg2} alt="위키만들기_일러스트" />
-        </div>
+        </Divide>
         <ImgWrap>
-          <img src={LandImg3} alt="위키만들기_일러스트" />
+          <img src={LandImg2} alt="위키만들기_일러스트" />
         </ImgWrap>
       </Grid>
       <Grid bgColor={`${theme.colors.gray[50]}`}>
@@ -67,7 +67,9 @@ const Home = () => {
           color={`${theme.colors.gray[900]}`}
           align="right"
         >
-          내 위키 만들고 친구에게 공유해요
+          내 위키 만들고
+          <br />
+          친구에게 공유해요
         </Heading>
       </Grid>
       <ImgWrap>
@@ -84,8 +86,11 @@ const Home = () => {
           font={`${theme.fonts['pretendard/5xl-48px-semibold']}`}
           color={`${theme.colors.gray[900]}`}
         >
-          친구들이 달아준 내용을 확인해 봐요
+          친구들이 달아준
+          <br />
+          내용을 확인해 봐요
         </Heading>
+
         <ImgWrap>
           <img src={LandImg5} alt="위키만들기_일러스트" />
         </ImgWrap>
@@ -93,6 +98,10 @@ const Home = () => {
     </Layout>
   );
 };
+
+const Divide = styled.div`
+  position: absolute;
+`;
 
 const ImgWrap = styled.div`
   maz-witdh: 100%;

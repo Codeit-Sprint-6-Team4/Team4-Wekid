@@ -26,9 +26,9 @@ const Paragraph: React.FC<StyledPragraphProps> = ({
 const StyledParagraph = styled.p<StyledPragraphProps>`
   font: ${(props) => props.font || 'pretendard/lg-16px-medium'};
   color: ${(props) => props.color || '#000'};
-
   text-align: ${(props) => props.align || 'left'};
-  ${media('tablet')`font:${theme.fonts['pretendard/2lg-18px-bold']};`}
+  ${media('tablet')`font:${theme.fonts['pretendard/2lg-18px-semibold']};`}
+  ${media('mobile')`font:${theme.fonts['pretendard/md-14px-bold']};`}
 `;
 
 export default Paragraph;
