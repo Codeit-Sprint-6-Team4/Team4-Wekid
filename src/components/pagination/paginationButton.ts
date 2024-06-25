@@ -3,7 +3,7 @@ import { theme } from '@styles/theme';
 import { media } from '@utils/media';
 
 interface StyledPaginationButtonProps {
-  params: string;
+  params?: string;
 }
 
 export const StyledPaginationButton = styled.button<StyledPaginationButtonProps>`
