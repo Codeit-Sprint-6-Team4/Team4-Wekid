@@ -8,19 +8,6 @@ export const StyledEmailPasswordFrame = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  ${StyledInput} {
-    width: 400px;
-    height: 45px;
-  }
-  /* @media (max-width: ) {
-  }
-
-  @media (max-width: ) {
-    ${StyledInput} {
-      width: 335px;
-      height: 45px;
-    }
-  } */
 `;
 
 export const StyledEmailPasswordName = styled.label`
