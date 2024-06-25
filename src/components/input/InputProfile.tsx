@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { InputStyled } from './input';
-import { ProfileNameStyled, ProfileFrameStyled } from './inputProfileFrame';
+import { StyledInput } from './input';
+import { StyledProfileName, StyledProfileFrame } from './inputProfileFrame';
 
 interface inputProfileProps {
   name: string;
@@ -16,14 +16,14 @@ const InputProfile = ({
   onChange,
 }: inputProfileProps) => {
   return (
-    <ProfileFrameStyled>
-      <ProfileNameStyled>{name}</ProfileNameStyled>
-      <InputStyled
+    <StyledProfileFrame>
+      <StyledProfileName>{name}</StyledProfileName>
+      <StyledInput
         value={value}
         onChange={onChange}
         placeholder={placeholder}
       />
-    </ProfileFrameStyled>
+    </StyledProfileFrame>
   );
 };
 

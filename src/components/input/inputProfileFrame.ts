@@ -1,34 +1,33 @@
 import styled from 'styled-components';
 import { theme } from '@styles/theme';
-import { DEVICE_SIZE } from '@utils/deviceSize';
-import { InputStyled } from './input';
+import { StyledInput } from './input';
 
-export const ProfileFrameStyled = styled.div`
+export const StyledProfileFrame = styled.div`
   width: 320px;
   height: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  ${InputStyled} {
+  ${StyledInput} {
     width: 239px;
     height: 45px;
   }
-  @media (max-width: ${DEVICE_SIZE.tablet}px) {
-    ${InputStyled} {
+  @media (max-width: ) {
+    ${StyledInput} {
       width: 200px;
       height: 45px;
     }
   }
-  @media (max-width: ${DEVICE_SIZE.mobile}px) {
-    ${InputStyled} {
+  @media (max-width: ) {
+    ${StyledInput} {
       width: 200px;
       height: 34px;
     }
   }
 `;
 
-export const ProfileNameStyled = styled.label`
+export const StyledProfileName = styled.label`
   width: 60px;
   font-style: ${theme.fonts['pretendard/md-14px-regular']};
   font-weight: 400;

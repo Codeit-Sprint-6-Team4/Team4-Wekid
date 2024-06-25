@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  EmailPasswordFrameStyled,
-  EmailPasswordNameStyled,
+  StyledEmailPasswordFrame,
+  StyledEmailPasswordName,
 } from './emailPasswordFrame';
-import { InputStyled } from './input';
+import { StyledInput } from './input';
 
 interface EmailPasswordProps {
   name: string;
@@ -19,14 +19,14 @@ const EmailPassword = ({
   onChange,
 }: EmailPasswordProps) => {
   return (
-    <EmailPasswordFrameStyled>
-      <EmailPasswordNameStyled>{name}</EmailPasswordNameStyled>
-      <InputStyled
+    <StyledEmailPasswordFrame>
+      <StyledEmailPasswordName>{name}</StyledEmailPasswordName>
+      <StyledInput
         placeholder={placeholder}
         value={value}
         onChange={onChange}
       />
-    </EmailPasswordFrameStyled>
+    </StyledEmailPasswordFrame>
   );
 };
 
