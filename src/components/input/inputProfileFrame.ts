@@ -13,6 +13,7 @@ export const StyledProfileFrame = styled.div`
     width: 239px;
     height: 45px;
   }
+
   @media (max-width: ) {
     ${StyledInput} {
       width: 200px;
