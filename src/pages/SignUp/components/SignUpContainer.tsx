@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SignUpUI from './SigninUI';
+import SignUpUI from './SignUpUI';
 
 export interface userDataTypes {
   name: string;
