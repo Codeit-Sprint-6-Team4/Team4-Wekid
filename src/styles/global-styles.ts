@@ -18,9 +18,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    font-size: 1.6rem;
     min-width: 375px;
     line-height: normal;
-    font-size: 100%;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -34,7 +34,6 @@ const GlobalStyle = createGlobalStyle`
   button,
   code {
     font-family: 'Pretendard';
-    font-size: 100%;
   }
 
   *,
