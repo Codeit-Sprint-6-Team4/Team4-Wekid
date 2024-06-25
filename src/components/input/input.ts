@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '@styles/theme';
+import { media } from '@utils/media';
 
 export const StyledInput = styled.input`
   position: relative;
@@ -18,7 +19,16 @@ export const StyledInput = styled.input`
   }
   &::placeholder {
     color: ${theme.colors.gray[600]};
-    font-weight:400
-    font-size:14px
+    font-weight: 400;
+    font-size: 14px;
   }
+  ${media('tablet')`
+    width:200px;
+    height:45px;
+  `}
+
+  ${media('mobile')`
+  width:200px;
+  height:35px;
+  `}
 `;

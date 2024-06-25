@@ -12,7 +12,7 @@ export const StyledEmailPasswordFrame = styled.div`
     width: 400px;
     height: 45px;
   }
-  @media (max-width: ) {
+  /* @media (max-width: ) {
   }
 
   @media (max-width: ) {
@@ -20,7 +20,7 @@ export const StyledEmailPasswordFrame = styled.div`
       width: 335px;
       height: 45px;
     }
-  }
+  } */
 `;
 
 export const StyledEmailPasswordName = styled.label`
