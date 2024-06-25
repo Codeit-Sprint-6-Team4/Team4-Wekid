@@ -6,7 +6,7 @@ import Board from '@pages/Board/Board';
 import Boards from '@pages/Boards/Boards';
 import Home from '@pages/Home/Home';
 import MyWeki from '@pages/MyWeki/MyWeki';
-import SignIn from '@pages/SignIn/components/SignIn';
+import SignIn from '@pages/SignIn/SignIn';
 import SignUp from '@pages/SignUp/SignUp';
 import UpLoadBoard from '@pages/UpLoadBoard/UpLoadBoard';
 import Weki from '@pages/Weki/Weki';
