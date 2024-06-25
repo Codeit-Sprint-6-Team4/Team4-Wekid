@@ -22,13 +22,4 @@ export const StyledInput = styled.input`
     font-weight: 400;
     font-size: 14px;
   }
-  ${media('tablet')`
-    width:200px;
-    height:45px;
-  `}
-
-  ${media('mobile')`
-  width:200px;
-  height:35px;
-  `}
 `;
