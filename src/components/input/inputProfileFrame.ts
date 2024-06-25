@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '@styles/theme';
+import { media } from '@utils/media';
+import { StyledInput } from './input';
 
 export const StyledProfileFrame = styled.div`
   width: 320px;
@@ -7,6 +9,21 @@ export const StyledProfileFrame = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  ${StyledInput} {
+    width: 239px;
+    height: 45px;
+  }
+  ${media('tablet')`
+    ${StyledInput}{
+    width:200px;
+    }
+  `}
+  ${media('mobile')`
+      ${StyledInput}{
+    width:200px;
+    height:34px;
+    }
+  `}
 `;
 
 export const StyledProfileName = styled.label`
