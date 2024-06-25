@@ -56,7 +56,6 @@ const StyledDropdownButton = styled.button<{ $isOpen: boolean }>`
   ${media('mobile')`
     width: 335px;
   `}
-
 `;
 
 const StyledDropdownList = styled.ul`
@@ -75,7 +74,7 @@ const StyledDropdownList = styled.ul`
   `}
 `;
 
-const DropdownItem = styled.li`
+const StyledDropdownItem = styled.li`
   width: 392px;
   height: 35px;
   padding-left: 16px;
@@ -121,12 +120,12 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onSelect }) => {
       {isOpen && (
         <StyledDropdownList>
           {options.map((option) => (
-            <DropdownItem
+            <StyledDropdownItem
               key={option.id}
               onClick={() => handleSelectOption(option)}
             >
               {option.label}
-            </DropdownItem>
+            </StyledDropdownItem>
           ))}
         </StyledDropdownList>
       )}
