@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '@styles/theme';
-import { media } from '@utils/media';
 
 export const StyledInput = styled.input`
-  position: relative;
   border-radius: 10px;
   padding-left: 14px;
   width: ${({ width }) => `${width}px`};
