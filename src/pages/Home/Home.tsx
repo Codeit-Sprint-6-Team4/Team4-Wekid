@@ -9,7 +9,6 @@ import Layout from '@components/layout/Layout';
 import Heading from '@components/texts/Heading';
 import Paragraph from '@components/texts/Paragraph';
 import { theme } from '@styles/theme';
-import { media } from '@utils/media';
 
 const Home = () => {
   return (

@@ -7,7 +7,7 @@ interface StyledHeadingProps {
   font?: string;
   color?: string;
   align?: string;
-  children: string;
+  children: React.ReactNode;
 }
 
 const Heading: React.FC<StyledHeadingProps> = ({
