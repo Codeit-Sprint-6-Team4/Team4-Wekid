@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import closeIcon from '@assets/icons/icon-close.svg';
+import ImageUploadModalContent from './ImageUploadModalContent';
+import NoticeModalContent from './NoticeModalContent';
+import QuestionModalContent from './QuestionModalContent';
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -18,7 +21,7 @@ const ModalOverlay = styled.div`
 const ModalContainer = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.colors.gray[0]};
-  padding: 20px;
+  padding: 50px 20px 20px 20px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 395px;
@@ -32,7 +35,7 @@ const CloseButton = styled.button`
   background: url(${closeIcon});
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 10px;
+  background-size: 14px;
   border: none;
   width: 20px;
   height: 20px;
@@ -41,13 +44,36 @@ const CloseButton = styled.button`
 `;
 
 interface ModalProps {
-  content: React.ReactNode;
+  type: 'imageUpload' | 'question' | 'disconnect' | 'cancelSave';
   onClose: () => void;
+  onConfirm?: (answer: string) => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
+const Modal: React.FC<ModalProps> = ({ type, onClose, onConfirm }) => {
+  let content;
+  switch (type) {
+    case 'imageUpload':
+      content = <ImageUploadModalContent />;
+      break;
+    case 'question':
+      content = <QuestionModalContent onConfirm={onConfirm!} />;
+      break;
+    case 'disconnect':
+    case 'cancelSave':
+      content = <NoticeModalContent type={type} onClose={onClose} />;
+      break;
+    default:
+      content = null;
+  }
+
+  const handleBackgroundClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <ModalOverlay>
+    <ModalOverlay onClick={handleBackgroundClick}>
       <ModalContainer>
         <CloseButton onClick={onClose} />
         {content}
