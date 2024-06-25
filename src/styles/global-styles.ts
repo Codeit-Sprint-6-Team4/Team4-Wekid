@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    font-size: 1.6rem;
     min-width: 375px;
     line-height: normal;
     font-size: 100%;
