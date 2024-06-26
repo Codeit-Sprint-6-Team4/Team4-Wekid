@@ -89,7 +89,6 @@ const Home = () => {
           <br />
           내용을 확인해 봐요
         </Heading>
-
         <ImgWrap>
           <img src={LandImg5} alt="위키만들기_일러스트" />
         </ImgWrap>
