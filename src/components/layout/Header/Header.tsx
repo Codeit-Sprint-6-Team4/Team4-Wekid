@@ -44,7 +44,7 @@ const Header = () => {
             </StyledMenu>
           ) : (
             <>
-              <StyledLoginButton to="login">로그인</StyledLoginButton>
+              <StyledLoginButton to="/login">로그인</StyledLoginButton>
               <StyledLoginButtonSample onClick={handleLogin}>
                 로그인 테스트
               </StyledLoginButtonSample>

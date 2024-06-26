@@ -7,6 +7,7 @@ interface DropdownProps {
   buttonIcon: string;
   buttonIconAlt: string;
   children: ReactNode;
+  ref: React.Ref<HTMLDivElement>;
 }
 
 const HeaderDropdown = forwardRef<HTMLDivElement, DropdownProps>(
@@ -21,7 +22,7 @@ const HeaderDropdown = forwardRef<HTMLDivElement, DropdownProps>(
         <StyledDropdownContentWrap>{children}</StyledDropdownContentWrap>
       )}
     </DropdownContainer>
-  ),
+  )
 );
 
 const DropdownContainer = styled.div`

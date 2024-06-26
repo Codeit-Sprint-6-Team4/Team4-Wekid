@@ -1,12 +1,6 @@
-import { useState, useRef, useEffect, RefObject } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
-interface UseDropdownResult {
-  isOpen: boolean;
-  dropdownRef: RefObject<HTMLDivElement>;
-  handleToggleDropdown: () => void;
-}
-
-const useHeaderDropdown = (): UseDropdownResult => {
+const useHeaderDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -15,10 +9,7 @@ const useHeaderDropdown = (): UseDropdownResult => {
   };
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (
-      dropdownRef.current &&
-      !dropdownRef.current.contains(event.target as Node)
-    ) {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
       setIsOpen(false);
     }
   };
@@ -32,10 +23,9 @@ const useHeaderDropdown = (): UseDropdownResult => {
 
   return {
     isOpen,
-    dropdownRef,
     handleToggleDropdown,
+    dropdownRef, // ref를 반환
   };
 };
 
 export default useHeaderDropdown;
-
