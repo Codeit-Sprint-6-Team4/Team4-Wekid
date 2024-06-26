@@ -1,5 +1,7 @@
 // NotificationsDropdown.tsx
 import React, { useState } from 'react';
+import { formatDistanceToNow } from 'date-fns';
+import { ko } from 'date-fns/locale';
 import styled from 'styled-components';
 import AlarmImg from '@assets/icons/icon-alarm.svg';
 import DeleteIcon from '@assets/icons/icon-close.svg';
@@ -64,7 +66,10 @@ const NotificationsDropdown: React.FC = () => {
               <div>
                 <StyledAlarmText>{alarm.content}</StyledAlarmText>
                 <StyledAlarmTime>
-                  {new Date(alarm.createdAt).toLocaleTimeString()}
+                  {formatDistanceToNow(new Date(alarm.createdAt), {
+                    addSuffix: true,
+                    locale: ko,
+                  })}
                 </StyledAlarmTime>
               </div>
               <button onClick={() => handleDeleteAlarm(alarm.id)}>
