@@ -3,7 +3,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import AlarmImg from '@assets/icons/icon-alarm.svg';
 import DeleteIcon from '@assets/icons/icon-close.svg';
-import HeaderDropdown from '../HeaderDropdown/HeaderDropdown';
+import HeaderDropdown from '../HeaderDropdown/HeaderDropdownUI';
 import {
   StyledAlarmTotalCount,
   StyledAlarmMenu,
@@ -11,7 +11,7 @@ import {
   StyledAlarmText,
   StyledAlarmTime,
   StyledNoAlarms,
-} from './NotificationsDropdownFrame';
+} from './NotificationsDropdownUI.styled';
 
 interface AlarmItem {
   createdAt: string;
