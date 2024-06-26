@@ -30,7 +30,7 @@ const StyledFooter = styled.footer`
     display: flex;
     flex-wrap: wrap;
     li {
-      font-size: ${theme.fonts['pretendard/md-14px-semibold']};
+      font-size: ${theme.fonts['pretendard/lg-14px-semibold']};
     }
     &:last-child {
       gap: 20px;
