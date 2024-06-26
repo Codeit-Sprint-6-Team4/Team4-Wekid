@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import LandImg4 from '@assets/images/bg_list.png';
 import LandImg1 from '@assets/images/main-hero-imgae.png';
@@ -12,6 +13,7 @@ import Paragraph from '@components/texts/Paragraph';
 import { theme } from '@styles/theme';
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <Layout>
       <Grid bgColor={`${theme.colors.gray[50]}`} align="center">
@@ -29,7 +31,14 @@ const Home = () => {
         >
           나만의 위키
         </Heading>
-        <Button $primary>위키 만들기</Button>
+        <Button
+          $primary
+          onClick={() => {
+            navigate('login');
+          }}
+        >
+          위키 만들기
+        </Button>
         <ImgWrap>
           <img src={LandImg1} alt="위키만들기_일러스트" />
         </ImgWrap>
