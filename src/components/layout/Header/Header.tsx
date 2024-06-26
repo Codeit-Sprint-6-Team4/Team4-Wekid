@@ -1,8 +1,12 @@
+// Header
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import logoImg from '@assets/images/logo.svg';
 import { media } from '@utils/media';
+import Hamburger from './Hamburger/Hamburger';
+import NotificationsDropdown from './NotificationsDropdown/NotificationsDropdown.tsx';
+import ProfileDropdown from './ProfileDropdown/ProfileDropdown.tsx';
 
 const Header = () => {
   // Context API 생성 후 수정 필요
@@ -39,8 +43,8 @@ const Header = () => {
           {isLoggedIn ? (
             <>
               <StyledMenu>
-                알림아이콘
-                드롭다운아이콘
+                <NotificationsDropdown></NotificationsDropdown>
+                <ProfileDropdown></ProfileDropdown>
               </StyledMenu>
             </>
           ) : (
@@ -52,7 +56,7 @@ const Header = () => {
             </>
           )}
           <StyledHamburger>
-            햄버거메뉴
+            <Hamburger></Hamburger>
           </StyledHamburger>
         </StyledRightSide>
       </StyledHeaderWrap>
@@ -139,4 +143,3 @@ const StyledHamburger = styled.div`
 `;
 
 export default Header;
-
