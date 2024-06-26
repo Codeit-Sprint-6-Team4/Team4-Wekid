@@ -4,9 +4,9 @@ import {
   StyledModalContainer,
   StyledCloseButton,
 } from '@components/modal/modal.styled';
-import ImageUploadModalContent from './ImageUploadModalContent';
-import NoticeModalContent from './NoticeModalContent';
-import QuestionModalContent from './QuestionModalContent';
+import ImageUploadModalContent from './ImageUploadModalFrame';
+import NoticeModalContent from './NoticeModalFrame';
+import QuestionModalContent from './QuestionModalFrame';
 
 interface ModalProps {
   type: 'imageUpload' | 'question' | 'disconnect' | 'cancelSave';
