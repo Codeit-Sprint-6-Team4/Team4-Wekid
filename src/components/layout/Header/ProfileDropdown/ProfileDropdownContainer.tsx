@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useHeaderDropdown from '../../../../hooks/useHeaderDropdown';
+import useHeaderDropdown from '@hooks/useHeaderDropdown';
 import ProfileDropdownUI from './ProfileDropdownUI';
 
 interface ProfileDropdownContainerProps {

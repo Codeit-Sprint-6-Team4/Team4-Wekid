@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useHeaderDropdown from '../../../../hooks/useHeaderDropdown';
+import useHeaderDropdown from '@hooks/useHeaderDropdown';
 import NotificationsDropdownUI from './NotificationsDropdownUI';
 
 interface AlarmItem {
