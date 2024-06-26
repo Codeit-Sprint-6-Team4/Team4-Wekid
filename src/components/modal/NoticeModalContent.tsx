@@ -6,7 +6,7 @@ import {
   StyledModalSubtitle,
   StyledButtonContainer,
   StyledCustomButton,
-} from '@components/modal/NoticeModal.styled';
+} from '@components/modal/noticeModal.styled';
 
 interface NoticeModalContentProps {
   type: 'disconnect' | 'cancelSave';
