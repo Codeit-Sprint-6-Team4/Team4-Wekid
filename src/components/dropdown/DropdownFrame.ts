@@ -11,7 +11,7 @@ export const StyledDropdownButton = styled.button<{ $isOpen: boolean }>`
   width: 400px;
   height: 45px;
   padding: 10.5px 20px;
-  background-color: ${(props) => props.theme.colors.gray[0]};
+  background-color: ${(props) => props.theme.colors.gray[50]};
   border: 1px solid transparent;
   border-radius: 10px;
   font: ${(props) => props.theme.fonts['pretendard/md-14px-regular']};
@@ -53,7 +53,7 @@ export const StyledDropdownList = styled.ul`
   padding: 6px 4px;
   margin-top: 5px;
   border: none;
-  background-color: ${(props) => props.theme.colors.gray[0]};
+  background-color: ${(props) => props.theme.colors.gray[50]};
   border-radius: 10px;
   z-index: 1000;
 
