@@ -25,12 +25,11 @@ const StyledFooter = styled.footer`
   padding: 40px;
   color: ${theme.colors.gray[0]};
   background-color: ${theme.colors.gray[900]};
-  font-size: ${theme.fonts['pretendard/lg-16px-bold']};
   ul {
     display: flex;
     flex-wrap: wrap;
     li {
-      font-size: ${theme.fonts['pretendard/lg-14px-semibold']};
+      font: ${theme.fonts['pretendard/lg-14px-semibold']};
     }
     &:last-child {
       gap: 20px;
@@ -56,7 +55,8 @@ const StyledUl = styled.ul`
       content: '';
     }
     ${media('tablet')`
-padding:0;
+    padding:0;
+    font:${theme.fonts['pretendard/xs-12px-medium']};
   `}
   }
 `;

@@ -20,6 +20,7 @@ export const StyledEmailPasswordFrame = styled.div`
   `}
 
   ${media('mobile')`
+      width:335px;
       ${StyledInput}{
       width:335px;
     }

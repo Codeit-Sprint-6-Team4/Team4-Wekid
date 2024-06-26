@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import Header from '@components/layout/Header';
 import AccountSetting from '@pages/AccountSetting/AccountSetting';
 import Board from '@pages/Board/Board';
 import Boards from '@pages/Boards/Boards';
@@ -21,18 +22,20 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="signup" element={<SignUp />} />
-          <Route path="login" element={<SignIn />} />
-          <Route path="mypage" element={<AccountSetting />} />
-          <Route path="weki/:code" element={<MyWeki />} />
-          <Route path="wekilist">
-            <Route index element={<WekiList />} />
-            <Route path=":id" element={<Weki />} />
-          </Route>
-          <Route path="boards">
-            <Route index element={<Boards />} />
-            <Route path=":id" element={<Board />} />
-            <Route path="upload" element={<UpLoadBoard />} />
+          <Route element={<Header />}>
+            <Route path="signup" element={<SignUp />} />
+            <Route path="login" element={<SignIn />} />
+            <Route path="mypage" element={<AccountSetting />} />
+            <Route path="weki/:code" element={<MyWeki />} />
+            <Route path="wekilist">
+              <Route index element={<WekiList />} />
+              <Route path=":id" element={<Weki />} />
+            </Route>
+            <Route path="boards">
+              <Route index element={<Boards />} />
+              <Route path=":id" element={<Board />} />
+              <Route path="upload" element={<UpLoadBoard />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoImg from '@assets/images/logo.svg';
-import Hamburger from './Hamburger/Hamburger';
+import HamburgerContainer from './Hamburger/HamburgerContainer';
 import {
   StyledHeaderWrap,
   StyledRightSide,
@@ -51,7 +51,7 @@ const Header = () => {
             </>
           )}
           <StyledHamburger>
-            <Hamburger />
+            <HamburgerContainer />
           </StyledHamburger>
         </StyledRightSide>
       </StyledHeaderWrap>
