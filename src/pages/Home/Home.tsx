@@ -1,19 +1,21 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import LandImg4 from '@assets/images/bg_list.png';
 import LandImg1 from '@assets/images/main-hero-imgae.png';
 import LandImg5 from '@assets/images/main-view-image03.png';
 import LandImg2 from '@assets/images/main-write-image01.png';
+import Button from '@components/button/Button';
 //Components
 import Grid from '@components/layout/Grid';
-import Layout from '@components/layout/Layout';
 import Heading from '@components/texts/Heading';
 import Paragraph from '@components/texts/Paragraph';
 import { theme } from '@styles/theme';
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
-    <Layout>
-      <Grid bgColor={`${theme.colors.gray[50]}`}>
+    <>
+      <Grid bgColor={`${theme.colors.gray[50]}`} align="center">
         <Paragraph
           font={`${theme.fonts['pretendard/4xl-40px-bold']}`}
           color={`${theme.colors.gray[800]}`}
@@ -28,6 +30,14 @@ const Home = () => {
         >
           나만의 위키
         </Heading>
+        <Button
+          $primary
+          onClick={() => {
+            navigate('login');
+          }}
+        >
+          위키 만들기
+        </Button>
         <ImgWrap>
           <img src={LandImg1} alt="위키만들기_일러스트" />
         </ImgWrap>
@@ -64,7 +74,7 @@ const Home = () => {
         <Heading
           font={`${theme.fonts['pretendard/5xl-48px-semibold']}`}
           color={`${theme.colors.gray[900]}`}
-          align="right"
+          align="left"
         >
           내 위키 만들고
           <br />
@@ -93,7 +103,7 @@ const Home = () => {
           <img src={LandImg5} alt="위키만들기_일러스트" />
         </ImgWrap>
       </Grid>
-    </Layout>
+    </>
   );
 };
 

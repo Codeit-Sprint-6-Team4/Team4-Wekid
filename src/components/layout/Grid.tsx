@@ -4,13 +4,14 @@ import { media } from '@utils/media';
 
 interface GridProps {
   bgColor?: string;
+  align?: 'start' | 'center' | 'end';
   children: React.ReactNode;
 }
 
-const Grid: React.FC<GridProps> = ({ children, bgColor }) => {
+const Grid: React.FC<GridProps> = ({ children, bgColor, align }) => {
   return (
     <StyledGrid $bgColor={bgColor}>
-      <StyledSection>{children}</StyledSection>
+      <StyledSection align={align}>{children}</StyledSection>
     </StyledGrid>
   );
 };
@@ -24,11 +25,12 @@ const StyledGrid = styled.section<{ $bgColor?: string }>`
   `}
 `;
 
-const StyledSection = styled.div`
+const StyledSection = styled.div<{ align?: 'start' | 'center' | 'end' }>`
   margin: 0 auto;
   width: 100%;
   max-width: 924px;
   display: grid;
+  place-items: ${(props) => props.align || 'start'};
 `;
 
 export default Grid;

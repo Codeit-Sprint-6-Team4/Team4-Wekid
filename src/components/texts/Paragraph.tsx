@@ -28,7 +28,7 @@ const StyledParagraph = styled.p<StyledPragraphProps>`
   color: ${(props) => props.color || '#000'};
   text-align: ${(props) => props.align || 'left'};
   ${media('tablet')`font:${theme.fonts['pretendard/2lg-18px-semibold']};`}
-  ${media('mobile')`font:${theme.fonts['pretendard/md-14px-bold']};`}
+  ${media('mobile')`font:${theme.fonts['pretendard/md-14px-medium']};`}
 `;
 
 export default Paragraph;
