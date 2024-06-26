@@ -12,7 +12,7 @@ export const StyledDropdownButton = styled.button<{ $isOpen: boolean }>`
   height: 45px;
   padding: 10.5px 20px;
   background-color: ${(props) => props.theme.colors.gray[0]};
-  border: none;
+  border: 1px solid transparent;
   border-radius: 10px;
   font: ${(props) => props.theme.fonts['pretendard/md-14px-regular']};
   color: ${(props) => props.theme.colors.gray[600]};
