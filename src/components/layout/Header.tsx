@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import logoImg from '@assets/images/logo.svg';
 
