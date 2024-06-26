@@ -1,5 +1,2 @@
-const ProfileDropdown = () => {
-  return '프로필';
-};
-
-export default ProfileDropdown;
+import ProfileDropdownContainer from './ProfileDropdownContainer';
+export default ProfileDropdownContainer;

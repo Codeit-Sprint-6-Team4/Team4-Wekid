@@ -14,7 +14,7 @@ interface AlarmsData {
 }
 
 const NotificationsDropdownContainer: React.FC = () => {
-  const { isOpen, handleToggleDropdown } = useHeaderDropdown();
+  const { isOpen, handleToggleDropdown, dropdownRef } = useHeaderDropdown(); // ref 포함
   const [alarms, setAlarms] = useState<AlarmsData>({
     totalCount: 2,
     list: [
@@ -49,6 +49,7 @@ const NotificationsDropdownContainer: React.FC = () => {
       handleToggleDropdown={handleToggleDropdown}
       alarms={alarms}
       handleDeleteAlarm={handleDeleteAlarm}
+      dropdownRef={dropdownRef} // ref 전달
     />
   );
 };

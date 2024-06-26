@@ -10,10 +10,10 @@ const Nav: React.FC = () => (
   <StyledNav>
     <StyledNavList>
       <StyledNavItem>
-        <Link to="wekilist">위키목록</Link>
+        <Link to="/wekilist">위키목록</Link>
       </StyledNavItem>
       <StyledNavItem>
-        <Link to="boards">자유게시판</Link>
+        <Link to="/boards">자유게시판</Link>
       </StyledNavItem>
     </StyledNavList>
   </StyledNav>
