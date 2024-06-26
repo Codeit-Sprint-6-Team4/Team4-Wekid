@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import closeIcon from '@assets/icons/icon-close.svg';
+import { theme } from '@styles/theme';
 import ImageUploadModalContent from './ImageUploadModalContent';
 import NoticeModalContent from './NoticeModalContent';
 import QuestionModalContent from './QuestionModalContent';
 
-const ModalOverlay = styled.div`
+const StyledModalOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -18,9 +19,9 @@ const ModalOverlay = styled.div`
   z-index: 1000;
 `;
 
-const ModalContainer = styled.div`
+const StyledModalContainer = styled.div`
   position: relative;
-  background-color: ${({ theme }) => theme.colors.gray[0]};
+  background-color: ${theme.colors.gray[0]};
   padding: 50px 20px 20px 20px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -28,7 +29,7 @@ const ModalContainer = styled.div`
   max-width: 85%;
 `;
 
-const CloseButton = styled.button`
+const StyledCloseButton = styled.button`
   position: absolute;
   top: 20px;
   right: 20px;
@@ -37,8 +38,8 @@ const CloseButton = styled.button`
   background-position: center center;
   background-size: 14px;
   border: none;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
   padding: 0;
 `;
@@ -53,7 +54,7 @@ const Modal: React.FC<ModalProps> = ({ type, onClose, onConfirm }) => {
   let content;
   switch (type) {
     case 'imageUpload':
-      content = <ImageUploadModalContent />;
+      content = <ImageUploadModalContent onClose={onClose} />;
       break;
     case 'question':
       content = <QuestionModalContent onConfirm={onConfirm!} />;
@@ -73,12 +74,12 @@ const Modal: React.FC<ModalProps> = ({ type, onClose, onConfirm }) => {
   };
 
   return (
-    <ModalOverlay onClick={handleBackgroundClick}>
-      <ModalContainer>
-        <CloseButton onClick={onClose} />
+    <StyledModalOverlay onClick={handleBackgroundClick}>
+      <StyledModalContainer>
+        <StyledCloseButton onClick={onClose} />
         {content}
-      </ModalContainer>
-    </ModalOverlay>
+      </StyledModalContainer>
+    </StyledModalOverlay>
   );
 };
 

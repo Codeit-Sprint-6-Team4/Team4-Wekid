@@ -1,15 +1,21 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import cameraIcon from '@assets/icons/icon-camera.svg';
+import Button from '@components/button/Button';
+import { theme } from '@styles/theme';
 
-const Container = styled.div`
+interface ImageUploadModalContentProps {
+  onClose: () => void;
+}
+
+const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font: ${({ theme }) => theme.fonts['pretendard/2lg-18px-semibold']};
+  font: ${theme.fonts['pretendard/2lg-18px-semibold']};
 `;
 
-const ImageContainer = styled.div<{ imageLoad: boolean }>`
+const StyledImageContainer = styled.div<{ imageLoad: boolean }>`
   position: relative;
   width: 100%;
   height: ${({ imageLoad }) => (imageLoad ? 'auto' : '160px')};
@@ -19,10 +25,10 @@ const ImageContainer = styled.div<{ imageLoad: boolean }>`
   margin-top: 15px;
   margin-bottom: 20px;
   border-radius: 10px;
-  background-color: ${({ theme }) => theme.colors.gray[50]};
+  background-color: ${theme.colors.gray[50]};
 `;
 
-const UploadIcon = styled.div`
+const StyledUploadIcon = styled.div`
   width: 50px;
   height: 50px;
   background-image: url(${cameraIcon});
@@ -31,36 +37,26 @@ const UploadIcon = styled.div`
   background-size: contain;
 `;
 
-const HiddenInput = styled.input`
+const StyledHiddenInput = styled.input`
   display: none;
 `;
 
-const PreviewImage = styled.img`
+const StyledPreviewImage = styled.img`
   max-width: 100%;
   max-height: 100%;
   border-radius: 10px;
   object-fit: contain;
 `;
 
-//임시버튼
-interface UploadButtonProps {
-  disabled: boolean;
-}
-
-const UploadButton = styled.button<UploadButtonProps>`
-  background-color: ${(props) =>
-    props.disabled
-      ? props.theme.colors.gray[50]
-      : props.theme.colors.main[500]};
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
-  color: white;
-  font-size: 16px;
+const StyledButtonContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
 `;
 
-const ImageUploadModalContent: React.FC = () => {
+const ImageUploadModalContent: React.FC<ImageUploadModalContentProps> = ({
+  onClose,
+}) => {
   const [fileSelected, setFileSelected] = useState(false);
   const [filePreviewUrl, setFilePreviewUrl] = useState<string | null>(null);
   const [imageLoad, setImageLoad] = useState(false);
@@ -91,29 +87,37 @@ const ImageUploadModalContent: React.FC = () => {
     setImageLoad(true);
   };
 
+  const handleInsertClick = () => {
+    if (fileSelected) {
+      onClose();
+    }
+  };
+
   return (
-    <Container>
+    <StyledContainer>
       <p>이미지</p>
-      <ImageContainer onClick={handleClick} imageLoad={imageLoad}>
+      <StyledImageContainer onClick={handleClick} imageLoad={imageLoad}>
         {filePreviewUrl ? (
-          <PreviewImage
+          <StyledPreviewImage
             onLoad={handleImageLoad}
             src={filePreviewUrl}
             alt="Uploaded file preview"
           />
         ) : (
-          <UploadIcon />
+          <StyledUploadIcon />
         )}
-        <HiddenInput
+        <StyledHiddenInput
           type="file"
           ref={fileInputRef}
           onChange={handleFileChange}
         />
-      </ImageContainer>
-      <UploadButton disabled={!fileSelected} onClick={handleClick}>
-        삽입하기
-      </UploadButton>
-    </Container>
+      </StyledImageContainer>
+      <StyledButtonContainer>
+        <Button $primary disabled={!fileSelected} onClick={handleInsertClick}>
+          삽입하기
+        </Button>
+      </StyledButtonContainer>
+    </StyledContainer>
   );
 };
 
