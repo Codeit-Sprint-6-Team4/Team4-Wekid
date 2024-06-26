@@ -1,45 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
 import Button from '@components/button/Button';
-import { theme } from '@styles/theme';
+import {
+  StyledNoticeContent,
+  StyledModalTitle,
+  StyledModalSubtitle,
+  StyledButtonContainer,
+  StyledCustomButton,
+} from '@components/modal/NoticeModal.styled';
 
 interface NoticeModalContentProps {
   type: 'disconnect' | 'cancelSave';
   onClose: () => void;
 }
-const StyledNoticeContent = styled.div`
-  padding-left: 10px;
-  display: flex;
-  flex-direction: column;
-`;
 
-const StyledModalTitle = styled.div`
-  font: ${theme.fonts['pretendard/2lg-18px-semibold']};
-  color: ${theme.colors.gray[800]};
-`;
-
-const StyledModalSubtitle = styled.div`
-  margin-top: 10px;
-  margin-bottom: 33px;
-  font: ${theme.fonts['pretendard/lg-16px-regular']};
-  color: ${theme.colors.gray[600]};
-`;
-
-const StyledButtonContainer = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
-`;
-
-const StyledCustomButton = styled(Button)`
-  background-color: ${theme.colors.red[500]};
-  color: ${theme.colors.gray[0]};
-`;
-
-const NoticeModalContent: React.FC<NoticeModalContentProps> = ({
-  type,
-  onClose,
-}) => {
+const NoticeModalContent = ({ type, onClose }: NoticeModalContentProps) => {
   switch (type) {
     case 'disconnect':
       return (

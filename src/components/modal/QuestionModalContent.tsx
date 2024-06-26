@@ -1,87 +1,27 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import lockIcon from '@assets/icons/icon-lock.svg';
 import Button from '@components/button/Button';
-import { StyledInput } from '@components/input/input';
+import {
+  StyledQuestionContent,
+  StyledLockIconContainer,
+  StyledLockIcon,
+  StyledLockText,
+  StyledQeustionTitle,
+  StyledAnswerInput,
+  StyledErrorMessage,
+  StyledFooter,
+} from '@components/modal/questionModal.styled';
 import { theme } from '@styles/theme';
 
 interface QuestionModalContentProps {
   onConfirm: (answer: string) => void;
 }
 
-const StyledQuestionContent = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const StyledLockIconContainer = styled.div`
-  width: 50px;
-  height: 50px;
-  background-color: ${theme.colors.gray[50]};
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
-`;
-
-const StyledLockIcon = styled.div`
-  width: 30px;
-  height: 30px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url(${lockIcon});
-`;
-
-const StyledLockText = styled.div`
-  font: ${theme.fonts['pretendard/md-14px-regular']};
-  color: ${theme.colors.gray[600]};
-  margin-bottom: 36px;
-  text-align: center;
-`;
-
-const StyledQeustionTitle = styled.div`
-  font: ${theme.fonts['pretendard/2lg-18px-semibold']};
-  color: ${theme.colors.gray[800]};
-  margin-bottom: 10px;
-  align-self: start;
-`;
-
-const StyledAnswerInput = styled(StyledInput)`
-  width: 100%;
-  height: 45px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-`;
-
-const StyledErrorMessage = styled.div`
-  font: ${theme.fonts['pretendard/xs-12px-regular']};
-  color: ${theme.colors.red[500]};
-  align-self: start;
-`;
-
-const StyledFooter = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-style: ${theme.fonts['pretendard/xs-12px-regular']};
-  color: ${theme.colors.gray[600]};
-  margin-top: 20px;
-  text-align: center;
-`;
-
-const QuestionModalContent: React.FC<QuestionModalContentProps> = ({
-  onConfirm,
-}) => {
+const QuestionModalContent = ({ onConfirm }: QuestionModalContentProps) => {
   const [answer, setAnswer] = useState('');
   const [question, setQuestion] = useState('특별히 싫어하는 음식은?');
   const [correctAnswer, setCorrectAnswer] = useState('미나리');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isFocused, setIsFocused] = useState(false);
 
   const handleConfirm = () => {
     if (answer === correctAnswer) {
@@ -124,6 +64,15 @@ const QuestionModalContent: React.FC<QuestionModalContentProps> = ({
           }}
           onKeyPress={handleKeyPress}
           placeholder="답을 입력하세요"
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          style={{
+            border: errorMessage
+              ? `1px solid ${theme.colors.red[500]}`
+              : isFocused
+                ? `1px solid ${theme.colors.main[500]}`
+                : `1px solid ${theme.colors.gray[50]}`,
+          }}
         />
         {errorMessage && (
           <StyledErrorMessage>{errorMessage}</StyledErrorMessage>

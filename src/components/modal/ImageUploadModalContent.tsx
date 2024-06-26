@@ -1,62 +1,19 @@
 import React, { useRef, useState } from 'react';
-import styled from 'styled-components';
-import cameraIcon from '@assets/icons/icon-camera.svg';
 import Button from '@components/button/Button';
-import { theme } from '@styles/theme';
+import {
+  StyledContainer,
+  StyledImageContainer,
+  StyledUploadIcon,
+  StyledHiddenInput,
+  StyledPreviewImage,
+  StyledButtonContainer,
+} from '@components/modal/imageUploadModal.styled';
 
 interface ImageUploadModalContentProps {
   onClose: () => void;
 }
 
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font: ${theme.fonts['pretendard/2lg-18px-semibold']};
-`;
-
-const StyledImageContainer = styled.div<{ imageLoad: boolean }>`
-  position: relative;
-  width: 100%;
-  height: ${({ imageLoad }) => (imageLoad ? 'auto' : '160px')};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  background-color: ${theme.colors.gray[50]};
-`;
-
-const StyledUploadIcon = styled.div`
-  width: 50px;
-  height: 50px;
-  background-image: url(${cameraIcon});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-`;
-
-const StyledHiddenInput = styled.input`
-  display: none;
-`;
-
-const StyledPreviewImage = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 10px;
-  object-fit: contain;
-`;
-
-const StyledButtonContainer = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
-`;
-
-const ImageUploadModalContent: React.FC<ImageUploadModalContentProps> = ({
-  onClose,
-}) => {
+const ImageUploadModalContent = ({ onClose }: ImageUploadModalContentProps) => {
   const [fileSelected, setFileSelected] = useState(false);
   const [filePreviewUrl, setFilePreviewUrl] = useState<string | null>(null);
   const [imageLoad, setImageLoad] = useState(false);
