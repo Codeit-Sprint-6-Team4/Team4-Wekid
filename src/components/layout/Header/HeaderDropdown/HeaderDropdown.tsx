@@ -4,13 +4,13 @@ import styled from 'styled-components';
 interface DropdownProps {
   isOpen: boolean;
   handleToggleDropdown: () => void;
-  children: ReactNode;
   buttonIcon: string;
-  buttonIconAlt: string
+  buttonIconAlt: string;
+  children: ReactNode;
 }
 
 const HeaderDropdown = forwardRef<HTMLDivElement, DropdownProps>(
-  ({ isOpen, handleToggleDropdown, children, buttonIcon, buttonIconAlt }, ref) => (
+  ({ isOpen, handleToggleDropdown, buttonIcon, buttonIconAlt, children }, ref) => (
     <DropdownContainer ref={ref}>
       <StyledDropdownButton onClick={handleToggleDropdown}>
         <StyledIcon>

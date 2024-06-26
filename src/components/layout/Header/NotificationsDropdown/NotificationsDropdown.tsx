@@ -1,5 +1,2 @@
-const NotificationsDropdown = () => {
-  return '알림';
-};
-
-export default NotificationsDropdown;
+import NotificationsDropdownContainer from './NotificationsDropdownContainer';
+export default NotificationsDropdownContainer;

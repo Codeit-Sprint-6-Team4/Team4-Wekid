@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoImg from '@assets/images/logo.svg';
 import Hamburger from './Hamburger/Hamburger';
@@ -14,12 +15,13 @@ import Nav from './Nav/Nav';
 import NotificationsDropdown from './NotificationsDropdown/NotificationsDropdown';
 import ProfileDropdown from './ProfileDropdown/ProfileDropdown';
 
-interface HeaderProps {
-  isLoggedIn: boolean;
-  handleLogin: () => void;
-}
+const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-const Header: React.FC<HeaderProps> = ({ isLoggedIn, handleLogin }) => {
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
   return (
     <header>
       <StyledHeaderWrap>
