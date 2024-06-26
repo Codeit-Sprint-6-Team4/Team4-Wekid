@@ -12,7 +12,7 @@ export const StyledDropdownButton = styled.button<{ $isOpen: boolean }>`
   height: 45px;
   padding: 10.5px 20px;
   background-color: ${(props) => props.theme.colors.gray[50]};
-  border: 1px solid transparent;
+  border: none;
   border-radius: 10px;
   font: ${(props) => props.theme.fonts['pretendard/md-14px-regular']};
   color: ${(props) => props.theme.colors.gray[600]};
@@ -22,14 +22,10 @@ export const StyledDropdownButton = styled.button<{ $isOpen: boolean }>`
   justify-content: space-between;
   align-items: center;
 
-  &:focus {
-    outline: none;
-  }
-
   ${({ $isOpen: isOpen, theme }) =>
     isOpen &&
     `
-    border: 1px solid ${theme.colors.main[500]};
+    outline: 1px solid ${theme.colors.main[500]};
     `}
 
   .icon {
