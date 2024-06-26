@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import closeIcon from '@assets/icons/icon-close.svg';
 import { theme } from '@styles/theme';
+import { media } from '@utils/media';
 
 export const StyledModalOverlay = styled.div`
   position: fixed;
@@ -23,6 +24,9 @@ export const StyledModalContainer = styled.div`
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 395px;
   max-width: 85%;
+  ${media('mobile')`
+    width: 335px;
+  `}
 `;
 
 export const StyledCloseButton = styled.button`
@@ -32,7 +36,7 @@ export const StyledCloseButton = styled.button`
   background: url(${closeIcon});
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 14px;
+  background-size: 24px;
   border: none;
   width: 30px;
   height: 30px;

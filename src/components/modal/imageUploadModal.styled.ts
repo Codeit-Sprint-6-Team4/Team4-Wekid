@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 import cameraIcon from '@assets/icons/icon-camera.svg';
 import { theme } from '@styles/theme';
+import { media } from '@utils/media';
 
 export const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   font: ${theme.fonts['pretendard/2lg-18px-semibold']};
+  ${media('mobile')`
+    font: ${theme.fonts['pretendard/lg-16px-semibold']};
+  `}
 `;
 
 export const StyledImageContainer = styled.div<{ imageLoad: boolean }>`
