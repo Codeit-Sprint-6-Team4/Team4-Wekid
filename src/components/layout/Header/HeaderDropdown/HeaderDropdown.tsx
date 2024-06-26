@@ -5,15 +5,16 @@ interface DropdownProps {
   isOpen: boolean;
   handleToggleDropdown: () => void;
   children: ReactNode;
-  icon: string;
+  buttonIcon: string;
+  buttonIconAlt: string
 }
 
 const HeaderDropdown = forwardRef<HTMLDivElement, DropdownProps>(
-  ({ isOpen, handleToggleDropdown, children, icon }, ref) => (
+  ({ isOpen, handleToggleDropdown, children, buttonIcon, buttonIconAlt }, ref) => (
     <DropdownContainer ref={ref}>
       <StyledDropdownButton onClick={handleToggleDropdown}>
         <StyledIcon>
-          <img src={icon} alt="icon" />
+          <img src={buttonIcon} alt={buttonIconAlt} />
         </StyledIcon>
       </StyledDropdownButton>
       {isOpen && (
