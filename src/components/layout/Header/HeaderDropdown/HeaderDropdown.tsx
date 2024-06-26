@@ -1,31 +1,26 @@
-import React, { ReactNode, RefObject } from 'react';
+import React, { ReactNode, forwardRef } from 'react';
 import styled from 'styled-components';
 
 interface DropdownProps {
-  dropdownRef: RefObject<HTMLDivElement>;
   isOpen: boolean;
   handleToggleDropdown: () => void;
   children: ReactNode;
   icon: string;
 }
 
-const HeaderDropdown: React.FC<DropdownProps> = ({
-  dropdownRef,
-  isOpen,
-  handleToggleDropdown,
-  children,
-  icon,
-}) => (
-  <DropdownContainer ref={dropdownRef}>
-    <StyledDropdownButton onClick={handleToggleDropdown}>
-      <StyledIcon>
-        <img src={icon} alt="icon" />
-      </StyledIcon>
-    </StyledDropdownButton>
-    {isOpen && (
-      <StyledDropdownContentWrap>{children}</StyledDropdownContentWrap>
-    )}
-  </DropdownContainer>
+const HeaderDropdown = forwardRef<HTMLDivElement, DropdownProps>(
+  ({ isOpen, handleToggleDropdown, children, icon }, ref) => (
+    <DropdownContainer ref={ref}>
+      <StyledDropdownButton onClick={handleToggleDropdown}>
+        <StyledIcon>
+          <img src={icon} alt="icon" />
+        </StyledIcon>
+      </StyledDropdownButton>
+      {isOpen && (
+        <StyledDropdownContentWrap>{children}</StyledDropdownContentWrap>
+      )}
+    </DropdownContainer>
+  ),
 );
 
 const DropdownContainer = styled.div`
@@ -65,4 +60,3 @@ const StyledDropdownContentWrap = styled.div`
 `;
 
 export default HeaderDropdown;
-
