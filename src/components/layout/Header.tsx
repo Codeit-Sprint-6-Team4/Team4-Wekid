@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import logoImg from '@assets/images/logo.svg';
 
@@ -10,6 +12,7 @@ const Header = () => {
           <img src={logoImg} alt="로고" />
         </Link>
       </h1>
+      <Outlet />
     </StyledHeader>
   );
 };
