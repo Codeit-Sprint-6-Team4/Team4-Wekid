@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { theme } from '@styles/theme';
 import { media } from '@utils/media';
 
-export const StyledSignInFrame = styled.div`
+export const StyledSignInWrap = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;

@@ -1,9 +1,9 @@
 import React from 'react';
 //Components
-import SignUpContainer from '@pages/SignIn/components/SignUpContainer';
+import SignInContainer from '@pages/SignIn/components/SignInContainer';
 
 const SignIn = () => {
-  return <SignUpContainer />;
+  return <SignInContainer />;
 };
 
 export default SignIn;

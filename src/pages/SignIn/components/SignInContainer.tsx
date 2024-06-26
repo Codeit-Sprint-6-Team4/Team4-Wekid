@@ -6,7 +6,7 @@ export interface logInDataTypes {
   password: string;
 }
 
-const SignUpContainer = () => {
+const SignInContainer = () => {
   const [userData, setUserDate] = useState<logInDataTypes>({
     email: '',
     password: '',
@@ -20,4 +20,4 @@ const SignUpContainer = () => {
   return <SignInUI value={userData} onChange={onChange} />;
 };
 
-export default SignUpContainer;
+export default SignInContainer;

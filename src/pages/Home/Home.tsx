@@ -7,7 +7,6 @@ import LandImg2 from '@assets/images/main-write-image01.png';
 import Button from '@components/button/Button';
 //Components
 import Grid from '@components/layout/Grid';
-import Layout from '@components/layout/Layout';
 import Heading from '@components/texts/Heading';
 import Paragraph from '@components/texts/Paragraph';
 import { theme } from '@styles/theme';
@@ -15,7 +14,7 @@ import { theme } from '@styles/theme';
 const Home = () => {
   const navigate = useNavigate();
   return (
-    <Layout>
+    <>
       <Grid bgColor={`${theme.colors.gray[50]}`} align="center">
         <Paragraph
           font={`${theme.fonts['pretendard/4xl-40px-bold']}`}
@@ -104,7 +103,7 @@ const Home = () => {
           <img src={LandImg5} alt="위키만들기_일러스트" />
         </ImgWrap>
       </Grid>
-    </Layout>
+    </>
   );
 };
 
