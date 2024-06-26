@@ -16,7 +16,7 @@ import {
 interface signInUIProps {
   value: userDataTypes;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: React.FormEvent<HTMLDivElement>) => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   isFillForm: () => boolean;
 }
 
@@ -25,8 +25,8 @@ const SignUpUI = ({ value, onChange, onSubmit, isFillForm }: signInUIProps) => {
   return (
     <StyledSignUpFrame>
       <StyledSignUpName>회원가입</StyledSignUpName>
-      <StyledSignUpForm>
-        <StyledSignUpUserInfoFrame onSubmit={onSubmit}>
+      <StyledSignUpForm onSubmit={onSubmit}>
+        <StyledSignUpUserInfoFrame>
           <EmailPassword
             type="text"
             name="이름"
@@ -54,12 +54,12 @@ const SignUpUI = ({ value, onChange, onSubmit, isFillForm }: signInUIProps) => {
           <EmailPassword
             type="password"
             name="비밀번호 확인"
-            inputName="confirmPassword"
+            inputName="passwordConfirmation"
             placeholder="비밀번호를 입력해 주세요"
-            value={value.confirmPassword}
+            value={value.passwordConfirmation}
             onChange={onChange}
           />
-          {value.password !== value.confirmPassword ? (
+          {value.password !== value.passwordConfirmation ? (
             <StyledErrorMessage>
               비밀번호가 일치하지 않습니다.
             </StyledErrorMessage>
