@@ -3,6 +3,7 @@ import LandImg4 from '@assets/images/bg_list.png';
 import LandImg1 from '@assets/images/main-hero-imgae.png';
 import LandImg5 from '@assets/images/main-view-image03.png';
 import LandImg2 from '@assets/images/main-write-image01.png';
+import Button from '@components/button/Button';
 //Components
 import Grid from '@components/layout/Grid';
 import Layout from '@components/layout/Layout';
@@ -13,7 +14,7 @@ import { theme } from '@styles/theme';
 const Home = () => {
   return (
     <Layout>
-      <Grid bgColor={`${theme.colors.gray[50]}`}>
+      <Grid bgColor={`${theme.colors.gray[50]}`} align="center">
         <Paragraph
           font={`${theme.fonts['pretendard/4xl-40px-bold']}`}
           color={`${theme.colors.gray[800]}`}
@@ -28,6 +29,7 @@ const Home = () => {
         >
           나만의 위키
         </Heading>
+        <Button $primary>dd</Button>
         <ImgWrap>
           <img src={LandImg1} alt="위키만들기_일러스트" />
         </ImgWrap>
