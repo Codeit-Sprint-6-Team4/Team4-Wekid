@@ -1,15 +1,9 @@
 import React from 'react';
 //Components
-import Grid from '@components/layout/Grid';
-import Layout from '@components/layout/Layout';
-import { theme } from '@styles/theme';
+import SignUpContainer from '@pages/SignIn/components/SignUpContainer';
 
 const SignIn = () => {
-  return (
-    <Layout>
-      <Grid bgColor={`${theme.colors.gray[800]}`}>ddssd</Grid>
-    </Layout>
-  );
+  return <SignUpContainer />;
 };
 
 export default SignIn;

@@ -30,7 +30,7 @@ const StyledSection = styled.div<{ align?: 'start' | 'center' | 'end' }>`
   width: 100%;
   max-width: 924px;
   display: grid;
-  align-items: ${(props) => props.align || 'start'};
+  place-items: ${(props) => props.align || 'start'};
 `;
 
 export default Grid;

@@ -29,7 +29,7 @@ const Home = () => {
         >
           나만의 위키
         </Heading>
-        <Button $primary>dd</Button>
+        <Button $primary>위키 만들기</Button>
         <ImgWrap>
           <img src={LandImg1} alt="위키만들기_일러스트" />
         </ImgWrap>
@@ -66,7 +66,7 @@ const Home = () => {
         <Heading
           font={`${theme.fonts['pretendard/5xl-48px-semibold']}`}
           color={`${theme.colors.gray[900]}`}
-          align="right"
+          align="left"
         >
           내 위키 만들고
           <br />
