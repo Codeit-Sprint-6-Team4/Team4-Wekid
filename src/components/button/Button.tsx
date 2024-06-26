@@ -1,12 +1,15 @@
-import { StyledButton, StyledDots } from './ButtonFrame';
+import { StyledButton, StyledDots } from '@components/button/ButtonFrame';
 
 export interface ButtonProps {
   $primary?: boolean;
   $secondary?: boolean;
   $loading?: boolean;
+  $mainGray?: boolean;
+  $mainWhite?: boolean;
   $width?: string;
   $height?: string;
   $mobileWidth?: string;
+  $mobileHeight?: string;
 }
 
 const Button: React.FC<
@@ -16,18 +19,24 @@ const Button: React.FC<
   $primary,
   $secondary,
   $loading,
+  $mainGray,
+  $mainWhite,
   $width,
   $height,
   $mobileWidth,
+  $mobileHeight,
   ...props
 }) => (
   <StyledButton
     $primary={$primary}
     $secondary={$secondary}
     $loading={$loading}
+    $mainGray={$mainGray}
+    $mainWhite={$mainWhite}
     $width={$width}
     $height={$height}
     $mobileWidth={$mobileWidth}
+    $mobileHeight={$mobileHeight}
     {...props}
   >
     {$loading ? (

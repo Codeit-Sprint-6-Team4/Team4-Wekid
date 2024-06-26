@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { media } from '@utils/media';
 import { ButtonProps } from '@components/button/Button';
+import { media } from '@utils/media';
 
 export const StyledButton = styled.button<ButtonProps>`
   width: ${({ $width: width }) => width || '120px'};
@@ -41,12 +41,25 @@ export const StyledButton = styled.button<ButtonProps>`
       align-items: center;
       justify-content: center;
     `}
+  
+  ${(props) =>
+    props.$mainGray &&
+    css`
+      background-color: ${props.theme.colors.gray[800]};
+      color: ${props.theme.colors.gray[0]};
+    `}  
+
+  ${(props) =>
+    props.$mainWhite &&
+    css`
+      background-color: ${props.theme.colors.gray[0]};
+      color: ${props.theme.colors.gray[800]};
+    `}  
     
-    ${(props) =>
-    props.$mobileWidth &&
-    media('mobile')`
-    width: ${props.$mobileWidth};
-  `}
+  ${({ $mobileWidth, $mobileHeight }) => media('mobile')`
+    ${$mobileWidth && `width: ${$mobileWidth};`}
+    ${$mobileHeight && `height: ${$mobileHeight};`}
+    `}
 `;
 
 export const StyledDots = styled.div`
