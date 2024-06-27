@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import Header from '@components/layout/Header';
+import Header from '@components/layout/Header/Header';
+import HeaderContainer from '@components/layout/Header/HeaderContainer';
 import AccountSetting from '@pages/AccountSetting/AccountSetting';
 import Board from '@pages/Board/Board';
 import Boards from '@pages/Boards/Boards';
@@ -21,8 +22,8 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route element={<Header />}>
+          <Route element={<HeaderContainer />}>
+            <Route path="/" element={<Home />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="login" element={<SignIn />} />
             <Route path="mypage" element={<AccountSetting />} />

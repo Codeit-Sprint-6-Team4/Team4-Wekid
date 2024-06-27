@@ -1,5 +1,5 @@
 // import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import logoImg from '@assets/images/logo.svg';
 import HamburgerContainer from './Hamburger/HamburgerContainer';
 import {
@@ -58,6 +58,7 @@ const Header: React.FC<HeaderProps> = ({
           </StyledHamburger>
         </StyledRightSide>
       </StyledHeaderWrap>
+      <Outlet />
     </header>
   );
 };
