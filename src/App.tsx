@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import Footer from '@components/layout/Footer';
 import Header from '@components/layout/Header/Header';
 import HeaderContainer from '@components/layout/Header/HeaderContainer';
 import AccountSetting from '@pages/AccountSetting/AccountSetting';
@@ -21,24 +22,24 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
+        <HeaderContainer />
         <Routes>
-          <Route element={<HeaderContainer />}>
-            <Route path="/" element={<Home />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="login" element={<SignIn />} />
-            <Route path="mypage" element={<AccountSetting />} />
-            <Route path="weki/:code" element={<MyWeki />} />
-            <Route path="wekilist">
-              <Route index element={<WekiList />} />
-              <Route path=":id" element={<Weki />} />
-            </Route>
-            <Route path="boards">
-              <Route index element={<Boards />} />
-              <Route path=":id" element={<Board />} />
-              <Route path="upload" element={<UpLoadBoard />} />
-            </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="login" element={<SignIn />} />
+          <Route path="mypage" element={<AccountSetting />} />
+          <Route path="weki/:code" element={<MyWeki />} />
+          <Route path="wekilist">
+            <Route index element={<WekiList />} />
+            <Route path=":id" element={<Weki />} />
+          </Route>
+          <Route path="boards">
+            <Route index element={<Boards />} />
+            <Route path=":id" element={<Board />} />
+            <Route path="upload" element={<UpLoadBoard />} />
           </Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );
