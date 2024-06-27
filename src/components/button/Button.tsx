@@ -1,4 +1,4 @@
-import { StyledButton, StyledDots } from '@components/button/ButtonFrame';
+import { StyledButton, StyledDots } from '@components/button/Button.styled';
 
 export interface ButtonProps {
   $primary?: boolean;
