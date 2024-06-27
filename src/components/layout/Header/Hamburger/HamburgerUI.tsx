@@ -1,11 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import HamburgerImg from '@assets/icons/icon-menu.svg';
-import HeaderDropdown from '../HeaderDropdown/HeaderDropdown';
-import {
-  StyledMyMenu,
-  StyledMyMenuItem,
-} from './HamburgerUI.styles';
+import HeaderDropdown from '../HeaderDropdown/HeaderDropdownUI';
+import { StyledMyMenu, StyledMyMenuItem } from './HamburgerUI.styles';
 
 interface HamburgerUIProps {
   isOpen: boolean;

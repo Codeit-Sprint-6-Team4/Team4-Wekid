@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
 import Header from './Header';
 
-const HeaderContainer = () => {
-  // Context API 생성 후 수정 필요
+const HeaderContainer: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
 
-  return <Header isLoggedIn={isLoggedIn} handleLogin={handleLogin} />;
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
+  return (
+    <Header
+      isLoggedIn={isLoggedIn}
+      handleLogin={handleLogin}
+      handleLogout={handleLogout}
+    />
+  );
 };
 
 export default HeaderContainer;
