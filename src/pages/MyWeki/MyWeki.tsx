@@ -1,7 +1,12 @@
 import React from 'react';
+import MyWekiContainer from './components/MyWekiContainer';
 
 const MyWeki = () => {
-  return <div>나의 위키페이지</div>;
+  return (
+    <>
+      <MyWekiContainer />
+    </>
+  );
 };
 
 export default MyWeki;

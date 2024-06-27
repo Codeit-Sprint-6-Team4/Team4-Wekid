@@ -5,12 +5,12 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
   @font-face {
     font-family: 'Nexon';
-    src: url('src/assets/fonts/NEXON Lv1 Gothic OTF.woff') format('woff');
+    src: url('/public/assets/fonts/NEXON Lv1 Gothic OTF.woff') format('woff');
   }
 
   @font-face {
     font-family: 'Pretendard';
-    src: url('src/assets/fonts/PretendardVariable.woff2') format('woff2');
+    src: url('/public/assets/fonts/PretendardVariable.woff2') format('woff2');
   }
 
   html {
