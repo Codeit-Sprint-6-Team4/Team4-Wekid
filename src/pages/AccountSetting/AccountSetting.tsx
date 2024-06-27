@@ -1,7 +1,8 @@
 import React from 'react';
+import AccountSettingContainer from './components/AccountSettingContainer';
 
 const AccountSetting = () => {
-  return <div>계정 설정</div>;
+  return <AccountSettingContainer />;
 };
 
 export default AccountSetting;
