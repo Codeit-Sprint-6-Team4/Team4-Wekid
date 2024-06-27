@@ -24,6 +24,9 @@ export const StyledImageContainer = styled.div<{ imageLoad: boolean }>`
   margin-bottom: 20px;
   border-radius: 10px;
   background-color: ${theme.colors.gray[50]};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const StyledUploadIcon = styled.div`

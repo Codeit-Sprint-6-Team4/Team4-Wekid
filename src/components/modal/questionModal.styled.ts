@@ -63,7 +63,7 @@ export const StyledFooter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-style: ${theme.fonts['pretendard/xs-12px-regular']};
+  font: ${theme.fonts['pretendard/xs-12px-regular']};
   color: ${theme.colors.gray[600]};
   margin-top: 20px;
   text-align: center;

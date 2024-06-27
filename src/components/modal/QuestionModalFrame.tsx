@@ -13,6 +13,8 @@ import {
 import { theme } from '@styles/theme';
 
 interface QuestionModalContentProps {
+  question?: string;
+  correctAnswer?: string;
   onConfirm: (answer: string) => void;
 }
 
@@ -62,7 +64,7 @@ const QuestionModalContent = ({ onConfirm }: QuestionModalContentProps) => {
             setAnswer(e.target.value);
             setErrorMessage(null);
           }}
-          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyPress}
           placeholder="답을 입력하세요"
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}

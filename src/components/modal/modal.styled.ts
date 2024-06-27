@@ -25,7 +25,7 @@ export const StyledModalContainer = styled.div`
   width: 395px;
   max-width: 85%;
   ${media('mobile')`
-    width: 335px;
+    width: 90%;
   `}
 `;
 
