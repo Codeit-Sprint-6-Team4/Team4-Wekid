@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import useHeaderDropdown from '../HeaderDropdown/useHeaderDropdown';
+import useHeaderDropdown from '@hooks/useHeaderDropdown';
 import ProfileDropdownUI from './ProfileDropdownUI';
 
-const ProfileDropdownContainer: React.FC = () => {
+interface ProfileDropdownContainerProps {
+  handleLogout: () => void;
+}
+
+const ProfileDropdownContainer: React.FC<ProfileDropdownContainerProps> = ({
+  handleLogout,
+}) => {
   const { isOpen, handleToggleDropdown, dropdownRef } = useHeaderDropdown(); // ref 포함
-
-  // Context API 생성 후 수정 필요
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
 
   return (
     <ProfileDropdownUI

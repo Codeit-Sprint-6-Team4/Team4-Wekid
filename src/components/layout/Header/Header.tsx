@@ -1,6 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import React, { useState } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 import logoImg from '@assets/images/logo.svg';
 import HamburgerContainer from './Hamburger/HamburgerContainer';
 import {
@@ -10,18 +9,22 @@ import {
   StyledLoginButtonSample,
   StyledMenu,
   StyledHamburger,
-} from './HeaderFrame';
-import Nav from './Nav/Nav';
-import NotificationsDropdown from './NotificationsDropdown/NotificationsDropdown';
-import ProfileDropdown from './ProfileDropdown/ProfileDropdown';
+} from './HeaderUI.styled';
+import Nav from './Nav/NavUI';
+import NotificationsDropdownContainer from './NotificationsDropdown/NotificationsDropdownContainer';
+import ProfileDropdownContainer from './ProfileDropdown/ProfileDropdownContainer';
 
-const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+interface HeaderProps {
+  isLoggedIn: boolean;
+  handleLogin: () => void;
+  handleLogout: () => void;
+}
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-
+const Header: React.FC<HeaderProps> = ({
+  isLoggedIn,
+  handleLogin,
+  handleLogout,
+}) => {
   return (
     <header>
       <StyledHeaderWrap>
@@ -39,8 +42,8 @@ const Header = () => {
         <StyledRightSide>
           {isLoggedIn ? (
             <StyledMenu>
-              <NotificationsDropdown />
-              <ProfileDropdown />
+              <NotificationsDropdownContainer />
+              <ProfileDropdownContainer handleLogout={handleLogout} />
             </StyledMenu>
           ) : (
             <>
@@ -55,6 +58,7 @@ const Header = () => {
           </StyledHamburger>
         </StyledRightSide>
       </StyledHeaderWrap>
+      <Outlet />
     </header>
   );
 };

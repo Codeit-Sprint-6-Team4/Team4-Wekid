@@ -4,7 +4,7 @@ import {
   StyledNav,
   StyledNavList,
   StyledNavItem,
-} from './NavFrame';
+} from './NavUI.styled';
 
 const Nav: React.FC = () => (
   <StyledNav>

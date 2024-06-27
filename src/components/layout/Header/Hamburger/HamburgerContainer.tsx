@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import useHeaderDropdown from '../HeaderDropdown/useHeaderDropdown';
+import useHeaderDropdown from '@hooks/useHeaderDropdown';
 import HamburgerUI from './HamburgerUI';
 
 const HamburgerContainer: React.FC = () => {
-  const { isOpen, handleToggleDropdown } = useHeaderDropdown();
+  const { isOpen, handleToggleDropdown, dropdownRef } = useHeaderDropdown();
 
-  // Context API 생성 후 수정 필요
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
+
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
@@ -22,6 +22,7 @@ const HamburgerContainer: React.FC = () => {
       isLoggedIn={isLoggedIn}
       handleLogin={handleLogin}
       handleLogout={handleLogout}
+      dropdownRef={dropdownRef}
     />
   );
 };

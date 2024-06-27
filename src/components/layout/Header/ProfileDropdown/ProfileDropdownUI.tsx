@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DefaultProfileImg from '@assets/icons/icon-profile.svg';
-import HeaderDropdown from '../HeaderDropdown/HeaderDropdown';
-import { StyledMyMenu, StyledMyMenuItem } from './ProfileDropdownFrame';
+import HeaderDropdown from '../HeaderDropdown/HeaderDropdownUI';
+import { StyledMyMenu, StyledMyMenuItem } from './ProfileDropdownUI.styled';
 
 interface ProfileDropdownUIProps {
   isOpen: boolean;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useHeaderDropdown from '../HeaderDropdown/useHeaderDropdown';
+import useHeaderDropdown from '@hooks/useHeaderDropdown';
 import NotificationsDropdownUI from './NotificationsDropdownUI';
 
 interface AlarmItem {
@@ -14,7 +14,7 @@ interface AlarmsData {
 }
 
 const NotificationsDropdownContainer: React.FC = () => {
-  const { isOpen, handleToggleDropdown, dropdownRef } = useHeaderDropdown(); // ref 포함
+  const { isOpen, handleToggleDropdown, dropdownRef } = useHeaderDropdown();
   const [alarms, setAlarms] = useState<AlarmsData>({
     totalCount: 2,
     list: [
