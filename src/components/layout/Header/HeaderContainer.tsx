@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from './HeaderUI';
+import Header from './Header';
 
 const HeaderContainer: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
