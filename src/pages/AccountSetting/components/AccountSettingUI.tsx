@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@components/button/Button';
+import Dropdown from '@components/dropdown/Dropdown';
 import {
   StyledAccountSettingWrap,
   StyledAccountSettingForm,
@@ -23,6 +24,16 @@ interface AccountSettingProps {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   onQuestionSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
+
+const options = [
+  { id: 1, label: '특별히 싫어하는 음식은?' },
+  { id: 2, label: '키우고 있는 반려동물의 이름은?' },
+  { id: 3, label: 'MBTI는?' },
+  { id: 4, label: '가장 좋아하는 색은?' },
+];
+const handleSelectOption = (option: { id: number; label: string }) => {
+  console.log('Selected:', option);
+};
 
 const AccountSettingUI = ({
   values,
@@ -64,13 +75,7 @@ const AccountSettingUI = ({
       </StyledAccountSettingForm>
       <StyledQuestionForm onSubmit={onQuestionSubmit}>
         <StyledInputSubtitle>위키 생성하기</StyledInputSubtitle>
-        <StyledQuestionInput
-          type="text"
-          name="question"
-          placeholder="질문을 입력해 주세요"
-          value={values.question}
-          onChange={onChange}
-        />
+        <Dropdown options={options} onSelect={handleSelectOption} />
         <StyledQuestionInput
           type="text"
           name="answer"

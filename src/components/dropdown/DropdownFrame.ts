@@ -4,11 +4,12 @@ import { media } from '@utils/media';
 
 export const StyledDropdownContainer = styled.div`
   position: relative;
-  width: 200px;
+  width: 100%;
+  max-width: 400px;
 `;
 
 export const StyledDropdownButton = styled.button<{ $isOpen: boolean }>`
-  width: 400px;
+  width: 100%;
   height: 45px;
   padding: 10.5px 20px;
   background-color: ${(props) => props.theme.colors.gray[50]};
@@ -39,13 +40,13 @@ export const StyledDropdownButton = styled.button<{ $isOpen: boolean }>`
   }
 
   ${media('mobile')`
-    width: 335px;
+    width: 90%;
   `}
 `;
 
 export const StyledDropdownList = styled.ul`
   position: absolute;
-  width: 400px;
+  width: 100%;
   padding: 6px 4px;
   margin-top: 5px;
   border: none;
@@ -54,7 +55,7 @@ export const StyledDropdownList = styled.ul`
   z-index: 1000;
 
   ${media('mobile')`
-    width: 335px;
+    width: 90%;
     padding: 6px 3.35px;
   `}
 `;
@@ -73,6 +74,6 @@ export const StyledDropdownItem = styled.li`
   }
 
   ${media('mobile')`
-    width: 328.3px;
+    width: 90%;
   `}
 `;

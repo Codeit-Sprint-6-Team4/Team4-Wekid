@@ -32,6 +32,7 @@ export const StyledAccountSettingTitle = styled.h1`
   font: ${theme.fonts['pretendard/2xl-24px-semibold']};
   color: ${theme.colors.gray[800]};
   text-align: center;
+  margin-bottom: 64px;
 `;
 
 export const StyledInputSubtitle = styled.label`
@@ -60,6 +61,7 @@ export const StyledQuestionForm = styled.form`
   align-items: center;
   gap: 10px;
   padding-bottom: 32px;
+  position: relative;
 `;
 
 export const StyledQuestionInput = styled(StyledInput)`
