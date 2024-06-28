@@ -7,8 +7,9 @@ interface buttonProps {
 }
 
 export const StyeldProfileWrap = styled.div<buttonProps>`
+  margin: 30px auto;
   position: relative;
-  width: 320px;
+  width: 310px;
   height: 671px;
   border-radius: 10px;
   border-color: none;
@@ -24,16 +25,17 @@ export const StyeldProfileWrap = styled.div<buttonProps>`
 
   ${media('tablet')`
     flex-direction:row;
-    align-items: ${({ $isClicked }) => ($isClicked ? 'initial' : 'center')};
+    margin: 10px auto;
+    align-items: ${({ $isClicked }) => ($isClicked ? 'initial' : 'initial')};
     gap:30px;
-    width:624px;
+    width:60vw;
     height:${({ $isClicked }) => ($isClicked ? '300px' : '130px')};
     button{
      display: initial;
     position:absolute;
       width:24px;
       height24px;
-      left:312px;
+      left:29vw;
       bottom:10px
     }
     `}
@@ -56,7 +58,7 @@ export const StyeldProfileImage = styled.img<buttonProps>`
   border-radius: 70%;
 
   ${media('tablet')`
-  margin-top: ${({ $isClicked }) => ($isClicked ? '30px' : '0px')};
+  margin-top: ${({ $isClicked }) => ($isClicked ? '30px' : '30px')};
   margin-left:15px;
     width:71px;
     height:71px;
@@ -69,7 +71,7 @@ export const StyeldProfileImage = styled.img<buttonProps>`
 `;
 
 export const StyledProfileDataWrap = styled.div<buttonProps>`
-  margin: 50px auto auto 30px;
+  margin: 50px auto;
   width: 209px;
   display: flex;
   flex-direction: column;
@@ -77,8 +79,8 @@ export const StyledProfileDataWrap = styled.div<buttonProps>`
   gap: 10px;
   ${media('tablet')`
     overflow: ${({ $isClicked }) => ($isClicked ? 'initial' : '')};
-    margin: ${({ $isClicked }) => ($isClicked ? '30px' : '0px')};
-    width: 199px;
+    margin-top: 30px;
+    width: 189px;
     height: 80px;
   `}
   ${media('mobile')`
@@ -104,6 +106,11 @@ export const StyledProfileData = styled.div`
     font-weight: 400;
     color: ${theme.colors.gray[800]};
     font-size: 14px;
+    white-space: pre-wrap; /* CSS3 */
+    white-space: -moz-pre-wrap; /* Firefox */
+    white-space: -pre-wrap; /* Opera */
+    white-space: -o-pre-wrap; /* Opera */
+    word-wrap: break-word; /* IE */
   }
   ${media('tablet')`
   label {

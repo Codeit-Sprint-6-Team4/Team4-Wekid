@@ -145,6 +145,9 @@ const GlobalStyle = createGlobalStyle`
     color: #000;
     opacity: 1;
   }
+  i {
+    font-style: italic; /* 기본 기울임꼴 설정 */
+  }
 
   input::-ms-clear,
   input::-ms-reveal,

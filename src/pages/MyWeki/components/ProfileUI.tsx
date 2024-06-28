@@ -20,10 +20,11 @@ interface profileUIProps {
   mbti?: string;
   city?: string;
   image?: string;
+  iseEdit?: boolean;
 }
 const ProfileUI = ({
+  iseEdit,
   nationality,
-  family,
   bloodType,
   nickname,
   birthday,
@@ -31,7 +32,6 @@ const ProfileUI = ({
   job,
   mbti,
   city,
-  image,
 }: profileUIProps) => {
   const [isClicked, setIsClicked] = useState(false);
   return (
@@ -41,42 +41,42 @@ const ProfileUI = ({
       <StyledProfileDataWrap $isClicked={isClicked}>
         <StyledProfileData>
           <label>거주 도시</label>
-          <p>서울</p>
+          <p>{city}</p>
         </StyledProfileData>
 
         <StyledProfileData>
           <label>MBTI</label>
-          <p>서울</p>
+          <p>{mbti}</p>
         </StyledProfileData>
 
         <StyledProfileData>
           <label>직업</label>
-          <p>서울</p>
+          <p>{job}</p>
         </StyledProfileData>
 
         <StyledProfileData>
           <label>SNS 계정</label>
-          <p>서울</p>
+          <p>{sns}</p>
         </StyledProfileData>
 
         <StyledProfileData>
           <label>생일</label>
-          <p>서울</p>
+          <p>{birthday}</p>
         </StyledProfileData>
 
         <StyledProfileData>
           <label>별명</label>
-          <p>서울</p>
+          <p>{nickname}</p>
         </StyledProfileData>
 
         <StyledProfileData>
-          <label>혈핵형</label>
-          <p>서울</p>
+          <label>혈액형</label>
+          <p>{bloodType}</p>
         </StyledProfileData>
 
         <StyledProfileData>
           <label>국적</label>
-          <p>서울</p>
+          <p>{nationality}</p>
         </StyledProfileData>
       </StyledProfileDataWrap>
 
