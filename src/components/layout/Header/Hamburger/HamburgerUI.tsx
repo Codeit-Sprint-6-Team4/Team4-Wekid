@@ -10,6 +10,7 @@ interface HamburgerUIProps {
   isLoggedIn: boolean;
   handleLogin: () => void;
   handleLogout: () => void;
+  dropdownRef: React.Ref<HTMLDivElement>;
 }
 
 const HamburgerUI: React.FC<HamburgerUIProps> = ({
@@ -18,6 +19,7 @@ const HamburgerUI: React.FC<HamburgerUIProps> = ({
   isLoggedIn,
   handleLogin,
   handleLogout,
+  dropdownRef,
 }) => {
   return (
     <HeaderDropdown
@@ -25,22 +27,23 @@ const HamburgerUI: React.FC<HamburgerUIProps> = ({
       handleToggleDropdown={handleToggleDropdown}
       buttonIcon={HamburgerImg}
       buttonIconAlt="햄버거메뉴"
+      ref={dropdownRef} // ref 전달
     >
       <StyledMyMenu>
         <StyledMyMenuItem>
-          <Link to="/wekilist">위키목록</Link> {/* 절대 경로로 수정 */}
+          <Link to="/wekilist">위키목록</Link>
         </StyledMyMenuItem>
         <StyledMyMenuItem>
-          <Link to="/boards">자유게시판</Link> {/* 절대 경로로 수정 */}
+          <Link to="/boards">자유게시판</Link>
         </StyledMyMenuItem>
 
         {isLoggedIn ? (
           <>
             <StyledMyMenuItem>
-              <Link to="/weki/:code">내 위키</Link> {/* 절대 경로로 수정 */}
+              <Link to="/weki/:code">내 위키</Link>
             </StyledMyMenuItem>
             <StyledMyMenuItem>
-              <Link to="/mypage">마이페이지</Link> {/* 절대 경로로 수정 */}
+              <Link to="/mypage">마이페이지</Link>
             </StyledMyMenuItem>
             <StyledMyMenuItem>
               <Link
