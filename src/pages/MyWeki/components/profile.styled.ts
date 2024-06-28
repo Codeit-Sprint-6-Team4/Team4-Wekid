@@ -2,39 +2,61 @@ import styled from 'styled-components';
 import { theme } from '@styles/theme';
 import { media } from '@utils/media';
 
-export const StyeldProfileWrap = styled.div`
+interface buttonProps {
+  $isClicked: boolean;
+}
+
+export const StyeldProfileWrap = styled.div<buttonProps>`
+  position: relative;
   width: 320px;
   height: 671px;
   border-radius: 10px;
   border-color: none;
   background-color: #ffffffff;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  button {
+    display: none;
+  }
+
   ${media('tablet')`
     flex-direction:row;
-    align-items: center;
+    align-items: ${({ $isClicked }) => ($isClicked ? 'initial' : 'center')};
     gap:30px;
     width:624px;
-    height:130px;`}
+    height:${({ $isClicked }) => ($isClicked ? '300px' : '130px')};
+    button{
+     display: initial;
+    position:absolute;
+      width:24px;
+      height24px;
+      left:312px;
+      bottom:10px
+    }
+    `}
 
   ${media('mobile')`
    flex-direction:row;
     width:335px;
-    height:126px;
+    height:${({ $isClicked }) => ($isClicked ? '300px' : '126px')};
+     button{
+      left:157px;
+      bottom:10px
+    }
     `}
 `;
 
-export const StyeldProfileImage = styled.img`
+export const StyeldProfileImage = styled.img<buttonProps>`
   margin-top: 50px;
   width: 200px;
   height: 200px;
   border-radius: 70%;
 
   ${media('tablet')`
-  margin-top: 0px;
+  margin-top: ${({ $isClicked }) => ($isClicked ? '30px' : '0px')};
   margin-left:15px;
     width:71px;
     height:71px;
@@ -46,7 +68,7 @@ export const StyeldProfileImage = styled.img`
   `}
 `;
 
-export const StyledProfileDataWrap = styled.div`
+export const StyledProfileDataWrap = styled.div<buttonProps>`
   margin: 50px auto auto 30px;
   width: 209px;
   display: flex;
@@ -54,12 +76,12 @@ export const StyledProfileDataWrap = styled.div`
   overflow: hidden;
   gap: 10px;
   ${media('tablet')`
-    margin: 0px;
+    overflow: ${({ $isClicked }) => ($isClicked ? 'initial' : '')};
+    margin: ${({ $isClicked }) => ($isClicked ? '30px' : '0px')};
     width: 199px;
     height: 80px;
   `}
   ${media('mobile')`
-    margin: 0px;
     width: 175px;
     height: 70px;
   `}
@@ -98,4 +120,9 @@ export const StyledProfileData = styled.div`
     font-size: 14px;
   }
   `}
+`;
+
+export const StyledVetorImage = styled.img`
+  width: 10.68px;
+  height: 6.02px;
 `;
