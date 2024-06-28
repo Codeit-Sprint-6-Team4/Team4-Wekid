@@ -3,7 +3,7 @@ import { profileType } from '@api/profile';
 import Button from '@components/button/Button';
 import ProfileUI from './ProfileUI';
 import WritingUI from './WritingUI';
-import { StyledMarkDownWrap } from './markDown.styled';
+import { StyledMarkUpWrap } from './markUp.styled';
 import {
   StyledWekiWrap,
   StyledWekiContent,
@@ -26,16 +26,16 @@ const MyWekiUI = ({ profile, isEdit = true }: MyeWekiUIProps) => {
             </Button>
           </div>
         </StyledWekiHeader>
-        <StyledMarkDownWrap>
+        <StyledMarkUpWrap>
           {!isEdit && (
             <div
               dangerouslySetInnerHTML={{ __html: profile?.content as string }}
             ></div>
           )}
           {isEdit && <WritingUI content={profile?.content as string} />}
-        </StyledMarkDownWrap>
+        </StyledMarkUpWrap>
       </StyledWekiContent>
-      <ProfileUI {...profile} />
+      {!isEdit && <ProfileUI {...profile} />}
     </StyledWekiWrap>
   );
 };
