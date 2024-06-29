@@ -1,6 +1,6 @@
 /**
  * @description ex: autoResizeTextarea(textarea) dom에서 사용해야함
- * @param {HTMLAreaElement} textarea 
+ * @param {HTMLTextAreaElement} textarea 
  */
 
 export const autoResizeTextarea = (textarea: HTMLTextAreaElement) => {
