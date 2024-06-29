@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import Footer from '@components/layout/Footer';
-import Header from '@components/layout/Header/Header';
 import HeaderContainer from '@components/layout/Header/HeaderContainer';
 import AccountSetting from '@pages/AccountSetting/AccountSetting';
 import Board from '@pages/Board/Board';
