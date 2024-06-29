@@ -10,7 +10,7 @@ export const StyledSignInWrap = styled.div`
   align-items: center;
 `;
 
-export const StyledSignInForm = styled.div`
+export const StyledSignInForm = styled.form`
   margin: 0 auto;
   width: 100%;
   max-width: 400px;
