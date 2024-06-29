@@ -5,12 +5,12 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
   @font-face {
     font-family: 'Nexon';
-    src: url('src/assets/fonts/NEXON Lv1 Gothic OTF.woff') format('woff');
+    src: url('/public/assets/fonts/NEXON Lv1 Gothic OTF.woff') format('woff');
   }
 
   @font-face {
     font-family: 'Pretendard';
-    src: url('src/assets/fonts/PretendardVariable.woff2') format('woff2');
+    src: url('/public/assets/fonts/PretendardVariable.woff2') format('woff2');
   }
 
   html {
@@ -145,6 +145,9 @@ const GlobalStyle = createGlobalStyle`
     color: #000;
     opacity: 1;
   }
+  i {
+    font-style: italic; /* 기본 기울임꼴 설정 */
+  }
 
   input::-ms-clear,
   input::-ms-reveal,
@@ -157,6 +160,17 @@ const GlobalStyle = createGlobalStyle`
   input::-webkit-inner-spin-button,
   input::-webkit-outer-spin-button {
     -webkit-appearance: none;
+  }
+
+  .blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
   }
 `;
 
