@@ -8,7 +8,7 @@ const breakpoints = {
 type Breakpoints = keyof typeof breakpoints;
 
 export const media = (breakpoint: Breakpoints) => {
-  return (style: TemplateStringsArray, ...args: Interpolation<object>[]) => css`
+  return (style: TemplateStringsArray, ...args: Interpolation<any>[]) => css`
     @media (max-width: ${breakpoints[breakpoint]}) {
       ${css(style, ...args)}
     }
