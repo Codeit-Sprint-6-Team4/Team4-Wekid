@@ -43,12 +43,26 @@ export const StyledInputSubtitle = styled.label`
   margin-bottom: 8px;
 `;
 
-export const StyledPasswordInput = styled(StyledInput)`
+export const StyledPasswordInput = styled(StyledInput)<{ hasError: boolean }>`
   width: 100%;
   height: 49px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border: 1px solid
+    ${(props) =>
+      props.hasError ? theme.colors.red[500] : theme.colors.gray[300]};
+
+  &:disabled {
+    color: ${theme.colors.gray[50]};
+    background-color: ${theme.colors.gray[50]};
+  }
+`;
+
+export const StyledErrorMessage = styled.div`
+  font: ${theme.fonts['pretendard/xs-12px-regular']};
+  color: ${theme.colors.red[500]};
+  align-self: start;
 `;
 
 export const StyledQuestionForm = styled.form`

@@ -10,6 +10,7 @@ import {
   StyledQuestionInput,
   StyledInputSubtitle,
   StyledButtonContainer,
+  StyledErrorMessage,
 } from '@pages/AccountSetting/components/AccountSettingUI.styled';
 
 interface AccountSettingProps {
@@ -20,6 +21,12 @@ interface AccountSettingProps {
     question: string;
     answer: string;
   };
+  errors: {
+    passwordMismatch: boolean;
+    sameCurrentPassword: boolean;
+    incorrectCurrentPassword: boolean;
+  };
+  isConfirmDisabled: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   onQuestionSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -37,6 +44,8 @@ const handleSelectOption = (option: { id: number; label: string }) => {
 
 const AccountSettingUI = ({
   values,
+  errors,
+  isConfirmDisabled,
   onChange,
   onSubmit,
   onQuestionSubmit,
@@ -52,23 +61,46 @@ const AccountSettingUI = ({
           placeholder="기존 비밀번호"
           value={values.currentPassword}
           onChange={onChange}
+          hasError={errors.incorrectCurrentPassword}
         />
+        {errors.incorrectCurrentPassword && (
+          <StyledErrorMessage>
+            기존 비밀번호가 일치하지 않습니다.
+          </StyledErrorMessage>
+        )}
         <StyledPasswordInput
           type="password"
           name="newPassword"
           placeholder="새 비밀번호"
           value={values.newPassword}
           onChange={onChange}
+          hasError={errors.sameCurrentPassword}
         />
+        {errors.sameCurrentPassword && (
+          <StyledErrorMessage>
+            기존의 비밀번호와 동일합니다. 새로운 비밀번호를 입력해주세요.
+          </StyledErrorMessage>
+        )}
         <StyledPasswordInput
           type="password"
           name="confirmPassword"
           placeholder="새 비밀번호 확인"
           value={values.confirmPassword}
           onChange={onChange}
+          hasError={errors.passwordMismatch}
         />
+        {errors.passwordMismatch && (
+          <StyledErrorMessage>
+            새 비밀번호가 일치하지 않습니다.
+          </StyledErrorMessage>
+        )}
         <StyledButtonContainer>
-          <Button $primary $width="89px" type="submit">
+          <Button
+            $primary
+            $width="89px"
+            type="submit"
+            disabled={isConfirmDisabled}
+          >
             변경하기
           </Button>
         </StyledButtonContainer>

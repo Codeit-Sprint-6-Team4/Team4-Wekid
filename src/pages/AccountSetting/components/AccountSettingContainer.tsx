@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { AxiosError } from 'axios';
+import { patchPassword } from '@api/auth';
 import AccountSettingUI from './AccountSettingUI';
 
 const AccountSettingContainer = () => {
@@ -9,6 +11,12 @@ const AccountSettingContainer = () => {
     question: '',
     answer: '',
   });
+  const [errors, setErrors] = useState({
+    passwordMismatch: false,
+    sameCurrentPassword: false,
+    incorrectCurrentPassword: false,
+  });
+  const [isConfirmDisabled, setIsConfirmDisabled] = useState(true);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -16,12 +24,69 @@ const AccountSettingContainer = () => {
       ...prevValues,
       [name]: value,
     }));
+
+    if (name === 'newPassword') {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        sameCurrentPassword: values.currentPassword === value,
+        passwordMismatch: false,
+      }));
+    }
+
+    if (name === 'confirmPassword') {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        passwordMismatch: false,
+      }));
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    const { currentPassword, newPassword, confirmPassword } = values;
+    const { passwordMismatch, sameCurrentPassword } = errors;
+    setIsConfirmDisabled(
+      !currentPassword ||
+        !newPassword ||
+        !confirmPassword ||
+        passwordMismatch ||
+        sameCurrentPassword,
+    );
+  }, [values, errors]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // 비밀번호 변경 로직 필요
-    console.log('비밀번호 변경:', values);
+
+    const passwordMismatch = values.newPassword !== values.confirmPassword;
+    const sameCurrentPassword = values.currentPassword === values.newPassword;
+
+    setErrors({
+      passwordMismatch,
+      sameCurrentPassword,
+      incorrectCurrentPassword: false,
+    });
+
+    if (passwordMismatch || sameCurrentPassword) {
+      return;
+    }
+
+    try {
+      const res = await patchPassword({
+        currentPassword: values.currentPassword,
+        newPassword: values.newPassword,
+        passwordConfirmation: values.confirmPassword,
+      });
+      console.log('비밀번호 변경 성공', res);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 400) {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            incorrectCurrentPassword: true,
+          }));
+        }
+        console.log('비밀번호 변경 실패', error);
+      }
+    }
   };
 
   const handleQuestionSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,6 +98,8 @@ const AccountSettingContainer = () => {
   return (
     <AccountSettingUI
       values={values}
+      errors={errors}
+      isConfirmDisabled={isConfirmDisabled}
       onChange={handleChange}
       onSubmit={handleSubmit}
       onQuestionSubmit={handleQuestionSubmit}
