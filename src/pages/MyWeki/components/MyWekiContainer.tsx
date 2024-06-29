@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProfie, profileType } from '@api/profile';
-import Button from '@components/button/Button';
 import MyWekiUI from './MyWekiUI';
-import ProfileUI from './ProfileUI';
-import { StyeldProfileWrap } from './profile.styled';
-import {
-  StyledWekiWrap,
-  StyledWekiHeader,
-  StyledWekiContent,
-} from './wekiPage.styled';
 
 const MyWekiContainer = () => {
   const { code } = useParams();

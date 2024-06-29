@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import ReactQuill, { Quill } from 'react-quill';
+import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import Button from '@components/button/Button';
 import CustomToolBar from './customQuali/CustomToolBar';
 import { CUSTUM_ICONS } from './customQuali/quali.styled.icon';
 import './customQuali/quill-custom.css';

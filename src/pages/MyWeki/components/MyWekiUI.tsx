@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Cookies from 'js-cookie';
 import { profileType } from '@api/profile';
 import Button from '@components/button/Button';

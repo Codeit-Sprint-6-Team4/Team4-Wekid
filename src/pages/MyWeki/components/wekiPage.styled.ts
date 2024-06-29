@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Button from '@components/button/Button';
 import { StyledButton } from '@components/button/Button.styled';
 import { theme } from '@styles/theme';
 import { media } from '@utils/media';
