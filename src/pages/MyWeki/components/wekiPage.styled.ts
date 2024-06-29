@@ -12,7 +12,7 @@ export const StyledWekiWrap = styled.div`
 `;
 
 export const StyledWekiContent = styled.div`
-  margin: 50px auto 0px;
+  margin: 0px auto 0px;
   width: 60vw;
 `;
 

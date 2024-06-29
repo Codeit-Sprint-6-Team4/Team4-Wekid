@@ -14,16 +14,18 @@ import {
 const MyWekiContainer = () => {
   const { code } = useParams();
   const [profile, setProfile] = useState<profileType | null>(null);
+  const [isEdit, setIsEdit] = useState(true);
   const receiveProfile = async () => {
     try {
       const result = await getProfie('d1119f52-da1a-4ef6-b212-85e047100d1f');
       setProfile(result);
     } catch (error) {}
   };
+
   useEffect(() => {
     receiveProfile();
   }, []);
-  return <MyWekiUI profile={profile} />;
+  return <MyWekiUI profile={profile} isEdit={isEdit} setIsEdit={setIsEdit} />;
 };
 
 export default MyWekiContainer;

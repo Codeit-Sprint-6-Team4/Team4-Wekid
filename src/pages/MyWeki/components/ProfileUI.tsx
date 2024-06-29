@@ -23,7 +23,6 @@ interface profileUIProps {
   iseEdit?: boolean;
 }
 const ProfileUI = ({
-  iseEdit,
   nationality,
   bloodType,
   nickname,
