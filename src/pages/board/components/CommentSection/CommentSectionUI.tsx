@@ -12,19 +12,26 @@ interface Comment {
 
 interface CommentSectionUIProps {
   comments: Comment[];
-  onAddComment: (text: string) => void;
+  fetchComments: () => void;
 }
 
-const CommentSectionUI: React.FC<CommentSectionUIProps> = ({ comments, onAddComment }) => {
+const CommentSectionUI: React.FC<CommentSectionUIProps> = ({ comments, fetchComments }) => {
   return (
     <CommentsWrapper>
       <CommentsCount>
         댓글 <span>{comments.length}</span>
       </CommentsCount>
-      <CommentInputContainer onAddComment={onAddComment} />
+      <CommentInputContainer onAddComment={fetchComments} />
       <CommentsList>
         {comments.map(comment => (
-          <CommentItemContainer key={comment.id} author={comment.author} date={comment.date} text={comment.text} />
+          <CommentItemContainer
+            key={comment.id}
+            id={comment.id}
+            author={comment.author}
+            date={comment.date}
+            text={comment.text}
+            fetchComments={fetchComments} // fetchComments 함수 전달
+          />
         ))}
       </CommentsList>
     </CommentsWrapper>
