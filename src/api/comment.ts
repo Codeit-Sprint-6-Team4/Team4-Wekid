@@ -2,15 +2,19 @@ import { AxiosError } from 'axios';
 import Cookies from 'js-cookie';
 import instance from './axios';
 
-export const getComment = async (articleId: string, limit: number = 10, cursor?: number) => {
+export const getComment = async (
+  articleId: string,
+  limit: number = 10,
+  cursor?: number,
+) => {
   const URL = `/articles/${articleId}/comments`;
   try {
     const response = await instance.get(URL, {
       params: {
         articleId,
         limit,
-        cursor
-      }
+        cursor,
+      },
     });
     return response.data; // 응답 전체 반환 (list와 nextCursor를 포함)
   } catch (error) {
@@ -24,7 +28,6 @@ export const getComment = async (articleId: string, limit: number = 10, cursor?:
     throw error;
   }
 };
-
 
 export const postComment = async (id: string, content: string) => {
   const URL = `/articles/${id}/comments`;
@@ -48,7 +51,6 @@ export const postComment = async (id: string, content: string) => {
     throw error;
   }
 };
-
 
 export const deleteComment = async (commentId: string) => {
   const URL = `/comments/${commentId}`;
@@ -74,6 +76,7 @@ export const deleteComment = async (commentId: string) => {
     throw error;
   }
 };
+
 export const patchComment = async (commentId: string, content: string) => {
   const URL = `/comments/${commentId}`;
   try {
@@ -88,7 +91,7 @@ export const patchComment = async (commentId: string, content: string) => {
         headers: {
           Authorization: `Bearer ${token}`, // 인증 헤더에 토큰 추가
         },
-      }
+      },
     );
     return response.data; // 일반적으로 성공 메시지 또는 상태 코드 반환
   } catch (error) {

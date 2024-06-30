@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '@components/button/Button';
 import { PostContentWrapper, PostInfoWrapper, PostHeader, PostTitle, PostActions, PostMeta, AuthorInfo, AuthorName, PostDate, LikeButtonWrapper, LikeButton, PostBody, BackToListWrapper } from './PostUIStyled';
+import { useNavigate } from 'react-router-dom';
 
 interface PostUIProps {
   post: {
@@ -16,6 +17,8 @@ interface PostUIProps {
 }
 
 const PostUI: React.FC<PostUIProps> = ({ post, likes, onLike, onEdit, onDelete }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <PostContentWrapper>
@@ -43,7 +46,9 @@ const PostUI: React.FC<PostUIProps> = ({ post, likes, onLike, onEdit, onDelete }
         <PostBody>{post.content}</PostBody>
       </PostContentWrapper>
       <BackToListWrapper>
-        <Button $secondary>목록으로</Button>
+        <Button $secondary onClick={() => {
+            navigate('/boards');
+          }}>목록으로</Button>
       </BackToListWrapper>
     </>
   );
