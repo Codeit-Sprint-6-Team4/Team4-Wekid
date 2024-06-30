@@ -14,22 +14,14 @@ instance.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-    console.log('instance요청:', config);
     return config;
   },
   async (error: AxiosError) => {
     const originalRequest = error.config;
-    console.error('instance요청에러', error);
     if (typeof originalRequest !== 'undefined') {
       if (error.response?.status === 401) {
-        console.log('instance리프레쉬토큰 시도');
-        try {
-          await postRefreshToken();
-          return instance.request(originalRequest);
-        } catch (refreshError) {
-          console.error('instance리프레쉬토큰 실패', refreshError);
-          throw refreshError;
-        }
+        await postRefreshToken();
+        return instance.request(originalRequest);
       }
     }
     // 요청이 실패할 경우 실행됩니다.
