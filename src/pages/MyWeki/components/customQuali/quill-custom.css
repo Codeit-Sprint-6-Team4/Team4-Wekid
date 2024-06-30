@@ -9,7 +9,7 @@
   background-color: #f7f7fa;
   border-radius: 12px;
   display: flex;
-  gap: 10px;
+
   align-items: center;
   /* 기타 등등 */
 }
@@ -21,10 +21,13 @@
   height: 756px;
 }
 
+.frame-ql-fromats {
+  flex: 2;
+}
+
 .ql-formats {
   border-right: 1px solid #e4e5f0;
   margin-right: 0px !important;
-  flex: 1;
 }
 .ql-header .ql-picker-label::before {
   content: '제목' !important;
@@ -46,29 +49,7 @@
   border-radius: 5px;
 }
 
-@media (max-width: 768px) {
-  .ql-toolbar > :nth-child(5) {
-    display: none;
-  }
-}
-
-@media (max-width: 588px) {
-  .ql-toolbar > :nth-child(4) {
-    display: none;
-  }
-}
-@media (max-width: 424px) {
-  .ql-toolbar > :nth-child(3) {
-    display: none;
-  }
-}
-@media (max-width: 340px) {
-  .ql-toolbar > :nth-child(2) {
-    display: none;
-  }
-}
-
-/* custum */
+/* custom tool */
 .userName {
   flex: 1;
   font-weight: 600;
@@ -79,6 +60,7 @@
   display: flex;
   flex: 1;
   gap: 10px;
+  justify-content: right;
 }
 .cancel {
   width: 65px !important;
@@ -96,7 +78,7 @@
   color: #ffffffff;
 }
 
-@media (max-width: 1060px) {
+@media (max-width: 768px) {
   .buttons {
     display: none;
   }

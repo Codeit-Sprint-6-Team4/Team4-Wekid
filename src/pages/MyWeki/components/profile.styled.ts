@@ -7,9 +7,9 @@ interface buttonProps {
 }
 
 export const StyeldProfileWrap = styled.div<buttonProps>`
-  margin: 30px auto;
+  margin: 50px auto;
   position: relative;
-  width: 310px;
+  width: 320px;
   height: 671px;
   border-radius: 10px;
   border-color: none;
@@ -28,14 +28,14 @@ export const StyeldProfileWrap = styled.div<buttonProps>`
     margin: 10px auto;
     align-items: ${({ $isClicked }) => ($isClicked ? 'initial' : 'initial')};
     gap:30px;
-    width:60vw;
+    width:624px;
     height:${({ $isClicked }) => ($isClicked ? '300px' : '130px')};
     button{
      display: initial;
     position:absolute;
       width:24px;
       height24px;
-      left:29vw;
+      left:312px;
       bottom:10px
     }
     `}
@@ -112,6 +112,7 @@ export const StyledProfileData = styled.div`
     white-space: -o-pre-wrap; /* Opera */
     word-wrap: break-word; /* IE */
   }
+
   ${media('tablet')`
   label {
     width: 60px;

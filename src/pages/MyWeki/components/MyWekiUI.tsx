@@ -4,7 +4,7 @@ import { profileType } from '@api/profile';
 import Button from '@components/button/Button';
 import EditorUI from './EditorUI';
 import ProfileUI from './ProfileUI';
-import { StyledMarkUpWrap } from './markUp.styled';
+import { StyledMarkUpWrap, StyledMarkUpHeader } from './markUp.styled';
 import {
   StyledWekiWrap,
   StyledWekiContent,
@@ -40,7 +40,7 @@ const MyWekiUI = ({ profile, isEdit, setIsEdit }: MyeWekiUIProps) => {
             ></div>
           )}
 
-          {isEdit && Cookies.get('aceessToken') !== 'dad' && (
+          {isEdit && (
             <EditorUI
               setIsEdit={setIsEdit}
               content={profile?.content as string}
@@ -50,6 +50,23 @@ const MyWekiUI = ({ profile, isEdit, setIsEdit }: MyeWekiUIProps) => {
         </StyledMarkUpWrap>
       </StyledWekiContent>
       {!isEdit && <ProfileUI {...profile} />}
+      {isEdit && (
+        <>
+          <ProfileUI {...profile} />
+
+          <StyledMarkUpHeader>
+            <h2>{profile?.name}</h2>
+            <div>
+              <Button $width="65px" $secondary $height="40px">
+                취소
+              </Button>
+              <Button $primary $width="65px" $height="40px">
+                저장
+              </Button>
+            </div>
+          </StyledMarkUpHeader>
+        </>
+      )}
     </StyledWekiWrap>
   );
 };
