@@ -14,9 +14,10 @@ import {
 interface MyeWekiUIProps {
   profile: profileType | null;
   isEdit: boolean;
-  setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  onSave: () => void;
+  onCancel: () => void;
 }
-const MyWekiUI = ({ profile, isEdit, setIsEdit }: MyeWekiUIProps) => {
+const MyWekiUI = ({ profile, isEdit, onSave, onCancel }: MyeWekiUIProps) => {
   return (
     <StyledWekiWrap>
       <StyledWekiContent>
@@ -42,7 +43,8 @@ const MyWekiUI = ({ profile, isEdit, setIsEdit }: MyeWekiUIProps) => {
 
           {isEdit && (
             <EditorUI
-              setIsEdit={setIsEdit}
+              onSave={onSave}
+              onCancel={onCancel}
               content={profile?.content as string}
               name={profile ? profile.name : ''}
             />
@@ -57,10 +59,15 @@ const MyWekiUI = ({ profile, isEdit, setIsEdit }: MyeWekiUIProps) => {
           <StyledMarkUpHeader>
             <h2>{profile?.name}</h2>
             <div>
-              <Button $width="65px" $secondary $height="40px">
+              <Button
+                onClick={onCancel}
+                $width="65px"
+                $secondary
+                $height="40px"
+              >
                 취소
               </Button>
-              <Button $primary $width="65px" $height="40px">
+              <Button onClick={onSave} $primary $width="65px" $height="40px">
                 저장
               </Button>
             </div>

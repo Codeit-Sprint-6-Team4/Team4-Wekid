@@ -2,11 +2,11 @@ import React from 'react';
 
 interface customToolBarProps {
   name: string;
-  onSubmit?: () => void;
-  onCancel?: () => void;
+  onSave: () => void;
+  onCancel: () => void;
 }
 
-const CustomToolBar = ({ name, onCancel }: customToolBarProps) => {
+const CustomToolBar = ({ name, onCancel, onSave }: customToolBarProps) => {
   return (
     <div id="toolbar">
       <p className="userName">{name}</p>
@@ -45,7 +45,9 @@ const CustomToolBar = ({ name, onCancel }: customToolBarProps) => {
         <button className="cancel" onClick={onCancel}>
           취소
         </button>
-        <button className="save">저장</button>
+        <button className="save" onClick={onSave}>
+          저장
+        </button>
       </div>
     </div>
   );

@@ -8,11 +8,12 @@ import './customQuali/quill-custom.css';
 interface WritingUI {
   content: string;
   name: string;
-  setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  onSave: () => void;
+  onCancel: () => void;
 }
 CUSTUM_ICONS;
 
-const EditorUI = ({ content, name, setIsEdit }: WritingUI) => {
+const EditorUI = ({ content, name, onSave, onCancel }: WritingUI) => {
   const modules = useMemo(() => {
     return {
       toolbar: '#toolbar',
@@ -24,9 +25,6 @@ const EditorUI = ({ content, name, setIsEdit }: WritingUI) => {
   const handleChange = (values: string) => {
     setValues(values);
   };
-  const onCancel = () => {
-    setIsEdit(false);
-  };
 
   useEffect(() => {
     setValues(content);
@@ -34,7 +32,7 @@ const EditorUI = ({ content, name, setIsEdit }: WritingUI) => {
 
   return (
     <>
-      <CustomToolBar name={name} onCancel={onCancel} />
+      <CustomToolBar name={name} onCancel={onCancel} onSave={onSave} />
       <ReactQuill
         theme="snow"
         modules={modules}
