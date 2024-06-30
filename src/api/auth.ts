@@ -27,7 +27,7 @@ export const postSignIn = async (userData: logInDataTypes) => {
     console.log(response);
     Cookies.set('accessToken', response.data.accessToken);
     Cookies.set('refreshToken', response.data.refreshToken);
-    // Cookies,set('accessToken', response)
+    return response.data;
   } catch (error) {
     const err = error as AxiosError;
     if (err.response) {
@@ -40,15 +40,18 @@ export const postSignIn = async (userData: logInDataTypes) => {
   }
 };
 
-export const refreshAccessToken = async () => {
+export const postRefreshToken = async () => {
   const URL = '/auth/refresh-token';
   const refreshToken = Cookies.get('refreshToken');
   if (!refreshToken) {
     throw new Error('리프레쉬토큰을 사용할 수 없음');
   }
   try {
+    console.log('리프레쉬 시도');
     const response = await instance.post(URL, { refreshToken: refreshToken });
-    Cookies.set('accessToken', response.data.accessToken);
+    const newAccessToken = response.data.accessToken;
+    Cookies.set('accessToken', newAccessToken);
+    console.log('리프레쉬성공 새엑세스토큰:', newAccessToken);
     return response.data.accessToken;
   } catch (error) {
     if (error instanceof AxiosError) {

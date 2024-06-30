@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from '@context/AuthProvider';
 import { ThemeProvider } from 'styled-components';
 import Footer from '@components/layout/Footer';
 import HeaderContainer from '@components/layout/Header/HeaderContainer';
@@ -18,29 +19,31 @@ import GlobalStyle from './styles/global-styles';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <BrowserRouter>
-        <HeaderContainer />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="signup" element={<SignUp />} />
-          <Route path="login" element={<SignIn />} />
-          <Route path="mypage" element={<AccountSetting />} />
-          <Route path="weki/:code" element={<MyWeki />} />
-          <Route path="wekilist">
-            <Route index element={<WekiList />} />
-            <Route path=":id" element={<Weki />} />
-          </Route>
-          <Route path="boards">
-            <Route index element={<Boards />} />
-            <Route path=":id" element={<Board />} />
-            <Route path="upload" element={<UpLoadBoard />} />
-          </Route>
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <BrowserRouter>
+          <HeaderContainer />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route path="login" element={<SignIn />} />
+            <Route path="mypage" element={<AccountSetting />} />
+            <Route path="weki/:code" element={<MyWeki />} />
+            <Route path="wekilist">
+              <Route index element={<WekiList />} />
+              <Route path=":id" element={<Weki />} />
+            </Route>
+            <Route path="boards">
+              <Route index element={<Boards />} />
+              <Route path=":id" element={<Board />} />
+              <Route path="upload" element={<UpLoadBoard />} />
+            </Route>
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 
