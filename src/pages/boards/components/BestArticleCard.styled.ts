@@ -37,6 +37,10 @@ export const StyledCardContent = styled.div`
 export const StyledCardTitle = styled.h3`
   font: ${(props) => props.theme.fonts['pretendard/2lg-18px-semibold']};
   margin-bottom: 7px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 `;
 
 export const StyledCardInfo = styled.div`

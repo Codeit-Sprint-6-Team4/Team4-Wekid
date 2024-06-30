@@ -11,7 +11,7 @@ import {
   StyledCardLikesContainer,
   StyledCardTitle,
   StyledHeartIcon,
-} from './BestArticleCard.styled';
+} from '@pages/Boards/components/BestArticleCard.styled';
 import { useNavigate } from 'react-router-dom';
 
 interface BestPostCardProps {
