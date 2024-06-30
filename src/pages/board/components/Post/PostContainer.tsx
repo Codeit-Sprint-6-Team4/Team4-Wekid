@@ -1,34 +1,60 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import PostUI from './PostUI';
+import { fetchArticle } from '@api/article';
+import { AxiosError } from 'axios';
 
 const PostContainer: React.FC = () => {
-  const [likes, setLikes] = useState(300);
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [post, setPost] = useState({
-    title: '게시물 제목입니다.',
-    author: '박동욱',
-    date: '2024.02.24',
-    body: '사용자가 작성한 게시물 내용이 보여집니다.',
+    title: '',
+    writer: { name: '' },
+    createdAt: '',
+    content: '',
+    likeCount: 0,
   });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleLike = () => {
-    setLikes(likes + 1);
-  };
+  useEffect(() => {
+    const getArticle = async (articleId: string) => {
+      try {
+        const data = await fetchArticle(articleId);
+        setPost({
+          title: data.title,
+          writer: data.writer,
+          createdAt: data.createdAt,
+          content: data.content,
+          likeCount: data.likeCount,
+        });
+        setLoading(false);
+      } catch (err) {
+        const axiosError = err as AxiosError;
+        setError(axiosError.message);
+        setLoading(false);
+      }
+    };
 
-  const handleEdit = () => {
-    // 수정 기능
-  };
+    if (id) {
+      getArticle(id);
+    } else {
+      setError('Article ID is missing');
+      setLoading(false);
+      navigate('/'); // Navigate to another page if ID is missing
+    }
+  }, [id, navigate]);
 
-  const handleDelete = () => {
-    // 삭제 기능
-  };
+  if (loading) return <p>로딩중</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <PostUI
       post={post}
-      likes={likes}
-      onLike={handleLike}
-      onEdit={handleEdit}
-      onDelete={handleDelete}
+      likes={post.likeCount}
+      onLike={() => {}} // 좋아요 기능을 구현할 경우 추가
+      onEdit={() => {}} // 수정 기능을 구현할 경우 추가
+      onDelete={() => {}} // 삭제 기능을 구현할 경우 추가
     />
   );
 };

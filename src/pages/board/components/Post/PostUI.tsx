@@ -1,27 +1,13 @@
 import React from 'react';
 import Button from '@components/button/Button';
-import {
-  PostContentWrapper,
-  PostInfoWrapper,
-  PostHeader,
-  PostTitle,
-  PostActions,
-  PostMeta,
-  AuthorInfo,
-  AuthorName,
-  PostDate,
-  LikeButtonWrapper,
-  LikeButton,
-  PostBody,
-  BackToListWrapper,
-} from './PostUIStyled';
+import { PostContentWrapper, PostInfoWrapper, PostHeader, PostTitle, PostActions, PostMeta, AuthorInfo, AuthorName, PostDate, LikeButtonWrapper, LikeButton, PostBody, BackToListWrapper } from './PostUIStyled';
 
 interface PostUIProps {
   post: {
     title: string;
-    author: string;
-    date: string;
-    body: string;
+    writer: { name: string };
+    createdAt: string;
+    content: string;
   };
   likes: number;
   onLike: () => void;
@@ -29,13 +15,7 @@ interface PostUIProps {
   onDelete: () => void;
 }
 
-const PostUI: React.FC<PostUIProps> = ({
-  post,
-  likes,
-  onLike,
-  onEdit,
-  onDelete,
-}) => {
+const PostUI: React.FC<PostUIProps> = ({ post, likes, onLike, onEdit, onDelete }) => {
   return (
     <>
       <PostContentWrapper>
@@ -43,18 +23,14 @@ const PostUI: React.FC<PostUIProps> = ({
           <PostHeader>
             <PostTitle>{post.title}</PostTitle>
             <PostActions>
-              <Button $primary onClick={onEdit}>
-                수정하기
-              </Button>
-              <Button $primary onClick={onDelete}>
-                삭제하기
-              </Button>
+              <Button $primary onClick={onEdit}>수정하기</Button>
+              <Button $primary onClick={onDelete}>삭제하기</Button>
             </PostActions>
           </PostHeader>
           <PostMeta>
             <AuthorInfo>
-              <AuthorName>{post.author}</AuthorName>
-              <PostDate>{post.date}</PostDate>
+              <AuthorName>{post.writer.name}</AuthorName>
+              <PostDate>{new Date(post.createdAt).toLocaleDateString()}</PostDate>
             </AuthorInfo>
             <LikeButtonWrapper>
               <LikeButton onClick={onLike}>
@@ -64,7 +40,7 @@ const PostUI: React.FC<PostUIProps> = ({
             </LikeButtonWrapper>
           </PostMeta>
         </PostInfoWrapper>
-        <PostBody>{post.body}</PostBody>
+        <PostBody>{post.content}</PostBody>
       </PostContentWrapper>
       <BackToListWrapper>
         <Button $secondary>목록으로</Button>

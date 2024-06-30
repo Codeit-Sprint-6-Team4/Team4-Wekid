@@ -1,21 +1,23 @@
 import React, { useRef, useEffect, useState } from 'react';
-import CommentInputUI from './CommentInputUI';
 import { autoResizeTextarea } from '@utils/autoResizeTextarea';
+import CommentInputUI from './CommentInputUI';
 
 interface CommentInputContainerProps {
   onAddComment: (text: string) => void;
 }
 
-const CommentInputContainer: React.FC<CommentInputContainerProps> = ({ onAddComment }) => {
+const CommentInputContainer: React.FC<CommentInputContainerProps> = ({
+  onAddComment,
+}) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [text, setText] = useState('');
 
   useEffect(() => {
     const textarea = textareaRef.current;
-    const handleInput = () => autoResizeTextarea(textarea);
-
     if (textarea) {
+      const handleInput = () => autoResizeTextarea(textarea);
       textarea.addEventListener('input', handleInput);
+
       return () => textarea.removeEventListener('input', handleInput);
     }
   }, []);
