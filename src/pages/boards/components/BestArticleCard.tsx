@@ -1,6 +1,6 @@
 import React from 'react';
 import { formatDateString } from '@utils/formatDateString';
-import { Article } from '../Boards';
+import { Article } from './BoardsContainer';
 import {
   StyledCardContainer,
   StyledCardContent,
