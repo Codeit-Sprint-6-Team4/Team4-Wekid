@@ -12,21 +12,22 @@ import {
 } from '@pages/SignIn/components/SignInUI.styled';
 
 interface signInProps {
-  value: logInDataTypes;
+  userData: logInDataTypes;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const SignInUI: React.FC<signInProps> = ({ value, onChange }) => {
+const SignInUI: React.FC<signInProps> = ({ userData, onChange, onSubmit }) => {
   return (
     <StyledSignInWrap>
-      <StyledSignInForm>
-        <StyledSignInTitle>로그인</StyledSignInTitle>
+      <StyledSignInTitle>로그인</StyledSignInTitle>
+      <StyledSignInForm onSubmit={onSubmit}>
         <EmailPassword
           type="email"
           name="이메일"
           inputName="email"
           placeholder="이메일을 입력해 주세요"
-          value={value.email}
+          value={userData.email}
           onChange={onChange}
         />
         <EmailPassword
@@ -34,16 +35,16 @@ const SignInUI: React.FC<signInProps> = ({ value, onChange }) => {
           name="비밀번호"
           inputName="password"
           placeholder="비밀번호를 입력해 주세요"
-          value={value.password}
+          value={userData.password}
           onChange={onChange}
         />
         <Button $primary $width="100%" type="submit">
           로그인
         </Button>
-        <StyledLinkMessageWrap>
-          <StyledLinkMessage>회원가입</StyledLinkMessage>
-        </StyledLinkMessageWrap>
       </StyledSignInForm>
+      <StyledLinkMessageWrap>
+        <StyledLinkMessage>회원가입</StyledLinkMessage>
+      </StyledLinkMessageWrap>
     </StyledSignInWrap>
   );
 };
