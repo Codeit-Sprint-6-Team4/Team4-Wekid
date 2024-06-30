@@ -1,16 +1,25 @@
 import styled from 'styled-components';
+import { StyledInput } from '@components/input/input';
 import { theme } from '@styles/theme';
 import { media } from '@utils/media';
 
+interface profileModeProps {
+  $isMyprofile: boolean;
+}
 interface buttonProps {
   $isClicked: boolean;
 }
 
-export const StyeldProfileWrap = styled.div<buttonProps>`
+export const StyeldProfileWrap = styled.div<buttonProps & profileModeProps>`
   margin: 50px auto;
   position: relative;
+
   width: 320px;
+  width: ${({ $isMyprofile }) => $isMyprofile && '400px'};
+
   height: 671px;
+  height: ${({ $isMyprofile }) => $isMyprofile && '848px'};
+
   border-radius: 10px;
   border-color: none;
   background-color: #ffffffff;
@@ -70,13 +79,17 @@ export const StyeldProfileImage = styled.img<buttonProps>`
   `}
 `;
 
-export const StyledProfileDataWrap = styled.div<buttonProps>`
+export const StyledProfileDataWrap = styled.div<buttonProps & profileModeProps>`
   margin: 50px auto;
+
   width: 209px;
+  width: ${({ $isMyprofile }) => $isMyprofile && '320px'};
+
   display: flex;
   flex-direction: column;
   overflow: hidden;
   gap: 10px;
+
   ${media('tablet')`
     overflow: ${({ $isClicked }) => ($isClicked ? 'initial' : '')};
     margin-top: 30px;
@@ -89,8 +102,9 @@ export const StyledProfileDataWrap = styled.div<buttonProps>`
   `}
 `;
 
-export const StyledProfileData = styled.div`
+export const StyledProfileData = styled.div<profileModeProps>`
   display: flex;
+  align-items: center;
   gap: 15px;
 
   label {
@@ -102,31 +116,32 @@ export const StyledProfileData = styled.div`
   }
 
   p {
+    display: ${({ $isMyprofile }) => $isMyprofile && 'none'};
     font-family: ${theme.fonts['pretendard/md-14px-regular']};
     font-weight: 400;
     color: ${theme.colors.gray[800]};
     font-size: 14px;
-    white-space: pre-wrap; /* CSS3 */
-    white-space: -moz-pre-wrap; /* Firefox */
-    white-space: -pre-wrap; /* Opera */
-    white-space: -o-pre-wrap; /* Opera */
-    word-wrap: break-word; /* IE */
+  }
+
+  ${StyledInput} {
+    display: ${({ $isMyprofile }) => !$isMyprofile && 'none'};
   }
 
   ${media('tablet')`
-  label {
-    width: 60px;
-    font-family: ${theme.fonts['pretendard/md-14px-regular']};
-    font-weight: 400;
-    color: ${theme.colors.gray[600]};
-    font-size: 14px;
-  }
-  p {
-    font-family: ${theme.fonts['pretendard/md-14px-regular']};
-    font-weight: 400;
-    color: ${theme.colors.gray[800]};
-    font-size: 14px;
-  }
+    label {
+      width: 60px;
+      font-family: ${theme.fonts['pretendard/md-14px-regular']};
+      font-weight: 400;
+      color: ${theme.colors.gray[600]};
+      font-size: 14px;
+    }
+
+    p {
+      font-family: ${theme.fonts['pretendard/md-14px-regular']};
+      font-weight: 400;
+      color: ${theme.colors.gray[800]};
+      font-size: 14px;
+    }
   `}
 `;
 

@@ -11,16 +11,17 @@ interface WritingUI {
   onSave: () => void;
   onCancel: () => void;
 }
+
 CUSTUM_ICONS;
 
 const EditorUI = ({ content, name, onSave, onCancel }: WritingUI) => {
+  const [values, setValues] = useState('');
+
   const modules = useMemo(() => {
     return {
       toolbar: '#toolbar',
     };
   }, []);
-
-  const [values, setValues] = useState('');
 
   const handleChange = (values: string) => {
     setValues(values);

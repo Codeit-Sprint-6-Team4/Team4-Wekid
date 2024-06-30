@@ -24,10 +24,12 @@ const CustomToolBar = ({ name, onCancel, onSave }: customToolBarProps) => {
           <button className="ql-italic" />
           <button className="ql-underline" />
         </span>
+
         <span className="ql-formats">
           <button className="ql-list" value="bullet"></button>
           <button className="ql-list" value="ordered"></button>
         </span>
+
         <span className="ql-formats">
           <select className="ql-align">
             <option></option>
@@ -36,6 +38,7 @@ const CustomToolBar = ({ name, onCancel, onSave }: customToolBarProps) => {
             <option value="justify"></option>
           </select>
         </span>
+
         <button className="ql-image" />
         <button className="ql-video" />
         <button className="ql-link" />

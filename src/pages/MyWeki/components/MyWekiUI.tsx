@@ -17,7 +17,10 @@ interface MyeWekiUIProps {
   onSave: () => void;
   onCancel: () => void;
 }
+
 const MyWekiUI = ({ profile, isEdit, onSave, onCancel }: MyeWekiUIProps) => {
+  const testIsMyprofile = false;
+
   return (
     <StyledWekiWrap>
       <StyledWekiContent>
@@ -51,10 +54,38 @@ const MyWekiUI = ({ profile, isEdit, onSave, onCancel }: MyeWekiUIProps) => {
           )}
         </StyledMarkUpWrap>
       </StyledWekiContent>
-      {!isEdit && <ProfileUI {...profile} />}
+
+      {!isEdit && (
+        <ProfileUI
+          isMyprofile={testIsMyprofile}
+          nationality={profile?.nationality}
+          family={profile?.family}
+          bloodType={profile?.bloodType}
+          nickname={profile?.nickname}
+          birthday={profile?.birthday}
+          sns={profile?.sns}
+          job={profile?.job}
+          mbti={profile?.mbti}
+          city={profile?.city}
+          image={profile?.image}
+        />
+      )}
+
       {isEdit && (
         <>
-          <ProfileUI {...profile} />
+          <ProfileUI
+            isMyprofile={testIsMyprofile}
+            nationality={profile?.nationality}
+            family={profile?.family}
+            bloodType={profile?.bloodType}
+            nickname={profile?.nickname}
+            birthday={profile?.birthday}
+            sns={profile?.sns}
+            job={profile?.job}
+            mbti={profile?.mbti}
+            city={profile?.city}
+            image={profile?.image}
+          />
 
           <StyledMarkUpHeader>
             <h2>{profile?.name}</h2>
@@ -67,6 +98,7 @@ const MyWekiUI = ({ profile, isEdit, onSave, onCancel }: MyeWekiUIProps) => {
               >
                 취소
               </Button>
+
               <Button onClick={onSave} $primary $width="65px" $height="40px">
                 저장
               </Button>

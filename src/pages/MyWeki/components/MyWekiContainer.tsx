@@ -8,9 +8,11 @@ const MyWekiContainer = () => {
   const { code } = useParams();
   const [profile, setProfile] = useState<profileType | null>(null);
   const [isEdit, setIsEdit] = useState(true);
+
   const onCancel = () => {
     setIsEdit(false);
   };
+
   const onSave = () => {};
 
   const receiveProfile = async () => {
@@ -22,9 +24,11 @@ const MyWekiContainer = () => {
       }
     }
   };
+
   useEffect(() => {
     receiveProfile();
   }, []);
+
   return (
     <MyWekiUI
       profile={profile}
