@@ -13,14 +13,14 @@ import {
   CommentText,
   CommentDate,
 } from './CommentItemUIStyled';
-import { deleteComment, patchComment } from '@api/comment';
 
 interface CommentItemUIProps {
   id: number;
   author: string;
   date: string;
   text: string;
-  fetchComments: () => void;
+  updateComment: (commentId: number, text: string) => void;
+  removeComment: (commentId: number) => void;
 }
 
 const CommentItemUI: React.FC<CommentItemUIProps> = ({
@@ -28,7 +28,8 @@ const CommentItemUI: React.FC<CommentItemUIProps> = ({
   author,
   date,
   text,
-  fetchComments,
+  updateComment,
+  removeComment,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState(text);
@@ -37,14 +38,9 @@ const CommentItemUI: React.FC<CommentItemUIProps> = ({
     setIsEditing(true);
   };
 
-  const handleSave = async () => {
-    try {
-      await patchComment(id.toString(), editContent);
-      await fetchComments();
-      setIsEditing(false);
-    } catch (error) {
-      console.error('Failed to update comment', error);
-    }
+  const handleSave = () => {
+    updateComment(id, editContent);
+    setIsEditing(false);
   };
 
   const handleCancel = () => {
@@ -52,13 +48,8 @@ const CommentItemUI: React.FC<CommentItemUIProps> = ({
     setEditContent(text); // 원래 텍스트로 되돌리기
   };
 
-  const handleDelete = async () => {
-    try {
-      await deleteComment(id.toString());
-      await fetchComments();
-    } catch (error) {
-      console.error('Failed to delete comment', error);
-    }
+  const handleDelete = () => {
+    removeComment(id);
   };
 
   return (

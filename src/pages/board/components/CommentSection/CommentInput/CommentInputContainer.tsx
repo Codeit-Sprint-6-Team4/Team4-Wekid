@@ -1,16 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { postComment } from '@api/comment';
-import { autoResizeTextarea } from '@utils/autoResizeTextarea';
 import CommentInputUI from './CommentInputUI';
+import { autoResizeTextarea } from '@utils/autoResizeTextarea';
 
 interface CommentInputContainerProps {
-  onAddComment: () => void;
+  onAddComment: (text: string) => void;
 }
 
-const CommentInputContainer: React.FC<CommentInputContainerProps> = ({
-  onAddComment,
-}) => {
+const CommentInputContainer: React.FC<CommentInputContainerProps> = ({ onAddComment }) => {
   const { id } = useParams<{ id: string }>();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [text, setText] = useState('');
@@ -25,15 +22,10 @@ const CommentInputContainer: React.FC<CommentInputContainerProps> = ({
     }
   }, []);
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (text.trim() && id) {
-      try {
-        await postComment(id, text);
-        onAddComment();
-        setText('');
-      } catch (error) {
-        console.error('Failed to post comment', error);
-      }
+      onAddComment(text);
+      setText('');
     } else if (!id) {
       console.error('Article ID is missing');
     }

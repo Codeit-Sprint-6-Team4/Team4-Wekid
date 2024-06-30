@@ -2,16 +2,17 @@ import { AxiosError } from 'axios';
 import Cookies from 'js-cookie';
 import instance from './axios';
 
-export const getComment = async (articleId: string, limit: number = 10) => {
+export const getComment = async (articleId: string, limit: number = 10, cursor?: number) => {
   const URL = `/articles/${articleId}/comments`;
   try {
     const response = await instance.get(URL, {
       params: {
         articleId,
-        limit
+        limit,
+        cursor
       }
     });
-    return response.data.list; // 댓글 목록을 반환
+    return response.data; // 응답 전체 반환 (list와 nextCursor를 포함)
   } catch (error) {
     const err = error as AxiosError;
     if (err.response) {

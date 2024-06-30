@@ -6,17 +6,19 @@ interface CommentItemContainerProps {
   author: string;
   date: string;
   text: string;
-  fetchComments: () => void;
+  updateComment: (commentId: number, text: string) => void;
+  removeComment: (commentId: number) => void;
 }
 
-const CommentItemContainer: React.FC<CommentItemContainerProps> = ({ id, author, date, text, fetchComments }) => {
+const CommentItemContainer: React.FC<CommentItemContainerProps> = ({ id, author, date, text, updateComment, removeComment }) => {
   return (
     <CommentItemUI
       id={id}
       author={author}
       date={date}
       text={text}
-      fetchComments={fetchComments}
+      updateComment={updateComment}
+      removeComment={removeComment}
     />
   );
 };
