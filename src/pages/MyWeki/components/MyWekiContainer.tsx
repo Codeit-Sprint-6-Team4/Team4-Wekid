@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import { getProfie, profileType } from '@api/profile';
 import MyWekiUI from './MyWekiUI';
 
@@ -16,9 +17,11 @@ const MyWekiContainer = () => {
     try {
       const result = await getProfie('d1119f52-da1a-4ef6-b212-85e047100d1f');
       setProfile(result);
-    } catch (error) {}
+    } catch (error) {
+      if (error instanceof AxiosError) {
+      }
+    }
   };
-
   useEffect(() => {
     receiveProfile();
   }, []);
