@@ -45,6 +45,15 @@ export const CommentActions = styled.div`
   gap: 2rem;
 `;
 
+export const EditTextButton = styled.button`
+  font: ${theme.fonts['pretendard/md-14px-regular']};
+  color: ${theme.colors.gray[600]};
+  letter-spacing: -0.04em;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 export const EditCommentButton = styled.button`
   background-image: url(${EditIcon});
   background-repeat: no-repeat;
@@ -64,12 +73,49 @@ export const DeleteCommentButton = styled.button`
 `;
 
 export const CommentText = styled.div`
+  margin-bottom: 1rem;
   font: ${theme.fonts['pretendard/lg-16px-regular']};
   color: ${theme.colors.gray[800]};
-  margin-bottom: 1rem;
+  word-break: break-all;
 `;
 
 export const CommentDate = styled.div`
   font: ${theme.fonts['pretendard/md-14px-regular']};
   color: ${theme.colors.gray[600]};
+`;
+
+export const CommentInputWrapper = styled.div`
+  position: relative;
+  background: ${theme.colors.gray[50]};
+  border-radius: 1rem;
+  margin: 1rem 0;
+  padding: 1.3rem 1.5rem;
+`;
+
+export const StyledCommentInput = styled.textarea`
+  font: ${theme.fonts['pretendard/md-14px-regular']};
+  background: transparent;
+  width: 100%;
+  border: none;
+  resize: none;
+  color: ${theme.colors.gray[800]};
+  overflow: hidden;
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: ${theme.colors.gray[600]};
+  }
+`;
+
+export const CharacterCount = styled.p`
+  font: ${theme.fonts['pretendard/md-14px-regular']};
+  color: ${theme.colors.gray[300]};
+`;
+
+export const CommentInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 10rem;
+  align-items: flex-end;
 `;

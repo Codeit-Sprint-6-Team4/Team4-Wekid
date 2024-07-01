@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { RefObject } from 'react';
 import DefaultProfileImg from '@assets/icons/icon-profile.svg';
 import {
   CommentItemWrapper,
@@ -8,10 +8,15 @@ import {
   CommentAuthorInfo,
   CommentAuthorName,
   CommentActions,
+  EditTextButton,
   EditCommentButton,
   DeleteCommentButton,
   CommentText,
   CommentDate,
+  CommentInputWrapper,
+  StyledCommentInput,
+  CommentInfo,
+  CharacterCount,
 } from './CommentItemUIStyled';
 
 interface CommentItemUIProps {
@@ -19,8 +24,14 @@ interface CommentItemUIProps {
   author: string;
   date: string;
   text: string;
-  updateComment: (commentId: number, text: string) => void;
-  removeComment: (commentId: number) => void;
+  isEditing: boolean;
+  textareaRef: RefObject<HTMLTextAreaElement>;
+  setEditContent: React.Dispatch<React.SetStateAction<string>>;
+  handleEdit: () => void;
+  handleSave: () => void;
+  handleCancel: () => void;
+  handleDelete: () => void;
+  image?: string; // 이미지 추가
 }
 
 const CommentItemUI: React.FC<CommentItemUIProps> = ({
@@ -28,35 +39,20 @@ const CommentItemUI: React.FC<CommentItemUIProps> = ({
   author,
   date,
   text,
-  updateComment,
-  removeComment,
+  isEditing,
+  textareaRef,
+  setEditContent,
+  handleEdit,
+  handleSave,
+  handleCancel,
+  handleDelete,
+  image,
 }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editContent, setEditContent] = useState(text);
-
-  const handleEdit = () => {
-    setIsEditing(true);
-  };
-
-  const handleSave = () => {
-    updateComment(id, editContent);
-    setIsEditing(false);
-  };
-
-  const handleCancel = () => {
-    setIsEditing(false);
-    setEditContent(text); // 원래 텍스트로 되돌리기
-  };
-
-  const handleDelete = () => {
-    removeComment(id);
-  };
-
   return (
     <CommentItemWrapper>
       <CommentAuthorProfileWrapper>
         <CommentAuthorProfile>
-          <img src={DefaultProfileImg} alt="프로필 이미지" />
+          <img src={image || DefaultProfileImg} alt="프로필 이미지" />
         </CommentAuthorProfile>
       </CommentAuthorProfileWrapper>
       <CommentContentWrapper>
@@ -65,12 +61,8 @@ const CommentItemUI: React.FC<CommentItemUIProps> = ({
           <CommentActions>
             {isEditing ? (
               <>
-                <EditCommentButton onClick={handleSave}>
-                  <span>수정 확인</span>
-                </EditCommentButton>
-                <EditCommentButton onClick={handleCancel}>
-                  <span>취소</span>
-                </EditCommentButton>
+                <EditTextButton onClick={handleSave}>수정 완료</EditTextButton>
+                <EditTextButton onClick={handleCancel}>취소</EditTextButton>
               </>
             ) : (
               <EditCommentButton onClick={handleEdit}>
@@ -83,10 +75,17 @@ const CommentItemUI: React.FC<CommentItemUIProps> = ({
           </CommentActions>
         </CommentAuthorInfo>
         {isEditing ? (
-          <textarea
-            value={editContent}
-            onChange={(e) => setEditContent(e.target.value)}
-          />
+          <CommentInputWrapper>
+            <StyledCommentInput
+              ref={textareaRef}
+              value={text}
+              onChange={(e) => setEditContent(e.target.value.slice(0, 100))} // 100자 제한
+              placeholder="댓글을 입력해주세요"
+            />
+            <CommentInfo>
+              <CharacterCount>{text.length}/100</CharacterCount>
+            </CommentInfo>
+          </CommentInputWrapper>
         ) : (
           <CommentText>{text}</CommentText>
         )}
