@@ -17,10 +17,9 @@ export const CommentsList = styled.ul`
   flex-direction: column;
   gap: 2.4rem;
 `;
+
 export const LoadMoreButton = styled.button`
   display: block;
-  margin: 1rem auto;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
+  margin: 0 auto;
+  margin-top: 2rem;
 `;

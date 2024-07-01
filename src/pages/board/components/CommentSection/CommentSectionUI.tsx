@@ -1,7 +1,13 @@
 import React from 'react';
+import Button from '@components/button/Button';
 import CommentInputContainer from './CommentInput/CommentInputContainer';
 import CommentItemContainer from './CommentItem/CommentItemContainer';
-import { CommentsWrapper, CommentsCount, CommentsList, LoadMoreButton } from './CommentSectionUIStyled';
+import {
+  CommentsWrapper,
+  CommentsCount,
+  CommentsList,
+  LoadMoreButton,
+} from './CommentSectionUIStyled';
 
 interface Comment {
   id: number;
@@ -20,7 +26,15 @@ interface CommentSectionUIProps {
   totalComments: number; // 총 댓글 수 props 추가
 }
 
-const CommentSectionUI: React.FC<CommentSectionUIProps> = ({ comments, fetchComments, hasMore, addComment, updateComment, removeComment, totalComments }) => {
+const CommentSectionUI: React.FC<CommentSectionUIProps> = ({
+  comments,
+  fetchComments,
+  hasMore,
+  addComment,
+  updateComment,
+  removeComment,
+  totalComments,
+}) => {
   return (
     <CommentsWrapper>
       <CommentsCount>
@@ -28,7 +42,7 @@ const CommentSectionUI: React.FC<CommentSectionUIProps> = ({ comments, fetchComm
       </CommentsCount>
       <CommentInputContainer onAddComment={addComment} />
       <CommentsList>
-        {comments.map(comment => (
+        {comments.map((comment) => (
           <CommentItemContainer
             key={comment.id}
             id={comment.id}
@@ -41,7 +55,11 @@ const CommentSectionUI: React.FC<CommentSectionUIProps> = ({ comments, fetchComm
         ))}
       </CommentsList>
       {hasMore && (
-        <LoadMoreButton onClick={fetchComments}>더 보기</LoadMoreButton>
+        <LoadMoreButton>
+          <Button $secondary onClick={fetchComments}>
+            더 보기
+          </Button>
+        </LoadMoreButton>
       )}
     </CommentsWrapper>
   );
