@@ -25,7 +25,7 @@ const SignInContainer = () => {
       const response = await postSignIn(userData);
       console.log(response);
       alert('로그인이 완료되었습니다.');
-      navigate('mypage');
+      navigate(-1);
     } catch (error) {
       console.log('로그인 에러!');
     }
