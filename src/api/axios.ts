@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import Cookies from 'js-cookie';
 import { postRefreshToken } from './auth';
 
@@ -16,17 +16,46 @@ instance.interceptors.request.use(
     }
     return config;
   },
-  async (error: AxiosError) => {
-    const originalRequest = error.config;
-    if (typeof originalRequest !== 'undefined') {
-      if (error.response?.status === 401) {
-        await postRefreshToken();
-        return instance.request(originalRequest);
-      }
-    }
-    // 요청이 실패할 경우 실행됩니다.
+  (error) => {
     return Promise.reject(error);
   },
 );
 
+instance.interceptors.response.use(
+  (response) => response,
+  async (error: AxiosError) => {
+    const originalRequest = error.config as AxiosRequestConfig & {
+      _retry?: boolean;
+    };
+
+    interface ErrorResponseData {
+      message?: string;
+    }
+
+    const responseData = error.response?.data as ErrorResponseData;
+
+    if (
+      error.response?.status === 401 &&
+      responseData?.message === 'jwt expired' &&
+      !originalRequest._retry
+    ) {
+      originalRequest._retry = true;
+      try {
+        const newToken = await postRefreshToken();
+        if (newToken) {
+          originalRequest.headers = {
+            ...originalRequest.headers,
+            Authorization: `Bearer ${newToken}`,
+          };
+          return instance(originalRequest);
+        }
+      } catch (refreshError) {
+        console.error('Failed to refresh token:', refreshError);
+        window.location.href = '/login';
+        return Promise.reject(refreshError);
+      }
+    }
+    return Promise.reject(error);
+  },
+);
 export default instance;
