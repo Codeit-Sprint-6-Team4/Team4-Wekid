@@ -47,12 +47,5 @@ export const StyledUserLink = styled.a`
       height: 14px;
       margin-right: 1px;
     }
-    
-    span {
-      flex: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
   `};
 `;
