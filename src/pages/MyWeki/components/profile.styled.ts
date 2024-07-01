@@ -12,7 +12,7 @@ interface buttonProps {
 
 export const StyeldProfileWrap = styled.div<buttonProps & profileModeProps>`
   margin: 50px auto;
-  position: relative;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
 
   width: 320px;
   width: ${({ $isMyprofile }) => $isMyprofile && '400px'};

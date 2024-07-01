@@ -11,7 +11,7 @@ import {
 } from './profile.styled';
 
 interface profileUIProps {
-  isEdit?: boolean;
+  isEdit?: boolean | undefined;
   nationality: string | undefined;
   family: string | undefined;
   bloodType: string | undefined;
