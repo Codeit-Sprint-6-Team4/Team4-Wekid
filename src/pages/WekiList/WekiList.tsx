@@ -1,7 +1,10 @@
 import React from 'react';
+import WekiListContainer from './components/WekiListContainer';
 
 const WekiList = () => {
-  return <div>위키리스트페이지</div>;
+  return(
+    <WekiListContainer />
+  );
 };
 
 export default WekiList;
