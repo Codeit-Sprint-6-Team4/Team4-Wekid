@@ -30,3 +30,12 @@ export const getProfie = async (code: string): Promise<profileType> => {
     throw error;
   }
 };
+
+export const getProfiles = async (page = 1, pageSize = 3, name = '') => {
+  const params = {
+    page,
+    pageSize,
+    name
+  };
+  return instance.get(`/profiles`, { params });
+};

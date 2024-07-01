@@ -1,6 +1,17 @@
+import axios from './axios';
 import { AxiosError } from 'axios';
 import instance from './axios';
 import Cookies from 'js-cookie';
+
+export const getArticles = async (page = 1, pageSize = 10, orderBy = 'recent', keyword = '') => {
+  const params = {
+    page,
+    pageSize,
+    orderBy,
+    keyword
+  };
+  return axios.get(`/articles`, { params });
+};
 
 export const fetchArticle = async (articleId: string) => {
   const URL = `/articles/${articleId}`;
