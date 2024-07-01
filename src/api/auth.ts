@@ -64,7 +64,7 @@ export const patchPassword = async (passwordData: {
   }
 };
 
-export const updateSecurityQuestion = async (
+export const postSecurityQuestion = async (
   securityQuestion: string,
   securityAnswer: string,
 ) => {

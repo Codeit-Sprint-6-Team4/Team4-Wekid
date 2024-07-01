@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { updateSecurityQuestion } from '@api/auth';
+import { postSecurityQuestion } from '@api/auth';
 import SecurityQuestionUI from './SecurityQuestionUI';
 
 const SecurityQuestionContainer = () => {
@@ -28,7 +28,7 @@ const SecurityQuestionContainer = () => {
   const handleQuestionSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await updateSecurityQuestion(question, answer);
+      const res = await postSecurityQuestion(question, answer);
       const userURL = `https://your-destination-url.com/${res.code}`;
       window.location.href = userURL;
       alert(
