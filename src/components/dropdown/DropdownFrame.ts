@@ -40,7 +40,7 @@ export const StyledDropdownButton = styled.button<{ $isOpen: boolean }>`
   }
 
   ${media('mobile')`
-    width: 90%;
+    width: 100%;
   `}
 `;
 
@@ -55,7 +55,7 @@ export const StyledDropdownList = styled.ul`
   z-index: 1000;
 
   ${media('mobile')`
-    width: 90%;
+    width: 100%;
     padding: 6px 3.35px;
   `}
 `;
@@ -74,6 +74,6 @@ export const StyledDropdownItem = styled.li`
   }
 
   ${media('mobile')`
-    width: 90%;
+    width: 100%;
   `}
 `;

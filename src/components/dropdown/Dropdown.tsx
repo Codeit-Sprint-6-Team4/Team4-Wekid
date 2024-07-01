@@ -14,6 +14,7 @@ interface OptionType {
 interface DropdownProps {
   options: OptionType[];
   onSelect: (option: OptionType) => void;
+  placeholderText: string;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ options, onSelect }) => {

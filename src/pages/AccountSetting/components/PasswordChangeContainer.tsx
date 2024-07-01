@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { AxiosError } from 'axios';
 import { patchPassword } from '@api/auth';
-import AccountSettingUI from './AccountSettingUI';
+import PasswordChangeUI from './PasswordChangeUI';
 
-const AccountSettingContainer = () => {
+const PasswordChangeContainer = () => {
   const [values, setValues] = useState({
     currentPassword: '',
     newPassword: '',
     confirmPassword: '',
-    question: '',
-    answer: '',
   });
   const [errors, setErrors] = useState({
     passwordMismatch: false,
@@ -89,22 +87,15 @@ const AccountSettingContainer = () => {
     }
   };
 
-  const handleQuestionSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // 질문 생성 로직 필요
-    console.log('질문 생성:', values);
-  };
-
   return (
-    <AccountSettingUI
+    <PasswordChangeUI
       values={values}
       errors={errors}
       isConfirmDisabled={isConfirmDisabled}
       onChange={handleChange}
       onSubmit={handleSubmit}
-      onQuestionSubmit={handleQuestionSubmit}
     />
   );
 };
 
-export default AccountSettingContainer;
+export default PasswordChangeContainer;
