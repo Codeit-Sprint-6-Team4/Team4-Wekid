@@ -78,8 +78,8 @@ const PasswordChangeContainer = () => {
         passwordConfirmation: values.confirmPassword,
       });
       console.log('비밀번호 변경 성공', res);
-      alert('비밀번호가 성공적으로 변경되었습니다.');
       handleLogout(navigate);
+      alert('비밀번호가 성공적으로 변경되었습니다.');
     } catch (error) {
       if (error instanceof AxiosError) {
         if (error.response?.status === 400) {
