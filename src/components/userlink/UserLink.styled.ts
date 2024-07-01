@@ -6,15 +6,19 @@ import { media } from '@utils/media';
 export const StyledUserLink = styled.a`
   display: flex;
   max-width: 400px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   align-items: center;
   padding: 3px 10px;
   background-color: ${theme.colors.main[50]};
   border-radius: 10px;
   color: ${theme.colors.main[500]};
   font: ${theme.fonts['pretendard/md-14px-regular']};
+
+  span {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
   &::before {
     content: '';
