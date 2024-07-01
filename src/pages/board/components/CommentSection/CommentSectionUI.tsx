@@ -17,13 +17,14 @@ interface CommentSectionUIProps {
   addComment: (text: string) => void;
   updateComment: (commentId: number, text: string) => void;
   removeComment: (commentId: number) => void;
+  totalComments: number; // 총 댓글 수 props 추가
 }
 
-const CommentSectionUI: React.FC<CommentSectionUIProps> = ({ comments, fetchComments, hasMore, addComment, updateComment, removeComment }) => {
+const CommentSectionUI: React.FC<CommentSectionUIProps> = ({ comments, fetchComments, hasMore, addComment, updateComment, removeComment, totalComments }) => {
   return (
     <CommentsWrapper>
       <CommentsCount>
-        댓글 <span>{comments.length}</span>
+        댓글 <span>{totalComments}</span> {/* 총 댓글 수 렌더링 */}
       </CommentsCount>
       <CommentInputContainer onAddComment={addComment} />
       <CommentsList>

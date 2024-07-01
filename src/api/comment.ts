@@ -29,6 +29,28 @@ export const getComment = async (
   }
 };
 
+export const getAllComments = async (articleId: string) => {
+  const URL = `/articles/${articleId}/comments`;
+  try {
+    const response = await instance.get(URL, {
+      params: {
+        articleId,
+        limit: 1000, // 큰 limit 값을 설정하여 모든 댓글을 가져옴
+      },
+    });
+    return response.data.list.length; // 댓글의 총 개수를 반환
+  } catch (error) {
+    const err = error as AxiosError;
+    if (err.response) {
+      console.error('Response error:', err.response.status);
+      console.error('Response data:', err.response.data);
+      throw err;
+    }
+    console.error(error);
+    throw error;
+  }
+};
+
 export const postComment = async (id: string, content: string) => {
   const URL = `/articles/${id}/comments`;
   try {
