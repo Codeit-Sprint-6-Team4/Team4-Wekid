@@ -17,8 +17,10 @@ const MyWekiContainer = () => {
 
   const receiveProfile = async () => {
     try {
-      const result = await getProfie('d1119f52-da1a-4ef6-b212-85e047100d1f');
-      setProfile(result);
+      if (typeof code === 'string') {
+        const result = await getProfie('d1119f52-da1a-4ef6-b212-85e047100d1f');
+        setProfile(result);
+      }
     } catch (error) {
       if (error instanceof AxiosError) {
       }

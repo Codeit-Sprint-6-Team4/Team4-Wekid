@@ -20,6 +20,7 @@ interface MyeWekiUIProps {
 
 const MyWekiUI = ({ profile, isEdit, onSave, onCancel }: MyeWekiUIProps) => {
   const testIsMyprofile = false;
+  const tesIsEdit = false;
 
   return (
     <StyledWekiWrap>
@@ -55,37 +56,38 @@ const MyWekiUI = ({ profile, isEdit, onSave, onCancel }: MyeWekiUIProps) => {
         </StyledMarkUpWrap>
       </StyledWekiContent>
 
-      {!isEdit && (
-        <ProfileUI
-          isMyprofile={testIsMyprofile}
-          nationality={profile?.nationality}
-          family={profile?.family}
-          bloodType={profile?.bloodType}
-          nickname={profile?.nickname}
-          birthday={profile?.birthday}
-          sns={profile?.sns}
-          job={profile?.job}
-          mbti={profile?.mbti}
-          city={profile?.city}
-          image={profile?.image}
-        />
-      )}
+      <ProfileUI
+        isEdit={isEdit}
+        isMyprofile={testIsMyprofile}
+        nationality={profile?.nationality}
+        family={profile?.family}
+        bloodType={profile?.bloodType}
+        nickname={profile?.nickname}
+        birthday={profile?.birthday}
+        sns={profile?.sns}
+        job={profile?.job}
+        mbti={profile?.mbti}
+        city={profile?.city}
+        image={profile?.image}
+      />
 
-      {isEdit && (
-        <>
-          <ProfileUI
-            isMyprofile={testIsMyprofile}
-            nationality={profile?.nationality}
-            family={profile?.family}
-            bloodType={profile?.bloodType}
-            nickname={profile?.nickname}
-            birthday={profile?.birthday}
-            sns={profile?.sns}
-            job={profile?.job}
-            mbti={profile?.mbti}
-            city={profile?.city}
-            image={profile?.image}
-          />
+      {
+        isEdit && (
+          // <>
+          //   <ProfileUI
+          //     isEdit={tesIsEdit}
+          //     isMyprofile={testIsMyprofile}
+          //     nationality={profile?.nationality}
+          //     family={profile?.family}
+          //     bloodType={profile?.bloodType}
+          //     nickname={profile?.nickname}
+          //     birthday={profile?.birthday}
+          //     sns={profile?.sns}
+          //     job={profile?.job}
+          //     mbti={profile?.mbti}
+          //     city={profile?.city}
+          //     image={profile?.image}
+          //   />
 
           <StyledMarkUpHeader>
             <h2>{profile?.name}</h2>
@@ -104,8 +106,9 @@ const MyWekiUI = ({ profile, isEdit, onSave, onCancel }: MyeWekiUIProps) => {
               </Button>
             </div>
           </StyledMarkUpHeader>
-        </>
-      )}
+        )
+        // </>
+      }
     </StyledWekiWrap>
   );
 };

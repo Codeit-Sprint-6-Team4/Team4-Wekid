@@ -5,20 +5,22 @@ import { media } from '@utils/media';
 
 interface profileModeProps {
   $isMyprofile: boolean;
+  $isEdit?: boolean;
 }
 interface buttonProps {
   $isClicked: boolean;
 }
 
 export const StyeldProfileWrap = styled.div<buttonProps & profileModeProps>`
+  position: relative;
   margin: 50px auto;
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
 
   width: 320px;
-  width: ${({ $isMyprofile }) => $isMyprofile && '400px'};
+  width: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '400px'};
 
   height: 671px;
-  height: ${({ $isMyprofile }) => $isMyprofile && '848px'};
+  height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '848px'};
 
   border-radius: 10px;
   border-color: none;
@@ -83,7 +85,7 @@ export const StyledProfileDataWrap = styled.div<buttonProps & profileModeProps>`
   margin: 50px auto;
 
   width: 209px;
-  width: ${({ $isMyprofile }) => $isMyprofile && '320px'};
+  width: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '320px'};
 
   display: flex;
   flex-direction: column;
@@ -116,7 +118,8 @@ export const StyledProfileData = styled.div<profileModeProps>`
   }
 
   p {
-    display: ${({ $isMyprofile }) => $isMyprofile && 'none'};
+    display: ${({ $isMyprofile, $isEdit }) =>
+      $isEdit && $isMyprofile && 'none'};
     font-family: ${theme.fonts['pretendard/md-14px-regular']};
     font-weight: 400;
     color: ${theme.colors.gray[800]};
@@ -124,7 +127,8 @@ export const StyledProfileData = styled.div<profileModeProps>`
   }
 
   ${StyledInput} {
-    display: ${({ $isMyprofile }) => !$isMyprofile && 'none'};
+    display: ${({ $isMyprofile, $isEdit }) =>
+      (!$isEdit || ($isEdit && !$isMyprofile)) && 'none'};
   }
 
   ${media('tablet')`
