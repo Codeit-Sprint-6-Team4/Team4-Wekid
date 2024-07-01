@@ -29,10 +29,10 @@ const SecurityQuestionContainer = () => {
     e.preventDefault();
     try {
       const res = await postSecurityQuestion(question, answer);
-      const userURL = `https://your-destination-url.com/${res.code}`;
-      window.location.href = userURL;
+      const userURL = `${res.code}`;
+      window.location.href = `/weki/${userURL}`;
       alert(
-        '성공적으로 위키페이지를 만들었습니다.\n\n질문: ${question}\n답변: ${answer}',
+        `성공적으로 위키페이지를 만들었습니다.\n\n질문: ${question}\n답변: ${answer}`,
       );
       console.log('질문 생성 성공', res);
     } catch (error) {
