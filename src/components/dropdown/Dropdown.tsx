@@ -13,7 +13,10 @@ interface OptionType {
 
 interface DropdownProps {
   options: OptionType[];
-  onSelect: (option: OptionType) => void;
+  onSelect: (
+    option: OptionType,
+    event: React.MouseEvent<HTMLLIElement, MouseEvent>,
+  ) => void;
   placeholderText: string;
 }
 
@@ -26,19 +29,29 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onSelect }) => {
       ? selectedOption.label
       : '질문 없음';
 
-  const toggleDropdown = () => {
+  const toggleDropdown = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    event.stopPropagation();
+    event.preventDefault();
     setIsOpen(!isOpen);
   };
 
-  const handleSelectOption = (option: OptionType) => {
+  const handleSelectOption = (
+    option: OptionType,
+    event: React.MouseEvent<HTMLLIElement, MouseEvent>,
+  ) => {
+    event.stopPropagation();
+    event.preventDefault();
     setSelectedOption(option);
-    onSelect(option);
+    onSelect(option, event);
     setIsOpen(false);
   };
 
   return (
     <StyledDropdownContainer>
-      <StyledDropdownButton $isOpen={isOpen} onClick={toggleDropdown}>
+      <StyledDropdownButton
+        $isOpen={isOpen}
+        onClick={(event) => toggleDropdown(event)}
+      >
         {placeholderText}
         <div className="icon" />
       </StyledDropdownButton>
@@ -47,7 +60,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onSelect }) => {
           {options.map((option) => (
             <StyledDropdownItem
               key={option.id}
-              onClick={() => handleSelectOption(option)}
+              onClick={(event) => handleSelectOption(option, event)}
             >
               {option.label}
             </StyledDropdownItem>

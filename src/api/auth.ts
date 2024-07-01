@@ -68,7 +68,7 @@ export const updateSecurityQuestion = async (
   securityQuestion: string,
   securityAnswer: string,
 ) => {
-  const URL = '/profile';
+  const URL = '/profiles';
   try {
     const token = Cookies.get('accessToken');
     console.log('Using Access Token:', token);

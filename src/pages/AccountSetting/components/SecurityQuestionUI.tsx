@@ -13,7 +13,10 @@ interface SecurityQuestionProps {
   answer: string;
   isQuestionSubmitDisabled: boolean;
   onQuestionSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  onSelect: (option: { id: number; label: string }) => void;
+  onSelect: (
+    option: { id: number; label: string },
+    event: React.MouseEvent<HTMLLIElement, MouseEvent>,
+  ) => void;
   onQuestionChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

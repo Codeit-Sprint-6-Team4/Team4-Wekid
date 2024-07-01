@@ -8,7 +8,12 @@ const SecurityQuestionContainer = () => {
   const [isQuestionSubmitDisabled, setIsQuestionSubmitDisabled] =
     useState(true);
 
-  const handleSelectOption = (option: { id: number; label: string }) => {
+  const handleSelectOption = (
+    option: { id: number; label: string },
+    event: React.MouseEvent<HTMLLIElement, MouseEvent>,
+  ) => {
+    event.stopPropagation();
+    event.preventDefault();
     setQuestion(option.label);
   };
 
@@ -24,9 +29,15 @@ const SecurityQuestionContainer = () => {
     e.preventDefault();
     try {
       const res = await updateSecurityQuestion(question, answer);
+      const userURL = `https://your-destination-url.com/${res.code}`;
+      window.location.href = userURL;
+      alert(
+        '성공적으로 위키페이지를 만들었습니다.\n\n질문: ${question}\n답변: ${answer}',
+      );
       console.log('질문 생성 성공', res);
     } catch (error) {
       console.log('질문 생성 실패', error);
+      alert('이미 위키페이지를 생성 하였습니다.');
     }
   };
 
