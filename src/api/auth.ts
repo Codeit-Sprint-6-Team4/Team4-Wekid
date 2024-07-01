@@ -40,7 +40,7 @@ export const postSignIn = async (userData: logInDataTypes) => {
 
 export const patchPassword = async (passwordData: {
   currentPassword: string;
-  newPassword: string;
+  password: string;
   passwordConfirmation: string;
 }) => {
   const URL = '/users/me/password';

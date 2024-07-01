@@ -12,7 +12,7 @@ import {
 interface PasswordChangeProps {
   values: {
     currentPassword: string;
-    newPassword: string;
+    password: string;
     confirmPassword: string;
   };
   errors: {
@@ -51,9 +51,9 @@ const PasswordChangeUI = ({
       )}
       <StyledPasswordInput
         type="password"
-        name="newPassword"
+        name="password"
         placeholder="새 비밀번호"
-        value={values.newPassword}
+        value={values.password}
         onChange={onChange}
         hasError={errors.sameCurrentPassword}
       />
