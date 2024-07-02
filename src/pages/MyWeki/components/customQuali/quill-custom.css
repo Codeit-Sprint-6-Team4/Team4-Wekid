@@ -9,7 +9,7 @@
   background-color: #f7f7fa;
   border-radius: 12px;
   display: flex;
-  justify-content: center;
+
   align-items: center;
   /* 기타 등등 */
 }
@@ -21,8 +21,13 @@
   height: 756px;
 }
 
+.frame-ql-fromats {
+  flex: 2;
+}
+
 .ql-formats {
   border-right: 1px solid #e4e5f0;
+  margin-right: 0px !important;
 }
 
 .ql-header .ql-picker-label::before {
@@ -30,10 +35,6 @@
   font-weight: 500;
   font-size: 16px;
   color: #8f95b2;
-}
-
-.ql-header .ql-picker-item::before {
-  content: '제목' !important;
 }
 
 .ql-active {
@@ -45,24 +46,42 @@
   border-radius: 5px;
 }
 
-@media (max-width: 768px) {
-  .ql-toolbar > :nth-child(5) {
-    display: none;
-  }
+/* custom tool */
+.userName {
+  flex: 1;
+  font-weight: 600;
+  font-size: 20px;
+  color: #474d66;
 }
 
-@media (max-width: 588px) {
-  .ql-toolbar > :nth-child(4) {
+.buttons {
+  display: flex;
+  flex: 1;
+  gap: 10px;
+  justify-content: right;
+}
+
+.cancel {
+  width: 65px !important;
+  height: 40px !important;
+  background-color: #f7f7fa !important;
+  color: #4cbfa4;
+  border-radius: 10px;
+  border: 1px solid #4cbfa4 !important;
+}
+.save {
+  border-radius: 10px;
+  width: 65px !important;
+  height: 40px !important;
+  background-color: #4cbfa4 !important;
+  color: #ffffffff;
+}
+
+@media (max-width: 768px) {
+  .buttons {
     display: none;
   }
-}
-@media (max-width: 424px) {
-  .ql-toolbar > :nth-child(3) {
-    display: none;
-  }
-}
-@media (max-width: 340px) {
-  .ql-toolbar > :nth-child(2) {
+  .userName {
     display: none;
   }
 }
