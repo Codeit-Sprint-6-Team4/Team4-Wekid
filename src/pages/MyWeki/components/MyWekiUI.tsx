@@ -3,6 +3,7 @@ import { is } from 'date-fns/locale';
 import Cookies from 'js-cookie';
 import { profileType, profileCheckType } from '@api/profile';
 import Button from '@components/button/Button';
+import Modal from '@components/modal/Modal';
 import SnackbarContainer from '@components/snackbar/SnackbarContainer';
 import isSameProfile from '@utils/isSameProfile';
 import EditorUI from './EditorUI';
@@ -56,6 +57,7 @@ const MyWekiUI = ({
           type={'info'}
           message="앞 사람의 편집이 끝나면 위키 참여가 가능합니다."
         />
+        {/* <Modal type={'question'} onClose={() => {}} /> */}
 
         <StyledMarkUpWrap>
           {!isEdit && (

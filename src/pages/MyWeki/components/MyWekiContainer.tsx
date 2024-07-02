@@ -6,6 +6,7 @@ import {
   profileType,
   getProfileEditCheck,
   profileCheckType,
+  postEditingProfile,
 } from '@api/profile';
 import MyWekiUI from './MyWekiUI';
 
@@ -17,12 +18,15 @@ const MyWekiContainer = () => {
 
   const onParticipate = () => {
     if (!isEditNow) {
-      setIsEdit(true);
+      // setIsEdit(true);
+      serveEditingProfile();
     }
   };
+
   const onCancel = () => {
     setIsEdit(false);
   };
+
   const onSave = () => {};
 
   const receiveProfile = async () => {
@@ -42,8 +46,18 @@ const MyWekiContainer = () => {
     try {
       if (typeof code === 'string') {
         const response = await getProfileEditCheck(code);
-
         setIsEditNow(response);
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+      }
+    }
+  };
+
+  const serveEditingProfile = async () => {
+    try {
+      if (typeof code === 'string') {
+        const response = await postEditingProfile(code, 'test');
       }
     } catch (error) {
       if (error instanceof AxiosError) {

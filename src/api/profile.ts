@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import instance from './axios';
 
 export interface profileType {
@@ -55,5 +55,25 @@ export const getProfileEditCheck = async (code: string) => {
     return response.data;
   } catch (error) {
     throw error;
+  }
+};
+
+export const postEditingProfile = async (
+  code: string,
+  securityAnswer: string,
+) => {
+  const URL = `/profiles/${code}/ping`;
+  try {
+    const response = await instance.post(URL, {
+      securityAnswer: securityAnswer,
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      if (error.response?.status === 400) {
+        console.log(error.response?.data);
+      }
+    }
   }
 };
