@@ -1,19 +1,10 @@
-import React from 'react';
 import styled from 'styled-components';
 import successIcon from '@assets/icons/icon-check-green.svg';
 import errorIcon from '@assets/icons/icon-error-red.svg';
 import infoIcon from '@assets/icons/icon-info.svg';
+import { SnackbarContainerProps } from './Snackbar';
 
-interface SnackbarContainerProps {
-  message: string;
-  type: 'info' | 'success' | 'error';
-  visible: boolean;
-}
-
-const SnackbarStyled = styled.div<{
-  type: string;
-  visible: boolean;
-}>`
+export const SnackbarStyled = styled.div<SnackbarContainerProps>`
   background-color: ${({ theme, type }) =>
     type === 'info'
       ? theme.colors.gray[50]
@@ -34,10 +25,12 @@ const SnackbarStyled = styled.div<{
           ? theme.colors.main[500]
           : theme.colors.red[500]};
   display: ${({ visible }) => (visible ? 'flex' : 'none')};
-  position: static;
+  position: ${({ position }) => position || 'fixed'};
+  top: ${({ top }) => top || 'auto'};
+  right: ${({ right }) => right || 'auto'};
+  bottom: ${({ bottom }) => bottom || 'auto'};
+  left: ${({ left }) => left || '50%'};
   align-items: center;
-  top: 120px;
-  left: 50%;
   transform: translateX(-50%);
   padding: 13px 20px;
   border-radius: 4px;
@@ -68,6 +61,7 @@ const SnackbarStyled = styled.div<{
   }
 
   @media (max-width: 480px) {
+    position: fixed;
     top: auto;
     bottom: 80px;
     padding: 11px 15px;
@@ -80,17 +74,3 @@ const SnackbarStyled = styled.div<{
     }
   }
 `;
-
-const SnackbarContainer: React.FC<SnackbarContainerProps> = ({
-  message,
-  type,
-  visible,
-}) => {
-  return (
-    <SnackbarStyled type={type} visible={visible}>
-      {message}
-    </SnackbarStyled>
-  );
-};
-
-export default SnackbarContainer;
