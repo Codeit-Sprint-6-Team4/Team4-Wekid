@@ -1,7 +1,8 @@
 import React from 'react';
+import BoardContainer from '../UpLoadBoard/components/BoardContainer';
 
 const UpLoadBoard = () => {
-  return <div>업로드페이지</div>;
+  return <BoardContainer />;
 };
 
 export default UpLoadBoard;
