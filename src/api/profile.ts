@@ -26,6 +26,10 @@ export interface profileCheckType {
   userId: number;
 }
 
+export interface errorMessageType {
+  message: string;
+}
+
 export const getProfie = async (code: string): Promise<profileType> => {
   const URL = `/profiles/${code}`;
 
@@ -72,7 +76,8 @@ export const postEditingProfile = async (
   } catch (error) {
     if (error instanceof AxiosError) {
       if (error.response?.status === 400) {
-        console.log(error.response?.data);
+        const response = error.response.data as errorMessageType;
+        return response.message;
       }
     }
   }

@@ -17,27 +17,31 @@ import {
 
 interface MyeWekiUIProps {
   profile: profileType | null;
-  isEdit: boolean;
+  isEditMode: boolean;
   isEditNow: string | profileCheckType;
+  isModalOpen: boolean;
   onParticipate: () => void;
   onSave: () => void;
   onCancel: () => void;
+  onModalClose: () => void;
 }
 
 const MyWekiUI = ({
   profile,
   isEditNow,
-  isEdit,
+  isEditMode,
+  isModalOpen,
   onSave,
   onCancel,
   onParticipate,
+  onModalClose,
 }: MyeWekiUIProps) => {
-  const testIsMyprofile = isSameProfile('abc', 'abd');
+  const testIsMyprofile = isSameProfile('abc', 'abc');
 
   return (
     <StyledWekiWrap>
       <StyledWekiContent>
-        {!isEdit && (
+        {!isEditMode && (
           <StyledWekiHeader>
             <div>
               <h2>{profile ? profile.name : ''}</h2>
@@ -57,10 +61,19 @@ const MyWekiUI = ({
           type={'info'}
           message="앞 사람의 편집이 끝나면 위키 참여가 가능합니다."
         />
-        {/* <Modal type={'question'} onClose={() => {}} /> */}
+
+        {isModalOpen && (
+          <Modal
+            type={'question'}
+            securityQuestion={profile?.securityQuestion}
+            onClose={onModalClose}
+            securityAnswer="ㄹㄹㄹ"
+            onConfirm={() => {}}
+          />
+        )}
 
         <StyledMarkUpWrap>
-          {!isEdit && (
+          {!isEditMode && (
             <div
               dangerouslySetInnerHTML={{
                 __html: profile ? profile.content : '',
@@ -68,7 +81,7 @@ const MyWekiUI = ({
             ></div>
           )}
 
-          {isEdit && (
+          {isEditMode && (
             <EditorUI
               onSave={onSave}
               onCancel={onCancel}
@@ -80,7 +93,7 @@ const MyWekiUI = ({
       </StyledWekiContent>
 
       <ProfileUI
-        isEdit={isEdit}
+        isEditMode={isEditMode}
         isMyprofile={testIsMyprofile}
         nationality={profile?.nationality}
         family={profile?.family}
@@ -95,7 +108,7 @@ const MyWekiUI = ({
       />
 
       {
-        isEdit && (
+        isEditMode && (
           <StyledMarkUpHeader>
             <h2>{profile?.name}</h2>
             <div>

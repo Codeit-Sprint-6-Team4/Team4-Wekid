@@ -14,17 +14,23 @@ const MyWekiContainer = () => {
   const { code } = useParams();
   const [profile, setProfile] = useState<profileType | null>(null);
   const [isEditNow, setIsEditNow] = useState<profileCheckType | string>('');
-  const [isEdit, setIsEdit] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onParticipate = () => {
     if (!isEditNow) {
       // setIsEdit(true);
+      setIsModalOpen(true);
       serveEditingProfile();
     }
   };
 
   const onCancel = () => {
-    setIsEdit(false);
+    setIsEditMode(false);
+  };
+
+  const onModalClose = () => {
+    setIsModalOpen(false);
   };
 
   const onSave = () => {};
@@ -75,11 +81,13 @@ const MyWekiContainer = () => {
   return (
     <MyWekiUI
       profile={profile}
-      isEdit={isEdit}
+      isEditMode={isEditMode}
       isEditNow={isEditNow}
+      isModalOpen={isModalOpen}
       onParticipate={onParticipate}
       onCancel={onCancel}
       onSave={onSave}
+      onModalClose={onModalClose}
     />
   );
 };
