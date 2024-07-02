@@ -1,6 +1,10 @@
 import axios, { AxiosError } from 'axios';
-import Cookies from 'js-cookie';
 import instance from './axios';
+
+export interface userType {
+  code: string;
+  id: number;
+}
 
 export const getUserMe = async (accessToken: string | undefined) => {
   const URL = '/users/me';
