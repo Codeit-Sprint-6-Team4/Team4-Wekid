@@ -11,6 +11,7 @@ interface UserLinkProps {
   bottom?: string;
   left?: string;
   right?: string;
+  timer?: number;
 }
 const baseURL = 'https://www.widied.kr/wiki/';
 
@@ -23,6 +24,7 @@ const UserLink: React.FC<UserLinkProps> = ({
   bottom,
   left,
   right,
+  timer = 2000,
 }) => {
   const [copied, setCopied] = useState(false);
   const url = `${baseURL}${code}`;
@@ -40,10 +42,10 @@ const UserLink: React.FC<UserLinkProps> = ({
 
   useEffect(() => {
     if (copied) {
-      const timer = setTimeout(() => setCopied(false), 2000);
-      return () => clearTimeout(timer);
+      const fadeTimer = setTimeout(() => setCopied(false), timer);
+      return () => clearTimeout(fadeTimer);
     }
-  }, [copied]);
+  }, [copied, timer]);
 
   return (
     <StyledUserLink onClick={handleLinkClick}>
