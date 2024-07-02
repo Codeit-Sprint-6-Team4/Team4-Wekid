@@ -1,16 +1,27 @@
 import styled from 'styled-components';
+import { StyledInput } from '@components/input/input';
 import { theme } from '@styles/theme';
 import { media } from '@utils/media';
 
+interface profileModeProps {
+  $isMyprofile: boolean;
+  $isEdit?: boolean;
+}
 interface buttonProps {
   $isClicked: boolean;
 }
 
-export const StyeldProfileWrap = styled.div<buttonProps>`
-  margin: 30px auto;
+export const StyeldProfileWrap = styled.div<buttonProps & profileModeProps>`
   position: relative;
-  width: 310px;
+  margin: 50px auto;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+
+  width: 320px;
+  width: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '400px'};
+
   height: 671px;
+  height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '848px'};
+
   border-radius: 10px;
   border-color: none;
   background-color: #ffffffff;
@@ -28,14 +39,14 @@ export const StyeldProfileWrap = styled.div<buttonProps>`
     margin: 10px auto;
     align-items: ${({ $isClicked }) => ($isClicked ? 'initial' : 'initial')};
     gap:30px;
-    width:60vw;
+    width:624px;
     height:${({ $isClicked }) => ($isClicked ? '300px' : '130px')};
     button{
      display: initial;
     position:absolute;
       width:24px;
       height24px;
-      left:29vw;
+      left:312px;
       bottom:10px
     }
     `}
@@ -70,13 +81,17 @@ export const StyeldProfileImage = styled.img<buttonProps>`
   `}
 `;
 
-export const StyledProfileDataWrap = styled.div<buttonProps>`
+export const StyledProfileDataWrap = styled.div<buttonProps & profileModeProps>`
   margin: 50px auto;
+
   width: 209px;
+  width: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '320px'};
+
   display: flex;
   flex-direction: column;
   overflow: hidden;
   gap: 10px;
+
   ${media('tablet')`
     overflow: ${({ $isClicked }) => ($isClicked ? 'initial' : '')};
     margin-top: 30px;
@@ -89,8 +104,9 @@ export const StyledProfileDataWrap = styled.div<buttonProps>`
   `}
 `;
 
-export const StyledProfileData = styled.div`
+export const StyledProfileData = styled.div<profileModeProps>`
   display: flex;
+  align-items: center;
   gap: 15px;
 
   label {
@@ -102,30 +118,34 @@ export const StyledProfileData = styled.div`
   }
 
   p {
+    display: ${({ $isMyprofile, $isEdit }) =>
+      $isEdit && $isMyprofile && 'none'};
     font-family: ${theme.fonts['pretendard/md-14px-regular']};
     font-weight: 400;
     color: ${theme.colors.gray[800]};
     font-size: 14px;
-    white-space: pre-wrap; /* CSS3 */
-    white-space: -moz-pre-wrap; /* Firefox */
-    white-space: -pre-wrap; /* Opera */
-    white-space: -o-pre-wrap; /* Opera */
-    word-wrap: break-word; /* IE */
   }
+
+  ${StyledInput} {
+    display: ${({ $isMyprofile, $isEdit }) =>
+      (!$isEdit || ($isEdit && !$isMyprofile)) && 'none'};
+  }
+
   ${media('tablet')`
-  label {
-    width: 60px;
-    font-family: ${theme.fonts['pretendard/md-14px-regular']};
-    font-weight: 400;
-    color: ${theme.colors.gray[600]};
-    font-size: 14px;
-  }
-  p {
-    font-family: ${theme.fonts['pretendard/md-14px-regular']};
-    font-weight: 400;
-    color: ${theme.colors.gray[800]};
-    font-size: 14px;
-  }
+    label {
+      width: 60px;
+      font-family: ${theme.fonts['pretendard/md-14px-regular']};
+      font-weight: 400;
+      color: ${theme.colors.gray[600]};
+      font-size: 14px;
+    }
+
+    p {
+      font-family: ${theme.fonts['pretendard/md-14px-regular']};
+      font-weight: 400;
+      color: ${theme.colors.gray[800]};
+      font-size: 14px;
+    }
   `}
 `;
 

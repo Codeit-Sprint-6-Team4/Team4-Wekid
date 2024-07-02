@@ -5,17 +5,21 @@ import instance from './axios';
 export const getUserMe = async (accessToken: string | undefined) => {
   const URL = '/users/me';
 
-  console.log(accessToken);
-
   const config = {
     headers: {
       Authorization: `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
     },
   };
+
   try {
-    const response = await instance.get(URL, config);
-    return response.data;
+    if (accessToken) {
+      const response = await instance.get(URL, config);
+      return response.data;
+    } else {
+      {
+        throw new Error('AccessToken이 없습니다.');
+      }
+    }
   } catch (error) {
     const err = error as AxiosError;
     if (err.response) {

@@ -11,6 +11,7 @@ import underline from '@assets/icons/icon-underline.svg';
 import video from '@assets/icons/icon-video.svg';
 
 export const CUSTUM_ICONS = Quill.import('ui/icons');
+
 CUSTUM_ICONS['bold'] = `<img src=${bold} alt="bold"/>`;
 CUSTUM_ICONS['italic'] = `<img src=${italics} alt="italic"/>`;
 CUSTUM_ICONS['underline'] = `<img src=${underline} alt="underline"/>`;

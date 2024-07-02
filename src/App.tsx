@@ -21,15 +21,26 @@ import GlobalStyle from './styles/global-styles';
 const myWekiDataContext = createContext(undefined);
 
 function App() {
-  const [myWekiData, setMyWekiData] = useState();
+  const [myWekiData, setMyWekiData] = useState({
+    profile: {
+      code: '11111',
+      id: 1,
+    },
+    updatedAt: '2024-07-02T04:38:10.622Z',
+    createdAt: '2024-07-02T04:38:10.622Z',
+    teamId: '6-4',
+    name: '이름',
+    id: 1,
+  });
 
   const accessToken: string | undefined = Cookies.get('accessToken');
+  console.log('사용자 정보' + myWekiData.profile);
   const getServerUserMe = async () => {
     try {
-      const response = await getUserMe(accessToken);
-      console.log(response);
+      const data = await getUserMe(accessToken);
+      console.log(data);
     } catch (error) {
-      console.log('로그인 에러!');
+      console.log('user가져오기 에러ㅏ');
     }
   };
 
