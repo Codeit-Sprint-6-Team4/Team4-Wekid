@@ -18,7 +18,7 @@ export const CommentsList = styled.ul`
   gap: 2.4rem;
 `;
 
-export const LoadMoreButton = styled.button`
+export const LoadMoreButton = styled.div`
   display: block;
   margin: 0 auto;
   margin-top: 2rem;

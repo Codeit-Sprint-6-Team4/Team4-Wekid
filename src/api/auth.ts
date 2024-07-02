@@ -24,9 +24,14 @@ export const postSignIn = async (userData: logInDataTypes) => {
   const URL = '/auth/signIn';
   try {
     const response = await instance.post(URL, userData);
+    const { user } = response.data; // 응답 데이터에서 필요한 정보 추출
+
     console.log(response);
     Cookies.set('accessToken', response.data.accessToken);
     Cookies.set('refreshToken', response.data.refreshToken);
+    Cookies.set('userId', response.data.user.id.toString()); // 사용자 ID 저장
+    console.log('User ID saved to cookies:', user.id);
+
     return response.data;
   } catch (error) {
     const err = error as AxiosError;

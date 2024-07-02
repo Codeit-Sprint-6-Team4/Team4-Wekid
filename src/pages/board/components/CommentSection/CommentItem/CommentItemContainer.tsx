@@ -1,17 +1,26 @@
 import React, { useRef, useEffect, useState } from 'react';
-import CommentItemUI from './CommentItemUI';
 import { autoResizeTextarea } from '@utils/autoResizeTextarea';
+import CommentItemUI from './CommentItemUI';
 
 interface CommentItemContainerProps {
   id: number;
-  author: string;
+  author: { id: string; name: string };
   date: string;
   text: string;
   updateComment: (commentId: number, text: string) => void;
   removeComment: (commentId: number) => void;
+  currentUserId: string | null; // 현재 사용자 ID 추가
 }
 
-const CommentItemContainer: React.FC<CommentItemContainerProps> = ({ id, author, date, text, updateComment, removeComment }) => {
+const CommentItemContainer: React.FC<CommentItemContainerProps> = ({
+  id,
+  author,
+  date,
+  text,
+  updateComment,
+  removeComment,
+  currentUserId,
+}) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [editContent, setEditContent] = useState(text);
   const [isEditing, setIsEditing] = useState(false);
@@ -45,10 +54,12 @@ const CommentItemContainer: React.FC<CommentItemContainerProps> = ({ id, author,
     removeComment(id);
   };
 
+  const isMyComment = currentUserId === author.id;
+
   return (
     <CommentItemUI
       id={id}
-      author={author}
+      author={author.name}
       date={date}
       text={editContent}
       isEditing={isEditing}
@@ -58,6 +69,7 @@ const CommentItemContainer: React.FC<CommentItemContainerProps> = ({ id, author,
       handleSave={handleSave}
       handleCancel={handleCancel}
       handleDelete={handleDelete}
+      isMyComment={isMyComment} // 본인 댓글 여부 전달
     />
   );
 };

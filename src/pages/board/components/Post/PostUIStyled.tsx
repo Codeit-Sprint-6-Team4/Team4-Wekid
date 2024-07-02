@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import FavoriteIcon from '@assets/icons/icon-heart.svg';
+import FavoriteIconFilled from '@assets/icons/icon-heart-fill.svg';
 import { theme } from '@styles/theme';
 
 export const PostContentWrapper = styled.div`
@@ -55,8 +56,8 @@ export const LikeButtonWrapper = styled.div`
   color: ${theme.colors.gray[600]};
 `;
 
-export const LikeButton = styled.button`
-  background-image: url(${FavoriteIcon});
+export const LikeButton = styled.button<{ $isLiked: boolean }>`
+  background-image: url(${props => props.$isLiked ? FavoriteIconFilled : FavoriteIcon});
   background-repeat: no-repeat;
   background-position: center;
   width: 1.4em;

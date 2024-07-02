@@ -11,7 +11,7 @@ import {
 
 interface Comment {
   id: number;
-  author: string;
+  author: { id: string, name: string };
   date: string;
   text: string;
 }
@@ -24,6 +24,7 @@ interface CommentSectionUIProps {
   updateComment: (commentId: number, text: string) => void;
   removeComment: (commentId: number) => void;
   totalComments: number; // 총 댓글 수 props 추가
+  currentUserId: string | null; // 현재 사용자 ID props 추가
 }
 
 const CommentSectionUI: React.FC<CommentSectionUIProps> = ({
@@ -34,6 +35,7 @@ const CommentSectionUI: React.FC<CommentSectionUIProps> = ({
   updateComment,
   removeComment,
   totalComments,
+  currentUserId,
 }) => {
   return (
     <CommentsWrapper>
@@ -51,6 +53,7 @@ const CommentSectionUI: React.FC<CommentSectionUIProps> = ({
             text={comment.text}
             updateComment={updateComment}
             removeComment={removeComment}
+            currentUserId={currentUserId} // 현재 사용자 ID 전달
           />
         ))}
       </CommentsList>

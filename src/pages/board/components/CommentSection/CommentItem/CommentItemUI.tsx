@@ -20,7 +20,7 @@ import {
 } from './CommentItemUIStyled';
 
 interface CommentItemUIProps {
-  id: number;
+  // id: number;
   author: string;
   date: string;
   text: string;
@@ -31,11 +31,12 @@ interface CommentItemUIProps {
   handleSave: () => void;
   handleCancel: () => void;
   handleDelete: () => void;
+  isMyComment: boolean; // 본인 댓글 여부 추가
   image?: string; // 이미지 추가
 }
 
 const CommentItemUI: React.FC<CommentItemUIProps> = ({
-  id,
+  // id,
   author,
   date,
   text,
@@ -46,6 +47,7 @@ const CommentItemUI: React.FC<CommentItemUIProps> = ({
   handleSave,
   handleCancel,
   handleDelete,
+  isMyComment,
   image,
 }) => {
   return (
@@ -58,21 +60,23 @@ const CommentItemUI: React.FC<CommentItemUIProps> = ({
       <CommentContentWrapper>
         <CommentAuthorInfo>
           <CommentAuthorName>{author}</CommentAuthorName>
-          <CommentActions>
-            {isEditing ? (
-              <>
-                <EditTextButton onClick={handleSave}>수정 완료</EditTextButton>
-                <EditTextButton onClick={handleCancel}>취소</EditTextButton>
-              </>
-            ) : (
-              <EditCommentButton onClick={handleEdit}>
-                <span className="blind">수정</span>
-              </EditCommentButton>
-            )}
-            <DeleteCommentButton onClick={handleDelete}>
-              <span className="blind">삭제</span>
-            </DeleteCommentButton>
-          </CommentActions>
+          {isMyComment && ( // 본인 댓글일 때만 수정 및 삭제 버튼 렌더링
+            <CommentActions>
+              {isEditing ? (
+                <>
+                  <EditTextButton onClick={handleSave}>수정 완료</EditTextButton>
+                  <EditTextButton onClick={handleCancel}>취소</EditTextButton>
+                </>
+              ) : (
+                <EditCommentButton onClick={handleEdit}>
+                  <span className="blind">수정</span>
+                </EditCommentButton>
+              )}
+              <DeleteCommentButton onClick={handleDelete}>
+                <span className="blind">삭제</span>
+              </DeleteCommentButton>
+            </CommentActions>
+          )}
         </CommentAuthorInfo>
         {isEditing ? (
           <CommentInputWrapper>

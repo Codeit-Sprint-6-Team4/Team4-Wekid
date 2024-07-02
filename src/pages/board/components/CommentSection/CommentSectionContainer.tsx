@@ -1,14 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import {
+  getComment,
+  postComment,
+  deleteComment,
+  patchComment,
+  getAllComments,
+} from '@api/comment';
 import CommentSectionUI from './CommentSectionUI';
-import { getComment, postComment, deleteComment, patchComment, getAllComments } from '@api/comment';
 
 interface Comment {
   id: number;
-  author: string;
+  author: { id: string; name: string }; // author를 객체로 변경
   date: string;
   text: string;
   image?: string;
+}
+
+interface CommentData {
+  id: number;
+  writer: { id: number; name: string; image?: string };
+  createdAt: string;
+  content: string;
 }
 
 const CommentSectionContainer: React.FC = () => {
@@ -17,22 +31,29 @@ const CommentSectionContainer: React.FC = () => {
   const [cursor, setCursor] = useState<number | null>(null);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [totalComments, setTotalComments] = useState<number>(0); // 총 댓글 수 상태 추가
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null); // 현재 사용자 ID 상태 추가
   const limit = 10; // 가져올 댓글 수
 
-  const fetchComments = async () => {
+  useEffect(() => {
+    const userId = Cookies.get('userId');
+    setCurrentUserId(userId || null);
+  }, []);
+
+  const fetchComments = useCallback(async () => {
     if (id) {
       try {
         const data = await getComment(id, limit, cursor || undefined);
-        const formattedComments = data.list.map((item: any) => ({
+        const formattedComments = data.list.map((item: CommentData) => ({
           id: item.id,
-          author: item.writer.name,
+          author: { id: item.writer.id.toString(), name: item.writer.name }, // author 객체로 변경
           date: new Date(item.createdAt).toLocaleDateString(), // 날짜 형식 변환
           text: item.content,
           image: item.writer.image, // 작성자의 프로필 이미지
         }));
-        setComments(prev => {
+        setComments((prev) => {
           const uniqueComments = [...prev, ...formattedComments].filter(
-            (item, index, self) => self.findIndex(c => c.id === item.id) === index
+            (item, index, self) =>
+              self.findIndex((c) => c.id === item.id) === index,
           );
           return uniqueComments;
         });
@@ -45,9 +66,9 @@ const CommentSectionContainer: React.FC = () => {
     } else {
       console.error('Article ID is missing');
     }
-  };
+  }, [id, cursor]);
 
-  const fetchTotalComments = async () => {
+  const fetchTotalComments = useCallback(async () => {
     if (id) {
       try {
         const total = await getAllComments(id);
@@ -56,7 +77,7 @@ const CommentSectionContainer: React.FC = () => {
         console.error('Failed to fetch total comments', error);
       }
     }
-  };
+  }, [id]);
 
   const addComment = async (text: string) => {
     if (id) {
@@ -75,7 +96,11 @@ const CommentSectionContainer: React.FC = () => {
   const updateComment = async (commentId: number, text: string) => {
     try {
       await patchComment(commentId.toString(), text);
-      setComments(prev => prev.map(comment => comment.id === commentId ? { ...comment, text } : comment));
+      setComments((prev) =>
+        prev.map((comment) =>
+          comment.id === commentId ? { ...comment, text } : comment,
+        ),
+      );
     } catch (error) {
       console.error('Failed to update comment', error);
     }
@@ -84,7 +109,7 @@ const CommentSectionContainer: React.FC = () => {
   const removeComment = async (commentId: number) => {
     try {
       await deleteComment(commentId.toString());
-      setComments(prev => prev.filter(comment => comment.id !== commentId));
+      setComments((prev) => prev.filter((comment) => comment.id !== commentId));
       await fetchTotalComments(); // 댓글 삭제 후 댓글 수 업데이트
     } catch (error) {
       console.error('Failed to delete comment', error);
@@ -94,17 +119,18 @@ const CommentSectionContainer: React.FC = () => {
   useEffect(() => {
     fetchComments();
     fetchTotalComments(); // 컴포넌트 마운트 시 전체 댓글 수 가져오기
-  }, [id]);
+  }, [id, fetchComments, fetchTotalComments]);
 
   return (
-    <CommentSectionUI 
-      comments={comments} 
-      fetchComments={fetchComments} 
-      hasMore={hasMore} 
-      addComment={addComment} 
-      updateComment={updateComment} 
-      removeComment={removeComment} 
+    <CommentSectionUI
+      comments={comments}
+      fetchComments={fetchComments}
+      hasMore={hasMore}
+      addComment={addComment}
+      updateComment={updateComment}
+      removeComment={removeComment}
       totalComments={totalComments} // 총 댓글 수 전달
+      currentUserId={currentUserId} // 현재 사용자 ID 전달
     />
   );
 };
