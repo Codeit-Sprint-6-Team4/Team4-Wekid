@@ -24,24 +24,31 @@ export const SnackbarStyled = styled.div<SnackbarContainerProps>`
         : type === 'success'
           ? theme.colors.main[500]
           : theme.colors.red[500]};
-  display: ${({ visible }) => (visible ? 'flex' : 'none')};
+  opacity: ${({ visible }) => (visible ? 1 : 0)};
+  visibility: ${({ visible }) => (visible ? 'visible' : 'hidden')};
   position: ${({ position }) => position || 'fixed'};
   top: ${({ top }) => top || 'auto'};
   right: ${({ right }) => right || 'auto'};
   bottom: ${({ bottom }) => bottom || 'auto'};
   left: ${({ left }) => left || '50%'};
+  display: flex;
   align-items: center;
   transform: translateX(-50%);
   padding: 13px 20px;
   border-radius: 4px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
   z-index: 10;
-  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+  user-select: none;
+  transition:
+    opacity 0.5s ease-in-out,
+    visibility 0.5s ease-in-out;
   font: ${({ theme }) => theme.fonts['pretendard/md-14px-regular']};
   white-space: nowrap;
 
   &::before {
     content: '';
+    flex-shrink: 0;
     display: inline-block;
     width: 18px;
     height: 18px;

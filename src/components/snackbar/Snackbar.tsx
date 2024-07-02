@@ -8,6 +8,7 @@ export interface SnackbarContainerProps {
   right?: string;
   bottom?: string;
   left?: string;
+  fadeTime?: number;
 }
 
 const messages = {
@@ -26,6 +27,7 @@ const Snackbar = ({
   left,
 }: SnackbarContainerProps) => {
   const message = messages[type];
+
   return (
     <SnackbarStyled
       type={type}

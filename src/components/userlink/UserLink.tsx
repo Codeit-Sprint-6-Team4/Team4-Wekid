@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Snackbar from '@components/snackbar/Snackbar';
 import { StyledUserLink } from './UserLink.styled';
 
@@ -11,22 +11,21 @@ interface UserLinkProps {
   bottom?: string;
   left?: string;
   right?: string;
-  timer?: number;
 }
 const baseURL = 'https://www.widied.kr/wiki/';
 
 const UserLink: React.FC<UserLinkProps> = ({
   code,
   type = 'success',
-  visible = true,
   position,
   top,
   bottom,
   left,
   right,
-  timer = 2000,
 }) => {
   const [copied, setCopied] = useState(false);
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
+
   const url = `${baseURL}${code}`;
 
   const handleLinkClick = () => {
@@ -34,18 +33,15 @@ const UserLink: React.FC<UserLinkProps> = ({
       .writeText(url)
       .then(() => {
         setCopied(true);
+        setSnackbarVisible(true);
+        setTimeout(() => {
+          setSnackbarVisible(false);
+        }, 1500);
       })
       .catch((err) => {
         console.error('주소 복사 실패', err);
       });
   };
-
-  useEffect(() => {
-    if (copied) {
-      const fadeTimer = setTimeout(() => setCopied(false), timer);
-      return () => clearTimeout(fadeTimer);
-    }
-  }, [copied, timer]);
 
   return (
     <StyledUserLink onClick={handleLinkClick}>
@@ -53,7 +49,7 @@ const UserLink: React.FC<UserLinkProps> = ({
       {copied && (
         <Snackbar
           type={type}
-          visible={visible}
+          visible={snackbarVisible}
           position={position}
           top={top}
           bottom={bottom}
