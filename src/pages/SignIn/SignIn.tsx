@@ -1,7 +1,9 @@
 import React from 'react';
+//Components
+import SignInContainer from '@pages/SignIn/components/SignInContainer';
 
 const SignIn = () => {
-  return <div>로그인페이지</div>;
+  return <SignInContainer />;
 };
 
 export default SignIn;

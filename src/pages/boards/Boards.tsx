@@ -1,7 +1,10 @@
 import React from 'react';
+import BoardsContainer from './components/BoardsContainer';
 
 const Boards = () => {
-  return <div>전체 게시판</div>;
+  return (
+    <BoardsContainer/>
+  );
 };
 
 export default Boards;
