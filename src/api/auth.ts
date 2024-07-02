@@ -35,8 +35,61 @@ export const postSignIn = async (userData: logInDataTypes) => {
       console.error('Response data:', err.response.data);
       throw err;
     }
-    console.error(error);
-    throw error;
+  }
+};
+
+export const patchPassword = async (passwordData: {
+  currentPassword: string;
+  password: string;
+  passwordConfirmation: string;
+}) => {
+  const URL = '/users/me/password';
+  try {
+    const token = Cookies.get('accessToken');
+    console.log('Using Access Token:', token);
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+    console.log('Request Headers:', headers);
+
+    const res = await instance.patch(URL, passwordData, { headers });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.error('Response error:', error.response?.status);
+      console.error('Response data:', error.response?.data);
+      throw error;
+    } else {
+      console.error('Error patching password:', error);
+      throw error;
+    }
+  }
+};
+
+export const postSecurityQuestion = async (
+  securityQuestion: string,
+  securityAnswer: string,
+) => {
+  const URL = '/profiles';
+  try {
+    const token = Cookies.get('accessToken');
+    console.log('Using Access Token:', token);
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+    console.log('Request Headers:', headers);
+
+    const response = await instance.post(
+      URL,
+      { securityQuestion, securityAnswer },
+      { headers },
+    );
+    return response.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.error('Response error:', error.response?.status);
+      console.error('Response data:', error.response?.data);
+      throw error;
+    } else {
+      console.error('Error updating security question:', error);
+      throw error;
+    }
   }
 };
 
