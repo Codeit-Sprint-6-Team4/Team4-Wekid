@@ -20,8 +20,14 @@ export interface profileType {
   name: string;
   id: number;
 }
+
+export interface profileCheckType {
+  registerAt: string;
+  userId: number;
+}
+
 export const getProfie = async (code: string): Promise<profileType> => {
-  const URL = `profiles/${code}`;
+  const URL = `/profiles/${code}`;
 
   try {
     const response: AxiosResponse<profileType> = await instance.get(URL);
@@ -35,7 +41,19 @@ export const getProfiles = async (page = 1, pageSize = 3, name = '') => {
   const params = {
     page,
     pageSize,
-    name
+    name,
   };
   return instance.get(`/profiles`, { params });
+};
+
+export const getProfileEditCheck = async (code: string) => {
+  const URL = `/profiles/${code}/ping`;
+
+  try {
+    const response: AxiosResponse<profileCheckType | string> =
+      await instance.get(URL);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
