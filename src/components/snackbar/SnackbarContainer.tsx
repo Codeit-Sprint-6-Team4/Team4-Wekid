@@ -34,7 +34,7 @@ const SnackbarStyled = styled.div<{
           ? theme.colors.main[500]
           : theme.colors.red[500]};
   display: ${({ visible }) => (visible ? 'flex' : 'none')};
-  position: fixed;
+  position: absolute;
   align-items: center;
   top: 120px;
   left: 50%;
