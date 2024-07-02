@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Snackbar from '@components/snackbar/Snackbar';
-import { UserLinkStyled } from './UserLink.styled';
+import { StyledUserLink } from './UserLink.styled';
 
 interface UserLinkProps {
   code: string;
   type?: 'info' | 'success' | 'error';
-  visible: boolean;
+  visible?: boolean;
   position?: string;
   top?: string;
   bottom?: string;
@@ -17,7 +17,7 @@ const baseURL = 'https://www.widied.kr/wiki/';
 const UserLink: React.FC<UserLinkProps> = ({
   code,
   type = 'success',
-  visible,
+  visible = true,
   position,
   top,
   bottom,
@@ -46,8 +46,8 @@ const UserLink: React.FC<UserLinkProps> = ({
   }, [copied]);
 
   return (
-    <UserLinkStyled onClick={handleLinkClick}>
-      {url}
+    <StyledUserLink onClick={handleLinkClick}>
+      <span>{url}</span>
       {copied && (
         <Snackbar
           type={type}
@@ -59,7 +59,7 @@ const UserLink: React.FC<UserLinkProps> = ({
           right={right}
         />
       )}
-    </UserLinkStyled>
+    </StyledUserLink>
   );
 };
 
