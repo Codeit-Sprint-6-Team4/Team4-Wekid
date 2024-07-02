@@ -15,21 +15,25 @@ import { theme } from '@styles/theme';
 interface QuestionModalContentProps {
   securityQuestion: string;
   securityAnswer: string;
-  onConfirm: (answer: string) => void;
+  onConfirm: (isCorrect: boolean) => void;
+  onClose: () => void;
 }
 
 const QuestionModalContent = ({
   securityQuestion,
   securityAnswer,
   onConfirm,
+  onClose,
 }: QuestionModalContentProps) => {
   const [answer, setAnswer] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isFocused, setIsFocused] = useState(false);
 
   const handleConfirm = () => {
-    if (answer === securityAnswer) {
-      onConfirm(answer);
+    const isCorrect = answer === securityAnswer;
+    onConfirm(isCorrect);
+    if (isCorrect) {
+      onClose();
     } else {
       setErrorMessage('정답이 아닙니다. 다시 시도해주세요.');
     }
