@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import BoardUI from './BoardUI';
+import { postArticle } from '@api/article';
+import UploadBoardUI from './UpLoadBoardUI';
 
-const BoardContainer: React.FC = () => {
+const UploadBoardContainer: React.FC = () => {
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [date, setDate] = useState<string>('');
@@ -27,15 +28,30 @@ const BoardContainer: React.FC = () => {
     setContent(e.target.value);
   };
 
-  const submitPost = () => {
-    alert('게시물이 등록되었습니다.');
+  const submitPost = async () => {
+    const payload = {
+      image: 'https://example.com/image.jpg', // 임시
+      content: content,
+      title: title,
+    };
+
+    try {
+      const response = await postArticle(payload);
+      const articleId = `${response.id}`;
+      console.log('게시물 등록 성공:', response);
+      alert('게시물이 등록되었습니다.');
+      window.location.href = `/boards/${articleId}`;
+    } catch (error) {
+      console.error('게시물 등록 실패:', error);
+      alert('게시물 등록에 실패했습니다.');
+    }
   };
 
   const totalChars = content.length;
   const nonSpaceChars = content.replace(/\s/g, '').length;
 
   return (
-    <BoardUI
+    <UploadBoardUI
       date={date}
       title={title}
       content={content}
@@ -49,4 +65,4 @@ const BoardContainer: React.FC = () => {
   );
 };
 
-export default BoardContainer;
+export default UploadBoardContainer;

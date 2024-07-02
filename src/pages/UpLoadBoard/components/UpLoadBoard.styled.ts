@@ -1,14 +1,32 @@
 import styled from 'styled-components';
+import { StyledButton } from '@components/button/Button.styled';
 import { theme } from '@styles/theme';
+import { media } from '@utils/media';
+
+export const StyledContainerWapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
+  ${media('mobile')`
+    margin: 10px;
+  `}
+`;
 
 export const StyledContainer = styled.div`
   position: relative;
   background-color: white;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
   max-width: 1060px;
   padding: 30px;
-  margin: 23px;
+  margin-bottom: 32px;
+  ${media('mobile')`
+    width: 100%;
+    margin-bottom: 32px;
+  `}
 `;
 
 export const StyledTitle = styled.div`
@@ -17,19 +35,25 @@ export const StyledTitle = styled.div`
   margin-top: 16px;
   font-size: 24px;
   margin-bottom: 24px;
+  ${media('mobile')`
+    font: ${theme.fonts['pretendard/lg-16px-semibold']};
+  `}
 `;
 
 export const StyledCreateDate = styled.div`
-  margin-bottom: 33px;
+  margin-bottom: 25px;
   font: ${theme.fonts['pretendard/lg-16px-regular']};
   color: ${theme.colors.gray[600]};
+  ${media('mobile')`
+    font: ${theme.fonts['pretendard/xs-12px-regular']};
+  `}
 `;
 
 export const StyledTitleForm = styled.div`
   border-top: 1px solid ${theme.colors.gray[100]};
   border-bottom: 1px solid ${theme.colors.gray[100]};
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
   margin-bottom: 20px;
   padding: 12px 0;
@@ -47,16 +71,33 @@ export const StyledTitleInput = styled.input`
   &:focus {
     outline: none;
   }
+  ${media('mobile')`
+    font: ${theme.fonts['pretendard/lg-16px-medium']};
+  `}
 `;
 
 export const StyledCharCount = styled.div`
   font: ${theme.fonts['pretendard/md-14px-medium']};
   color: ${theme.colors.main[600]};
+  ${media('mobile')`
+    font: ${theme.fonts['pretendard/sm-13px-medium']};
+  `}
 `;
 
 export const StyledCharCounter = styled.div`
   font: ${theme.fonts['pretendard/md-14px-medium']};
+  ${media('mobile')`
+    font: ${theme.fonts['pretendard/sm-13px-medium']};
+  `}
 `;
+
+export const StyledTextCharCounter = styled.div`
+  font: ${theme.fonts['pretendard/lg-16px-medium']};
+  ${media('mobile')`
+    font: ${theme.fonts['pretendard/md-14px-medium']};
+  `}
+`;
+
 export const StyledTextForm = styled.div`
   margin-bottom: 30px;
 `;
@@ -72,15 +113,28 @@ export const StyledTextarea = styled.textarea`
 
   &::placeholder {
     font: ${theme.fonts['pretendard/xl-20px-medium']};
-    color: ${theme.colors.gray[600]};
+    color: ${theme.colors.gray[300]};
   }
   &:focus {
     outline: none;
   }
+  ${media('mobile')`
+    font: ${theme.fonts['pretendard/lg-16px-medium']};
+    
+    &::placeholder {
+    font: ${theme.fonts['pretendard/lg-16px-medium']};
+    color: ${theme.colors.gray[300]};
+  }
+  `}
 `;
 
-export const StyeldButtonContainer = styled.div`
+export const StyledButtonContainer = styled.div`
   position: absolute;
   top: 46px;
   right: 30px;
+`;
+export const StyledUploadButton = styled(StyledButton)`
+  ${media('mobile')`
+    width: 72px; 
+  `}
 `;

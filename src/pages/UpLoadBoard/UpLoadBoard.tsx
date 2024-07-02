@@ -1,8 +1,8 @@
 import React from 'react';
-import BoardContainer from '../UpLoadBoard/components/BoardContainer';
+import UploadBoardContainer from './components/UpLoadBoardContainer';
 
 const UpLoadBoard = () => {
-  return <BoardContainer />;
+  return <UploadBoardContainer />;
 };
 
 export default UpLoadBoard;
