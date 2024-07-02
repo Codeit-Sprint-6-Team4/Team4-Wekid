@@ -13,20 +13,22 @@ import {
 import { theme } from '@styles/theme';
 
 interface QuestionModalContentProps {
-  question?: string;
-  correctAnswer?: string;
+  securityQuestion: string;
+  securityAnswer: string;
   onConfirm: (answer: string) => void;
 }
 
-const QuestionModalContent = ({ onConfirm }: QuestionModalContentProps) => {
+const QuestionModalContent = ({
+  securityQuestion,
+  securityAnswer,
+  onConfirm,
+}: QuestionModalContentProps) => {
   const [answer, setAnswer] = useState('');
-  const [question, setQuestion] = useState('특별히 싫어하는 음식은?');
-  const [correctAnswer, setCorrectAnswer] = useState('미나리');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isFocused, setIsFocused] = useState(false);
 
   const handleConfirm = () => {
-    if (answer === correctAnswer) {
+    if (answer === securityAnswer) {
       onConfirm(answer);
     } else {
       setErrorMessage('정답이 아닙니다. 다시 시도해주세요.');
@@ -50,7 +52,7 @@ const QuestionModalContent = ({ onConfirm }: QuestionModalContentProps) => {
         위키를 작성해 보세요.
       </StyledLockText>
 
-      <StyledQeustionTitle>{question}</StyledQeustionTitle>
+      <StyledQeustionTitle>{securityQuestion}</StyledQeustionTitle>
 
       <form
         onSubmit={(e) => {
