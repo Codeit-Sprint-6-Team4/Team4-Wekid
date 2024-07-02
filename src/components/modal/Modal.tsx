@@ -12,8 +12,8 @@ interface ModalProps {
   type: 'imageUpload' | 'question' | 'disconnect' | 'cancelSave';
   onClose: () => void;
   onConfirm: (isCorrect: boolean) => void;
-  securityQuestion?: string;
-  securityAnswer?: string;
+  securityQuestion: string;
+  securityAnswer: string;
 }
 
 const Modal = ({
@@ -33,8 +33,8 @@ const Modal = ({
         <QuestionModalContent
           onConfirm={onConfirm}
           onClose={onClose}
-          securityQuestion={securityQuestion!}
-          securityAnswer={securityAnswer!}
+          securityQuestion={securityQuestion}
+          securityAnswer={securityAnswer}
         />
       );
       break;
