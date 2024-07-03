@@ -4,17 +4,7 @@ import { userType } from '@api/user';
 import { getUserMe } from '@api/user';
 
 const useGetUserData = () => {
-  const [myUserData, setUserData] = useState<userType>({
-    profile: {
-      code: '',
-      id: 0,
-    },
-    updatedAt: '',
-    createdAt: '',
-    teamId: '',
-    name: '',
-    id: 0,
-  });
+  const [myUserData, setUserData] = useState<userType | null>(null);
 
   const accessToken: string | undefined = Cookies.get('accessToken');
 
