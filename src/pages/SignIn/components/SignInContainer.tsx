@@ -23,7 +23,6 @@ const SignInContainer = () => {
   const postServerLogIn = async () => {
     try {
       const response = await postSignIn(userData);
-      console.log(response);
       alert('로그인이 완료되었습니다.');
       navigate(-1);
     } catch (error) {
@@ -34,8 +33,6 @@ const SignInContainer = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     postServerLogIn();
-    console.log(userData);
-    console.log('온서브밋!');
   };
 
   return (
