@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { is } from 'date-fns/locale';
-import Cookies from 'js-cookie';
+import { useParams } from 'react-router-dom';
+import { MyWekiDataContext } from '@context/myWekiDataContext';
 import { profileType, profileCheckType } from '@api/profile';
+import { userType } from '@api/user';
 import Button from '@components/button/Button';
 import Modal from '@components/modal/Modal';
-import SnackbarContainer from '@components/snackbar/SnackbarContainer';
+import Snackbar from '@components/snackbar/Snackbar';
 import isSameProfile from '@utils/isSameProfile';
 import EditorUI from './EditorUI';
 import ProfileUI from './ProfileUI';
@@ -36,7 +37,14 @@ const MyWekiUI = ({
   onParticipate,
   onModalClose,
 }: MyeWekiUIProps) => {
-  const testIsMyprofile = isSameProfile('abc', 'abc');
+  const userData = useContext<userType | null>(MyWekiDataContext);
+  const { code } = useParams();
+
+  let testIsMyProfile: boolean = false;
+
+  if (userData !== null && typeof userData.code === 'string' && code) {
+    testIsMyProfile = isSameProfile(userData.code, code);
+  }
 
   return (
     <StyledWekiWrap>
@@ -56,11 +64,11 @@ const MyWekiUI = ({
             </div>
           </StyledWekiHeader>
         )}
-        <SnackbarContainer
+        {/* <Snackbar
           visible={isEditNow ? true : false}
           type={'info'}
           message="앞 사람의 편집이 끝나면 위키 참여가 가능합니다."
-        />
+        /> */}
 
         {isModalOpen && (
           <Modal
@@ -94,7 +102,7 @@ const MyWekiUI = ({
 
       <ProfileUI
         isEditMode={isEditMode}
-        isMyprofile={testIsMyprofile}
+        isMyprofile={testIsMyProfile}
         nationality={profile?.nationality}
         family={profile?.family}
         bloodType={profile?.bloodType}

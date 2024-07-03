@@ -1,10 +1,12 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { MyWekiDataContext } from '@context/myWekiDataContext';
 import Cookies from 'js-cookie';
 import { ThemeProvider } from 'styled-components';
 import { getUserMe, userType } from '@api/user';
 import Footer from '@components/layout/Footer';
 import HeaderContainer from '@components/layout/Header/HeaderContainer';
+import useGetUserData from '@hooks/useGetuserData';
 import AccountSetting from '@pages/AccountSetting/AccountSetting';
 import Board from '@pages/Board/Board';
 import Boards from '@pages/Boards/Boards';
@@ -18,35 +20,8 @@ import WekiList from '@pages/WekiList/WekiList';
 import { theme } from '@styles/theme';
 import GlobalStyle from './styles/global-styles';
 
-const MyWekiDataContext = createContext<userType | undefined>(undefined);
-
 function App() {
-  const [myUserData, setUserData] = useState<userType>({
-    code: '',
-    id: 0,
-  });
-
-  const accessToken: string | undefined = Cookies.get('accessToken');
-
-  const getServerUserMe = async () => {
-    try {
-      const data = await getUserMe(accessToken);
-      const myCodeInfo = data.profile;
-      setUserData((prev) => ({
-        ...prev,
-        code: myCodeInfo.code,
-        id: myCodeInfo.id,
-      }));
-    } catch (error) {
-      console.log('user가져오기 에러ㅏ');
-    }
-  };
-
-  useEffect(() => {
-    if (accessToken) {
-      getServerUserMe();
-    }
-  }, []);
+  const { myUserData } = useGetUserData();
 
   return (
     <MyWekiDataContext.Provider value={myUserData}>
