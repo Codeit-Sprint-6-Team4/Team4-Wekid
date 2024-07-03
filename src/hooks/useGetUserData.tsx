@@ -11,18 +11,15 @@ const useGetUserData = () => {
 
   const getServerUserMe = async () => {
     try {
-      const response: AxiosResponse<userType> = await getUserMe(accessToken);
-      if (response.data) {
+      const response = await getUserMe(accessToken);
+      if (response) {
         setUserData({
-          profile: {
-            code: response.data.profile?.code || '',
-            id: response.data.profile?.id || 0,
-          },
-          updatedAt: response.data.updatedAt || '',
-          createdAt: response.data.createdAt || '',
-          teamId: response.data.teamId || '',
-          name: response.data.name || '',
-          id: response.data.id || 0,
+          profile: response.profile,
+          updatedAt: response.updatedAt || '',
+          createdAt: response.createdAt || '',
+          teamId: response.teamId || '',
+          name: response.name || '',
+          id: response.id || 0,
         });
       } else {
         console.error('Profile data is missing.');

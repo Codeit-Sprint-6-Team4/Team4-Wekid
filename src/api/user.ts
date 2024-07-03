@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import instance from './axios';
 
 export interface userType {
@@ -18,7 +18,7 @@ export const getUserMe = async (accessToken: string | undefined) => {
   //유저의 계정을 설정해야지 받아올 수 있습니다.
   try {
     if (accessToken) {
-      const response = await instance.get(URL);
+      const response: AxiosResponse<userType> = await instance.get(URL);
       return response.data;
     } else {
       {
