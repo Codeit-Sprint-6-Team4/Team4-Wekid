@@ -15,13 +15,17 @@ const useGetUserData = () => {
     try {
       const data = await getUserMe(accessToken);
       const myCodeInfo = data.profile;
-      setUserData((prev) => ({
-        ...prev,
-        code: myCodeInfo.code,
-        id: myCodeInfo.id,
-      }));
+      if (myCodeInfo) {
+        setUserData((prev) => ({
+          ...prev,
+          code: myCodeInfo.code || '',
+          id: myCodeInfo.id || 0,
+        }));
+      } else {
+        console.error('Profile data is missing.');
+      }
     } catch (error) {
-      console.log('user가져오기 에러');
+      console.error('Failed to retrieve user data', error);
     }
   };
 
