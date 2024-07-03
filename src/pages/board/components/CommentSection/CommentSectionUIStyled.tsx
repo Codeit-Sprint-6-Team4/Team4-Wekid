@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '@styles/theme';
-
+import { media } from '@utils/media';
 export const CommentsWrapper = styled.div``;
 
 export const CommentsCount = styled.div`
@@ -10,12 +10,21 @@ export const CommentsCount = styled.div`
   & span {
     color: ${theme.colors.main[500]};
   }
+  ${media('mobile')`
+      font: ${theme.fonts['pretendard/lg-16px-semibold']};
+  `}
 `;
 
 export const CommentsList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
+  ${media('tablet')`
+    gap: 1.6rem;
+  `}
+  ${media('mobile')`
+    gap: 1.4rem;
+  `}
 `;
 
 export const LoadMoreButton = styled.div`

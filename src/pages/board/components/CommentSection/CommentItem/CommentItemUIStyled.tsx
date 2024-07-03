@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import DeleteIcon from '@assets/icons/icon-delete.svg';
 import EditIcon from '@assets/icons/icon-edit.svg';
 import { theme } from '@styles/theme';
+import { media } from '@utils/media';
 
 export const CommentItemWrapper = styled.li`
   display: flex;
@@ -9,6 +10,10 @@ export const CommentItemWrapper = styled.li`
   border-radius: 1rem;
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
   padding: 2.2rem 3rem;
+  ${media('mobile')`
+    gap: 1.5rem;
+    padding: 1.6rem 2rem;
+  `}
 `;
 
 export const CommentAuthorProfileWrapper = styled.div``;
@@ -23,6 +28,10 @@ export const CommentAuthorProfile = styled.div`
     height: 100%;
     object-fit: cover;
   }
+  ${media('mobile')`
+    width: 4rem;
+    height: 4rem;
+  `}
 `;
 
 export const CommentContentWrapper = styled.div`
@@ -33,16 +42,25 @@ export const CommentAuthorInfo = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.6rem;
+  ${media('mobile')`
+   margin-bottom: 0.2rem;
+  `}
 `;
 
 export const CommentAuthorName = styled.div`
   font: ${theme.fonts['pretendard/2lg-18px-semibold']};
   color: ${theme.colors.gray[800]};
+  ${media('mobile')`
+    font: ${theme.fonts['pretendard/lg-16px-semibold']};
+  `}
 `;
 
 export const CommentActions = styled.div`
   display: flex;
   gap: 2rem;
+  ${media('mobile')`
+    gap: 1.5rem;
+  `}
 `;
 
 export const EditTextButton = styled.button`
@@ -77,11 +95,18 @@ export const CommentText = styled.div`
   font: ${theme.fonts['pretendard/lg-16px-regular']};
   color: ${theme.colors.gray[800]};
   word-break: break-all;
+  ${media('mobile')`
+    margin-bottom: 0.4rem;
+    font: ${theme.fonts['pretendard/md-14px-regular']};
+  `}
 `;
 
 export const CommentDate = styled.div`
   font: ${theme.fonts['pretendard/md-14px-regular']};
   color: ${theme.colors.gray[600]};
+  ${media('mobile')`
+    font: ${theme.fonts['pretendard/xs-12px-regular']};
+  `}
 `;
 
 export const CommentInputWrapper = styled.div`

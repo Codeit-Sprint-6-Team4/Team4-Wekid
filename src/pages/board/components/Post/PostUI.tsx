@@ -43,8 +43,12 @@ const PostUI: React.FC<PostUIProps> = ({ post, likes, onLike, onEdit, onDelete, 
             <PostTitle>{post.title}</PostTitle>
             {isMyPost && (
               <PostActions>
-                <Button $primary onClick={onEdit}>수정하기</Button>
-                <Button $primary onClick={onDelete}>삭제하기</Button>
+                <Button $primary onClick={onEdit} className="edit">
+                  <span>수정하기</span>
+                </Button>
+                <Button $primary onClick={onDelete} className="delete">
+                  <span>삭제하기</span>
+                </Button>
               </PostActions>
             )}
           </PostHeader>
