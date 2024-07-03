@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { AxiosResponse } from 'axios';
 import Cookies from 'js-cookie';
 import { userType } from '@api/user';
 import { getUserMe } from '@api/user';
@@ -10,18 +11,15 @@ const useGetUserData = () => {
 
   const getServerUserMe = async () => {
     try {
-      const myCodeInfo = await getUserMe(accessToken);
-      if (myCodeInfo) {
+      const response = await getUserMe(accessToken);
+      if (response) {
         setUserData({
-          profile: {
-            code: myCodeInfo.profile.code || '',
-            id: myCodeInfo.profile.id || 0,
-          },
-          updatedAt: myCodeInfo.updatedAt || '',
-          createdAt: myCodeInfo.createdAt || '',
-          teamId: myCodeInfo.teamId || '',
-          name: myCodeInfo.name || '',
-          id: myCodeInfo.id || 0,
+          profile: response.profile,
+          updatedAt: response.updatedAt || '',
+          createdAt: response.createdAt || '',
+          teamId: response.teamId || '',
+          name: response.name || '',
+          id: response.id || 0,
         });
       } else {
         console.error('Profile data is missing.');
