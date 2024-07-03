@@ -2,13 +2,20 @@ import axios, { AxiosError } from 'axios';
 import instance from './axios';
 
 export interface userType {
-  code: string;
+  profile: {
+    code: string;
+    id: number;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+  teamId: string;
+  name: string;
   id: number;
 }
 
 export const getUserMe = async (accessToken: string | undefined) => {
   const URL = '/users/me';
-
+  //유저의 계정을 설정해야지 받아올 수 있습니다.
   try {
     if (accessToken) {
       const response = await instance.get(URL);
