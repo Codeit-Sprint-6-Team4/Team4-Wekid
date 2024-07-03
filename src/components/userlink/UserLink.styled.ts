@@ -12,6 +12,7 @@ export const StyledUserLink = styled.div`
   border-radius: 10px;
   color: ${theme.colors.main[500]};
   font: ${theme.fonts['pretendard/md-14px-regular']};
+  cursor: pointer;
 
   span {
     flex: 1;

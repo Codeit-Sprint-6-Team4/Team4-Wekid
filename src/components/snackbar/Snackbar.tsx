@@ -2,7 +2,7 @@ import { SnackbarStyled } from './Sanckbar.styled';
 
 export interface SnackbarContainerProps {
   type: 'info' | 'success' | 'error';
-  visible: boolean;
+  $visible: boolean;
   position?: string;
   top?: string;
   right?: string;
@@ -19,7 +19,7 @@ const messages = {
 
 const Snackbar = ({
   type,
-  visible,
+  $visible,
   position,
   top,
   right,
@@ -31,7 +31,7 @@ const Snackbar = ({
   return (
     <SnackbarStyled
       type={type}
-      visible={visible}
+      $visible={$visible}
       position={position}
       top={top}
       right={right}
