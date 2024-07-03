@@ -14,12 +14,21 @@ const useGetUserData = () => {
   const getServerUserMe = async () => {
     try {
       const data = await getUserMe(accessToken);
-      const myCodeInfo = data.profile;
-      setUserData((prev) => ({
-        ...prev,
-        code: myCodeInfo.code,
-        id: myCodeInfo.id,
-      }));
+      console.log('getUserMe 데이터:', data);
+      if (data.profile) {
+        const myCodeInfo = data.profile;
+        setUserData((prev) => ({
+          ...prev,
+          code: myCodeInfo.code,
+          id: myCodeInfo.id,
+        }));
+      } else {
+        setUserData((prev) => ({
+          ...prev,
+          code: '',
+          id: data.id,  // profile이 null인 경우에도 id를 설정
+        }));
+      }
     } catch (error) {
       console.log('user가져오기 에러');
     }
