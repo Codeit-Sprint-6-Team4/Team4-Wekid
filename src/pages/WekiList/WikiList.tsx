@@ -1,10 +1,8 @@
 import React from 'react';
 import WekiListContainer from './components/WekiListContainer';
 
-const WekiList = () => {
-  return(
-    <WekiListContainer />
-  );
+const WikiList = () => {
+  return <WekiListContainer />;
 };
 
-export default WekiList;
+export default WikiList;
