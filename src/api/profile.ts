@@ -68,16 +68,18 @@ export const postEditingProfile = async (
 ) => {
   const URL = `/profiles/${code}/ping`;
   try {
-    const response = await instance.post(URL, {
+    const response: AxiosResponse<string> = await instance.post(URL, {
       securityAnswer: securityAnswer,
     });
-    console.log(response.data);
+
     return response.data;
   } catch (error) {
     if (error instanceof AxiosError) {
       if (error.response?.status === 400) {
         const response = error.response.data as errorMessageType;
-        return response.message;
+        console.error(response.message);
+
+        throw error;
       }
     }
   }

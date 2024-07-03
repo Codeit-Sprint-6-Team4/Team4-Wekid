@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { ChangeEvent, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { MyWekiDataContext } from '@context/myWekiDataContext';
 import { profileType, profileCheckType } from '@api/profile';
+import { postEditingProfile } from '@api/profile';
 import { userType } from '@api/user';
 import Button from '@components/button/Button';
 import Modal from '@components/modal/Modal';
@@ -18,6 +19,7 @@ import {
 
 interface MyeWekiUIProps {
   profile: profileType | null;
+  modalInput: string;
   isEditMode: boolean;
   isEditNow: string | profileCheckType;
   isModalOpen: boolean;
@@ -25,6 +27,8 @@ interface MyeWekiUIProps {
   onSave: () => void;
   onCancel: () => void;
   onModalClose: () => void;
+  confirmAnswer: () => void;
+  onChangeModalInput: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const MyWekiUI = ({
@@ -32,6 +36,9 @@ const MyWekiUI = ({
   isEditNow,
   isEditMode,
   isModalOpen,
+  modalInput,
+  onChangeModalInput,
+  confirmAnswer,
   onSave,
   onCancel,
   onParticipate,
@@ -75,8 +82,10 @@ const MyWekiUI = ({
             type={'question'}
             securityQuestion={profile?.securityQuestion}
             onClose={onModalClose}
-            securityAnswer="ㄹㄹㄹ"
-            onConfirm={() => {}}
+            answer={modalInput}
+            setAnswer={onChangeModalInput}
+            confirmAnswer={confirmAnswer}
+            onConfirm={() => postEditingProfile(code!, modalInput)}
           />
         )}
 
