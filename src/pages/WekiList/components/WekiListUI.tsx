@@ -12,6 +12,7 @@ import {
 } from './WekiList.styled';
 import { ProfileType } from './WekiListContainer';
 import WekiSeacrhBar from './WekiSeacrhBar';
+import UserLink from '@components/userlink/UserLink';
 
 interface WekiListUIProps {
   profiles: ProfileType[];
@@ -36,6 +37,7 @@ const WekiListUI: React.FC<WekiListUIProps> = ({
 }) => {
   return (
     <StyledWekiListPageContainer>
+      {/* <UserLink code={profiles[0].code} /> */}
       <WekiSeacrhBar
         placeholder="제목을 검색해 주세요"
         onChange={handleSearchChange}
