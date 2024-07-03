@@ -59,8 +59,8 @@ function App() {
             <Route path="signup" element={<SignUp />} />
             <Route path="login" element={<SignIn />} />
             <Route path="mypage" element={<AccountSetting />} />
-            <Route path="weki/:code" element={<MyWeki />} />
-            <Route path="wekilist">
+            <Route path="wiki/:code" element={<MyWeki />} />
+            <Route path="wikilist">
               <Route index element={<WekiList />} />
               <Route path=":id" element={<Weki />} />
             </Route>
