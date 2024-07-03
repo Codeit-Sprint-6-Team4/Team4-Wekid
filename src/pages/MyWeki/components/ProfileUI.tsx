@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import noProfile from '@assets/icons/icon-profile.svg';
 import vector from '@assets/icons/icon-vector.svg';
 import { StyledInput } from '@components/input/input';
-import dummy from './dummyImage.jpg';
 import {
   StyeldProfileImage,
   StyeldProfileWrap,
@@ -27,6 +27,7 @@ interface myProfileProps {
   isMyprofile: boolean;
 }
 const ProfileUI = ({
+  image,
   nationality,
   bloodType,
   nickname,
@@ -38,6 +39,8 @@ const ProfileUI = ({
   isEditMode,
   isMyprofile,
 }: profileUIProps & myProfileProps) => {
+  console.log('리렌더링');
+
   const [isClicked, setIsClicked] = useState(false);
   return (
     <StyeldProfileWrap
@@ -49,8 +52,11 @@ const ProfileUI = ({
         $isClicked={isClicked}
         $isMyprofile={isMyprofile}
         $isEdit={isEditMode}
-        src={dummy}
-        alt="하니"
+        src={image}
+        onError={(e) => {
+          e.currentTarget.src = noProfile;
+        }}
+        alt="프로필이미지"
       />
 
       <StyledProfileDataWrap
