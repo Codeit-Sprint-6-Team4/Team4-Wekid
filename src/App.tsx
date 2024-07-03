@@ -9,7 +9,7 @@ import AccountSetting from '@pages/AccountSetting/AccountSetting';
 import Board from '@pages/Board/Board';
 import Boards from '@pages/Boards/Boards';
 import Home from '@pages/Home/Home';
-import MyWeki from '@pages/MyWeki/MyWeki';
+import MyWeki from '@pages/MyWeki/MyWiki';
 import SignIn from '@pages/SignIn/SignIn';
 import SignUp from '@pages/SignUp/SignUp';
 import UpLoadBoard from '@pages/UpLoadBoard/UpLoadBoard';
@@ -25,7 +25,6 @@ function App() {
     code: '',
     id: 0,
   });
-
   const accessToken: string | undefined = Cookies.get('accessToken');
 
   const getServerUserMe = async () => {
