@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from '@components/button/Button';
 import EmailPassword from '@components/input/EmailPassword';
 //components
@@ -43,7 +44,9 @@ const SignInUI: React.FC<signInProps> = ({ userData, onChange, onSubmit }) => {
         </Button>
       </StyledSignInForm>
       <StyledLinkMessageWrap>
-        <StyledLinkMessage>회원가입</StyledLinkMessage>
+        <StyledLinkMessage>
+          <Link to="/signup">회원가입</Link>
+        </StyledLinkMessage>
       </StyledLinkMessageWrap>
     </StyledSignInWrap>
   );
