@@ -15,13 +15,16 @@ import { theme } from '@styles/theme';
 interface QuestionModalContentProps {
   securityQuestion: string;
   onConfirm: (answer: string) => Promise<string | null>;
+  answer: string;
+  setAnswer: (value: string) => void;
 }
 
 const QuestionModalContent = ({
   securityQuestion,
   onConfirm,
+  answer,
+  setAnswer,
 }: QuestionModalContentProps) => {
-  const [answer, setAnswer] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isFocused, setIsFocused] = useState(false);
 

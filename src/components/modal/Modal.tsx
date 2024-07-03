@@ -13,10 +13,18 @@ interface ModalProps {
   onClose: () => void;
   onConfirm?: (answer: string) => Promise<string | null>;
   securityQuestion?: string;
-  securityAnswer?: string;
+  answer?: string;
+  setAnswer?: (value: string) => void;
 }
 
-const Modal = ({ type, onClose, onConfirm, securityQuestion }: ModalProps) => {
+const Modal = ({
+  type,
+  onClose,
+  onConfirm,
+  securityQuestion,
+  answer,
+  setAnswer,
+}: ModalProps) => {
   let content;
   switch (type) {
     case 'imageUpload':
@@ -27,6 +35,8 @@ const Modal = ({ type, onClose, onConfirm, securityQuestion }: ModalProps) => {
         <QuestionModalContent
           onConfirm={onConfirm!}
           securityQuestion={securityQuestion!}
+          answer={answer!}
+          setAnswer={setAnswer!}
         />
       );
       break;
