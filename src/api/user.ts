@@ -3,8 +3,8 @@ import instance from './axios';
 
 export interface userType {
   profile: {
-    code: string;
-    id: number;
+    code: string | null;
+    id: number | null;
   };
   updatedAt: string;
   createdAt: string;
