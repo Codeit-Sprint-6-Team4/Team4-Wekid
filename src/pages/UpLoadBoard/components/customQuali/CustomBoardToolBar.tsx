@@ -3,17 +3,15 @@ const CustomBoardToolBar = () => {
     <div id="toolbar">
       <div className="frame-ql-fromats">
         <span className="ql-formats">
-          <select className="ql-header">
-            <option value="1">Header 1</option>
-            <option value="2">Header 2</option>
-            <option value="3">Header 3</option>
-          </select>
-        </span>
-
-        <span className="ql-formats">
           <button className="ql-bold" />
           <button className="ql-italic" />
           <button className="ql-underline" />
+        </span>
+
+        <span className="ql-formats">
+          <button className="ql-align" value="" />
+          <button className="ql-align" value="center" />
+          <button className="ql-align" value="right" />
         </span>
 
         <span className="ql-formats">
@@ -22,17 +20,13 @@ const CustomBoardToolBar = () => {
         </span>
 
         <span className="ql-formats">
-          <select className="ql-align">
-            <option></option>
-            <option value="center"></option>
-            <option value="right"></option>
-            <option value="justify"></option>
-          </select>
+          <button className="ql-color" />
+          <button className="ql-image" />
         </span>
 
-        <button className="ql-image" />
-        <button className="ql-video" />
-        <button className="ql-link" />
+        <span className="ql-formats ql-toolbar-right">
+          <button className="ql-link" />
+        </span>
       </div>
     </div>
   );

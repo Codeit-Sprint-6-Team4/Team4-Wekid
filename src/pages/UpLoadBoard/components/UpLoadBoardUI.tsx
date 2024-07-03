@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactQuill from 'react-quill';
 import Button from '@components/button/Button';
-import EditorUI from './BoardEditorUI';
+import BoardEditorUI from './BoardEditorUI';
 import {
   StyledContainerWapper,
   StyledCharCount,
@@ -11,7 +10,6 @@ import {
   StyledTitleForm,
   StyledCreateDate,
   StyledTextForm,
-  StyledTextarea,
   StyledTitle,
   StyledTextCharCounter,
   StyledUploadButton,
@@ -26,7 +24,7 @@ interface BoardUIProps {
   totalChars: number;
   nonSpaceChars: number;
   onTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onContentChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onContentChange: (value: string) => void;
   onSubmit: () => void;
   onSave: () => void;
   onCancel: () => void;
@@ -68,15 +66,8 @@ const UploadBoardUI: React.FC<BoardUIProps> = ({
           <StyledTextCharCounter>
             공백포함: 총 {totalChars}자 | 공백제외: 총 {nonSpaceChars}자
           </StyledTextCharCounter>
-          <StyledTextarea
-            id="content"
-            value={content}
-            onChange={onContentChange}
-            placeholder="본문을 입력해주세요"
-          />
+          <BoardEditorUI value={content} onChange={onContentChange} />
         </StyledTextForm>
-        <EditorUI />
-        <ReactQuill value={content} />
       </StyledContainer>
       <Button $secondary>목록으로</Button>
     </StyledContainerWapper>

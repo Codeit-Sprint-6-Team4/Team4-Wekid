@@ -3,22 +3,23 @@
 /* 여기에 원하는 스타일을 추가합니다 */
 
 .ql-toolbar {
-  border: none !important;
+  border: 1px solid #e2e8f0 !important;
   width: 100%;
-  height: 60px;
-  background-color: #f7f7fa;
-  border-radius: 12px;
+  height: 44px;
+  background-color: #ffffff;
+  border-radius: 21.5px;
   display: flex;
-
+  position: relative;
   align-items: center;
   /* 기타 등등 */
 }
 
 .ql-container {
   border: none !important;
-  margin-top: 60px;
-  width: 100%;
-  height: 756px;
+  min-height: 480px;
+  height: 100px;
+  resize: none;
+  margin-top: 10px;
 }
 
 .frame-ql-fromats {
@@ -26,15 +27,16 @@
 }
 
 .ql-formats {
-  border-right: 1px solid #e4e5f0;
-  margin-right: 0px !important;
+  border: none;
+  display: flex;
+  margin-right: 1% !important;
+  padding: 0.1% !important;
+  gap: 0 !important;
 }
 
-.ql-header .ql-picker-label::before {
-  content: '제목' !important;
-  font-weight: 500;
-  font-size: 16px;
-  color: #8f95b2;
+.ql-toolbar-right {
+  position: absolute;
+  right: 10px;
 }
 
 .ql-active {
@@ -46,35 +48,26 @@
   border-radius: 5px;
 }
 
-/* custom tool */
-.userName {
-  flex: 1;
-  font-weight: 600;
+.ql-editor {
+  width: 100%;
+  border: none;
+  min-height: 480px;
+  height: auto;
+  resize: none;
+  padding: 15px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  line-height: 2;
+}
+
+.ql-editor.ql-blank::before {
+  font-family: 'Pretendard';
+  content: attr(data-placeholder);
   font-size: 20px;
-  color: #474d66;
-}
-
-.buttons {
-  display: flex;
-  flex: 1;
-  gap: 10px;
-  justify-content: right;
-}
-
-.cancel {
-  width: 65px !important;
-  height: 40px !important;
-  background-color: #f7f7fa !important;
-  color: #4cbfa4;
-  border-radius: 10px;
-  border: 1px solid #4cbfa4 !important;
-}
-.save {
-  border-radius: 10px;
-  width: 65px !important;
-  height: 40px !important;
-  background-color: #4cbfa4 !important;
-  color: #ffffffff;
+  font-weight: 400;
+  font-style: normal;
+  color: #c6cada;
+  top: 7px;
 }
 
 @media (max-width: 768px) {
@@ -83,5 +76,20 @@
   }
   .userName {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .ql-formats {
+    margin-right: 3px !important;
+    padding: 4px !important;
+  }
+  .ql-container {
+    min-height: 280px;
+  }
+  .ql-toolbar .ql-formats button {
+    width: 20px;
+    height: 20px;
+    padding: 0;
   }
 }

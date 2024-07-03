@@ -6,6 +6,8 @@ const UploadBoardContainer: React.FC = () => {
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [date, setDate] = useState<string>('');
+  const [totalChars, setTotalChars] = useState<number>(0);
+  const [nonSpaceChars, setNonSpaceChars] = useState<number>(0);
 
   useEffect(() => {
     const currentDate = new Date();
@@ -24,8 +26,15 @@ const UploadBoardContainer: React.FC = () => {
     setTitle(e.target.value);
   };
 
-  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
+  const handleContentChange = (value: string) => {
+    setContent(value);
+
+    const textContent = value.replace(/<[^>]*>/g, '');
+    const totalLength = textContent.length;
+    const nonSpaceLength = textContent.replace(/\s/g, '').length;
+
+    setTotalChars(totalLength);
+    setNonSpaceChars(nonSpaceLength);
   };
 
   const submitPost = async () => {
@@ -61,9 +70,6 @@ const UploadBoardContainer: React.FC = () => {
       setContent('');
     }
   };
-
-  const totalChars = content.length;
-  const nonSpaceChars = content.replace(/\s/g, '').length;
 
   return (
     <UploadBoardUI
