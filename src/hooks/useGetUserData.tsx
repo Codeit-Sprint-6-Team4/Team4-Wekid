@@ -5,7 +5,14 @@ import { getUserMe } from '@api/user';
 
 const useGetUserData = () => {
   const [myUserData, setUserData] = useState<userType>({
-    code: '',
+    profile: {
+      code: '',
+      id: 0,
+    },
+    updatedAt: '',
+    createdAt: '',
+    teamId: '',
+    name: '',
     id: 0,
   });
 
@@ -14,13 +21,19 @@ const useGetUserData = () => {
   const getServerUserMe = async () => {
     try {
       const data = await getUserMe(accessToken);
-      const myCodeInfo = data.profile;
+      const myCodeInfo = data;
       if (myCodeInfo) {
-        setUserData((prev) => ({
-          ...prev,
-          code: myCodeInfo.code || '',
+        setUserData({
+          profile: {
+            code: myCodeInfo.profile.code || '',
+            id: myCodeInfo.profile.id || 0,
+          },
+          updatedAt: myCodeInfo.updatedAt || '',
+          createdAt: myCodeInfo.createdAt || '',
+          teamId: myCodeInfo.teamId || '',
+          name: myCodeInfo.name || '',
           id: myCodeInfo.id || 0,
-        }));
+        });
       } else {
         console.error('Profile data is missing.');
       }
