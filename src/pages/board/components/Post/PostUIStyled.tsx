@@ -47,7 +47,7 @@ export const PostTitle = styled.h1`
 export const PostActions = styled.div`
   display: flex;
   gap: 1.4rem;
-  ${media('mobile')`
+  ${media('tablet')`
     gap: 0.8rem;
     button {
       width: 2.2rem;
@@ -101,8 +101,7 @@ export const LikeButtonWrapper = styled.div`
 `;
 
 export const LikeButton = styled.button<{ $isLiked: boolean }>`
-  background-image: url(${(props) =>
-    props.$isLiked ? FavoriteIconFilled : FavoriteIcon});
+  background-image: url(${(props) => props.$isLiked ? FavoriteIconFilled : FavoriteIcon});
   background-repeat: no-repeat;
   background-position: center;
   width: 1.4em;
