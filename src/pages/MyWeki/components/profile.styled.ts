@@ -36,8 +36,10 @@ export const StyeldProfileWrap = styled.div<buttonProps & profileModeProps>`
 
   ${media('tablet')`
     flex-direction:row;
-    flex-direction:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'column'};;
+    flex-direction:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'column'};
+    
     margin: 10px auto;
+    
     align-items: ${({ $isClicked }) => ($isClicked ? 'initial' : 'initial')};
     align-items: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'center'};
 
@@ -57,10 +59,17 @@ export const StyeldProfileWrap = styled.div<buttonProps & profileModeProps>`
     `}
 
   ${media('mobile')`
-   flex-direction:row;
+    flex-direction:row;
+    flex-direction:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'column'};
+
+    align-items: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'center'};
+
     width:335px;
+
     height:${({ $isClicked }) => ($isClicked ? '300px' : '126px')};
-     button{
+    height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '511px'};
+ 
+    button{
       display:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'none'};
       left:157px;
       bottom:10px
@@ -76,8 +85,10 @@ export const StyeldProfileImage = styled.img<buttonProps & profileModeProps>`
 
   ${media('tablet')`
     margin-top: ${({ $isClicked }) => ($isClicked ? '30px' : '30px')};
-     margin-top:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '8px'};
+    margin-top:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '8px'};
+    
     margin-left:15px;
+    
     width:71px;
     height:71px;
     border-radius: 100%;
@@ -116,8 +127,12 @@ export const StyledProfileDataWrap = styled.div<buttonProps & profileModeProps>`
     height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '228px'};
   `}
   ${media('mobile')`
+
     width: 175px;
+    width: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '268px'};
+
     height: 70px;
+    height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '384px'};
   `}
 `;
 
@@ -166,7 +181,12 @@ export const StyledProfileData = styled.div<profileModeProps>`
       color: ${theme.colors.gray[800]};
       font-size: 14px;
     }
-  `}
+  `};
+
+  ${media('mobile')`
+   ${StyledInput} {
+    height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '34px'};
+  }`}
 `;
 
 export const StyledVetorImage = styled.img`
