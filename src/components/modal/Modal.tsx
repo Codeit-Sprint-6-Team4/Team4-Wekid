@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
+import { id } from 'date-fns/locale';
 import {
   StyledModalOverlay,
   StyledModalContainer,
@@ -11,9 +12,12 @@ import QuestionModalContent from './QuestionModalFrame';
 interface ModalProps {
   type: 'imageUpload' | 'question' | 'disconnect' | 'cancelSave';
   onClose: () => void;
-  onConfirm?: (isCorrect: boolean) => void;
+  onConfirm?: (answer: string, id: string) => Promise<string | undefined>;
+  setAnswer?: (e: ChangeEvent<HTMLInputElement>) => void;
+  confirmAnswer?: () => void;
   securityQuestion?: string;
-  securityAnswer?: string;
+  answer?: string;
+  id?: string;
 }
 
 const Modal = ({
@@ -21,7 +25,10 @@ const Modal = ({
   onClose,
   onConfirm,
   securityQuestion,
-  securityAnswer,
+  answer,
+  id,
+  confirmAnswer,
+  setAnswer,
 }: ModalProps) => {
   let content;
   switch (type) {
@@ -32,9 +39,11 @@ const Modal = ({
       content = (
         <QuestionModalContent
           onConfirm={onConfirm!}
-          onClose={onClose}
           securityQuestion={securityQuestion!}
-          securityAnswer={securityAnswer!}
+          answer={answer!}
+          confirmAnswer={confirmAnswer!}
+          id={id!}
+          setAnswer={setAnswer!}
         />
       );
       break;

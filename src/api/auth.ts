@@ -24,7 +24,6 @@ export const postSignIn = async (userData: logInDataTypes) => {
   const URL = '/auth/signIn';
   try {
     const response = await instance.post(URL, userData);
-    console.log(response);
     Cookies.set('accessToken', response.data.accessToken);
     Cookies.set('refreshToken', response.data.refreshToken);
     return response.data;
