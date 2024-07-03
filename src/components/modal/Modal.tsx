@@ -11,9 +11,10 @@ import QuestionModalContent from './QuestionModalFrame';
 interface ModalProps {
   type: 'imageUpload' | 'question' | 'disconnect' | 'cancelSave';
   onClose: () => void;
-  onConfirm?: (isCorrect: boolean) => void;
+  onConfirm?: (answer: string) => Promise<string | null>;
   securityQuestion?: string;
-  securityAnswer?: string;
+  answer?: string;
+  setAnswer?: (value: string) => void;
 }
 
 const Modal = ({
@@ -21,7 +22,8 @@ const Modal = ({
   onClose,
   onConfirm,
   securityQuestion,
-  securityAnswer,
+  answer,
+  setAnswer,
 }: ModalProps) => {
   let content;
   switch (type) {
@@ -32,9 +34,9 @@ const Modal = ({
       content = (
         <QuestionModalContent
           onConfirm={onConfirm!}
-          onClose={onClose}
           securityQuestion={securityQuestion!}
-          securityAnswer={securityAnswer!}
+          answer={answer!}
+          setAnswer={setAnswer!}
         />
       );
       break;
