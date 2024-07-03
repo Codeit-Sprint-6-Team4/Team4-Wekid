@@ -9,15 +9,9 @@ export interface userType {
 export const getUserMe = async (accessToken: string | undefined) => {
   const URL = '/users/me';
 
-  const config = {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  };
-
   try {
     if (accessToken) {
-      const response = await instance.get(URL, config);
+      const response = await instance.get(URL);
       return response.data;
     } else {
       {
