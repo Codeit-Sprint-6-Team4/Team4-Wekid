@@ -10,8 +10,7 @@ const useGetUserData = () => {
 
   const getServerUserMe = async () => {
     try {
-      const data = await getUserMe(accessToken);
-      const myCodeInfo = data;
+      const myCodeInfo = await getUserMe(accessToken);
       if (myCodeInfo) {
         setUserData({
           profile: {
