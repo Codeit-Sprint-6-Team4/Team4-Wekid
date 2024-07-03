@@ -4,10 +4,8 @@ import { MyWekiDataContext } from '@context/myWekiDataContext';
 import { profileType, profileCheckType } from '@api/profile';
 import { postEditingProfile } from '@api/profile';
 import { userType } from '@api/user';
-import noProfile from '@assets/icons/icon-profile.svg';
 import Button from '@components/button/Button';
 import Modal from '@components/modal/Modal';
-import Snackbar from '@components/snackbar/Snackbar';
 import isSameProfile from '@utils/isSameProfile';
 import EditorUI from './EditorUI';
 import ProfileUI from './ProfileUI';
@@ -72,6 +70,7 @@ const MyWekiUI = ({
             </div>
           </StyledWekiHeader>
         )}
+
         {/* <Snackbar
           visible={isEditNow ? true : false}
           type={'info'}

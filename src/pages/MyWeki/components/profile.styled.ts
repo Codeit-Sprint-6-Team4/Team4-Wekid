@@ -61,7 +61,7 @@ export const StyeldProfileWrap = styled.div<buttonProps & profileModeProps>`
   ${media('mobile')`
     flex-direction:row;
     flex-direction:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'column'};
-
+    
     align-items: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'center'};
 
     width:335px;
