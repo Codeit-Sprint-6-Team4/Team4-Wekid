@@ -23,9 +23,11 @@ interface profileUIProps {
   city: string | undefined;
   image: string | undefined;
 }
+
 interface myProfileProps {
   isMyprofile: boolean;
 }
+
 const ProfileUI = ({
   image,
   nationality,
@@ -39,9 +41,8 @@ const ProfileUI = ({
   isEditMode,
   isMyprofile,
 }: profileUIProps & myProfileProps) => {
-  console.log('리렌더링');
-
   const [isClicked, setIsClicked] = useState(false);
+  
   return (
     <StyeldProfileWrap
       $isClicked={isClicked}
