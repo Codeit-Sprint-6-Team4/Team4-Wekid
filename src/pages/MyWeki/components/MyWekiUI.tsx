@@ -122,7 +122,7 @@ const MyWekiUI = ({
         job={profile?.job}
         mbti={profile?.mbti}
         city={profile?.city}
-        image={profile?.image}
+        image={profile?.image ? profile.image : ''}
       />
 
       {
