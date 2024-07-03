@@ -1,5 +1,7 @@
 import React from 'react';
+import ReactQuill from 'react-quill';
 import Button from '@components/button/Button';
+import EditorUI from './BoardEditorUI';
 import {
   StyledContainerWapper,
   StyledCharCount,
@@ -26,6 +28,8 @@ interface BoardUIProps {
   onTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onContentChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onSubmit: () => void;
+  onSave: () => void;
+  onCancel: () => void;
 }
 
 const UploadBoardUI: React.FC<BoardUIProps> = ({
@@ -71,6 +75,8 @@ const UploadBoardUI: React.FC<BoardUIProps> = ({
             placeholder="본문을 입력해주세요"
           />
         </StyledTextForm>
+        <EditorUI />
+        <ReactQuill value={content} />
       </StyledContainer>
       <Button $secondary>목록으로</Button>
     </StyledContainerWapper>

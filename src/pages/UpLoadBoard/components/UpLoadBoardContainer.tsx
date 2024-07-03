@@ -47,6 +47,21 @@ const UploadBoardContainer: React.FC = () => {
     }
   };
 
+  const handleSave = () => {
+    submitPost();
+  };
+
+  const handleCancel = () => {
+    if (
+      window.confirm(
+        '정말 취소하시겠습니까? 작성 중인 내용은 저장되지 않습니다.',
+      )
+    ) {
+      setTitle('');
+      setContent('');
+    }
+  };
+
   const totalChars = content.length;
   const nonSpaceChars = content.replace(/\s/g, '').length;
 
@@ -61,6 +76,8 @@ const UploadBoardContainer: React.FC = () => {
       onTitleChange={handleTitleChange}
       onContentChange={handleContentChange}
       onSubmit={submitPost}
+      onSave={handleSave}
+      onCancel={handleCancel}
     />
   );
 };
