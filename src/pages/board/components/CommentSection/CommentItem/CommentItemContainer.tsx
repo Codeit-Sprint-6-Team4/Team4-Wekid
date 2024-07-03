@@ -58,7 +58,6 @@ const CommentItemContainer: React.FC<CommentItemContainerProps> = ({
 
   return (
     <CommentItemUI
-      id={id}
       author={author.name}
       date={date}
       text={editContent}

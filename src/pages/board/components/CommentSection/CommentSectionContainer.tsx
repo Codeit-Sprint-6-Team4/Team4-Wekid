@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import {
   getComment,
   postComment,
@@ -8,7 +7,10 @@ import {
   patchComment,
   getAllComments,
 } from '@api/comment';
+import useGetUserData from '@hooks/useGetUserData';
 import CommentSectionUI from './CommentSectionUI';
+
+// useGetUserData 훅 import
 
 interface Comment {
   id: number;
@@ -31,13 +33,9 @@ const CommentSectionContainer: React.FC = () => {
   const [cursor, setCursor] = useState<number | null>(null);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [totalComments, setTotalComments] = useState<number>(0); // 총 댓글 수 상태 추가
-  const [currentUserId, setCurrentUserId] = useState<string | null>(null); // 현재 사용자 ID 상태 추가
+  const { myUserData } = useGetUserData(); // useGetUserData 훅 사용
+  const currentUserId = myUserData?.id?.toString() || null; // 현재 사용자 ID를 문자열로 가져오기
   const limit = 10; // 가져올 댓글 수
-
-  useEffect(() => {
-    const userId = Cookies.get('userId');
-    setCurrentUserId(userId || null);
-  }, []);
 
   const fetchComments = useCallback(async () => {
     if (id) {

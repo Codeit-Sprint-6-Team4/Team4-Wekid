@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import PostUI from './PostUI';
 import { fetchArticle, postArticleLike, deleteArticleLike, deleteArticle } from '@api/article';
 import { AxiosError } from 'axios';
+import useGetUserData from '@hooks/useGetUserData'; // useGetUserData 훅 import
 
 const PostContainer: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -20,6 +20,8 @@ const PostContainer: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isMyPost, setIsMyPost] = useState(false);  // 상태 추가
 
+  const { myUserData } = useGetUserData(); // useGetUserData 훅 사용
+
   const getArticle = async (articleId: string) => {
     try {
       const data = await fetchArticle(articleId);
@@ -32,8 +34,9 @@ const PostContainer: React.FC = () => {
         isLiked: data.isLiked,
       });
 
-      const currentUserId = Cookies.get('userId');
-      setIsMyPost(currentUserId === data.writer.id.toString()); // 현재 사용자의 ID와 작성자의 ID 비교
+      if (myUserData) {
+        setIsMyPost(myUserData.id === data.writer.id); // 현재 사용자의 ID와 작성자의 ID 비교
+      }
 
       setLoading(false);
     } catch (err) {
@@ -51,7 +54,7 @@ const PostContainer: React.FC = () => {
       setLoading(false);
       navigate('/'); // Navigate to another page if ID is missing
     }
-  }, [id, navigate]);
+  }, [id, navigate, myUserData]);
 
   const handleLikeToggle = async () => {
     if (!id) return;
