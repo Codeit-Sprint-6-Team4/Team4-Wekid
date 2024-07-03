@@ -1,10 +1,10 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import { MyWekiDataContext } from '@context/myWekiDataContext';
 import { ThemeProvider } from 'styled-components';
-import { getUserMe, userType } from '@api/user';
 import Footer from '@components/layout/Footer';
 import HeaderContainer from '@components/layout/Header/HeaderContainer';
+import useGetUserData from '@hooks/useGetUserData';
 import AccountSetting from '@pages/AccountSetting/AccountSetting';
 import Board from '@pages/Board/Board';
 import Boards from '@pages/Boards/Boards';
@@ -18,39 +18,8 @@ import WikiList from '@pages/WekiList/WikiList';
 import { theme } from '@styles/theme';
 import GlobalStyle from './styles/global-styles';
 
-const MyWekiDataContext = createContext<userType | undefined>(undefined);
-
 function App() {
-  const [myUserData, setUserData] = useState<userType>({
-    code: '',
-    id: 0,
-  });
-  const accessToken: string | undefined = Cookies.get('accessToken');
-
-  const getServerUserMe = async () => {
-    try {
-      const data = await getUserMe(accessToken);
-      const myCodeInfo = data.profile;
-      if (myCodeInfo) {
-        setUserData((prev) => ({
-          ...prev,
-          code: myCodeInfo.code || '',
-          id: myCodeInfo.id || 0,
-        }));
-      } else {
-        console.error('Profile data is missing.');
-      }
-    } catch (error) {
-      console.error('Failed to retrieve user data', error);
-    }
-  };
-
-  useEffect(() => {
-    if (accessToken) {
-      getServerUserMe();
-    }
-  }, []);
-
+  const { myUserData } = useGetUserData();
   return (
     <MyWekiDataContext.Provider value={myUserData}>
       <ThemeProvider theme={theme}>
