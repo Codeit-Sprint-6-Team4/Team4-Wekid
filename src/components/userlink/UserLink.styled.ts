@@ -3,7 +3,7 @@ import linkIcon from '@assets/icons/icon-link-green.svg';
 import { theme } from '@styles/theme';
 import { media } from '@utils/media';
 
-export const StyledUserLink = styled.a`
+export const StyledUserLink = styled.div`
   display: flex;
   max-width: 400px;
   align-items: center;
@@ -31,10 +31,6 @@ export const StyledUserLink = styled.a`
     background-repeat: no-repeat;
     background-position: center;
     background-image: url(${linkIcon});
-  }
-
-  &:hover {
-    text-decoration: underline;
   }
 
   ${media('mobile')`
