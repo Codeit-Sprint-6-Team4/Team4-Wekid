@@ -48,8 +48,8 @@ const MyWekiUI = ({
 
   let testIsMyProfile: boolean = false;
 
-  if (userData !== null && typeof userData.code === 'string' && code) {
-    testIsMyProfile = isSameProfile(userData.code, code);
+  if (userData !== null && typeof userData.profile?.code === 'string' && code) {
+    testIsMyProfile = isSameProfile(userData.profile.code, code);
   }
 
   return (
