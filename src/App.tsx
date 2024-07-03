@@ -9,18 +9,17 @@ import AccountSetting from '@pages/AccountSetting/AccountSetting';
 import Board from '@pages/Board/Board';
 import Boards from '@pages/Boards/Boards';
 import Home from '@pages/Home/Home';
-import MyWeki from '@pages/MyWeki/MyWeki';
+import MyWiki from '@pages/MyWeki/MyWiki';
 import SignIn from '@pages/SignIn/SignIn';
 import SignUp from '@pages/SignUp/SignUp';
 import UpLoadBoard from '@pages/UpLoadBoard/UpLoadBoard';
-import Weki from '@pages/Weki/Weki';
-import WekiList from '@pages/WekiList/WekiList';
+import Wiki from '@pages/Weki/Wiki';
+import WikiList from '@pages/WekiList/WikiList';
 import { theme } from '@styles/theme';
 import GlobalStyle from './styles/global-styles';
 
 function App() {
   const { myUserData } = useGetUserData();
-
   return (
     <MyWekiDataContext.Provider value={myUserData}>
       <ThemeProvider theme={theme}>
@@ -32,10 +31,10 @@ function App() {
             <Route path="signup" element={<SignUp />} />
             <Route path="login" element={<SignIn />} />
             <Route path="mypage" element={<AccountSetting />} />
-            <Route path="weki/:code" element={<MyWeki />} />
-            <Route path="wekilist">
-              <Route index element={<WekiList />} />
-              <Route path=":id" element={<Weki />} />
+            <Route path="wiki/:code" element={<MyWiki />} />
+            <Route path="wikilist">
+              <Route index element={<WikiList />} />
+              <Route path=":id" element={<Wiki />} />
             </Route>
             <Route path="boards">
               <Route index element={<Boards />} />
