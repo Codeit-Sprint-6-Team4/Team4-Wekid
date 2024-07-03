@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
+import { AxiosError } from 'axios';
+import { errorMessageType } from '@api/profile';
 import Button from '@components/button/Button';
 import {
   StyledQuestionContent,
@@ -14,24 +16,37 @@ import { theme } from '@styles/theme';
 
 interface QuestionModalContentProps {
   securityQuestion: string;
-  onConfirm: (answer: string) => Promise<string | null>;
+  onConfirm: (answer: string, id: string) => Promise<string | undefined>;
   answer: string;
-  setAnswer: (value: string) => void;
+  id: string;
+  setAnswer: (e: ChangeEvent<HTMLInputElement>) => void;
+
+  confirmAnswer: () => void;
 }
 
 const QuestionModalContent = ({
   securityQuestion,
   onConfirm,
+  confirmAnswer,
   answer,
+  id,
   setAnswer,
 }: QuestionModalContentProps) => {
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [isFocused, setIsFocused] = useState(false);
-
   const handleConfirm = async () => {
-    const message = await onConfirm(answer);
-    if (message) {
-      setErrorMessage(message);
+    try {
+      const message = await onConfirm(answer, id);
+      if (message) {
+        confirmAnswer();
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 400) {
+          const errorMessage = error.response.data as errorMessageType;
+          setErrorMessage(errorMessage.message);
+        }
+      }
     }
   };
 
@@ -62,10 +77,7 @@ const QuestionModalContent = ({
       >
         <StyledAnswerInput
           value={answer}
-          onChange={(e) => {
-            setAnswer(e.target.value);
-            setErrorMessage(null);
-          }}
+          onChange={setAnswer}
           onKeyDown={handleKeyPress}
           placeholder="답을 입력하세요"
           onFocus={() => setIsFocused(true)}
