@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { formatDateString } from '@utils/formatDateString';
 import { Article } from './BoardsContainer';
 import {
   StyledCardContainer,
   StyledCardContent,
   StyledCardImage,
+  StyledCardNoImage,
   StyledCardInfo,
   StyledCardInfoContainer1,
   StyledCardInfoContainer2,
   StyledCardLikesContainer,
   StyledCardTitle,
   StyledHeartIcon,
+  StyledNoImageIcon,
 } from '@pages/Boards/components/BestArticleCard.styled';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,6 +23,12 @@ interface BestPostCardProps {
 const BestArticleCard: React.FC<BestPostCardProps> = ({ article }) => {
   const navigate = useNavigate();
   const formattedDate = formatDateString(article.createdAt);
+  const [imageError, setImageError] = useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
+  
 
   const handleClick = () => {
     navigate(`/boards/${article.id}`);
@@ -28,7 +36,17 @@ const BestArticleCard: React.FC<BestPostCardProps> = ({ article }) => {
 
   return (
     <StyledCardContainer onClick={handleClick}>
-      <StyledCardImage src={article.image} alt={article.title} />
+       {!imageError && article.image ? (
+        <StyledCardImage
+          src={article.image}
+          alt={article.title}
+          onError={handleImageError}
+        />
+      ) : (
+        <StyledCardNoImage>
+          <StyledNoImageIcon />
+        </StyledCardNoImage>
+      )}
       <StyledCardContent>
         <StyledCardTitle>{article.title}</StyledCardTitle>
         <StyledCardInfoContainer1>
