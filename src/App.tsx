@@ -1,12 +1,10 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { MyWekiDataContext } from '@context/myWekiDataContext';
-import Cookies from 'js-cookie';
 import { ThemeProvider } from 'styled-components';
-import { getUserMe, userType } from '@api/user';
 import Footer from '@components/layout/Footer';
 import HeaderContainer from '@components/layout/Header/HeaderContainer';
-import useGetUserData from '@hooks/useGetuserData';
+import useGetUserData from '@hooks/useGetUserData';
 import AccountSetting from '@pages/AccountSetting/AccountSetting';
 import Board from '@pages/Board/Board';
 import Boards from '@pages/Boards/Boards';
