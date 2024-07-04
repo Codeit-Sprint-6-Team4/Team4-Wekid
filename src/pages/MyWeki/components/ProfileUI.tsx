@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChangeEvent } from 'react';
 import noProfile from '@assets/icons/icon-profile.svg';
 import vector from '@assets/icons/icon-vector.svg';
 import { StyledInput } from '@components/input/input';
 import {
   StyeldProfileImage,
+  StyeldProfileImageInputLabel,
   StyeldProfileWrap,
   StyledProfileData,
   StyledProfileDataWrap,
+  StyledProfileImageInput,
   StyledVetorImage,
 } from './profile.styled';
 
@@ -28,6 +30,9 @@ interface profileUIProps {
 interface myProfileProps {
   isMyprofile: boolean;
   onChangeProfileInput: (e: ChangeEvent<HTMLInputElement>) => void;
+  editImage: File | null;
+  previewImage: string;
+  onChangeProfileImage: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const ProfileUI = ({
@@ -43,7 +48,11 @@ const ProfileUI = ({
   isEditMode,
   isMyprofile,
   onChangeProfileInput,
+  onChangeProfileImage,
+  previewImage,
 }: profileUIProps & myProfileProps) => {
+  console.log('Re');
+
   const [isClicked, setIsClicked] = useState(false);
 
   return (
@@ -52,6 +61,28 @@ const ProfileUI = ({
       $isMyprofile={isMyprofile}
       $isEdit={isEditMode}
     >
+      <StyeldProfileImageInputLabel
+        htmlFor="StyledProfileImageInput"
+        $isClicked={isClicked}
+        $isMyprofile={isMyprofile}
+        $profileImage={image ? image : ''}
+        $isEdit={isEditMode}
+      >
+        <img
+          src={previewImage ? previewImage : image}
+          onError={(e) => {
+            e.currentTarget.src = noProfile;
+          }}
+        />
+      </StyeldProfileImageInputLabel>
+
+      <StyledProfileImageInput
+        id="StyledProfileImageInput"
+        type="file"
+        name="profileImage"
+        onChange={onChangeProfileImage}
+      />
+
       <StyeldProfileImage
         $isClicked={isClicked}
         $isMyprofile={isMyprofile}

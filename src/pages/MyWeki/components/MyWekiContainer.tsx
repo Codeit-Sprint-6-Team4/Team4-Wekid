@@ -2,6 +2,8 @@ import React, { ChangeEvent, useState, useRef, useContext } from 'react';
 import ReactQuill from 'react-quill';
 import { useParams } from 'react-router-dom';
 import { MyWekiDataContext } from '@context/myWekiDataContext';
+import { set } from 'date-fns';
+import { postImage } from '@api/image';
 import { patchProfile } from '@api/profile';
 import { userType } from '@api/user';
 import useMywekiAPi from '@hooks/useMywekiAPi';
@@ -22,6 +24,17 @@ const MyWekiContainer = () => {
   const [modalInput, setModalInput] = useState('');
   const { code } = useParams();
   const quailRef = useRef<ReactQuill>(null);
+  const [editImage, setEditImage] = useState<File | null>(null);
+  const [previewImage, setPreviewImage] = useState<string>('');
+
+  const onChangeProfileImage = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files !== null) {
+      const value = e.target.files[0];
+      setEditImage(value);
+      const imageURL = URL.createObjectURL(value);
+      setPreviewImage(imageURL);
+    }
+  };
 
   const onParticipate = () => {
     if (typeof isEditNow !== 'string' && userData !== null) {
@@ -39,11 +52,24 @@ const MyWekiContainer = () => {
   const editPathProfile = async () => {
     try {
       if (typeof code === 'string' && quailRef.current && profile !== null) {
-        await patchProfile(code, profile, quailRef.current.value);
+        if (code === userData?.profile?.code && editImage != null) {
+          const response = await postImage(editImage);
+
+          if (typeof response === 'string') {
+            await patchProfile(code, profile, quailRef.current.value, response);
+            return;
+          }
+        }
+        console.log('no');
+
+        // await patchProfile(code, profile, quailRef.current.value);
       }
     } catch (error) {}
   };
   const onCancel = () => {
+    URL.revokeObjectURL(previewImage);
+    setPreviewImage('');
+    setEditImage(null);
     setIsEditMode(false);
     receiveProfile();
   };
@@ -76,6 +102,9 @@ const MyWekiContainer = () => {
       isEditNow={isEditNow}
       isModalOpen={isModalOpen}
       modalInput={modalInput}
+      editImage={editImage}
+      previewImage={previewImage}
+      onChangeProfileImage={onChangeProfileImage}
       setIsEditMode={setIsEditMode}
       onChangeModalInput={onChangeModalInput}
       onChangeProfileInput={onChangeProfileInput}

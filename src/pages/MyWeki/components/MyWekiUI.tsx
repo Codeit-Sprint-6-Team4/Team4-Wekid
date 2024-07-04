@@ -33,11 +33,17 @@ interface MyeWekiUIProps {
   onChangeModalInput: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeProfileInput: (e: ChangeEvent<HTMLInputElement>) => void;
   setIsEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+  editImage: File | null;
+  previewImage: string;
+  onChangeProfileImage: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
   (
     {
+      editImage,
+      previewImage,
+      onChangeProfileImage,
       profile,
       isEditNow,
       isEditMode,
@@ -53,6 +59,8 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
     },
     ref,
   ) => {
+    console.log('Dad');
+
     const userData = useContext<userType | null>(MyWekiDataContext);
     const { code } = useParams();
     let isMyProfile: boolean = false;
@@ -143,6 +151,9 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
         </StyledWekiContent>
 
         <ProfileUI
+          editImage={editImage}
+          previewImage={previewImage}
+          onChangeProfileImage={onChangeProfileImage}
           onChangeProfileInput={onChangeProfileInput}
           isEditMode={isEditMode}
           isMyprofile={isMyProfile}

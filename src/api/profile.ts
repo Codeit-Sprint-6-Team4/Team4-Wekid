@@ -90,6 +90,7 @@ export const patchProfile = async (
   code: string,
   profile: profileType,
   content: ReactQuill.Value,
+  image?: string,
 ) => {
   const URL = `/profiles/${code}`;
   try {
@@ -103,7 +104,7 @@ export const patchProfile = async (
       job: profile.job,
       mbti: profile.mbti,
       city: profile.city,
-      image: profile.image,
+      image: image,
       content: content,
     });
   } catch (error) {}
