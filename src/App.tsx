@@ -16,14 +16,12 @@ import UpLoadBoard from '@pages/UpLoadBoard/UpLoadBoard';
 import Wiki from '@pages/Weki/Wiki';
 import WikiList from '@pages/WekiList/WikiList';
 import { theme } from '@styles/theme';
-import GlobalStyle from './styles/global-styles';
 
 function App() {
   const { myUserData } = useGetUserData();
   return (
     <MyWekiDataContext.Provider value={myUserData}>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
         <BrowserRouter>
           <HeaderContainer />
           <Routes>
