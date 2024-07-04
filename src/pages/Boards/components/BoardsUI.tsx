@@ -14,8 +14,10 @@ import {
 import Pagination from '@components/pagination/Pagination';
 import SortDropdown from '@pages/Boards/components/SortDropdown';
 import { Article } from './BoardsContainer';
+import { userType } from '@api/user';
 
 interface BoardsUIProps {
+  myUserData: userType | null;
   articles: Article[];
   bestArticles: Article[];
   handleNavigateToAddBoard: () => void;
@@ -31,6 +33,7 @@ interface BoardsUIProps {
 }
 
 const BoardsUI: React.FC<BoardsUIProps> = ({
+  myUserData,
   articles,
   bestArticles,
   handleNavigateToAddBoard,

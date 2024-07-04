@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getArticles } from '@api/article';
+import useGetUserData from '@hooks/useGetUserData';
 import BoardsUI from './BoardsUI';
 
 interface Writer {
@@ -19,6 +20,7 @@ export interface Article {
 
 const BoardsContainer = () => {
   const navigate = useNavigate();
+  const { myUserData } = useGetUserData();
   const [articles, setArticles] = useState<Article[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [bestArticles, setBestArticles] = useState<Article[]>([]);
@@ -32,7 +34,12 @@ const BoardsContainer = () => {
     { id: 2, label: '좋아요순' },
   ];
   const handleNavigateToAddBoard = () => {
-    navigate('/addboard');
+    if (!myUserData) {
+      navigate('/login');
+    } else {
+      navigate('/boards/upload');
+      //로그인 먼저 하라는 모달창 추가 <- 고민해볼것
+    }
   };
   const handleSelectSortOption = (option: { id: number; label: string }) => {
     setSortType(option.label === '최신순' ? 'recent' : 'like');
@@ -89,6 +96,7 @@ const BoardsContainer = () => {
 
   return (
     <BoardsUI
+      myUserData={myUserData}
       articles={articles}
       bestArticles={bestArticles}
       handleNavigateToAddBoard={handleNavigateToAddBoard}
