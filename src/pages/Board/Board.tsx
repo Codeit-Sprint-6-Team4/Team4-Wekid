@@ -1,7 +1,6 @@
-import React from 'react';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { media } from '@utils/media';
-// import { theme } from '@styles/theme';
 import CommentSectionContainer from './components/CommentSection/CommentSectionContainer';
 import PostContainer from './components/Post/PostContainer';
 
@@ -20,10 +19,20 @@ const BoardContainer = styled.div`
 
 const Board = () => {
   return (
-    <BoardContainer>
-      <PostContainer />
-      <CommentSectionContainer />
-    </BoardContainer>
+    <>
+      <Helmet>
+        <title>자유게시글</title>
+        <meta
+          name="description"
+          content="위키드에 자유롭게 글을 적으세요. 자유게시판 바로가기"
+        />
+        <meta name="keywords" content="위키드, 나만의 위키, 위키 커뮤니티" />
+      </Helmet>
+      <BoardContainer>
+        <PostContainer />
+        <CommentSectionContainer />
+      </BoardContainer>
+    </>
   );
 };
 

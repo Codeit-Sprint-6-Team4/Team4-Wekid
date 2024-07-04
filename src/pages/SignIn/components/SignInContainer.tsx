@@ -35,8 +35,17 @@ const SignInContainer = () => {
     postServerLogIn();
   };
 
+  const isFillForm = () => {
+    return userData.email.trim() == '' || userData.password.trim() == '';
+  };
+
   return (
-    <SignInUI userData={userData} onChange={onChange} onSubmit={onSubmit} />
+    <SignInUI
+      userData={userData}
+      onChange={onChange}
+      onSubmit={onSubmit}
+      isFillForm={isFillForm}
+    />
   );
 };
 

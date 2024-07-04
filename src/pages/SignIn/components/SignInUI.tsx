@@ -15,9 +15,16 @@ interface signInProps {
   userData: logInDataTypes;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  isFillForm: () => boolean;
 }
 
-const SignInUI: React.FC<signInProps> = ({ userData, onChange, onSubmit }) => {
+const SignInUI: React.FC<signInProps> = ({
+  userData,
+  onChange,
+  onSubmit,
+  isFillForm,
+}) => {
+  console.log(isFillForm());
   return (
     <StyledSignInWrap>
       <StyledSignInTitle>로그인</StyledSignInTitle>
@@ -38,7 +45,7 @@ const SignInUI: React.FC<signInProps> = ({ userData, onChange, onSubmit }) => {
           value={userData.password}
           onChange={onChange}
         />
-        <Button $primary $width="100%" type="submit">
+        <Button $primary $width="100%" type="submit" disabled={isFillForm()}>
           로그인
         </Button>
       </StyledSignInForm>
