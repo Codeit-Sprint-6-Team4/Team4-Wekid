@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import { media } from '@utils/media';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -160,6 +161,25 @@ const GlobalStyle = createGlobalStyle`
   input::-webkit-inner-spin-button,
   input::-webkit-outer-spin-button {
     -webkit-appearance: none;
+  }
+
+  .layoutWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6rem;
+    margin: 6rem auto;
+    max-width: 1300px;
+
+  ${media('tablet')`
+    margin: 4rem auto;
+    padding: 0 4rem;
+  `}
+  ${media('mobile')`
+    margin: 3.2rem auto;
+    padding: 0rem 2rem;
+  `}
   }
 
   .blind {
