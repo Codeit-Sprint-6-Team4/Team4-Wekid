@@ -36,7 +36,7 @@ const SignInContainer = () => {
   };
 
   const isFillForm = () => {
-    return userData.email.trim() == '' || userData.password.trim() == '';
+    return userData.email.trim() === '' || userData.password.trim() === '';
   };
 
   return (
