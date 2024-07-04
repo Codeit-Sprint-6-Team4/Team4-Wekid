@@ -1,7 +1,7 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import AuthContext from './authContext';
-import { userType, getUserMe } from '@api/user';  // @api/user로부터 userType과 getUserMe를 임포트합니다.
+import { userType, getUserMe } from '@api/user';
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -19,10 +19,16 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     }
   }, []);
 
-  const login = () => setIsLoggedIn(true);
+  const login = (userData: userType) => {
+    setIsLoggedIn(true);
+    setUser(userData);
+  };
+
   const logout = () => {
     setIsLoggedIn(false);
     setUser(null);
+    Cookies.remove('accessToken');
+    Cookies.remove('refreshToken'); // refreshToken 삭제
   };
 
   return (

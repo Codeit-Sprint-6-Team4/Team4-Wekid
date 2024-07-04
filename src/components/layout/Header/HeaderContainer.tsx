@@ -3,14 +3,12 @@ import Header from './Header';
 import { useAuth } from '@context/authContext';
 
 const HeaderContainer: React.FC = () => {
-  const { isLoggedIn, login, logout, user } = useAuth();
+  const { isLoggedIn, logout } = useAuth();
 
   return (
     <Header
       isLoggedIn={isLoggedIn}
-      handleLogin={login}
       handleLogout={logout}
-      user={user}
     />
   );
 };

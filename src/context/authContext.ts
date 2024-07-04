@@ -1,9 +1,9 @@
 import { createContext, useContext } from 'react';
-import { userType } from '@api/user';  // @api/user로부터 userType과 getUserMe를 임포트합니다.
+import { userType } from '@api/user';
 
 interface AuthContextProps {
   isLoggedIn: boolean;
-  login: () => void;
+  login: (user: userType) => void;
   logout: () => void;
   user: userType | null;
 }
