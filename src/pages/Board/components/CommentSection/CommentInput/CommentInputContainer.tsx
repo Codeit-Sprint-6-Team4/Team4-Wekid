@@ -1,16 +1,23 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import CommentInputUI from './CommentInputUI';
+import { useNavigate, useParams } from 'react-router-dom';
+import Modal from '@components/modal/Modal';
+import useGetUserData from '@hooks/useGetUserData';
 import { autoResizeTextarea } from '@utils/autoResizeTextarea';
+import CommentInputUI from './CommentInputUI';
 
 interface CommentInputContainerProps {
   onAddComment: (text: string) => void;
 }
 
-const CommentInputContainer: React.FC<CommentInputContainerProps> = ({ onAddComment }) => {
+const CommentInputContainer: React.FC<CommentInputContainerProps> = ({
+  onAddComment,
+}) => {
   const { id } = useParams<{ id: string }>();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [text, setText] = useState('');
+  const { myUserData } = useGetUserData();
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const textarea = textareaRef.current;
@@ -22,6 +29,19 @@ const CommentInputContainer: React.FC<CommentInputContainerProps> = ({ onAddComm
     }
   }, []);
 
+  const handleInputClick = () => {
+    if (!myUserData) {
+      setShowLoginPrompt(true);
+    }
+  };
+  const handleModalClose = () => {
+    setShowLoginPrompt(false);
+  };
+  const navigateToLogin = () => {
+    navigate('/login');
+    handleModalClose();
+  };
+
   const handleSubmit = () => {
     if (text.trim() && id) {
       onAddComment(text);
@@ -32,12 +52,22 @@ const CommentInputContainer: React.FC<CommentInputContainerProps> = ({ onAddComm
   };
 
   return (
-    <CommentInputUI
-      text={text}
-      setText={setText}
-      handleSubmit={handleSubmit}
-      textareaRef={textareaRef}
-    />
+    <>
+      <CommentInputUI
+        text={text}
+        setText={setText}
+        handleInputClick={handleInputClick}
+        handleSubmit={handleSubmit}
+        textareaRef={textareaRef}
+      />
+      {showLoginPrompt && (
+        <Modal
+          type="loginPrompt"
+          onClose={handleModalClose}
+          navigateToLogin={navigateToLogin}
+        />
+      )}
+    </>
   );
 };
 
