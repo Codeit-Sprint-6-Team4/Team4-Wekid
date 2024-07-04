@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { formatDateString } from '@utils/formatDateString';
-import { Article } from './BoardsContainer';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
+import { fetchArticle } from '@api/article';
+import { userType } from '@api/user';
 import {
   StyledCardContainer,
   StyledCardContent,
@@ -14,16 +16,39 @@ import {
   StyledHeartIcon,
   StyledNoImageIcon,
 } from '@pages/Boards/components/BestArticleCard.styled';
-import { useNavigate } from 'react-router-dom';
+import { formatDateString } from '@utils/formatDateString';
+import { Article } from './BoardsContainer';
 
 interface BestPostCardProps {
   article: Article;
+  myUserData: userType | null;
 }
 
-const BestArticleCard: React.FC<BestPostCardProps> = ({ article }) => {
+const BestArticleCard: React.FC<BestPostCardProps> = ({
+  article,
+  myUserData,
+}) => {
   const navigate = useNavigate();
   const formattedDate = formatDateString(article.createdAt);
   const [imageError, setImageError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isLiked, setIsLiked] = useState(false);
+
+  const getArticle = async (articleId: string) => {
+    try {
+      const data = await fetchArticle(articleId);
+      setIsLiked(data.isLiked);
+    } catch (err) {
+      const axiosError = err as AxiosError;
+      setError(axiosError.message);
+    }
+  };
+
+  useEffect(() => {
+    if (myUserData) {
+      getArticle(String(article.id));
+    }
+  }, []);
 
   const handleImageError = () => {
     setImageError(true);
@@ -56,7 +81,7 @@ const BestArticleCard: React.FC<BestPostCardProps> = ({ article }) => {
             <StyledCardInfo>{formattedDate}</StyledCardInfo>
           </StyledCardInfoContainer2>
           <StyledCardLikesContainer>
-            <StyledHeartIcon />
+            <StyledHeartIcon $isLiked={isLiked}/>
             <StyledCardInfo>{article.likeCount}</StyledCardInfo>
           </StyledCardLikesContainer>
         </StyledCardInfoContainer1>

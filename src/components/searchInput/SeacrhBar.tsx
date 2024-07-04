@@ -9,10 +9,22 @@ import {
 interface seacrhBarProps {
   placeholder: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSearch: () => void;
   value: string;
 }
 
-const SeacrhBar = ({ placeholder, value, onChange }: seacrhBarProps) => {
+const SeacrhBar = ({
+  placeholder,
+  value,
+  onChange,
+  onSearch,
+}: seacrhBarProps) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      onSearch();
+    }
+  };
+
   return (
     <StyledSeacrhInputConatiner>
       <StyledSearchImg src={SearchIcon} alt="돋보기아이콘" />
@@ -20,6 +32,7 @@ const SeacrhBar = ({ placeholder, value, onChange }: seacrhBarProps) => {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        onKeyDown={handleKeyDown}
       />
     </StyledSeacrhInputConatiner>
   );
