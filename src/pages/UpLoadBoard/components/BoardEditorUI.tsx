@@ -1,6 +1,7 @@
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { uploadImage } from '@api/image';
 import CustomBoardToolBar from './customQuali/CustomBoardToolBar';
 import { CUSTUM_ICONS } from './customQuali/quali.styled.icon';
 import './customQuali/quill-custom.css';
@@ -13,14 +14,45 @@ interface BoardEditorUIProps {
 }
 
 const BoardEditorUI = ({ value, onChange }: BoardEditorUIProps) => {
+  const quillRef = useRef<ReactQuill | null>(null);
+
+  const imageHandler = () => {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/*');
+    input.click();
+
+    input.onchange = async () => {
+      const file = input.files?.[0];
+      if (file) {
+        try {
+          const url = await uploadImage(file);
+          const quill = quillRef.current?.getEditor();
+          const range = quill?.getSelection();
+          if (range) {
+            quill?.insertEmbed(range.index, 'image', url);
+          }
+        } catch (error) {
+          alert('Image upload failed.');
+        }
+      }
+    };
+  };
   const modules = useMemo(() => {
     return {
-      toolbar: '#toolbar',
+      toolbar: {
+        container: '#toolbar',
+        handlers: {
+          image: imageHandler,
+        },
+      },
     };
   }, []);
+
   return (
     <>
       <ReactQuill
+        ref={quillRef}
         theme="snow"
         modules={modules}
         value={value}

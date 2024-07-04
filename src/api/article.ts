@@ -19,7 +19,6 @@ export const getArticles = async (
 };
 
 export const postArticle = async (payload: {
-  image: string;
   content: string;
   title: string;
 }) => {

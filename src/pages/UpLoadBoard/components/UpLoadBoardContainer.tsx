@@ -39,7 +39,6 @@ const UploadBoardContainer: React.FC = () => {
 
   const submitPost = async () => {
     const payload = {
-      image: 'https://example.com/image.jpg', // 임시
       content: content,
       title: title,
     };
