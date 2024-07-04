@@ -1,5 +1,5 @@
-// import React, { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import logoImg from '@assets/images/logo.svg';
 import HamburgerContainer from './Hamburger/HamburgerContainer';
 import {
@@ -13,17 +13,20 @@ import {
 import Nav from './Nav/NavUI';
 import NotificationsDropdownContainer from './NotificationsDropdown/NotificationsDropdownContainer';
 import ProfileDropdownContainer from './ProfileDropdown/ProfileDropdownContainer';
+import { userType } from '@api/user';  // userType을 임포트합니다.
 
 interface HeaderProps {
   isLoggedIn: boolean;
   handleLogin: () => void;
   handleLogout: () => void;
+  user: userType | null;
 }
 
 const Header: React.FC<HeaderProps> = ({
   isLoggedIn,
   handleLogin,
   handleLogout,
+  // user,
 }) => {
   return (
     <header>
@@ -58,7 +61,6 @@ const Header: React.FC<HeaderProps> = ({
           </StyledHamburger>
         </StyledRightSide>
       </StyledHeaderWrap>
-      <Outlet />
     </header>
   );
 };

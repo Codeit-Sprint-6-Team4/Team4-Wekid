@@ -1,22 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from './Header';
+import { useAuth } from '@context/authContext';
 
 const HeaderContainer: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
+  const { isLoggedIn, login, logout, user } = useAuth();
 
   return (
     <Header
       isLoggedIn={isLoggedIn}
-      handleLogin={handleLogin}
-      handleLogout={handleLogout}
+      handleLogin={login}
+      handleLogout={logout}
+      user={user}
     />
   );
 };
