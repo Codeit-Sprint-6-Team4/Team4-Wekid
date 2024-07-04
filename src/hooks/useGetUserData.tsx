@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { AxiosResponse } from 'axios';
 import Cookies from 'js-cookie';
 import { userType } from '@api/user';
 import { getUserMe } from '@api/user';
