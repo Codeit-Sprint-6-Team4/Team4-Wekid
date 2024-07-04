@@ -28,7 +28,8 @@ const UserLink: React.FC<UserLinkProps> = ({
 
   const url = `${baseURL}${code}`;
 
-  const handleLinkClick = () => {
+  const handleLinkClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
     navigator.clipboard
       .writeText(url)
       .then(() => {
@@ -49,7 +50,7 @@ const UserLink: React.FC<UserLinkProps> = ({
       {copied && (
         <Snackbar
           type={type}
-          visible={snackbarVisible}
+          $visible={snackbarVisible}
           position={position}
           top={top}
           bottom={bottom}
