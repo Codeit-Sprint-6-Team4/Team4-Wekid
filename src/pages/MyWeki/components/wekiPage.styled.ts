@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { StyledButton } from '@components/button/Button.styled';
+import { StyledUserLinkWrapper } from '@pages/WekiList/components/UserCard.styled';
 import { theme } from '@styles/theme';
 import { media } from '@utils/media';
 
@@ -62,4 +63,8 @@ export const StyledWekiHeader = styled.div`
         }
       }
   `}
+`;
+
+export const StyledMyWikiUserLinkWrapper = styled(StyledUserLinkWrapper)`
+  position: initial;
 `;

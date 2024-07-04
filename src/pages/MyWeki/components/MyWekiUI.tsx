@@ -8,6 +8,7 @@ import { userType } from '@api/user';
 import Button from '@components/button/Button';
 import Modal from '@components/modal/Modal';
 import Snackbar from '@components/snackbar/Snackbar';
+import UserLink from '@components/userlink/UserLink';
 import isSameProfile from '@utils/isSameProfile';
 import EditorUI from './EditorUI';
 import ProfileUI from './ProfileUI';
@@ -16,6 +17,7 @@ import {
   StyledWekiWrap,
   StyledWekiContent,
   StyledWekiHeader,
+  StyledMyWikiUserLinkWrapper,
 } from './wekiPage.styled';
 
 interface MyeWekiUIProps {
@@ -79,6 +81,12 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
                   위키참여하기
                 </Button>
               </div>
+
+              {typeof code === 'string' && (
+                <StyledMyWikiUserLinkWrapper>
+                  <UserLink code={code} />
+                </StyledMyWikiUserLinkWrapper>
+              )}
             </StyledWekiHeader>
           )}
           {/* {!(
