@@ -101,7 +101,7 @@ export const patchProfile = async (
       birthday: profile.birthday,
       sns: profile.sns,
       job: profile.job,
-      mbti: profile.city,
+      mbti: profile.mbti,
       city: profile.city,
       image: profile.image,
       content: content,

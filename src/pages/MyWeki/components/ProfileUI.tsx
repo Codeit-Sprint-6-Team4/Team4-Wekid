@@ -143,7 +143,7 @@ const ProfileUI = ({
         <StyledProfileData $isMyprofile={isMyprofile} $isEdit={isEditMode}>
           <label>혈액형</label>
           <StyledInput
-            name=""
+            name="bloodType"
             onChange={onChangeProfileInput}
             width={239}
             height={52}
