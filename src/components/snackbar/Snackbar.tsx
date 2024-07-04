@@ -8,7 +8,14 @@ export interface SnackbarContainerProps {
   right?: string;
   bottom?: string;
   left?: string;
-  fadeTime?: number;
+  media?: {
+    mobile?: {
+      top?: string;
+      right?: string;
+      bottom?: string;
+      left?: string;
+    };
+  };
 }
 
 const messages = {
@@ -25,6 +32,7 @@ const Snackbar = ({
   right,
   bottom,
   left,
+  media,
 }: SnackbarContainerProps) => {
   const message = messages[type];
 
@@ -37,6 +45,7 @@ const Snackbar = ({
       right={right}
       bottom={bottom}
       left={left}
+      media={media}
     >
       {message}
     </SnackbarStyled>
