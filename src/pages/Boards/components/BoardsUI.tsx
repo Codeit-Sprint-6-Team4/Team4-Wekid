@@ -63,7 +63,7 @@ const BoardsUI: React.FC<BoardsUIProps> = ({
       </StyledBoardsTitleContainer>
       <StyledBestArticleContainer>
         {bestArticles.map((article) => (
-          <BestArticleCard key={article.id} article={article} />
+          <BestArticleCard myUserData={myUserData}key={article.id} article={article} />
         ))}
       </StyledBestArticleContainer>
       <StyledBoardsFilterBar>
