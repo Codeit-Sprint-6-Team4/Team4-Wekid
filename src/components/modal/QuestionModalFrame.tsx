@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
+import { AxiosError } from 'axios';
+import { errorMessageType } from '@api/profile';
 import Button from '@components/button/Button';
 import {
   StyledQuestionContent,
@@ -13,23 +15,38 @@ import {
 import { theme } from '@styles/theme';
 
 interface QuestionModalContentProps {
-  question?: string;
-  correctAnswer?: string;
-  onConfirm: (answer: string) => void;
+  securityQuestion: string;
+  onConfirm: (answer: string, id: string) => Promise<string | undefined>;
+  answer: string;
+  id: string;
+  setAnswer: (e: ChangeEvent<HTMLInputElement>) => void;
+
+  confirmAnswer: () => void;
 }
 
-const QuestionModalContent = ({ onConfirm }: QuestionModalContentProps) => {
-  const [answer, setAnswer] = useState('');
-  const [question, setQuestion] = useState('특별히 싫어하는 음식은?');
-  const [correctAnswer, setCorrectAnswer] = useState('미나리');
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+const QuestionModalContent = ({
+  securityQuestion,
+  onConfirm,
+  confirmAnswer,
+  answer,
+  id,
+  setAnswer,
+}: QuestionModalContentProps) => {
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [isFocused, setIsFocused] = useState(false);
-
-  const handleConfirm = () => {
-    if (answer === correctAnswer) {
-      onConfirm(answer);
-    } else {
-      setErrorMessage('정답이 아닙니다. 다시 시도해주세요.');
+  const handleConfirm = async () => {
+    try {
+      const message = await onConfirm(answer, id);
+      if (message) {
+        confirmAnswer();
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 400) {
+          const errorMessage = error.response.data as errorMessageType;
+          setErrorMessage(errorMessage.message);
+        }
+      }
     }
   };
 
@@ -50,7 +67,7 @@ const QuestionModalContent = ({ onConfirm }: QuestionModalContentProps) => {
         위키를 작성해 보세요.
       </StyledLockText>
 
-      <StyledQeustionTitle>{question}</StyledQeustionTitle>
+      <StyledQeustionTitle>{securityQuestion}</StyledQeustionTitle>
 
       <form
         onSubmit={(e) => {
@@ -60,10 +77,7 @@ const QuestionModalContent = ({ onConfirm }: QuestionModalContentProps) => {
       >
         <StyledAnswerInput
           value={answer}
-          onChange={(e) => {
-            setAnswer(e.target.value);
-            setErrorMessage(null);
-          }}
+          onChange={setAnswer}
           onKeyDown={handleKeyPress}
           placeholder="답을 입력하세요"
           onFocus={() => setIsFocused(true)}

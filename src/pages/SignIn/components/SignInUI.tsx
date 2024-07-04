@@ -43,7 +43,7 @@ const SignInUI: React.FC<signInProps> = ({ userData, onChange, onSubmit }) => {
         </Button>
       </StyledSignInForm>
       <StyledLinkMessageWrap>
-        <StyledLinkMessage>회원가입</StyledLinkMessage>
+        <StyledLinkMessage href="/signup">회원가입</StyledLinkMessage>
       </StyledLinkMessageWrap>
     </StyledSignInWrap>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Weki = () => {
+const Wiki = () => {
   return <div>상세위키</div>;
 };
 
-export default Weki;
+export default Wiki;

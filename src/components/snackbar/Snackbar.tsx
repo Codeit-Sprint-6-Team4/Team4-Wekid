@@ -1,8 +1,14 @@
-import SnackbarContainer from './SnackbarContainer';
+import { SnackbarStyled } from './Sanckbar.styled';
 
-interface SnackbarProps {
+export interface SnackbarContainerProps {
   type: 'info' | 'success' | 'error';
-  visible: boolean;
+  $visible: boolean;
+  position?: string;
+  top?: string;
+  right?: string;
+  bottom?: string;
+  left?: string;
+  fadeTime?: number;
 }
 
 const messages = {
@@ -11,9 +17,30 @@ const messages = {
   error: '다른 친구가 편집하고 있어요. 나중에 다시 시도해 주세요.',
 };
 
-const Snackbar: React.FC<SnackbarProps> = ({ type, visible }) => {
+const Snackbar = ({
+  type,
+  $visible,
+  position,
+  top,
+  right,
+  bottom,
+  left,
+}: SnackbarContainerProps) => {
   const message = messages[type];
-  return <SnackbarContainer message={message} type={type} visible={visible} />;
+
+  return (
+    <SnackbarStyled
+      type={type}
+      $visible={$visible}
+      position={position}
+      top={top}
+      right={right}
+      bottom={bottom}
+      left={left}
+    >
+      {message}
+    </SnackbarStyled>
+  );
 };
 
 export default Snackbar;
