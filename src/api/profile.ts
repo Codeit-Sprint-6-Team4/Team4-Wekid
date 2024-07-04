@@ -1,5 +1,6 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import instance from './axios';
+import { userType } from './user';
 
 export interface profileType {
   updatedAt: string;

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { forwardRef, useEffect, useMemo, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import CustomToolBar from './customQuali/CustomToolBar';
@@ -14,7 +14,7 @@ interface WritingUI {
 
 CUSTUM_ICONS;
 
-const EditorUI = ({ content, name, onSave, onCancel }: WritingUI) => {
+const EditorUI =forwardRef<ReactQuill,WritingUI>(({ content, name, onSave, onCancel }, ref) => {
   const [values, setValues] = useState('');
 
   const modules = useMemo(() => {
@@ -35,6 +35,7 @@ const EditorUI = ({ content, name, onSave, onCancel }: WritingUI) => {
     <>
       <CustomToolBar name={name} onCancel={onCancel} onSave={onSave} />
       <ReactQuill
+        ref={ref}
         theme="snow"
         modules={modules}
         value={values}
@@ -42,6 +43,6 @@ const EditorUI = ({ content, name, onSave, onCancel }: WritingUI) => {
       />
     </>
   );
-};
+});
 
 export default EditorUI;

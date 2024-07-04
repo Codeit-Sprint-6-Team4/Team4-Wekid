@@ -1,106 +1,69 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { AxiosError } from 'axios';
-import {
-  getProfie,
-  profileType,
-  getProfileEditCheck,
-  profileCheckType,
-  postEditingProfile,
-} from '@api/profile';
+import React, { ChangeEvent, useState, useRef, useContext } from 'react';
+import ReactQuill from 'react-quill';
+import { MyWekiDataContext } from '@context/myWekiDataContext';
+import { userType } from '@api/user';
+import useMywekiAPi from '@hooks/useMywekiAPi';
 import MyWekiUI from './MyWekiUI';
 
 const MyWekiContainer = () => {
-  const { code } = useParams();
-  const [profile, setProfile] = useState<profileType | null>(null);
-  const [isEditNow, setIsEditNow] = useState<profileCheckType | string>('');
-  const [isEditMode, setIsEditMode] = useState(true);
+  const { profile, isEditNow, setProfile, receiveProfile } = useMywekiAPi();
+  const userData = useContext<userType | null>(MyWekiDataContext);
+  const [isEditMode, setIsEditMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInput, setModalInput] = useState('');
 
+  const quailRef = useRef<ReactQuill>(null);
+
   const onParticipate = () => {
-    if (!isEditNow) {
-      // setIsEdit(true);
-      setIsModalOpen(true);
-      serveEditingProfile();
+    if (typeof isEditNow !== 'string' && userData !== null) {
+      if (isEditNow.userId === userData.profile?.id) {
+        setIsModalOpen(true);
+        return;
+      }
     }
+    setIsModalOpen(true);
   };
 
   const onCancel = () => {
     setIsEditMode(false);
+    receiveProfile();
   };
 
   const onChangeModalInput = (e: ChangeEvent<HTMLInputElement>) => {
     setModalInput(e.target.value);
+  };
+  const onChangeProfileInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name } = e.target;
+    if (profile) {
+      setProfile({ ...profile, [name]: e.target.value });
+    }
   };
 
   const onModalClose = () => {
     setIsModalOpen(false);
   };
 
-  const confirmAnswer = () => {
-    setIsModalOpen(false);
-    setIsEditMode(true);
-  };
-
-  const onSave = () => {};
-
-  const receiveProfile = async () => {
-    try {
-      if (typeof code === 'string') {
-        const result = await getProfie(code);
-        setProfile(result);
-      }
-    } catch (error) {
-      if (error instanceof AxiosError) {
-      }
+  const onSave = () => {
+    if (quailRef.current) {
+      console.log(quailRef.current.value);
     }
   };
-
-  const receiveProfileEditCheck = async () => {
-    console.log('시작');
-    try {
-      if (typeof code === 'string') {
-        const response = await getProfileEditCheck(code);
-        setIsEditNow(response);
-      }
-    } catch (error) {
-      if (error instanceof AxiosError) {
-      }
-    }
-  };
-
-  const serveEditingProfile = async () => {
-    try {
-      if (typeof code === 'string') {
-        const response = await postEditingProfile(code, 'test');
-      }
-    } catch (error) {
-      if (error instanceof AxiosError) {
-      }
-    }
-  };
-
-  useEffect(() => {
-    receiveProfile();
-    receiveProfileEditCheck();
-    const timeCheck = setInterval(receiveProfileEditCheck, 300000);
-    return () => clearInterval(timeCheck);
-  }, []);
 
   return (
     <MyWekiUI
+      ref={quailRef}
       profile={profile}
       isEditMode={isEditMode}
       isEditNow={isEditNow}
       isModalOpen={isModalOpen}
       modalInput={modalInput}
+      setIsEditMode={setIsEditMode}
       onChangeModalInput={onChangeModalInput}
+      onChangeProfileInput={onChangeProfileInput}
       onParticipate={onParticipate}
       onCancel={onCancel}
       onSave={onSave}
       onModalClose={onModalClose}
-      confirmAnswer={confirmAnswer}
     />
   );
 };
