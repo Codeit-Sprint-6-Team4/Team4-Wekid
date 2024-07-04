@@ -12,6 +12,7 @@ export const StyledWekiWrap = styled.div`
 `;
 
 export const StyledWekiContent = styled.div`
+  position: relative;
   margin: 0px auto 0px;
   width: 1120px; /* width: 70vw; */
   ${media('tablet')`
@@ -24,6 +25,7 @@ export const StyledWekiContent = styled.div`
 `;
 
 export const StyledWekiHeader = styled.div`
+  position: relative;
   margin-top: 50px;
   width: 100%;
   display: flex;

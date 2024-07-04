@@ -7,6 +7,7 @@ import { postEditingProfile } from '@api/profile';
 import { userType } from '@api/user';
 import Button from '@components/button/Button';
 import Modal from '@components/modal/Modal';
+import Snackbar from '@components/snackbar/Snackbar';
 import isSameProfile from '@utils/isSameProfile';
 import EditorUI from './EditorUI';
 import ProfileUI from './ProfileUI';
@@ -52,15 +53,14 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
   ) => {
     const userData = useContext<userType | null>(MyWekiDataContext);
     const { code } = useParams();
-
-    let testIsMyProfile: boolean = false;
+    let isMyProfile: boolean = false;
 
     if (
       userData !== null &&
       typeof userData.profile?.code === 'string' &&
       code
     ) {
-      testIsMyProfile = isSameProfile(userData.profile.code, code);
+      isMyProfile = isSameProfile(userData.profile.code, code);
     }
 
     return (
@@ -81,12 +81,16 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
               </div>
             </StyledWekiHeader>
           )}
-
-          {/* <Snackbar
-          visible={isEditNow ? true : false}
-          type={'info'}
-          message="앞 사람의 편집이 끝나면 위키 참여가 가능합니다."
-        /> */}
+          {!(
+            typeof isEditNow !== 'string' && isEditNow.userId === userData?.id
+          ) && (
+            <Snackbar
+              type="error"
+              position="absolute"
+              top="10px"
+              visible={isEditNow ? true : false}
+            />
+          )}
 
           {isModalOpen && (
             <Modal
@@ -127,7 +131,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
         <ProfileUI
           onChangeProfileInput={onChangeProfileInput}
           isEditMode={isEditMode}
-          isMyprofile={testIsMyProfile}
+          isMyprofile={isMyProfile}
           nationality={profile?.nationality}
           family={profile?.family}
           bloodType={profile?.bloodType}

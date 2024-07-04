@@ -64,7 +64,6 @@ export const SnackbarStyled = styled.div<SnackbarContainerProps>`
           : `url(${errorIcon})`};
   }
   @media (max-width: 768px) {
-    top: 100px;
   }
 
   @media (max-width: 480px) {

@@ -1,3 +1,4 @@
+import ReactQuill from 'react-quill';
 import { AxiosError, AxiosResponse } from 'axios';
 import instance from './axios';
 import { userType } from './user';
@@ -68,20 +69,42 @@ export const postEditingProfile = async (
   securityAnswer: string,
 ) => {
   const URL = `/profiles/${code}/ping`;
+
   try {
     const response: AxiosResponse<string> = await instance.post(URL, {
       securityAnswer: securityAnswer,
     });
-
     return response.data;
   } catch (error) {
     if (error instanceof AxiosError) {
       if (error.response?.status === 400) {
         const response = error.response.data as errorMessageType;
         console.error(response.message);
-
         throw error;
       }
     }
   }
+};
+
+export const patchProfile = async (
+  code: string,
+  profile: profileType,
+  content: ReactQuill.Value,
+) => {
+  const URL = `/profiles/${code}`;
+  try {
+    await instance.patch(URL, {
+      nationality: profile.nationality,
+      family: profile.family,
+      bloodType: profile.bloodType,
+      nickname: profile.nickname,
+      birthday: profile.birthday,
+      sns: profile.sns,
+      job: profile.job,
+      mbti: profile.city,
+      city: profile.city,
+      image: profile.image,
+      content: content,
+    });
+  } catch (error) {}
 };

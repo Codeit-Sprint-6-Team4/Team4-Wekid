@@ -11,12 +11,11 @@ const useMywekiAPi = () => {
   const { code } = useParams();
   const [profile, setProfile] = useState<profileType | null>(null);
   const [isEditNow, setIsEditNow] = useState<profileCheckType | string>('');
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const receiveProfile = async () => {
     try {
       if (typeof code === 'string') {
-        console.log('fuck');
-
         const result = await getProfie(code);
         setProfile(result);
       }
@@ -44,8 +43,15 @@ const useMywekiAPi = () => {
     receiveProfileEditCheck();
     const timeCheck = setInterval(receiveProfileEditCheck, 300000);
     return () => clearInterval(timeCheck);
-  }, []);
-  return { profile, isEditNow, setProfile, receiveProfile };
+  }, [isEditMode]);
+  return {
+    profile,
+    isEditNow,
+    setProfile,
+    receiveProfile,
+    isEditMode,
+    setIsEditMode,
+  };
 };
 
 export default useMywekiAPi;
