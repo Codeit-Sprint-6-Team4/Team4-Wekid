@@ -63,14 +63,13 @@ export const SnackbarStyled = styled.div<SnackbarContainerProps>`
           ? `url(${successIcon})`
           : `url(${errorIcon})`};
   }
-  @media (max-width: 768px) {
-    top: 100px;
-  }
 
   @media (max-width: 480px) {
     position: fixed;
-    top: auto;
-    bottom: 80px;
+    top: ${({ media }) => media?.mobile?.top || 'auto'};
+    right: ${({ media }) => media?.mobile?.right || 'auto'};
+    bottom: ${({ media }) => media?.mobile?.bottom || '80px'};
+    left: ${({ media }) => media?.mobile?.left || '50%'};
     padding: 11px 15px;
     font: ${({ theme }) => theme.fonts['pretendard/xs-12px-regular']};
 
