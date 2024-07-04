@@ -70,6 +70,7 @@ const BoardsUI: React.FC<BoardsUIProps> = ({
         <SeacrhBar
           placeholder="제목을 검색해 주세요"
           onChange={handleSearchChange}
+          onSearch={handleSearchSubmit}
           value={searchKeyword}
         ></SeacrhBar>
         <Button
