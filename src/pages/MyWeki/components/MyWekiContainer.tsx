@@ -22,10 +22,10 @@ const MyWekiContainer = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInput, setModalInput] = useState('');
-  const { code } = useParams();
-  const quailRef = useRef<ReactQuill>(null);
   const [editImage, setEditImage] = useState<File | null>(null);
   const [previewImage, setPreviewImage] = useState<string>('');
+  const { code } = useParams();
+  const quailRef = useRef<ReactQuill>(null);
 
   const onChangeProfileImage = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files !== null) {
@@ -45,7 +45,6 @@ const MyWekiContainer = () => {
         return;
       }
     }
-
     setIsModalOpen(true);
   };
 
@@ -54,15 +53,12 @@ const MyWekiContainer = () => {
       if (typeof code === 'string' && quailRef.current && profile !== null) {
         if (code === userData?.profile?.code && editImage != null) {
           const response = await postImage(editImage);
-
           if (typeof response === 'string') {
             await patchProfile(code, profile, quailRef.current.value, response);
             return;
           }
         }
-        console.log('no');
-
-        // await patchProfile(code, profile, quailRef.current.value);
+        await patchProfile(code, profile, quailRef.current.value);
       }
     } catch (error) {}
   };

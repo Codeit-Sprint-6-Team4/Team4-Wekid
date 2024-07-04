@@ -51,8 +51,6 @@ const ProfileUI = ({
   onChangeProfileImage,
   previewImage,
 }: profileUIProps & myProfileProps) => {
-  console.log('Re');
-
   const [isClicked, setIsClicked] = useState(false);
 
   return (
@@ -80,6 +78,7 @@ const ProfileUI = ({
         id="StyledProfileImageInput"
         type="file"
         name="profileImage"
+        accept=".jpg, .jpeg, .png"
         onChange={onChangeProfileImage}
       />
 

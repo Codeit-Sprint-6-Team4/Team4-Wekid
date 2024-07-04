@@ -59,8 +59,6 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
     },
     ref,
   ) => {
-    console.log('Dad');
-
     const userData = useContext<userType | null>(MyWekiDataContext);
     const { code } = useParams();
     let isMyProfile: boolean = false;
