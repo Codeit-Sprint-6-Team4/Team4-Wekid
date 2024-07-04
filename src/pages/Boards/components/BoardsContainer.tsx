@@ -32,7 +32,7 @@ const BoardsContainer = () => {
     { id: 2, label: '좋아요순' },
   ];
   const handleNavigateToAddBoard = () => {
-    navigate('/boards/upload');
+    navigate('/addboard');
   };
   const handleSelectSortOption = (option: { id: number; label: string }) => {
     setSortType(option.label === '최신순' ? 'recent' : 'like');
