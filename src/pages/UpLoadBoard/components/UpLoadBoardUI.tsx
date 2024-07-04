@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '@components/button/Button';
 import BoardEditorUI from './BoardEditorUI';
 import {
@@ -41,6 +42,12 @@ const UploadBoardUI: React.FC<BoardUIProps> = ({
   onContentChange,
   onSubmit,
 }) => {
+  const navigate = useNavigate();
+
+  const handleGoList = () => {
+    navigate('/boards');
+  };
+
   return (
     <StyledContainerWapper>
       <StyledContainer>
@@ -69,7 +76,9 @@ const UploadBoardUI: React.FC<BoardUIProps> = ({
           <BoardEditorUI value={content} onChange={onContentChange} />
         </StyledTextForm>
       </StyledContainer>
-      <Button $secondary>목록으로</Button>
+      <Button $secondary onClick={handleGoList}>
+        목록으로
+      </Button>
     </StyledContainerWapper>
   );
 };
