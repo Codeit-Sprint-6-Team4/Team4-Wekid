@@ -14,6 +14,12 @@ const GlobalStyle = createGlobalStyle`
     src: url('/public/assets/fonts/PretendardVariable.woff2') format('woff2');
   }
 
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
   html {
     font-size: 62.5%;
   }
@@ -167,10 +173,11 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     padding: 0 6rem;
     margin: 6rem auto;
     max-width: 1300px;
+    width: 100%;
+    flex: 1;
 
   ${media('tablet')`
     margin: 4rem auto;
