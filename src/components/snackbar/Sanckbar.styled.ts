@@ -24,8 +24,8 @@ export const SnackbarStyled = styled.div<SnackbarContainerProps>`
         : type === 'success'
           ? theme.colors.main[500]
           : theme.colors.red[500]};
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
-  visibility: ${({ visible }) => (visible ? 'visible' : 'hidden')};
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  visibility: ${({ $visible }) => ($visible ? 'visible' : 'hidden')};
   position: ${({ position }) => position || 'fixed'};
   top: ${({ top }) => top || 'auto'};
   right: ${({ right }) => right || 'auto'};
