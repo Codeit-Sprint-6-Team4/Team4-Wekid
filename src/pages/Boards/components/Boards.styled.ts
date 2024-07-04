@@ -3,7 +3,19 @@ import { media } from '@utils/media';
 
 export const StyledBoardsContainer = styled.div`
   width: 1060px;
-  margin: 60px auto;
+  margin: 60px auto 0;
+
+  ${media('tablet')`
+    width: 624px;
+  `}
+  ${media('mobile')`
+    width: 335px;
+  `}
+`;
+
+export const StyledBoardsContainer2 = styled.div`
+  width: 1060px;
+  margin: 0px auto;
 
   ${media('tablet')`
     width: 624px;
@@ -19,16 +31,17 @@ export const StyledBoardsTitleContainer = styled.div`
 `;
 
 export const StyledBoardsTitle = styled.span`
-  font: ${(props) => props.theme.fonts['pretendard/3xl-32px-semibold']}
+  font: ${(props) => props.theme.fonts['pretendard/3xl-32px-semibold']};
 `;
 
 export const StyledBestArticleContainer = styled.div`
-  width: 100%;
-  margin-top: 60px;
+  width: 1060px;
+  margin: 60px auto 0px;
   display: flex;
   justify-content: space-between;
 
   ${media('tablet')`
+    width: 624px;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-around;
@@ -37,6 +50,7 @@ export const StyledBestArticleContainer = styled.div`
     }
   `}
   ${media('mobile')`
+    width: 100%;
     flex-wrap: nowrap;
     overflow-x: auto;
     & > * {
@@ -44,7 +58,6 @@ export const StyledBestArticleContainer = styled.div`
       margin-right: 20px;
   }
   `}
-
 `;
 
 export const StyledBoardsFilterBar = styled.div`
