@@ -1,13 +1,12 @@
 import React, { ChangeEvent, forwardRef, useContext } from 'react';
 import ReactQuill from 'react-quill';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { MyWekiDataContext } from '@context/myWekiDataContext';
 import { profileType, profileCheckType } from '@api/profile';
 import { postEditingProfile } from '@api/profile';
 import { userType } from '@api/user';
 import Button from '@components/button/Button';
 import Modal from '@components/modal/Modal';
-import Snackbar from '@components/snackbar/Snackbar';
 import UserLink from '@components/userlink/UserLink';
 import isSameProfile from '@utils/isSameProfile';
 import EditorUI from './EditorUI';
@@ -18,6 +17,7 @@ import {
   StyledWekiContent,
   StyledWekiHeader,
   StyledMyWikiUserLinkWrapper,
+  StyledNoContentWrapper,
 } from './wekiPage.styled';
 
 interface MyeWekiUIProps {
@@ -116,7 +116,13 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
           )}
 
           <StyledMarkUpWrap>
-            {!isEditMode && (
+            {!isEditMode && !profile?.content && (
+              <StyledNoContentWrapper>
+                <p>아직 작성된 내용이 없네요. 위키에 참여해 보세요!</p>
+                <Link to={'/mypage'}>시작하기</Link>
+              </StyledNoContentWrapper>
+            )}
+            {!isEditMode && profile?.content && (
               <div
                 dangerouslySetInnerHTML={{
                   __html: profile ? profile.content : '',

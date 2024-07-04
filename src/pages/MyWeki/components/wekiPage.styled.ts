@@ -56,7 +56,6 @@ export const StyledWekiHeader = styled.div`
           font-size: 32px;
           color: ${theme.colors.gray[800]};
         }
-          
         ${StyledButton}{
           width:120px;
           height:43px
@@ -67,4 +66,37 @@ export const StyledWekiHeader = styled.div`
 
 export const StyledMyWikiUserLinkWrapper = styled(StyledUserLinkWrapper)`
   position: initial;
+`;
+
+export const StyledNoContentWrapper = styled.div`
+  width: 859px;
+  height: 192px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: ${theme.colors.gray[50]};
+  p {
+    width: 169px;
+    height: 52px;
+    text-align: center;
+    font-family: ${theme.fonts['pretendard/lg-16px-regular']};
+    font-weight: 400;
+    font-size: 16px;
+    color: ${theme.colors.gray[600]};
+  }
+  a {
+    width: 89px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: ${theme.colors.main[500]};
+    color: #ffffffff;
+    font-family: ${theme.fonts['pretendard/lg-14px-semibold']};
+    font-size: 14px;
+  }
 `;
