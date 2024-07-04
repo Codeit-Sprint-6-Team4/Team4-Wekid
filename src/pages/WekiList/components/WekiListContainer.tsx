@@ -61,7 +61,7 @@ const WekiListContainer = () => {
   };
 
   const handleProfileCardClick = (profile: ProfileType) => {
-    navigate(`/weki/${profile.code}`);
+    navigate(`/wiki/${profile.code}`);
   };
 
   return (

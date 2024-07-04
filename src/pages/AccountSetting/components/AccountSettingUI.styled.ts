@@ -43,7 +43,7 @@ export const StyledInputSubtitle = styled.label`
   margin-bottom: 8px;
 `;
 
-export const StyledPasswordInput = styled(StyledInput)<{ hasError: boolean }>`
+export const StyledPasswordInput = styled(StyledInput)<{ $hasError: boolean }>`
   width: 100%;
   height: 49px;
   display: flex;
@@ -51,7 +51,7 @@ export const StyledPasswordInput = styled(StyledInput)<{ hasError: boolean }>`
   gap: 10px;
   border: 1px solid
     ${(props) =>
-      props.hasError ? theme.colors.red[500] : theme.colors.gray[300]};
+      props.$hasError ? theme.colors.red[500] : theme.colors.gray[300]};
 
   &:disabled {
     color: ${theme.colors.gray[50]};

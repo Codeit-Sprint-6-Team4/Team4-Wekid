@@ -24,8 +24,8 @@ export const SnackbarStyled = styled.div<SnackbarContainerProps>`
         : type === 'success'
           ? theme.colors.main[500]
           : theme.colors.red[500]};
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
-  visibility: ${({ visible }) => (visible ? 'visible' : 'hidden')};
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  visibility: ${({ $visible }) => ($visible ? 'visible' : 'hidden')};
   position: ${({ position }) => position || 'fixed'};
   top: ${({ top }) => top || 'auto'};
   right: ${({ right }) => right || 'auto'};
@@ -64,12 +64,15 @@ export const SnackbarStyled = styled.div<SnackbarContainerProps>`
           : `url(${errorIcon})`};
   }
   @media (max-width: 768px) {
+    top: 100px;
   }
 
   @media (max-width: 480px) {
     position: fixed;
-    top: auto;
-    bottom: 80px;
+    top: ${({ media }) => media?.mobile?.top || 'auto'};
+    right: ${({ media }) => media?.mobile?.right || 'auto'};
+    bottom: ${({ media }) => media?.mobile?.bottom || '80px'};
+    left: ${({ media }) => media?.mobile?.left || '50%'};
     padding: 11px 15px;
     font: ${({ theme }) => theme.fonts['pretendard/xs-12px-regular']};
 

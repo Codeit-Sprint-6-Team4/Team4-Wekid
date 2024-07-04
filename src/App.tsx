@@ -16,31 +16,38 @@ import UpLoadBoard from '@pages/UpLoadBoard/UpLoadBoard';
 import Wiki from '@pages/Weki/Wiki';
 import WikiList from '@pages/WekiList/WikiList';
 import { theme } from '@styles/theme';
-import GlobalStyle from './styles/global-styles';
 
 function App() {
   const { myUserData } = useGetUserData();
   return (
     <MyWekiDataContext.Provider value={myUserData}>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
         <BrowserRouter>
           <HeaderContainer />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="login" element={<SignIn />} />
-            <Route path="mypage" element={<AccountSetting />} />
-            <Route path="weki/:code" element={<MyWeki />} />
-            <Route path="wikilist">
-              <Route index element={<WikiList />} />
-              <Route path=":id" element={<Wiki />} />
-            </Route>
-            <Route path="boards">
-              <Route index element={<Boards />} />
-              <Route path=":id" element={<Board />} />
-              <Route path="upload" element={<UpLoadBoard />} />
-            </Route>
+            <Route
+              path="*"
+              element={
+                <main className="layoutWrap">
+                  <Routes>
+                    <Route path="signup" element={<SignUp />} />
+                    <Route path="login" element={<SignIn />} />
+                    <Route path="mypage" element={<AccountSetting />} />
+                    <Route path="wiki/:code" element={<MyWeki />} />
+                    <Route path="wikilist">
+                      <Route index element={<WikiList />} />
+                      <Route path=":id" element={<Wiki />} />
+                    </Route>
+                    <Route path="boards">
+                      <Route index element={<Boards />} />
+                      <Route path=":id" element={<Board />} />
+                      <Route path="upload" element={<UpLoadBoard />} />
+                    </Route>
+                  </Routes>
+                </main>
+              }
+            />
           </Routes>
           <Footer />
         </BrowserRouter>

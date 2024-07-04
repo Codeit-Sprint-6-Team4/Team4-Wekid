@@ -2,13 +2,20 @@ import { SnackbarStyled } from './Sanckbar.styled';
 
 export interface SnackbarContainerProps {
   type: 'info' | 'success' | 'error';
-  visible: boolean;
+  $visible: boolean;
   position?: string;
   top?: string;
   right?: string;
   bottom?: string;
   left?: string;
-  fadeTime?: number;
+  media?: {
+    mobile?: {
+      top?: string;
+      right?: string;
+      bottom?: string;
+      left?: string;
+    };
+  };
 }
 
 const messages = {
@@ -19,24 +26,26 @@ const messages = {
 
 const Snackbar = ({
   type,
-  visible,
+  $visible,
   position,
   top,
   right,
   bottom,
   left,
+  media,
 }: SnackbarContainerProps) => {
   const message = messages[type];
 
   return (
     <SnackbarStyled
       type={type}
-      visible={visible}
+      $visible={$visible}
       position={position}
       top={top}
       right={right}
       bottom={bottom}
       left={left}
+      media={media}
     >
       {message}
     </SnackbarStyled>

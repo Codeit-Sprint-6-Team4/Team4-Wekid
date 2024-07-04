@@ -81,7 +81,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
               </div>
             </StyledWekiHeader>
           )}
-          {!(
+          {/* {!(
             typeof isEditNow !== 'string' && isEditNow.userId === userData?.id
           ) && (
             <Snackbar
@@ -90,7 +90,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
               top="10px"
               visible={isEditNow ? true : false}
             />
-          )}
+          )} */}
 
           {isModalOpen && (
             <Modal
