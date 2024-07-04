@@ -14,35 +14,27 @@ interface WritingUI {
 
 CUSTUM_ICONS;
 
-const EditorUI =forwardRef<ReactQuill,WritingUI>(({ content, name, onSave, onCancel }, ref) => {
-  const [values, setValues] = useState('');
+const EditorUI = forwardRef<ReactQuill, WritingUI>(
+  ({ content, name, onSave, onCancel }, ref) => {
+    const [values, setValues] = useState('');
 
-  const modules = useMemo(() => {
-    return {
-      toolbar: '#toolbar',
-    };
-  }, []);
+    const modules = useMemo(() => {
+      return {
+        toolbar: '#toolbar',
+      };
+    }, []);
 
-  const handleChange = (values: string) => {
-    setValues(values);
-  };
+    useEffect(() => {
+      setValues(content);
+    }, [content]);
 
-  useEffect(() => {
-    setValues(content);
-  }, [content]);
-
-  return (
-    <>
-      <CustomToolBar name={name} onCancel={onCancel} onSave={onSave} />
-      <ReactQuill
-        ref={ref}
-        theme="snow"
-        modules={modules}
-        value={values}
-        onChange={handleChange}
-      />
-    </>
-  );
-});
+    return (
+      <>
+        <CustomToolBar name={name} onCancel={onCancel} onSave={onSave} />
+        <ReactQuill ref={ref} theme="snow" modules={modules} value={values} />
+      </>
+    );
+  },
+);
 
 export default EditorUI;

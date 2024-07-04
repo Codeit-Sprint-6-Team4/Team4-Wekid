@@ -116,7 +116,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
           )}
 
           <StyledMarkUpWrap>
-            {!isEditMode && !profile?.content && (
+            {!isEditMode && profile !== null && !profile?.content && (
               <StyledNoContentWrapper>
                 <p>아직 작성된 내용이 없네요. 위키에 참여해 보세요!</p>
                 <Link to={'/mypage'}>시작하기</Link>
