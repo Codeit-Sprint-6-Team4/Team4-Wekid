@@ -95,16 +95,6 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
               )}
             </StyledWekiHeader>
           )}
-          {/* {!(
-            typeof isEditNow !== 'string' && isEditNow.userId === userData?.id
-          ) && (
-            <Snackbar
-              type="error"
-              position="absolute"
-              top="10px"
-              visible={isEditNow ? true : false}
-            />
-          )} */}
 
           {isModalOpen && (
             <Modal
@@ -120,6 +110,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
               onConfirm={() => postEditingProfile(code!, modalInput)}
             />
           )}
+
           <StyledMarkUpWrap>
             {!isEditMode && profile !== null && !profile?.content && (
               <StyledNoContentWrapper>
@@ -127,12 +118,13 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
                 <Link to={'/mypage'}>시작하기</Link>
               </StyledNoContentWrapper>
             )}
+
             {!isEditMode && profile?.content && (
-              <div className="view ql-editor"
+              <div
                 dangerouslySetInnerHTML={{
                   __html: profile ? profile.content : '',
                 }}
-              ></div>
+              />
             )}
 
             {isEditMode && (

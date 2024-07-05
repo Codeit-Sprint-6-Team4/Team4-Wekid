@@ -47,6 +47,8 @@ const QuestionModalContent = ({
         if (error.response?.status === 400) {
           const errorMessage = error.response.data as errorMessageType;
           setErrorMessage(errorMessage.message);
+        } else if (error.response?.status === 401) {
+          setErrorMessage('로그인을 하셔야 위키를 작성 할 수 있습니다.');
         }
       }
     }

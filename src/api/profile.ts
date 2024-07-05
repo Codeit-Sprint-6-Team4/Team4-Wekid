@@ -81,6 +81,12 @@ export const postEditingProfile = async (
         const response = error.response.data as errorMessageType;
         console.error(response.message);
         throw error;
+      } else if (error.response?.status === 401) {
+        const response = error.response.data as errorMessageType;
+        console.log('로그인 하셔야됨');
+
+        console.error(response.message);
+        throw error;
       }
     }
   }
