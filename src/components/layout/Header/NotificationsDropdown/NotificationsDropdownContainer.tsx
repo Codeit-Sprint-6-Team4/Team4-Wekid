@@ -13,7 +13,7 @@ const NotificationsDropdownContainer: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getNotifications(1, 10); // 예시로 1페이지, 10개씩 가져오기
+        const data = await getNotifications(1, 10);
         setAlarms(data);
       } catch (error) {
         console.error('Failed to fetch notifications:', error);
@@ -42,7 +42,7 @@ const NotificationsDropdownContainer: React.FC = () => {
       handleToggleDropdown={handleToggleDropdown}
       alarms={alarms}
       handleDeleteAlarm={handleDeleteAlarm}
-      dropdownRef={dropdownRef} // ref 전달
+      dropdownRef={dropdownRef}
     />
   );
 };

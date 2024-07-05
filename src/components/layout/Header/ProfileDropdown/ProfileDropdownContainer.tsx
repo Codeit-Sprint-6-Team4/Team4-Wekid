@@ -13,7 +13,8 @@ const ProfileDropdownContainer: React.FC<ProfileDropdownContainerProps> = ({
 }) => {
   const { isOpen, handleToggleDropdown, dropdownRef } = useHeaderDropdown();
   const navigate = useNavigate();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user } = useAuth(); // user를 가져옵니다.
+
 
   const logoutAndRedirect = () => {
     handleLogout();
@@ -27,6 +28,7 @@ const ProfileDropdownContainer: React.FC<ProfileDropdownContainerProps> = ({
       isLoggedIn={isLoggedIn}
       handleLogout={logoutAndRedirect}
       dropdownRef={dropdownRef}
+      user={user}
     />
   );
 };

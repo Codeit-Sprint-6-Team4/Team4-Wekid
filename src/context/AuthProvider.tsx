@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     setIsLoggedIn(false);
     setUser(null);
     Cookies.remove('accessToken');
-    Cookies.remove('refreshToken'); // refreshToken 삭제
+    Cookies.remove('refreshToken');
   };
 
   return (
