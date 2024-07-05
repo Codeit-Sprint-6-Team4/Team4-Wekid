@@ -56,7 +56,14 @@ export const StyledBestArticleContainer = styled.div`
     & > * {
       flex: 0 0 auto;
       margin-right: 20px;
-  }
+    }
+    -ms-overflow-style: none;
+
+    scrollbar-width: none;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
   `}
 `;
 
@@ -79,8 +86,10 @@ export const StyledBoardsFilterBar = styled.div`
 `;
 
 export const StyledBoardsTableContainer = styled.div`
+  height: 540px;
   margin: 60px auto;
   ${media('mobile')`
     margin: 30px auto;
+    height: 820px;
   `}
 `;
