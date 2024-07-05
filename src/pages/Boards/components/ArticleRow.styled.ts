@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { media } from '@utils/media';
 import HeartIcon from 'public/assets/icons/icon-heart.svg';
+import HeartIconFilled from '@assets/icons/icon-heart-fill.svg';
 
 export const StyledRow = styled.div<{ $isHead?: boolean }>`
   width: 1060px;
@@ -114,11 +115,12 @@ export const StyledLikesContainer = styled.div`
   align-items: center;
 `;
 
-export const StyledHeartIcon = styled.span`
+export const StyledHeartIcon = styled.span<{ $isLiked: boolean }>`
   width: 16px;
   height: 16px;
   margin-right: 6px;
   background-image: url(${HeartIcon});
+  background-image: url(${(props) => props.$isLiked ? HeartIconFilled : HeartIcon});
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
