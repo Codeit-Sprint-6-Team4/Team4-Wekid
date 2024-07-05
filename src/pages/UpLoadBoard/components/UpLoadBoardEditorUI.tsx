@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { postImage } from '@api/image';
+import { EditorContainer, QuillWrapper } from './UpLoadBoardEditor.styled';
 import './customQuill/quill-custom.css';
 import { CUSTUM_ICONS } from './customQuill/upLoadBoardCustomQuali.styled.icon';
 import CustomBoardToolBar from './customQuill/upLoadBoardCustomToolBar';
@@ -60,17 +61,19 @@ const BoardEditorUI = ({ value, onChange }: BoardEditorUIProps) => {
   }, []);
 
   return (
-    <>
-      <ReactQuill
-        ref={quillRef}
-        theme="snow"
-        modules={modules}
-        value={value}
-        onChange={onChange}
-        placeholder="본문을 입력해주세요"
-      />
-      <CustomBoardToolBar />
-    </>
+    <EditorContainer>
+      <QuillWrapper>
+        <ReactQuill
+          ref={quillRef}
+          theme="snow"
+          modules={modules}
+          value={value}
+          onChange={onChange}
+          placeholder="본문을 입력해주세요"
+        />
+        <CustomBoardToolBar />
+      </QuillWrapper>
+    </EditorContainer>
   );
 };
 

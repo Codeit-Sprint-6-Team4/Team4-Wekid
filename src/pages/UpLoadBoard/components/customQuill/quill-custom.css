@@ -9,7 +9,6 @@
   background-color: #ffffff;
   border-radius: 21.5px;
   display: flex;
-  position: relative;
   align-items: center;
   /* 기타 등등 */
 }
@@ -17,7 +16,7 @@
 .ql-container {
   border: none !important;
   min-height: 480px;
-  height: 100px;
+  height: auto;
   resize: none;
   margin-top: 10px;
 }
