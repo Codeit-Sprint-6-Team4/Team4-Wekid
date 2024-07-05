@@ -1,14 +1,19 @@
-import axios from './axios';
 import { AxiosError } from 'axios';
-import instance from './axios';
 import Cookies from 'js-cookie';
+import axios from './axios';
+import instance from './axios';
 
-export const getArticles = async (page = 1, pageSize = 10, orderBy = 'recent', keyword = '') => {
+export const getArticles = async (
+  page = 1,
+  pageSize = 10,
+  orderBy = 'recent',
+  keyword = '',
+) => {
   const params = {
     page,
     pageSize,
     orderBy,
-    keyword
+    keyword,
   };
   return axios.get(`/articles`, { params });
 };
@@ -111,6 +116,30 @@ export const deleteArticleLike = async (articleId: string) => {
     console.log('Request Headers:', headers); // 헤더 확인
 
     const response = await instance.delete(URL, { headers });
+    console.log('Response status:', response.status);
+    console.log('Response data:', response.data);
+    return response.data;
+  } catch (error) {
+    const err = error as AxiosError;
+    if (err.response) {
+      console.error('Response error:', err.response.status);
+      console.error('Response data:', err.response.data);
+      throw err;
+    }
+    console.error(error);
+    throw error;
+  }
+};
+
+export const postArticle = async (data: { title: string; content: string }) => {
+  const URL = `/articles`;
+  try {
+    const token = Cookies.get('accessToken');
+    console.log('Using Access Token:', token); // 토큰 확인
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+    console.log('Request Headers:', headers); // 헤더 확인
+
+    const response = await instance.post(URL, data, { headers });
     console.log('Response status:', response.status);
     console.log('Response data:', response.data);
     return response.data;
