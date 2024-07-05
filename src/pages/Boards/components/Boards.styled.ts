@@ -86,8 +86,10 @@ export const StyledBoardsFilterBar = styled.div`
 `;
 
 export const StyledBoardsTableContainer = styled.div`
+  height: 540px;
   margin: 60px auto;
   ${media('mobile')`
     margin: 30px auto;
+    height: 820px;
   `}
 `;
