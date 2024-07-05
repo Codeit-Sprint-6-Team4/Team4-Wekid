@@ -1,8 +1,7 @@
 import React from 'react';
-import UploadBoardContainer from './components/UpLoadBoardContainer';
 
 const UpLoadBoard = () => {
-  return <UploadBoardContainer />;
+  return <div>업로드페이지</div>;
 };
 
 export default UpLoadBoard;

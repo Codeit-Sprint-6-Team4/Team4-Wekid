@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import LandImg4 from '@assets/images/bg_list.png';
@@ -15,6 +16,11 @@ const Home = () => {
   const navigate = useNavigate();
   return (
     <>
+      <Helmet>
+        <title>메인</title>
+        <meta name="description" content="남들이 만드는 나만의 위키" />
+        <meta name="keywords" content="위키드, 나만의 위키, 위키 커뮤니티" />
+      </Helmet>
       <Grid bgColor={`${theme.colors.gray[50]}`} align="center">
         <Paragraph
           font={`${theme.fonts['pretendard/4xl-40px-bold']}`}

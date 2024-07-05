@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import { media } from '@utils/media';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -11,6 +12,12 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Pretendard';
     src: url('/public/assets/fonts/PretendardVariable.woff2') format('woff2');
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
 
   html {
@@ -160,6 +167,26 @@ const GlobalStyle = createGlobalStyle`
   input::-webkit-inner-spin-button,
   input::-webkit-outer-spin-button {
     -webkit-appearance: none;
+  }
+
+  .layoutWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 6rem;
+    margin: 6rem auto;
+    max-width: 1300px;
+    width: 100%;
+    flex: 1;
+
+  ${media('tablet')`
+    margin: 4rem auto;
+    padding: 0 4rem;
+  `}
+  ${media('mobile')`
+    margin: 3.2rem auto;
+    padding: 0rem 2rem;
+  `}
   }
 
   .blind {

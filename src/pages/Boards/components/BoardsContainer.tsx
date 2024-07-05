@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getArticles } from '@api/article';
+import Modal from '@components/modal/Modal';
+import useGetUserData from '@hooks/useGetUserData';
 import BoardsUI from './BoardsUI';
 
 interface Writer {
@@ -19,21 +21,36 @@ export interface Article {
 
 const BoardsContainer = () => {
   const navigate = useNavigate();
+  const { myUserData } = useGetUserData();
   const [articles, setArticles] = useState<Article[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [bestArticles, setBestArticles] = useState<Article[]>([]);
   const [sortType, setSortType] = useState<'recent' | 'like'>('recent');
   const [searchKeyword, setSearchKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const itemsPerPage = 10;
 
   const sortOptions = [
     { id: 1, label: '최신순' },
     { id: 2, label: '좋아요순' },
   ];
+
   const handleNavigateToAddBoard = () => {
-    navigate('/boards/upload');
+    if (!myUserData) {
+      setShowLoginPrompt(true);
+    } else {
+      navigate('/boards/upload');
+    }
   };
+  const handleModalClose = () => {
+    setShowLoginPrompt(false);
+  };
+  const navigateToLogin = () => {
+    navigate('/login');
+    handleModalClose();
+  };
+
   const handleSelectSortOption = (option: { id: number; label: string }) => {
     setSortType(option.label === '최신순' ? 'recent' : 'like');
     setCurrentPage(1);
@@ -88,20 +105,30 @@ const BoardsContainer = () => {
   };
 
   return (
-    <BoardsUI
-      articles={articles}
-      bestArticles={bestArticles}
-      handleNavigateToAddBoard={handleNavigateToAddBoard}
-      handleSearchChange={handleSearchChange}
-      searchKeyword={searchKeyword}
-      handleSearchSubmit={handleSearchSubmit}
-      sortOptions={sortOptions}
-      handleSelectSortOption={handleSelectSortOption}
-      totalCount={totalCount}
-      currentPage={currentPage}
-      itemsPerPage={itemsPerPage}
-      handlePageChange={handlePageChange}
-    />
+    <>
+      <BoardsUI
+        myUserData={myUserData}
+        articles={articles}
+        bestArticles={bestArticles}
+        handleNavigateToAddBoard={handleNavigateToAddBoard}
+        handleSearchChange={handleSearchChange}
+        searchKeyword={searchKeyword}
+        handleSearchSubmit={handleSearchSubmit}
+        sortOptions={sortOptions}
+        handleSelectSortOption={handleSelectSortOption}
+        totalCount={totalCount}
+        currentPage={currentPage}
+        itemsPerPage={itemsPerPage}
+        handlePageChange={handlePageChange}
+      />
+      {showLoginPrompt && (
+        <Modal
+          type="loginPrompt"
+          onClose={handleModalClose}
+          navigateToLogin={navigateToLogin}
+        />
+      )}
+    </>
   );
 };
 
