@@ -16,7 +16,10 @@ import { theme } from '@styles/theme';
 
 interface QuestionModalContentProps {
   securityQuestion: string;
-  onConfirm: (answer: string, id: string) => Promise<string | undefined>;
+  onConfirm: (
+    answer?: string,
+    id?: string,
+  ) => Promise<string | undefined> | void;
   answer: string;
   id: string;
   setAnswer: (e: ChangeEvent<HTMLInputElement>) => void;
