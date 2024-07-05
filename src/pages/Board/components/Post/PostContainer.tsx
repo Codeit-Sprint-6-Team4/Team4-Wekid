@@ -98,7 +98,7 @@ const PostContainer: React.FC = () => {
   };
 
   const handleEdit = () => {
-    navigate(`/boards/upload/${id}`);
+    navigate('/addboard', { state: { post } });
   };
 
   const handleModalClose = () => {

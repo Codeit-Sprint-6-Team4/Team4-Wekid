@@ -1,26 +1,19 @@
 import React, { ChangeEvent } from 'react';
+import { id } from 'date-fns/locale';
 import {
   StyledModalOverlay,
   StyledModalContainer,
   StyledCloseButton,
 } from '@components/modal/modal.styled';
 import ImageUploadModalContent from './ImageUploadModalFrame';
-import LoginPromtModalContent from './LoginPromptModalFrame';
 import NoticeModalContent from './NoticeModalFrame';
 import QuestionModalContent from './QuestionModalFrame';
+import LoginPromtModalContent from './LoginPromptModalFrame';
 
 interface ModalProps {
-  type:
-    | 'imageUpload'
-    | 'question'
-    | 'disconnect'
-    | 'cancelSave'
-    | 'loginPrompt';
+  type: 'imageUpload' | 'question' | 'disconnect' | 'cancelSave' | 'loginPrompt';
   onClose: () => void;
-  onConfirm?: (
-    answer?: string,
-    id?: string,
-  ) => Promise<string | undefined> | void;
+  onConfirm?: (answer: string, id: string) => Promise<string | undefined>;
   setAnswer?: (e: ChangeEvent<HTMLInputElement>) => void;
   confirmAnswer?: () => void;
   navigateToLogin?: () => void;
@@ -59,16 +52,10 @@ const Modal = ({
       break;
     case 'disconnect':
     case 'cancelSave':
-      content = (
-        <NoticeModalContent
-          type={type}
-          onClose={onClose}
-          onConfirm={onConfirm}
-        />
-      );
+      content = <NoticeModalContent type={type} onClose={onClose} />;
       break;
     case 'loginPrompt':
-      content = <LoginPromtModalContent navigateToLogin={navigateToLogin} />;
+      content = <LoginPromtModalContent navigateToLogin={navigateToLogin}/>
       break;
     default:
       content = null;
