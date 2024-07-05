@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 interface NavigationBlockerProps {
@@ -9,27 +9,6 @@ interface NavigationBlockerProps {
 const useNavigationBlocker = ({ when, onConfirm }: NavigationBlockerProps) => {
   const navigate = useNavigate();
   const location = useLocation();
-
-  const handleBeforeUnload = useCallback(
-    (event: BeforeUnloadEvent) => {
-      if (when) {
-        event.preventDefault();
-      }
-    },
-    [when],
-  );
-
-  useEffect(() => {
-    if (when) {
-      window.addEventListener('beforeunload', handleBeforeUnload);
-    } else {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    }
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, [when, handleBeforeUnload]);
 
   useEffect(() => {
     const handlePopState = () => {
