@@ -1,4 +1,6 @@
 import React from 'react';
+import 'react-quill/dist/quill.snow.css';
+import { useNavigate } from 'react-router-dom';
 import Button from '@components/button/Button';
 import {
   PostContentWrapper,
@@ -15,7 +17,6 @@ import {
   PostBody,
   BackToListWrapper,
 } from './PostUIStyled';
-import { useNavigate } from 'react-router-dom';
 
 interface PostUIProps {
   post: {
@@ -32,7 +33,14 @@ interface PostUIProps {
   isMyPost: boolean; // 본인 게시글 여부 추가
 }
 
-const PostUI: React.FC<PostUIProps> = ({ post, likes, onLike, onEdit, onDelete, isMyPost }) => {
+const PostUI: React.FC<PostUIProps> = ({
+  post,
+  likes,
+  onLike,
+  onEdit,
+  onDelete,
+  isMyPost,
+}) => {
   const navigate = useNavigate();
 
   return (
@@ -55,7 +63,9 @@ const PostUI: React.FC<PostUIProps> = ({ post, likes, onLike, onEdit, onDelete, 
           <PostMeta>
             <AuthorInfo>
               <AuthorName>{post.writer.name}</AuthorName>
-              <PostDate>{new Date(post.createdAt).toLocaleDateString()}</PostDate>
+              <PostDate>
+                {new Date(post.createdAt).toLocaleDateString()}
+              </PostDate>
             </AuthorInfo>
             <LikeButtonWrapper>
               <LikeButton $isLiked={post.isLiked} onClick={onLike}>
@@ -65,12 +75,20 @@ const PostUI: React.FC<PostUIProps> = ({ post, likes, onLike, onEdit, onDelete, 
             </LikeButtonWrapper>
           </PostMeta>
         </PostInfoWrapper>
-        <PostBody>{post.content}</PostBody>
+        <PostBody
+          className="view ql-editor"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
       </PostContentWrapper>
       <BackToListWrapper>
-        <Button $secondary onClick={() => {
-          navigate('/boards');
-        }}>목록으로</Button>
+        <Button
+          $secondary
+          onClick={() => {
+            navigate('/boards');
+          }}
+        >
+          목록으로
+        </Button>
       </BackToListWrapper>
     </>
   );
