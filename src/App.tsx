@@ -42,6 +42,7 @@ function App() {
                       <Route index element={<Boards />} />
                       <Route path=":id" element={<Board />} />
                       <Route path="upload" element={<UpLoadBoard />} />
+                      <Route path="upload/:id" element={<UpLoadBoard />} />
                     </Route>
                   </Routes>
                 </main>

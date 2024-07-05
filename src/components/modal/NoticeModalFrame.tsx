@@ -10,10 +10,15 @@ import {
 
 interface NoticeModalContentProps {
   type: 'disconnect' | 'cancelSave';
+  onConfirm: () => void;
   onClose: () => void;
 }
 
-const NoticeModalContent = ({ type, onClose }: NoticeModalContentProps) => {
+const NoticeModalContent = ({
+  type,
+  onClose,
+  onConfirm,
+}: NoticeModalContentProps) => {
   switch (type) {
     case 'disconnect':
       return (
@@ -39,7 +44,7 @@ const NoticeModalContent = ({ type, onClose }: NoticeModalContentProps) => {
             작성하신 모든 내용이 사라집니다.
           </StyledModalSubtitle>
           <StyledButtonContainer>
-            <StyledCustomButton onClick={onClose}>
+            <StyledCustomButton onClick={onConfirm}>
               페이지 나가기
             </StyledCustomButton>
           </StyledButtonContainer>
