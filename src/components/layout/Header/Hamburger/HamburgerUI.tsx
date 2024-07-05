@@ -8,7 +8,6 @@ interface HamburgerUIProps {
   isOpen: boolean;
   handleToggleDropdown: () => void;
   isLoggedIn: boolean;
-  handleLogin: () => void;
   handleLogout: () => void;
   dropdownRef: React.Ref<HTMLDivElement>;
 }
@@ -17,7 +16,6 @@ const HamburgerUI: React.FC<HamburgerUIProps> = ({
   isOpen,
   handleToggleDropdown,
   isLoggedIn,
-  handleLogin,
   handleLogout,
   dropdownRef,
 }) => {
@@ -59,15 +57,7 @@ const HamburgerUI: React.FC<HamburgerUIProps> = ({
           </>
         ) : (
           <StyledMyMenuItem>
-            <Link
-              to="/"
-              onClick={(e) => {
-                e.preventDefault();
-                handleLogin();
-              }}
-            >
-              로그인
-            </Link>
+            <Link to="/login">로그인</Link>
           </StyledMyMenuItem>
         )}
       </StyledMyMenu>

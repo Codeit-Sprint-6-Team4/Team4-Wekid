@@ -9,7 +9,7 @@ interface ProfileDropdownUIProps {
   handleToggleDropdown: () => void;
   isLoggedIn: boolean;
   handleLogout: () => void;
-  dropdownRef: React.Ref<HTMLDivElement>; // ref prop 추가
+  dropdownRef: React.Ref<HTMLDivElement>;
 }
 
 const ProfileDropdownUI: React.FC<ProfileDropdownUIProps> = ({
@@ -25,14 +25,14 @@ const ProfileDropdownUI: React.FC<ProfileDropdownUIProps> = ({
       handleToggleDropdown={handleToggleDropdown}
       buttonIcon={DefaultProfileImg}
       buttonIconAlt="프로필"
-      ref={dropdownRef} // ref 전달
+      ref={dropdownRef}
     >
       <StyledMyMenu>
         <StyledMyMenuItem>
-          <Link to="/weki/:code">내 위키</Link> {/* 절대 경로로 수정 */}
+          <Link to="/weki/:code">내 위키</Link>
         </StyledMyMenuItem>
         <StyledMyMenuItem>
-          <Link to="/mypage">마이페이지</Link> {/* 절대 경로로 수정 */}
+          <Link to="/mypage">마이페이지</Link>
         </StyledMyMenuItem>
         {isLoggedIn ? (
           <StyledMyMenuItem>
