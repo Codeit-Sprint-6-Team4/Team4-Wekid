@@ -14,6 +14,8 @@ import { theme } from '@styles/theme';
 
 const Home = () => {
   const navigate = useNavigate();
+  console.log('리렌더링');
+
   return (
     <>
       <Helmet>
