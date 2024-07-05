@@ -1,43 +1,28 @@
-import { AxiosError } from 'axios';
-import Cookies from 'js-cookie';
+import { AxiosResponse } from 'axios';
 import instance from './axios';
 
-interface UploadImageResponse {
+interface postImageType {
   url: string;
 }
-
-export const uploadImage = async (file: File): Promise<string> => {
-  const URL = '/images/upload';
-  const formData = new FormData();
-  formData.append('file', file);
-
-  for (const [key, value] of formData.entries()) {
-    console.log(`${key}:`, value);
+export const postImage = async (imageData: File | null) => {
+  const URL = `images/upload`;
+  if (imageData === null) {
+    return;
   }
-
-  const token = Cookies.get('accessToken');
-  const headers: Record<string, string> = token
-    ? { Authorization: `Bearer ${token}` }
-    : {};
-
   try {
-    const response = await instance.post<UploadImageResponse>(URL, formData, {
-      headers,
-    });
-    console.log('Server response:', response.data);
+    const response: AxiosResponse<postImageType> = await instance.post(
+      URL,
+      {
+        image: imageData,
+      },
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      },
+    );
     return response.data.url;
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.error('Axios error occurred:', {
-        message: error.message,
-        status: error.response?.status,
-        data: error.response?.data,
-        headers: error.response?.headers,
-        config: error.config,
-      });
-    } else {
-      console.error('Unexpected error occurred:', error);
-    }
-    throw error;
+    console.error(error);
   }
 };

@@ -1,7 +1,7 @@
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { uploadImage } from '@api/image';
+import { postImage } from '@api/image';
 import './customQuill/quill-custom.css';
 import { CUSTUM_ICONS } from './customQuill/upLoadBoardCustomQuali.styled.icon';
 import CustomBoardToolBar from './customQuill/upLoadBoardCustomToolBar';
@@ -23,21 +23,31 @@ const BoardEditorUI = ({ value, onChange }: BoardEditorUIProps) => {
     input.click();
 
     input.onchange = async () => {
-      const file = input.files?.[0];
+      const file = input.files ? input.files[0] : null;
       if (file) {
-        try {
-          const url = await uploadImage(file);
-          const quill = quillRef.current?.getEditor();
-          const range = quill?.getSelection();
-          if (range) {
-            quill?.insertEmbed(range.index, 'image', url);
+        const editor = quillRef.current?.getEditor();
+        const range = editor?.getSelection();
+        if (range) {
+          try {
+            const url = await postImage(file);
+            if (url && editor) {
+              editor.insertEmbed(range.index, 'image', url);
+            }
+          } catch (error) {
+            console.error('Image upload failed:', error);
           }
-        } catch (error) {
-          alert('Image upload failed.');
         }
       }
     };
   };
+
+  useEffect(() => {
+    if (quillRef.current) {
+      const quill = quillRef.current.getEditor();
+      quill.getModule('toolbar').addHandler('image', imageHandler);
+    }
+  }, []);
+
   const modules = useMemo(() => {
     return {
       toolbar: {
