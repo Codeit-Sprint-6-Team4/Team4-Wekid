@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import useHeaderDropdown from '@hooks/useHeaderDropdown';
 import ProfileDropdownUI from './ProfileDropdownUI';
+import { useAuth } from '@context/authContext';
 
 interface ProfileDropdownContainerProps {
   handleLogout: () => void;
@@ -9,17 +11,24 @@ interface ProfileDropdownContainerProps {
 const ProfileDropdownContainer: React.FC<ProfileDropdownContainerProps> = ({
   handleLogout,
 }) => {
-  const { isOpen, handleToggleDropdown, dropdownRef } = useHeaderDropdown(); // ref 포함
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const { isOpen, handleToggleDropdown, dropdownRef } = useHeaderDropdown();
+  const navigate = useNavigate();
+  const { isLoggedIn, user } = useAuth(); // user를 가져옵니다.
+
+
+  const logoutAndRedirect = () => {
+    handleLogout();
+    navigate('/');
+  };
 
   return (
     <ProfileDropdownUI
       isOpen={isOpen}
       handleToggleDropdown={handleToggleDropdown}
       isLoggedIn={isLoggedIn}
-      handleLogout={handleLogout}
-      dropdownRef={dropdownRef} // ref 전달
+      handleLogout={logoutAndRedirect}
+      dropdownRef={dropdownRef}
+      user={user}
     />
   );
 };

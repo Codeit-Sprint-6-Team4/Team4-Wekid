@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postSignIn } from '@api/auth';
 import SignInUI from '@pages/SignIn/components/SignInUI';
+import { useAuth } from '@context/authContext';
 
 export interface logInDataTypes {
   email: string;
@@ -10,6 +11,7 @@ export interface logInDataTypes {
 
 const SignInContainer = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [userData, setUserDate] = useState<logInDataTypes>({
     email: '',
     password: '',
@@ -23,8 +25,10 @@ const SignInContainer = () => {
   const postServerLogIn = async () => {
     try {
       const response = await postSignIn(userData);
+      const { user } = response;
+      login(user); // 상태 업데이트
       alert('로그인이 완료되었습니다.');
-      navigate(-1);
+      navigate(-1); // 메인 페이지로 리디렉션
     } catch (error) {
       console.log('로그인 에러!');
     }

@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 //Components
 import SignInContainer from '@pages/SignIn/components/SignInContainer';
 
