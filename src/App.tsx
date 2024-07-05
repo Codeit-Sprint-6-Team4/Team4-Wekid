@@ -16,12 +16,14 @@ import UpLoadBoard from '@pages/UpLoadBoard/UpLoadBoard';
 import Wiki from '@pages/Weki/Wiki';
 import WikiList from '@pages/WekiList/WikiList';
 import { theme } from '@styles/theme';
-import { AuthProvider } from '@context/AuthProvider';  // AuthProvider를 임포트합니다.
+import { AuthProvider } from '@context/AuthProvider';
+import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
   const { myUserData } = useGetUserData();
 
   return (
+    <HelmetProvider>
     <MyWekiDataContext.Provider value={myUserData}>
       <ThemeProvider theme={theme}>
         <AuthProvider>
@@ -48,6 +50,7 @@ function App() {
         </AuthProvider>
       </ThemeProvider>
     </MyWekiDataContext.Provider>
+    </HelmetProvider>
   );
 }
 

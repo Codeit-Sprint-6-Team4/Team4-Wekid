@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import MyWekiContainer from './components/MyWekiContainer';
 
 const MyWeki = () => {
