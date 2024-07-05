@@ -14,10 +14,12 @@ const AccountSetting = () => {
         />
         <meta name="keywords" content="위키드, 나만의 위키, 위키 커뮤니티" />
       </Helmet>
-      <StyledAccountSettingWrap>
-        <PasswordChangeContainer />
-        <SecurityQuestionContainer />
-      </StyledAccountSettingWrap>
+      <main className="layoutWrap">
+        <StyledAccountSettingWrap>
+          <PasswordChangeContainer />
+          <SecurityQuestionContainer />
+        </StyledAccountSettingWrap>
+      </main>
     </>
   );
 };

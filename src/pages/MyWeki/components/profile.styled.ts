@@ -18,19 +18,16 @@ interface profileImageInputWrapProps {
 
 export const StyeldProfileWrap = styled.div<buttonProps & profileModeProps>`
   position: relative;
-  margin: 50px auto;
-  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+  padding: 4rem;
+  align-items: flex-start;
 
   width: 320px;
   width: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '400px'};
 
-  height: 671px;
-  height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '848px'};
-
   border-radius: 10px;
   border-color: none;
   background-color: #ffffffff;
-  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,28 +36,16 @@ export const StyeldProfileWrap = styled.div<buttonProps & profileModeProps>`
     display: none;
   }
 
-  ${media('tablet')`
+  ${media('desktop')`
     flex-direction:row;
     flex-direction:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'column'};
     
-    margin: 10px auto;
-    
     align-items: ${({ $isClicked }) => ($isClicked ? 'initial' : 'initial')};
     align-items: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'center'};
-
+    padding: 3rem 1.6rem;
     gap:30px;
-    width:624px;
-    height:${({ $isClicked }) => ($isClicked ? '300px' : '130px')};
-    height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '388px'};
-    button{
-      display: initial;
-      display:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'none'};
-      position:absolute;
-      width:24px;
-      height24px;
-      left:312px;
-      bottom:10px
-    }
+    width:100%;
+    height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'auto'};
     `}
 
   ${media('mobile')`
@@ -69,28 +54,31 @@ export const StyeldProfileWrap = styled.div<buttonProps & profileModeProps>`
     
     align-items: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'center'};
 
-    width:335px;
 
-    height:${({ $isClicked }) => ($isClicked ? '300px' : '126px')};
-    height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '511px'};
+    height:${({ $isClicked }) => ($isClicked ? 'auto' : '126px')};
+    height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'auto'};
  
     button{
+    display: initial;
       display:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'none'};
-      left:157px;
+      position:absolute;
+      width:24px;
+      height24px;
+      left:50%;
+      transform: translateX(-50%);
       bottom:10px
     }
     `}
 `;
 
 export const StyeldProfileImage = styled.img<buttonProps & profileModeProps>`
-  margin-top: 50px;
   width: 200px;
   height: 200px;
-  border-radius: 70%;
+  border-radius: 100%;
   display: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'none'};
 
-  ${media('tablet')`
-    margin-top: ${({ $isClicked }) => ($isClicked ? '30px' : '30px')};
+  ${media('desktop')`
+    margin-top: ${({ $isClicked }) => ($isClicked ? '0' : '0')};
     margin-top:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '8px'};
     
     
@@ -110,7 +98,7 @@ export const StyeldProfileImage = styled.img<buttonProps & profileModeProps>`
 export const StyeldProfileImageInputLabel = styled.label<
   buttonProps & profileModeProps & profileImageInputWrapProps
 >`
-  margin-top: 50px;
+  margin: 20px 0;
   width: 200px;
   height: 200px;
   border-radius: 70%;
@@ -124,7 +112,7 @@ export const StyeldProfileImageInputLabel = styled.label<
     width: 100%;
     height: 100%;
   }
-  ${media('tablet')`
+  ${media('desktop')`
     margin-top: ${({ $isClicked }) => ($isClicked ? '30px' : '30px')};
     margin-top:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '8px'};
     
@@ -147,38 +135,34 @@ export const StyledProfileImageInput = styled.input`
 `;
 
 export const StyledProfileDataWrap = styled.div<buttonProps & profileModeProps>`
-  margin: 50px auto;
-
-  width: 209px;
+  margin-top: 40px;
+  width: 100%;
   width: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '320px'};
   display: flex;
-  flex-direction: column;
   overflow: hidden;
-  gap: 10px;
+  gap: 14px;
+  flex-wrap: wrap;
 
-  ${media('tablet')`
+  ${media('desktop')`
 
-    flex-wrap: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'wrap'};
+    flex-direction: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'row'};
 
     overflow: ${({ $isClicked }) => ($isClicked ? 'initial' : '')};
     overflow: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'initial'};
     
-    margin-top: 30px;
+    margin-top: 0;
     margin-top: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '0px'};
     
-    width: 189px;
-    width: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '592px'};
+    width: 100%;
+    width: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '100%'};
     
-    height: 80px;
-    height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '228px'};
+    height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'auto'};
   `}
   ${media('mobile')`
-
-    width: 175px;
-    width: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '268px'};
-
-    height: 70px;
-    height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '384px'};
+    flex-direction: column;
+    width: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '100%'};
+    flex: 1;
+    height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'auto'};
   `}
 `;
 
@@ -186,19 +170,23 @@ export const StyledProfileData = styled.div<profileModeProps>`
   display: flex;
   align-items: center;
   gap: 15px;
-
+  width: 100%;
+  ${media('desktop')`
+  flex: 1 0 40%;
+  `}
   label {
     width: 60px;
-    font-family: ${theme.fonts['pretendard/md-14px-regular']};
+    font: ${theme.fonts['pretendard/md-14px-regular']};
     font-weight: 400;
     color: ${theme.colors.gray[600]};
     font-size: 14px;
+    white-space: nowrap;
   }
 
   p {
     display: ${({ $isMyprofile, $isEdit }) =>
       $isEdit && $isMyprofile && 'none'};
-    font-family: ${theme.fonts['pretendard/md-14px-regular']};
+    font: ${theme.fonts['pretendard/md-14px-regular']};
     font-weight: 400;
     color: ${theme.colors.gray[800]};
     font-size: 14px;
@@ -207,22 +195,22 @@ export const StyledProfileData = styled.div<profileModeProps>`
   ${StyledInput} {
     display: ${({ $isMyprofile, $isEdit }) =>
       (!$isEdit || ($isEdit && !$isMyprofile)) && 'none'};
-
-    width: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '200px'};
     height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '45px'};
+    flex: 1;
+    width: auto;
   }
 
-  ${media('tablet')`
+  ${media('desktop')`
     label {
       width: 60px;
-      font-family: ${theme.fonts['pretendard/md-14px-regular']};
+      font: ${theme.fonts['pretendard/md-14px-regular']};
       font-weight: 400;
       color: ${theme.colors.gray[600]};
       font-size: 14px;
     }
 
     p {
-      font-family: ${theme.fonts['pretendard/md-14px-regular']};
+      font: ${theme.fonts['pretendard/md-14px-regular']};
       font-weight: 400;
       color: ${theme.colors.gray[800]};
       font-size: 14px;
@@ -232,7 +220,8 @@ export const StyledProfileData = styled.div<profileModeProps>`
   ${media('mobile')`
    ${StyledInput} {
     height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '34px'};
-  }`}
+  }
+    flex: 1;`}
 `;
 
 export const StyledVetorImage = styled.img`

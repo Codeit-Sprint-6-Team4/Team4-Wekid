@@ -43,59 +43,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Pretendard';
   }
 
-  h1 {
-    font-size: 2em;
-    font-weight: bold;
-    margin-top: 0.67em;
-    margin-bottom: 0.67em;
-}
-
-h2 {
-    font-size: 1.5em; 
-    font-weight: bold;
-    margin-top: 0.75em;
-    margin-bottom: 0.75em;
-}
-
-h3 {
-    font-size: 1.17em; 
-    font-weight: bold;
-    margin-top: 0.83em;
-    margin-bottom: 0.83em;
-}
-
-h4 {
-    font-size: 1em;
-    font-weight: bold;
-    margin-top: 1.12em;
-    margin-bottom: 1.12em;
-}
-
-h5 {
-    font-size: 0.83em;
-    font-weight: bold;
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
-}
-
-h6 {
-    font-size: 0.67em; 
-    font-weight: bold;
-    margin-top: 1.67em;
-    margin-bottom: 1.67em;
-}
-
-strong {
-    font-weight: bold;
-}
-
-em {
-    font-style: italic;
-}
-
-u {
-    text-decoration: underline;
-}
 
   *,
   *::before,
@@ -232,6 +179,9 @@ u {
     max-width: 1300px;
     width: 100%;
     flex: 1;
+    &.wiki{
+      max-width: 1800px;
+    }
 
   ${media('tablet')`
     margin: 4rem auto;

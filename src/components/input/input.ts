@@ -7,7 +7,7 @@ export const StyledInput = styled.input`
   width: ${({ width }) => `${width}px`};
   height: ${({ height }) => `${height}px`};
   background-color: ${theme.colors.gray[50]};
-  font-style: ${theme.fonts['pretendard/md-14px-regular']};
+  font: ${theme.fonts['pretendard/md-14px-regular']};
   color: ${theme.colors.gray[800]};
   font-weight: 500;
   box-sizing: border-box;
