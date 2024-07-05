@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { StyledAccountSettingWrap } from './components/AccountSettingUI.styled';
 import PasswordChangeContainer from './components/PasswordChangeContainer';
 import SecurityQuestionContainer from './components/SecurityQuestionContainer';

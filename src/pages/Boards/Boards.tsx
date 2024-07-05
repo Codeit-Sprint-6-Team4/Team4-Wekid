@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import BoardsContainer from './components/BoardsContainer';
 
 const Boards = () => {
