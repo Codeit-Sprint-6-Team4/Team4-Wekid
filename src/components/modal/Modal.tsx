@@ -8,13 +8,15 @@ import {
 import ImageUploadModalContent from './ImageUploadModalFrame';
 import NoticeModalContent from './NoticeModalFrame';
 import QuestionModalContent from './QuestionModalFrame';
+import LoginPromtModalContent from './LoginPromptModalFrame';
 
 interface ModalProps {
-  type: 'imageUpload' | 'question' | 'disconnect' | 'cancelSave';
+  type: 'imageUpload' | 'question' | 'disconnect' | 'cancelSave' | 'loginPrompt';
   onClose: () => void;
   onConfirm?: (answer: string, id: string) => Promise<string | undefined>;
   setAnswer?: (e: ChangeEvent<HTMLInputElement>) => void;
   confirmAnswer?: () => void;
+  navigateToLogin?: () => void;
   securityQuestion?: string;
   answer?: string;
   id?: string;
@@ -29,6 +31,7 @@ const Modal = ({
   id,
   confirmAnswer,
   setAnswer,
+  navigateToLogin,
 }: ModalProps) => {
   let content;
   switch (type) {
@@ -50,6 +53,9 @@ const Modal = ({
     case 'disconnect':
     case 'cancelSave':
       content = <NoticeModalContent type={type} onClose={onClose} />;
+      break;
+    case 'loginPrompt':
+      content = <LoginPromtModalContent navigateToLogin={navigateToLogin}/>
       break;
     default:
       content = null;

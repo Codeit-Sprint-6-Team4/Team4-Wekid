@@ -42,7 +42,7 @@ const PasswordChangeUI = ({
         placeholder="기존 비밀번호"
         value={values.currentPassword}
         onChange={onChange}
-        hasError={errors.incorrectCurrentPassword}
+        $hasError={errors.incorrectCurrentPassword}
       />
       {errors.incorrectCurrentPassword && (
         <StyledErrorMessage>
@@ -55,7 +55,7 @@ const PasswordChangeUI = ({
         placeholder="새 비밀번호"
         value={values.password}
         onChange={onChange}
-        hasError={errors.sameCurrentPassword}
+        $hasError={errors.sameCurrentPassword}
       />
       {errors.sameCurrentPassword && (
         <StyledErrorMessage>
@@ -68,7 +68,7 @@ const PasswordChangeUI = ({
         placeholder="새 비밀번호 확인"
         value={values.confirmPassword}
         onChange={onChange}
-        hasError={errors.passwordMismatch}
+        $hasError={errors.passwordMismatch}
       />
       {errors.passwordMismatch && (
         <StyledErrorMessage>

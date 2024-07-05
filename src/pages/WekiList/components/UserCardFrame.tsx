@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import UserLink from '@components/userlink/UserLink';
+import DefaultProfileImg from '@assets/icons/icon-profile.svg';
 import {
   StyledCardContainer,
   StyledUserImage,
@@ -26,9 +27,19 @@ const UserCardFrame: React.FC<UserCardProps> = ({
   job,
   code,
 }) => {
+  const [imageError, setImageError] = useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
   return (
     <StyledCardContainer>
-      <StyledUserImage src={image} alt={name} />
+      {!imageError && image ? (
+        <StyledUserImage src={image} alt={name} onError={handleImageError}/>
+      ) : (
+        <StyledUserImage src={DefaultProfileImg} alt={name} />
+      )}
       <StyledInfoContainer>
         <StyledUserName>{name}</StyledUserName>
         <StyledUserDetails>

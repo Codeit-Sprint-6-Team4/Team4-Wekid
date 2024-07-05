@@ -1,11 +1,13 @@
 import HeartIcon from 'public/assets/icons/icon-heart.svg';
+import HeartIconFilled from '@assets/icons/icon-heart-fill.svg';
+import ImageIcon from 'public/assets/icons/icon-image.svg';
 import styled from 'styled-components';
 import { media } from '@utils/media';
 
 export const StyledCardContainer = styled.div`
   width: 250px;
   height: 220px;
-  background-color: ${(props) => props.theme.colors.gray[50]};
+  background-color: ${(props) => props.theme.colors.gray[0]};
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0px 4px 20px 0px #00000014;
@@ -22,6 +24,26 @@ export const StyledCardImage = styled.img`
   height: 131px;
   object-fit: cover;
 `;
+
+
+export const StyledCardNoImage = styled.div`
+  width: 100%;
+  height: 131px;
+  background-color: ${(props) => props.theme.colors.gray[50]};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const StyledNoImageIcon = styled.div`
+  width: 25px;
+  height: 25px;
+  background-image: url(${ImageIcon});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+`;
+
 
 export const StyledCardContent = styled.div`
   width: 212px;
@@ -80,11 +102,12 @@ export const StyledCardLikesContainer = styled.div`
   align-items: center;
 `;
 
-export const StyledHeartIcon = styled.span`
+export const StyledHeartIcon = styled.span<{ $isLiked: boolean }>`
   width: 16px;
   height: 16px;
   margin-right: 6px;
   background-image: url(${HeartIcon});
+  background-image: url(${(props) => props.$isLiked ? HeartIconFilled : HeartIcon});
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
