@@ -56,7 +56,14 @@ export const StyledBestArticleContainer = styled.div`
     & > * {
       flex: 0 0 auto;
       margin-right: 20px;
-  }
+    }
+    -ms-overflow-style: none;
+
+    scrollbar-width: none;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
   `}
 `;
 
