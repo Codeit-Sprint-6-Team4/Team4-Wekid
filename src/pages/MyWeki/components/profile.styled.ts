@@ -7,8 +7,13 @@ interface profileModeProps {
   $isMyprofile: boolean;
   $isEdit?: boolean;
 }
+
 interface buttonProps {
   $isClicked: boolean;
+}
+
+interface profileImageInputWrapProps {
+  $profileImage: string;
 }
 
 export const StyeldProfileWrap = styled.div<buttonProps & profileModeProps>`
@@ -82,10 +87,12 @@ export const StyeldProfileImage = styled.img<buttonProps & profileModeProps>`
   width: 200px;
   height: 200px;
   border-radius: 70%;
+  display: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'none'};
 
   ${media('tablet')`
     margin-top: ${({ $isClicked }) => ($isClicked ? '30px' : '30px')};
     margin-top:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '8px'};
+    
     
     margin-left:15px;
     
@@ -98,6 +105,45 @@ export const StyeldProfileImage = styled.img<buttonProps & profileModeProps>`
     width:62px;
     height:62px;
   `}
+`;
+
+export const StyeldProfileImageInputLabel = styled.label<
+  buttonProps & profileModeProps & profileImageInputWrapProps
+>`
+  margin-top: 50px;
+  width: 200px;
+  height: 200px;
+  border-radius: 70%;
+  background-image: url(${({ $profileImage }) => $profileImage});
+  cursor: pointer;
+
+  display: ${({ $isMyprofile, $isEdit }) =>
+    !($isMyprofile && $isEdit) && 'none'};
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  ${media('tablet')`
+    margin-top: ${({ $isClicked }) => ($isClicked ? '30px' : '30px')};
+    margin-top:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '8px'};
+    
+    
+    margin-left:15px;
+    
+    width:71px;
+    height:71px;
+    border-radius: 100%;
+  `}
+
+  ${media('mobile')`
+    width:62px;
+    height:62px;
+  `}
+`;
+
+export const StyledProfileImageInput = styled.input`
+  display: none;
 `;
 
 export const StyledProfileDataWrap = styled.div<buttonProps & profileModeProps>`

@@ -20,7 +20,6 @@ interface QuestionModalContentProps {
   answer: string;
   id: string;
   setAnswer: (e: ChangeEvent<HTMLInputElement>) => void;
-
   confirmAnswer: () => void;
 }
 
@@ -94,10 +93,10 @@ const QuestionModalContent = ({
           <StyledErrorMessage>{errorMessage}</StyledErrorMessage>
         )}
         <Button
+          type="submit"
           style={{ marginTop: '36px' }}
           $primary
           $width="100%"
-          onClick={handleConfirm}
         >
           확인
         </Button>

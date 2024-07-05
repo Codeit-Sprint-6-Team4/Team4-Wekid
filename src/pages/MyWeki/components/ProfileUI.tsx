@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { ChangeEvent } from 'react';
 import noProfile from '@assets/icons/icon-profile.svg';
 import vector from '@assets/icons/icon-vector.svg';
 import { StyledInput } from '@components/input/input';
 import {
   StyeldProfileImage,
+  StyeldProfileImageInputLabel,
   StyeldProfileWrap,
   StyledProfileData,
   StyledProfileDataWrap,
+  StyledProfileImageInput,
   StyledVetorImage,
 } from './profile.styled';
 
@@ -26,6 +29,10 @@ interface profileUIProps {
 
 interface myProfileProps {
   isMyprofile: boolean;
+  onChangeProfileInput: (e: ChangeEvent<HTMLInputElement>) => void;
+  editImage: File | null;
+  previewImage: string;
+  onChangeProfileImage: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const ProfileUI = ({
@@ -40,15 +47,41 @@ const ProfileUI = ({
   city,
   isEditMode,
   isMyprofile,
+  onChangeProfileInput,
+  onChangeProfileImage,
+  previewImage,
 }: profileUIProps & myProfileProps) => {
   const [isClicked, setIsClicked] = useState(false);
-  
+
   return (
     <StyeldProfileWrap
       $isClicked={isClicked}
       $isMyprofile={isMyprofile}
       $isEdit={isEditMode}
     >
+      <StyeldProfileImageInputLabel
+        htmlFor="StyledProfileImageInput"
+        $isClicked={isClicked}
+        $isMyprofile={isMyprofile}
+        $profileImage={image ? image : ''}
+        $isEdit={isEditMode}
+      >
+        <img
+          src={previewImage ? previewImage : image}
+          onError={(e) => {
+            e.currentTarget.src = noProfile;
+          }}
+        />
+      </StyeldProfileImageInputLabel>
+
+      <StyledProfileImageInput
+        id="StyledProfileImageInput"
+        type="file"
+        name="profileImage"
+        accept=".jpg, .jpeg, .png"
+        onChange={onChangeProfileImage}
+      />
+
       <StyeldProfileImage
         $isClicked={isClicked}
         $isMyprofile={isMyprofile}
@@ -67,49 +100,97 @@ const ProfileUI = ({
       >
         <StyledProfileData $isMyprofile={isMyprofile} $isEdit={isEditMode}>
           <label>거주 도시</label>
-          <StyledInput width={239} height={52} value={city} />
+          <StyledInput
+            name="city"
+            onChange={onChangeProfileInput}
+            width={239}
+            height={52}
+            value={city}
+          />
           <p>{city}</p>
         </StyledProfileData>
 
         <StyledProfileData $isMyprofile={isMyprofile} $isEdit={isEditMode}>
           <label>MBTI</label>
-          <StyledInput width={239} height={52} value={mbti} />
+          <StyledInput
+            name="mbti"
+            onChange={onChangeProfileInput}
+            width={239}
+            height={52}
+            value={mbti}
+          />
           <p>{mbti}</p>
         </StyledProfileData>
 
         <StyledProfileData $isMyprofile={isMyprofile} $isEdit={isEditMode}>
           <label>직업</label>
-          <StyledInput width={239} height={52} value={job} />
+          <StyledInput
+            name="job"
+            onChange={onChangeProfileInput}
+            width={239}
+            height={52}
+            value={job}
+          />
           <p>{job}</p>
         </StyledProfileData>
 
         <StyledProfileData $isMyprofile={isMyprofile} $isEdit={isEditMode}>
           <label>SNS 계정</label>
-          <StyledInput width={239} height={52} value={sns} />
+          <StyledInput
+            name="sns"
+            onChange={onChangeProfileInput}
+            width={239}
+            height={52}
+            value={sns}
+          />
           <p>{sns}</p>
         </StyledProfileData>
 
         <StyledProfileData $isMyprofile={isMyprofile} $isEdit={isEditMode}>
           <label>생일</label>
-          <StyledInput width={239} height={52} value={birthday} />
+          <StyledInput
+            name="birthday"
+            onChange={onChangeProfileInput}
+            width={239}
+            height={52}
+            value={birthday}
+          />
           <p>{birthday}</p>
         </StyledProfileData>
 
         <StyledProfileData $isMyprofile={isMyprofile} $isEdit={isEditMode}>
           <label>별명</label>
-          <StyledInput width={239} height={52} value={nickname} />
+          <StyledInput
+            name="nickname"
+            onChange={onChangeProfileInput}
+            width={239}
+            height={52}
+            value={nickname}
+          />
           <p>{nickname}</p>
         </StyledProfileData>
 
         <StyledProfileData $isMyprofile={isMyprofile} $isEdit={isEditMode}>
           <label>혈액형</label>
-          <StyledInput width={239} height={52} value={bloodType} />
+          <StyledInput
+            name="bloodType"
+            onChange={onChangeProfileInput}
+            width={239}
+            height={52}
+            value={bloodType}
+          />
           <p>{bloodType}</p>
         </StyledProfileData>
 
         <StyledProfileData $isMyprofile={isMyprofile} $isEdit={isEditMode}>
           <label>국적</label>
-          <StyledInput width={239} height={52} value={nationality} />
+          <StyledInput
+            name="nationality"
+            onChange={onChangeProfileInput}
+            width={239}
+            height={52}
+            value={nationality}
+          />
           <p>{nationality}</p>
         </StyledProfileData>
       </StyledProfileDataWrap>
