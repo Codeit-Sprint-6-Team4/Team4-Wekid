@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@components/button/Button';
-import BoardEditorUI from './BoardEditorUI';
 import {
   StyledContainerWapper,
   StyledCharCount,
@@ -16,6 +15,7 @@ import {
   StyledUploadButton,
   StyledButtonContainer,
 } from './UpLoadBoard.styled';
+import BoardEditorUI from './UpLoadBoardEditorUI';
 
 interface BoardUIProps {
   date: string;
