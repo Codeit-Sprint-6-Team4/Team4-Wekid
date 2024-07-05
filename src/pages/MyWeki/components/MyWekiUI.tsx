@@ -120,7 +120,6 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
               onConfirm={() => postEditingProfile(code!, modalInput)}
             />
           )}
-
           <StyledMarkUpWrap>
             {!isEditMode && profile !== null && !profile?.content && (
               <StyledNoContentWrapper>
@@ -129,7 +128,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
               </StyledNoContentWrapper>
             )}
             {!isEditMode && profile?.content && (
-              <div
+              <div className="view ql-editor"
                 dangerouslySetInnerHTML={{
                   __html: profile ? profile.content : '',
                 }}
