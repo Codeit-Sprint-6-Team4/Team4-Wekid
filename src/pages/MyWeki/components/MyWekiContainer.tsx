@@ -1,106 +1,113 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useState, useRef, useContext } from 'react';
+import ReactQuill from 'react-quill';
 import { useParams } from 'react-router-dom';
-import { AxiosError } from 'axios';
-import {
-  getProfie,
-  profileType,
-  getProfileEditCheck,
-  profileCheckType,
-  postEditingProfile,
-} from '@api/profile';
+import { MyWekiDataContext } from '@context/myWekiDataContext';
+import { set } from 'date-fns';
+import { postImage } from '@api/image';
+import { patchProfile } from '@api/profile';
+import { userType } from '@api/user';
+import useMywekiAPi from '@hooks/useMywekiAPi';
 import MyWekiUI from './MyWekiUI';
 
 const MyWekiContainer = () => {
-  const { code } = useParams();
-  const [profile, setProfile] = useState<profileType | null>(null);
-  const [isEditNow, setIsEditNow] = useState<profileCheckType | string>('');
-  const [isEditMode, setIsEditMode] = useState(true);
+  const {
+    profile,
+    isEditNow,
+    setProfile,
+    receiveProfile,
+    isEditMode,
+    setIsEditMode,
+  } = useMywekiAPi();
+  const userData = useContext<userType | null>(MyWekiDataContext);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInput, setModalInput] = useState('');
+  const [editImage, setEditImage] = useState<File | null>(null);
+  const [previewImage, setPreviewImage] = useState<string>('');
+  const { code } = useParams();
+  const quailRef = useRef<ReactQuill>(null);
 
-  const onParticipate = () => {
-    if (!isEditNow) {
-      // setIsEdit(true);
-      setIsModalOpen(true);
-      serveEditingProfile();
+  const onChangeProfileImage = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files !== null) {
+      const value = e.target.files[0];
+      setEditImage(value);
+      const imageURL = URL.createObjectURL(value);
+      setPreviewImage(imageURL);
     }
   };
 
+  const onParticipate = () => {
+    if (typeof isEditNow !== 'string' && userData !== null) {
+      if (isEditNow.userId === userData.id) {
+        setIsModalOpen(true);
+        return;
+      } else if (isEditNow.userId !== userData.id) {
+        return;
+      }
+    }
+    setIsModalOpen(true);
+  };
+
+  const editPathProfile = async () => {
+    try {
+      if (typeof code === 'string' && quailRef.current && profile !== null) {
+        if (code === userData?.profile?.code && editImage != null) {
+          const response = await postImage(editImage);
+          if (typeof response === 'string') {
+            await patchProfile(code, profile, quailRef.current.value, response);
+            return;
+          }
+        }
+        await patchProfile(code, profile, quailRef.current.value);
+      }
+    } catch (error) {}
+  };
   const onCancel = () => {
+    URL.revokeObjectURL(previewImage);
+    setPreviewImage('');
+    setEditImage(null);
     setIsEditMode(false);
+    receiveProfile();
   };
 
   const onChangeModalInput = (e: ChangeEvent<HTMLInputElement>) => {
     setModalInput(e.target.value);
   };
+  const onChangeProfileInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name } = e.target;
+    if (profile) {
+      setProfile({ ...profile, [name]: e.target.value });
+    }
+  };
 
   const onModalClose = () => {
+    setModalInput('');
     setIsModalOpen(false);
   };
 
-  const confirmAnswer = () => {
-    setIsModalOpen(false);
-    setIsEditMode(true);
+  const onSave = async () => {
+    await editPathProfile();
+    setIsEditMode(false);
   };
-
-  const onSave = () => {};
-
-  const receiveProfile = async () => {
-    try {
-      if (typeof code === 'string') {
-        const result = await getProfie(code);
-        setProfile(result);
-      }
-    } catch (error) {
-      if (error instanceof AxiosError) {
-      }
-    }
-  };
-
-  const receiveProfileEditCheck = async () => {
-    console.log('시작');
-    try {
-      if (typeof code === 'string') {
-        const response = await getProfileEditCheck(code);
-        setIsEditNow(response);
-      }
-    } catch (error) {
-      if (error instanceof AxiosError) {
-      }
-    }
-  };
-
-  const serveEditingProfile = async () => {
-    try {
-      if (typeof code === 'string') {
-        const response = await postEditingProfile(code, 'test');
-      }
-    } catch (error) {
-      if (error instanceof AxiosError) {
-      }
-    }
-  };
-
-  useEffect(() => {
-    receiveProfile();
-    receiveProfileEditCheck();
-    const timeCheck = setInterval(receiveProfileEditCheck, 300000);
-    return () => clearInterval(timeCheck);
-  }, []);
 
   return (
     <MyWekiUI
+      ref={quailRef}
       profile={profile}
       isEditMode={isEditMode}
       isEditNow={isEditNow}
       isModalOpen={isModalOpen}
       modalInput={modalInput}
+      editImage={editImage}
+      previewImage={previewImage}
+      onChangeProfileImage={onChangeProfileImage}
+      setIsEditMode={setIsEditMode}
       onChangeModalInput={onChangeModalInput}
+      onChangeProfileInput={onChangeProfileInput}
       onParticipate={onParticipate}
       onCancel={onCancel}
       onSave={onSave}
       onModalClose={onModalClose}
-      confirmAnswer={confirmAnswer}
     />
   );
 };
