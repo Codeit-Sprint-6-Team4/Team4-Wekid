@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '@components/button/Button';
 import {
   StyledContainerWapper,
@@ -41,17 +41,20 @@ const UploadBoardUI: React.FC<BoardUIProps> = ({
   onTitleChange,
   onContentChange,
   onSubmit,
-  onCancel,
 }) => {
-  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+
+  const handleGoList = () => {
+    navigate('/boards');
+  };
 
   return (
     <StyledContainerWapper>
       <StyledContainer>
-        <StyledTitle>게시물 {id ? '수정하기' : '등록하기'}</StyledTitle>{' '}
+        <StyledTitle>게시물 등록하기</StyledTitle>
         <StyledButtonContainer>
           <StyledUploadButton $primary onClick={onSubmit}>
-            {id ? '수정하기' : '등록하기'}{' '}
+            등록하기
           </StyledUploadButton>
         </StyledButtonContainer>
         <StyledCreateDate>등록일 {date}</StyledCreateDate>
@@ -73,7 +76,7 @@ const UploadBoardUI: React.FC<BoardUIProps> = ({
           <BoardEditorUI value={content} onChange={onContentChange} />
         </StyledTextForm>
       </StyledContainer>
-      <Button $secondary onClick={onCancel}>
+      <Button $secondary onClick={handleGoList}>
         목록으로
       </Button>
     </StyledContainerWapper>
