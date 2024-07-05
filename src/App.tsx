@@ -1,5 +1,7 @@
 import React from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from '@context/AuthProvider';
 import { MyWekiDataContext } from '@context/myWekiDataContext';
 import { ThemeProvider } from 'styled-components';
 import Footer from '@components/layout/Footer';
@@ -16,40 +18,68 @@ import UpLoadBoard from '@pages/UpLoadBoard/UpLoadBoard';
 import Wiki from '@pages/Weki/Wiki';
 import WikiList from '@pages/WekiList/WikiList';
 import { theme } from '@styles/theme';
-import { AuthProvider } from '@context/AuthProvider';
-import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
   const { myUserData } = useGetUserData();
 
   return (
     <HelmetProvider>
-    <MyWekiDataContext.Provider value={myUserData}>
-      <ThemeProvider theme={theme}>
-        <AuthProvider>
+      <MyWekiDataContext.Provider value={myUserData}>
+        <ThemeProvider theme={theme}>
           <BrowserRouter>
             <HeaderContainer />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="signup" element={<SignUp />} />
-              <Route path="login" element={<SignIn />} />
-              <Route path="mypage" element={<AccountSetting />} />
-              <Route path="wiki/:code" element={<MyWeki />} />
-              <Route path="wikilist">
-                <Route index element={<WikiList />} />
-                <Route path=":id" element={<Wiki />} />
-              </Route>
-              <Route path="boards">
-                <Route index element={<Boards />} />
-                <Route path=":id" element={<Board />} />
-                <Route path="upload" element={<UpLoadBoard />} />
-              </Route>
+              <Route
+                path="*"
+                element={
+                  <main className="layoutWrap">
+                    <Routes>
+                      <Route path="signup" element={<SignUp />} />
+                      <Route path="login" element={<SignIn />} />
+                      <Route path="mypage" element={<AccountSetting />} />
+                      <Route path="wiki/:code" element={<MyWeki />} />
+                      <Route path="wikilist">
+                        <Route index element={<WikiList />} />
+                        <Route path=":id" element={<Wiki />} />
+                      </Route>
+                      <Route path="boards">
+                        <Route index element={<Boards />} />
+                        <Route path=":id" element={<Board />} />
+                        <Route path="upload" element={<UpLoadBoard />} />
+                        <Route path="upload/:id" element={<UpLoadBoard />} />
+                      </Route>
+                    </Routes>
+                  </main>
+                }
+              />
             </Routes>
             <Footer />
           </BrowserRouter>
-        </AuthProvider>
-      </ThemeProvider>
-    </MyWekiDataContext.Provider>
+          <AuthProvider>
+            <BrowserRouter>
+              <HeaderContainer />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="signup" element={<SignUp />} />
+                <Route path="login" element={<SignIn />} />
+                <Route path="mypage" element={<AccountSetting />} />
+                <Route path="wiki/:code" element={<MyWeki />} />
+                <Route path="wikilist">
+                  <Route index element={<WikiList />} />
+                  <Route path=":id" element={<Wiki />} />
+                </Route>
+                <Route path="boards">
+                  <Route index element={<Boards />} />
+                  <Route path=":id" element={<Board />} />
+                  <Route path="upload" element={<UpLoadBoard />} />
+                </Route>
+              </Routes>
+              <Footer />
+            </BrowserRouter>
+          </AuthProvider>
+        </ThemeProvider>
+      </MyWekiDataContext.Provider>
     </HelmetProvider>
   );
 }
