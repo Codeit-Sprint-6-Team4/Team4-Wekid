@@ -2,9 +2,9 @@ import { useMemo, useRef } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { uploadImage } from '@api/image';
-import CustomBoardToolBar from './customQuali/CustomBoardToolBar';
-import { CUSTUM_ICONS } from './customQuali/quali.styled.icon';
 import './customQuali/quill-custom.css';
+import { CUSTUM_ICONS } from './customQuill/upLoadBoardCustomQuali.styled.icon';
+import CustomBoardToolBar from './customQuill/upLoadBoardCustomToolBar';
 
 CUSTUM_ICONS;
 
