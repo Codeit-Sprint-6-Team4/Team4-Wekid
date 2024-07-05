@@ -29,7 +29,7 @@ interface NotificationsDropdownUIProps {
   handleToggleDropdown: () => void;
   alarms: AlarmsData;
   handleDeleteAlarm: (id: number) => void;
-  dropdownRef: React.Ref<HTMLDivElement>; // ref prop 추가
+  dropdownRef: React.Ref<HTMLDivElement>;
 }
 
 const NotificationsDropdownUI: React.FC<NotificationsDropdownUIProps> = ({
@@ -45,7 +45,7 @@ const NotificationsDropdownUI: React.FC<NotificationsDropdownUIProps> = ({
       handleToggleDropdown={handleToggleDropdown}
       buttonIcon={AlarmImg}
       buttonIconAlt="알림"
-      ref={dropdownRef} // ref 전달
+      ref={dropdownRef}
     >
       <StyledAlarmTotalCount>
         알림 총 <b>{alarms.totalCount}</b>개

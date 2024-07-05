@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import { media } from '@utils/media';
 import CommentSectionContainer from './components/CommentSection/CommentSectionContainer';

@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import useHeaderDropdown from '@hooks/useHeaderDropdown';
 import HamburgerUI from './HamburgerUI';
+import { useAuth } from '@context/authContext';
 
 const HamburgerContainer: React.FC = () => {
   const { isOpen, handleToggleDropdown, dropdownRef } = useHeaderDropdown();
+  const { isLoggedIn, logout } = useAuth();
+  const navigate = useNavigate();
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
+  const handleLogoutAndRedirect = () => {
+    logout();
+    navigate('/');
   };
 
   return (
@@ -20,8 +19,7 @@ const HamburgerContainer: React.FC = () => {
       isOpen={isOpen}
       handleToggleDropdown={handleToggleDropdown}
       isLoggedIn={isLoggedIn}
-      handleLogin={handleLogin}
-      handleLogout={handleLogout}
+      handleLogout={handleLogoutAndRedirect}
       dropdownRef={dropdownRef}
     />
   );
