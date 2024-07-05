@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { StyledPaginationButton } from '@components/pagination/paginationButton';
 
@@ -22,14 +22,27 @@ const Pagination: React.FC<PaginationProps> = ({
   currentPage,
   onPageChange,
 }) => {
-  const [pageGroupIndex, setPageGroupIndex] = useState(0);
   const pageGroupSize = 5;
   const pageCount = Math.ceil(totalCount / itemsPerPage);
   const maxPageGroupCount = Math.ceil(pageCount / pageGroupSize);
-  const pages = Array.from(
-    { length: Math.min(pageGroupSize, pageCount - pageGroupSize * pageGroupIndex) },
-    (_, i) => i + 1 + pageGroupSize * pageGroupIndex
+  const [pageGroupIndex, setPageGroupIndex] = useState(
+    Math.floor((currentPage - 1) / pageGroupSize),
   );
+
+  useEffect(() => {
+    setPageGroupIndex(Math.floor((currentPage - 1) / pageGroupSize));
+  }, [currentPage]);
+
+  const pages = Array.from(
+    {
+      length: Math.min(
+        pageGroupSize,
+        pageCount - pageGroupSize * pageGroupIndex,
+      ),
+    },
+    (_, i) => i + 1 + pageGroupSize * pageGroupIndex,
+  );
+
   const handlePrevGroup = () => {
     const newPageGroupIndex = Math.max(pageGroupIndex - 1, 0);
     setPageGroupIndex(newPageGroupIndex);
@@ -37,7 +50,10 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   const handleNextGroup = () => {
-    const newPageGroupIndex = Math.min(pageGroupIndex + 1, maxPageGroupCount - 1);
+    const newPageGroupIndex = Math.min(
+      pageGroupIndex + 1,
+      maxPageGroupCount - 1,
+    );
     setPageGroupIndex(newPageGroupIndex);
     onPageChange(newPageGroupIndex * pageGroupSize + 1);
   };
@@ -45,7 +61,9 @@ const Pagination: React.FC<PaginationProps> = ({
   return (
     <PaginationContainer>
       {pageGroupIndex > 0 && (
-        <StyledPaginationButton onClick={handlePrevGroup}>&lt;</StyledPaginationButton>
+        <StyledPaginationButton onClick={handlePrevGroup}>
+          &lt;
+        </StyledPaginationButton>
       )}
       {pages.map((page) => (
         <StyledPaginationButton
@@ -57,7 +75,9 @@ const Pagination: React.FC<PaginationProps> = ({
         </StyledPaginationButton>
       ))}
       {pageGroupIndex < maxPageGroupCount - 1 && (
-        <StyledPaginationButton onClick={handleNextGroup}>&gt;</StyledPaginationButton>
+        <StyledPaginationButton onClick={handleNextGroup}>
+          &gt;
+        </StyledPaginationButton>
       )}
     </PaginationContainer>
   );
