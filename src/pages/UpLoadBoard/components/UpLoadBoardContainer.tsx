@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, ChangeEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchArticle, postArticle, patchArticle } from '@api/article';
 import Modal from '@components/modal/Modal';
+import useNavigationBlocker from '@hooks/useNavigationBlocker';
 import UploadBoardUI from './UpLoadBoardUI';
 
 const UploadBoardContainer: React.FC = () => {
@@ -16,9 +17,19 @@ const UploadBoardContainer: React.FC = () => {
   const [nonSpaceChars, setNonSpaceChars] = useState<number>(0);
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [redirectPath, setRedirectPath] = useState<string>('');
+  const [redirectPath, setRedirectPath] = useState<string | (() => void)>('');
 
   const isDirty = useRef(false);
+
+  useNavigationBlocker({
+    when:
+      isDirty.current &&
+      (title !== originalTitle || content !== originalContent),
+    onConfirm: (callback) => {
+      setShowModal(true);
+      setRedirectPath(() => callback);
+    },
+  });
 
   useEffect(() => {
     const currentDate = new Date();
@@ -31,19 +42,6 @@ const UploadBoardContainer: React.FC = () => {
       fetchArticleData(id);
       setIsEditMode(true);
     }
-
-    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-      if (isDirty.current) {
-        event.preventDefault();
-        event.returnValue = '';
-      }
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
   }, [id]);
 
   const fetchArticleData = async (articleId: string) => {
@@ -61,7 +59,7 @@ const UploadBoardContainer: React.FC = () => {
     }
   };
 
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
     isDirty.current = true;
   };
@@ -113,7 +111,11 @@ const UploadBoardContainer: React.FC = () => {
 
   const handleModalConfirm = () => {
     setShowModal(false);
-    navigate(redirectPath);
+    if (typeof redirectPath === 'function') {
+      redirectPath();
+    } else {
+      navigate(redirectPath);
+    }
   };
 
   return (
