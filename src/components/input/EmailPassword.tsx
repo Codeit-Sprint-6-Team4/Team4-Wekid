@@ -22,7 +22,7 @@ const EmailPassword = ({
   value,
   onChange,
   type,
-  autocomplete = 'off',
+  autocomplete = 'on',
 }: EmailPasswordProps) => {
   return (
     <StyledEmailPasswordFrame>
