@@ -7,6 +7,7 @@
   font-family: 'Pretendard';
   src: url('/public/assets/fonts/PretendardVariable.woff2') format('woff2');
 }
+
 #root {
   display: flex;
   flex-direction: column;
@@ -81,14 +82,14 @@ select,
 input,
 textarea,
 button {
-  -webkit-appearance: none; /* Chrome, Safari */
-  -moz-appearance: none; /* Firefox */
-  appearance: none; /* 표준 속성 */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 input[type='number'] {
-  -moz-appearance: textfield; /* Firefox */
-  appearance: textfield; /* 표준 속성 */
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 input:disabled {
@@ -119,14 +120,12 @@ textarea:focus-visible {
 
 input::placeholder,
 textarea::placeholder {
-  /* Chrome, Safari, Firefox */
   color: #000;
   opacity: 1;
 }
 
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
-  /* IE, Edge */
   color: #000;
   opacity: 1;
 }
@@ -135,7 +134,6 @@ input[readonly]::placeholder,
 textarea[readonly]::placeholder,
 input:disabled::placeholder,
 textarea:disabled::placeholder {
-  /* Chrome, Safari, Firefox */
   color: #000;
   opacity: 1;
 }
@@ -144,20 +142,18 @@ input[readonly]:-ms-input-placeholder,
 textarea[readonly]:-ms-input-placeholder,
 input:disabled:-ms-input-placeholder,
 textarea:disabled:-ms-input-placeholder {
-  /* IE, Edge */
   color: #000;
   opacity: 1;
 }
 
 i {
-  font-style: italic; /* 기본 기울임꼴 설정 */
+  font-style: italic;
 }
 
 input::-ms-clear,
 input::-ms-reveal,
 textarea::-ms-clear,
 textarea::-ms-reveal {
-  /* IE, Edge */
   display: none;
 }
 
@@ -181,17 +177,17 @@ input::-webkit-outer-spin-button {
   max-width: 1800px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .layoutWrap {
     margin: 4rem auto;
     padding: 0 4rem;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .layoutWrap {
     margin: 3.2rem auto;
-    padding: 0rem 2rem;
+    padding: 0 2rem;
   }
 }
 
