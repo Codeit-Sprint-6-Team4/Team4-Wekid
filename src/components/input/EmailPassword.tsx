@@ -12,6 +12,7 @@ interface EmailPasswordProps {
   placeholder?: string;
   value?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  autocomplete?: string;
 }
 
 const EmailPassword = ({
@@ -21,6 +22,7 @@ const EmailPassword = ({
   value,
   onChange,
   type,
+  autocomplete = 'on',
 }: EmailPasswordProps) => {
   return (
     <StyledEmailPasswordFrame>
@@ -31,6 +33,7 @@ const EmailPassword = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        autoComplete={autocomplete}
       />
     </StyledEmailPasswordFrame>
   );

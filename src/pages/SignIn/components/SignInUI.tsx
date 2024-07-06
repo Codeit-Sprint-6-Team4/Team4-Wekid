@@ -25,33 +25,35 @@ const SignInUI: React.FC<signInProps> = ({
   isFillForm,
 }) => {
   return (
-    <StyledSignInWrap>
-      <StyledSignInTitle>로그인</StyledSignInTitle>
-      <StyledSignInForm onSubmit={onSubmit}>
-        <EmailPassword
-          type="email"
-          name="이메일"
-          inputName="email"
-          placeholder="이메일을 입력해 주세요"
-          value={userData.email}
-          onChange={onChange}
-        />
-        <EmailPassword
-          type="password"
-          name="비밀번호"
-          inputName="password"
-          placeholder="비밀번호를 입력해 주세요"
-          value={userData.password}
-          onChange={onChange}
-        />
-        <Button $primary $width="100%" type="submit" disabled={isFillForm()}>
-          로그인
-        </Button>
-      </StyledSignInForm>
-      <StyledLinkMessageWrap>
-        <StyledLinkMessage href="/signup">회원가입</StyledLinkMessage>
-      </StyledLinkMessageWrap>
-    </StyledSignInWrap>
+    <main className="layoutWrap">
+      <StyledSignInWrap>
+        <StyledSignInTitle>로그인</StyledSignInTitle>
+        <StyledSignInForm onSubmit={onSubmit}>
+          <EmailPassword
+            type="email"
+            name="이메일"
+            inputName="email"
+            placeholder="이메일을 입력해 주세요"
+            value={userData.email}
+            onChange={onChange}
+          />
+          <EmailPassword
+            type="password"
+            name="비밀번호"
+            inputName="password"
+            placeholder="비밀번호를 입력해 주세요"
+            value={userData.password}
+            onChange={onChange}
+          />
+          <Button $primary $width="100%" type="submit" disabled={isFillForm()}>
+            로그인
+          </Button>
+        </StyledSignInForm>
+        <StyledLinkMessageWrap>
+          <StyledLinkMessage href="/signup">회원가입</StyledLinkMessage>
+        </StyledLinkMessageWrap>
+      </StyledSignInWrap>
+    </main>
   );
 };
 

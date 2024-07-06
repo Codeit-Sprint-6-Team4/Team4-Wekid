@@ -6,6 +6,7 @@ import {
   StyledUserImage,
   StyledInfoContainer,
   StyledUserName,
+  StyledUserDetailsContainer,
   StyledUserDetails,
   StyledUserLinkWrapper,
 } from './UserCard.styled';
@@ -36,21 +37,24 @@ const UserCardFrame: React.FC<UserCardProps> = ({
   return (
     <StyledCardContainer>
       {!imageError && image ? (
-        <StyledUserImage src={image} alt={name} onError={handleImageError}/>
+        <StyledUserImage src={image} alt={name} onError={handleImageError} />
       ) : (
         <StyledUserImage src={DefaultProfileImg} alt={name} />
       )}
+
       <StyledInfoContainer>
         <StyledUserName>{name}</StyledUserName>
-        <StyledUserDetails>
-          {city}, {nationality}
-          <br />
-          {job}
-        </StyledUserDetails>
+        <StyledUserDetailsContainer>
+          <StyledUserDetails>
+            {city}, {nationality}
+            <br />
+            {job}
+          </StyledUserDetails>
+          <StyledUserLinkWrapper>
+            <UserLink code={code} />
+          </StyledUserLinkWrapper>
+        </StyledUserDetailsContainer>
       </StyledInfoContainer>
-      <StyledUserLinkWrapper>
-        <UserLink code={code} />
-      </StyledUserLinkWrapper>
     </StyledCardContainer>
   );
 };

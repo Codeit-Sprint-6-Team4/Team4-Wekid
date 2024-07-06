@@ -54,6 +54,9 @@ const WekiListContainer = () => {
     }
   };
 
+  console.log(searchKeyword);
+  console.log(profiles);
+
   useEffect(() => {
     fetchProfiles();
     sessionStorage.setItem('wikilistCurrentPage', String(currentPage));

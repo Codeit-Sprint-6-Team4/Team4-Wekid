@@ -49,7 +49,7 @@ const BoardsUI: React.FC<BoardsUIProps> = ({
   handlePageChange,
 }) => {
   return (
-    <>
+    <main className="layoutWrap">
       <StyledBoardsContainer>
         <StyledBoardsTitleContainer>
           <StyledBoardsTitle>베스트 게시글</StyledBoardsTitle>
@@ -125,7 +125,7 @@ const BoardsUI: React.FC<BoardsUIProps> = ({
           onPageChange={handlePageChange}
         />
       </StyledBoardsContainer2>
-    </>
+    </main>
   );
 };
 
