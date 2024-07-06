@@ -35,7 +35,7 @@ instance.interceptors.response.use(
     const responseData = error.response?.data as ErrorResponseData;
 
     if (
-      error.response?.status === 401 &&
+      (error.response?.status === 401 || error.response?.status === 403) &&
       responseData?.message === 'jwt expired' &&
       !originalRequest._retry
     ) {
