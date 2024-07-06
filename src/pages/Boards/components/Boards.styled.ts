@@ -20,29 +20,31 @@ export const StyledBoardsTitle = styled.span`
 `;
 
 export const StyledBestArticleContainer = styled.div`
-  /* width: 1060px; */
-  width: 100%;
   margin-top: 60px;
   gap: 1.6rem;
+  width: 100%;
+  margin: 60px auto 0px;
   display: flex;
   justify-content: space-between;
+//   gap: 16px;
 
   ${media('tablet')`
-    // width: 624px;
+    width: 100%;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-around;
     > * {
+    width: calc(50% - 8px);
       margin-bottom: 20px;
     }
   `}
   ${media('mobile')`
-  margin: 40px auto 0px;
-    width: 100%;
+     margin: 40px auto 0px;
+    width: 100%; 
     flex-wrap: nowrap;
     overflow-x: auto;
     & > * {
-      flex: 0 0 auto;
+      flex: 0 0 250px;
       margin-right: 20px;
     }
     -ms-overflow-style: none;

@@ -56,14 +56,16 @@ export const StyledNoImageIcon = styled.div`
 `;
 
 export const StyledCardContent = styled.div`
-  /* width: 212px; */
+  width: 84%;
   height: 56px;
   margin: 19px auto;
   padding: 0 2rem;
 
   ${media('tablet')`
-    // width: 262px;
     margin: 20.07px auto;
+  `}
+  ${media('mobile')`
+    width: 212px;
   `}
 `;
 
@@ -87,6 +89,20 @@ export const StyledCardInfo = styled.div`
 
   &.writer {
     margin-right: 8px;
+  }
+  &.date {
+    @media (max-width: 950px) {
+      display: none;
+    }
+    ${media('tablet')`
+      display: flex;
+    `}
+    @media (max-width: 500px) {
+      display: none;
+    }
+    ${media('mobile')`
+      display: flex;
+    `}
   }
 `;
 
