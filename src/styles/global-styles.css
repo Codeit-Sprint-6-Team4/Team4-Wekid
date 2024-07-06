@@ -1,9 +1,4 @@
 @font-face {
-  font-family: 'Nexon';
-  src: url('/public/assets/fonts/NEXON Lv1 Gothic OTF.woff') format('woff');
-}
-
-@font-face {
   font-family: 'Pretendard';
   src: url('/public/assets/fonts/PretendardVariable.woff2') format('woff2');
 }
