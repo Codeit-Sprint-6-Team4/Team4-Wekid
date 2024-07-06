@@ -45,6 +45,7 @@ export const SnackbarStyled = styled.div<SnackbarContainerProps>`
     visibility 0.5s ease-in-out;
   font: ${({ theme }) => theme.fonts['pretendard/md-14px-regular']};
   white-space: nowrap;
+  width: auto !important;
 
   &::before {
     content: '';
@@ -62,9 +63,6 @@ export const SnackbarStyled = styled.div<SnackbarContainerProps>`
         : type === 'success'
           ? `url(${successIcon})`
           : `url(${errorIcon})`};
-  }
-  @media (max-width: 768px) {
-    top: 100px;
   }
 
   @media (max-width: 480px) {
