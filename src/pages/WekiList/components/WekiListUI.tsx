@@ -36,6 +36,7 @@ const WekiListUI: React.FC<WekiListUIProps> = ({
   handlePageChange,
 }) => {
   return (
+    <main className='layoutWrap'>
     <StyledWekiListPageContainer>
       <StyledSearchBarAndResultContainer>
         <WekiSeacrhBar
@@ -83,6 +84,7 @@ const WekiListUI: React.FC<WekiListUIProps> = ({
         onPageChange={handlePageChange}
       />
     </StyledWekiListPageContainer>
+    </main>
   );
 };
 

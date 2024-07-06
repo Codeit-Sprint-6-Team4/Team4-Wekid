@@ -60,6 +60,10 @@
   font-size: 1.6rem;
 }
 
+.ql-editor.view {
+  min-height: auto;
+}
+
 .ql-editor.ql-blank::before {
   font-family: 'Pretendard';
   content: attr(data-placeholder);
