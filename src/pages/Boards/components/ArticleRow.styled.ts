@@ -4,58 +4,63 @@ import HeartIcon from 'public/assets/icons/icon-heart.svg';
 import HeartIconFilled from '@assets/icons/icon-heart-fill.svg';
 
 export const StyledRow = styled.div<{ $isHead?: boolean }>`
-  width: 1060px;
+  /* width: 1060px; */
   height: 50px;
   display: flex;
+  align-items: center;
   border-top: ${(props) =>
     props.$isHead ? `1px solid ${props.theme.colors.gray[100]}` : 'none'};
   border-bottom: 1px solid ${(props) => props.theme.colors.gray[100]};
 
-  ${media('tablet')`
+  /* ${media('tablet')`
     width: 624px;
-  `}
+  `} */
   ${media('mobile')`
     display: none;
   `}
 `;
 
 export const StyledColumn = styled.div<{ $isHead?: boolean }>`
-  height: 100%;
+  /* height: 100%; */
   font: ${(props) => props.theme.fonts['pretendard/lg-16px-regular']};
   color: ${(props) =>
     props.$isHead
       ? props.theme.colors.gray[600]
       : props.theme.colors.gray[800]};
   text-align: center;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   &.number {
-    width: 128px;
+    flex: 1 0 4rem;
   }
   &.title {
-    width: 501px;
     cursor: ${(props) => (props.$isHead ? 'default' : 'pointer')};
+    width: 20%;
+    flex: 3 0 14rem;
   }
   &.writer {
-    width: 142px;
+    flex: 1 0 8rem;
   }
   &.likeCount {
-    width: 102px;
+    flex: 1 0 5rem;
   }
   &.createAt {
-    width: 187px;
+    flex: 1 0 8rem;
   }
 `;
 
 export const StyledMobileRow = styled.div<{ $isHead?: boolean }>`
-  width: 335px;
+  /* width: 335px; */
   height: 65px;
   border-bottom: 1px solid ${(props) => props.theme.colors.gray[100]};
   display: none;
   cursor: pointer;
-  ${props => {
+  ${(props) => {
     const displayValue = props.$isHead ? 'none' : 'block';
     return media('mobile')`
       display: ${displayValue};

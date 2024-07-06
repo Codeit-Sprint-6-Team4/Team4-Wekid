@@ -23,59 +23,61 @@ interface signInUIProps {
 const SignUpUI = ({ value, onChange, onSubmit, isFillForm }: signInUIProps) => {
   const isFill = isFillForm();
   return (
-    <StyledSignUpFrame>
-      <StyledSignUpName>회원가입</StyledSignUpName>
-      <StyledSignUpForm onSubmit={onSubmit}>
-        <StyledSignUpUserInfoFrame>
-          <EmailPassword
-            type="text"
-            name="이름"
-            inputName="name"
-            placeholder="이름을 입력해 주세요"
-            value={value.name}
-            onChange={onChange}
-          />
-          <EmailPassword
-            type="email"
-            name="이메일"
-            inputName="email"
-            placeholder="이메일을 입력해 주세요"
-            value={value.email}
-            onChange={onChange}
-          />
-          <EmailPassword
-            type="password"
-            name="비밀번호"
-            inputName="password"
-            placeholder="비밀번호를 입력해 주세요"
-            value={value.password}
-            onChange={onChange}
-          />
-          <EmailPassword
-            type="password"
-            name="비밀번호 확인"
-            inputName="passwordConfirmation"
-            placeholder="비밀번호를 입력해 주세요"
-            value={value.passwordConfirmation}
-            onChange={onChange}
-          />
-          {value.password !== value.passwordConfirmation ? (
-            <StyledErrorMessage>
-              비밀번호가 일치하지 않습니다.
-            </StyledErrorMessage>
-          ) : (
-            <StyledErrorMessage />
-          )}
-        </StyledSignUpUserInfoFrame>
-        <Button $primary $width="100%" type="submit" disabled={isFill}>
-          가입하기
-        </Button>
-      </StyledSignUpForm>
-      <StyledIsMemberFrame>
-        <StyledIsMember>이미 회원이신가요?</StyledIsMember>
-        <StyledLinkLogin href="/login">로그인 하기</StyledLinkLogin>
-      </StyledIsMemberFrame>
-    </StyledSignUpFrame>
+    <main className="layoutWrap">
+      <StyledSignUpFrame>
+        <StyledSignUpName>회원가입</StyledSignUpName>
+        <StyledSignUpForm onSubmit={onSubmit}>
+          <StyledSignUpUserInfoFrame>
+            <EmailPassword
+              type="text"
+              name="이름"
+              inputName="name"
+              placeholder="이름을 입력해 주세요"
+              value={value.name}
+              onChange={onChange}
+            />
+            <EmailPassword
+              type="email"
+              name="이메일"
+              inputName="email"
+              placeholder="이메일을 입력해 주세요"
+              value={value.email}
+              onChange={onChange}
+            />
+            <EmailPassword
+              type="password"
+              name="비밀번호"
+              inputName="password"
+              placeholder="비밀번호를 입력해 주세요"
+              value={value.password}
+              onChange={onChange}
+            />
+            <EmailPassword
+              type="password"
+              name="비밀번호 확인"
+              inputName="passwordConfirmation"
+              placeholder="비밀번호를 입력해 주세요"
+              value={value.passwordConfirmation}
+              onChange={onChange}
+            />
+            {value.password !== value.passwordConfirmation ? (
+              <StyledErrorMessage>
+                비밀번호가 일치하지 않습니다.
+              </StyledErrorMessage>
+            ) : (
+              <StyledErrorMessage />
+            )}
+          </StyledSignUpUserInfoFrame>
+          <Button $primary $width="100%" type="submit" disabled={isFill}>
+            가입하기
+          </Button>
+        </StyledSignUpForm>
+        <StyledIsMemberFrame>
+          <StyledIsMember>이미 회원이신가요?</StyledIsMember>
+          <StyledLinkLogin href="/login">로그인 하기</StyledLinkLogin>
+        </StyledIsMemberFrame>
+      </StyledSignUpFrame>
+    </main>
   );
 };
 

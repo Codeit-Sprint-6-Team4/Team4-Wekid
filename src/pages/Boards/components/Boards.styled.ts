@@ -2,27 +2,12 @@ import styled from 'styled-components';
 import { media } from '@utils/media';
 
 export const StyledBoardsContainer = styled.div`
-  width: 1060px;
-  margin: 60px auto 0;
-
-  ${media('tablet')`
-    width: 624px;
-  `}
-  ${media('mobile')`
-    width: 335px;
-  `}
+  width: 100%;
 `;
 
 export const StyledBoardsContainer2 = styled.div`
-  width: 1060px;
+  width: 100%;
   margin: 0px auto;
-
-  ${media('tablet')`
-    width: 624px;
-  `}
-  ${media('mobile')`
-    width: 335px;
-  `}
 `;
 
 export const StyledBoardsTitleContainer = styled.div`
@@ -50,6 +35,7 @@ export const StyledBestArticleContainer = styled.div`
     }
   `}
   ${media('mobile')`
+  margin: 40px auto 0px;
     width: 100%;
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -75,13 +61,13 @@ export const StyledBoardsFilterBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem;
 
   ${media('mobile')`
-    height: 110px;
+    height: auto;
     flex-wrap: wrap;
-     > * {
-      margin-bottom: 20px;
-    }
+    gap: 1rem 1.5rem;
+    margin-top: 4rem;
   `}
 `;
 

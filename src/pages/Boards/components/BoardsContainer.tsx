@@ -61,6 +61,7 @@ const BoardsContainer = () => {
 
   const fetchArticles = async () => {
     try {
+      setArticles([]);
       const { data } = await getArticles(
         currentPage,
         itemsPerPage,
