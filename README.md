@@ -26,12 +26,14 @@
 
 ## 화면 구성
 
-|----------|----------|
-| ![스크린샷 2024-07-06 163659](https://github.com/Codeit-Sprint-6-Team4/Team4-Wekid/assets/116349476/470c12cf-09b0-4dba-8ad1-bdfa38df3e78) | ![스크린샷 2024-07-06 163712](https://github.com/Codeit-Sprint-6-Team4/Team4-Wekid/assets/116349476/47c51e4d-ed4c-4cc9-b788-e36994c15c85) |
-| ![스크린샷 2024-07-06 163717](https://github.com/Codeit-Sprint-6-Team4/Team4-Wekid/assets/116349476/cd930eb5-a91e-48d9-a3d7-08563e759570)
-| Cell 4 |
+![dd1](https://github.com/Codeit-Sprint-6-Team4/Team4-Wekid/assets/116349476/ff20a1ab-4caa-48ba-9fc4-c5042717a037)
 
 ## 주요 기능
+
+- 로그인, 회원가입, 계정 수정
+- 나의 위키페이지 생성, 콘텐츠 업로드, 수정, 삭제, 댓글기능
+- 자유게시판 콘텐츠 업로드, 수정, 삭제, 댓글기능
+- 좋아요, 알림 기능
 
 ## 아키텍쳐
 
@@ -370,15 +372,3 @@
 ## 사용언어
 
 React JS, TypeScript, Styled-components, Axios
-
-## 문제 해결
-
-- 생각나는데로
-- 반응형
-- 토큰 오류
-- 전체적인 layout 문제
-- 유저 데이터 타입 오류
-- 리스트 검색 문제
-- input auto 메세지
-
-## 느낀 점
