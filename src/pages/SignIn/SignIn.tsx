@@ -6,7 +6,7 @@ const SignIn = () => {
   return (
     <>
       <Helmet>
-        <title>로그인</title>
+        <title>Wikied - 로그인</title>
         <meta
           name="description"
           content="위키드에 로그인하고 다양한 서비스를 이용해 보세요. 로그인 바로가기"
