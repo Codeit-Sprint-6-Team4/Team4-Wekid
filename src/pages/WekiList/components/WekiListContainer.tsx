@@ -67,7 +67,6 @@ const WekiListContainer = () => {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    fetchProfiles();
   };
 
   const handleProfileCardClick = (profile: ProfileType) => {

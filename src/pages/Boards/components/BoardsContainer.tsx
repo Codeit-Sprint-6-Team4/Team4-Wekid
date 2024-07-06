@@ -106,7 +106,6 @@ const BoardsContainer = () => {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    fetchArticles();
   };
 
   return (
