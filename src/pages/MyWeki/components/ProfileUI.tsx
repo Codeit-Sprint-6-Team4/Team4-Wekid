@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ChangeEvent } from 'react';
 import noProfile from '@assets/icons/icon-profile.svg';
-import vector from '@assets/icons/icon-vector.svg';
 import { StyledInput } from '@components/input/input';
 import {
   StyeldProfileImage,
@@ -10,7 +9,6 @@ import {
   StyledProfileData,
   StyledProfileDataWrap,
   StyledProfileImageInput,
-  StyledVetorImage,
 } from './profile.styled';
 
 interface profileUIProps {
@@ -194,10 +192,6 @@ const ProfileUI = ({
           <p>{nationality}</p>
         </StyledProfileData>
       </StyledProfileDataWrap>
-
-      <button onClick={() => setIsClicked(!isClicked)}>
-        <StyledVetorImage src={vector} alt="백터이미지" />
-      </button>
     </StyeldProfileWrap>
   );
 };

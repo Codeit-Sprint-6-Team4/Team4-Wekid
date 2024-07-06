@@ -11,7 +11,11 @@ import UserLink from '@components/userlink/UserLink';
 import isSameProfile from '@utils/isSameProfile';
 import EditorUI from './EditorUI';
 import ProfileUI from './ProfileUI';
-import { StyledMarkUpWrap, StyledMarkUpHeader } from './markUp.styled';
+import {
+  StyledMarkUpWrap,
+  StyledMarkUpHeader,
+  StyledButtonsWrap,
+} from './markUp.styled';
 import {
   StyledWekiWrap,
   StyledWekiContent,
@@ -122,6 +126,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
                     <button onClick={onParticipate}>시작하기</button>
                   </StyledNoContentWrapper>
                 )}
+
                 {!isEditMode && profile?.content && (
                   <main
                     className="view ql-editor"
@@ -168,7 +173,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
               <StyledMarkUpHeader>
                 <h2>{profile?.name}</h2>
 
-                <div>
+                <StyledButtonsWrap>
                   <Button
                     onClick={onCancel}
                     $width="65px"
@@ -186,7 +191,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
                   >
                     저장
                   </Button>
-                </div>
+                </StyledButtonsWrap>
               </StyledMarkUpHeader>
             )}
           </StyledWekiWrap>
