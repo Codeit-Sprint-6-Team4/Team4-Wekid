@@ -21,6 +21,7 @@ import {
 } from './wekiPage.styled';
 
 interface MyeWekiUIProps {
+  isLoading: boolean;
   profile: profileType | null;
   modalInput: string;
   isEditMode: boolean;
@@ -40,6 +41,7 @@ interface MyeWekiUIProps {
 const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
   (
     {
+      isLoading,
       editImage,
       previewImage,
       onChangeProfileImage,
@@ -71,113 +73,120 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
 
     return (
       <main className="layoutWrap wiki">
-        <StyledWekiWrap>
-          <StyledWekiContent>
-            {!isEditMode && (
-              <StyledWekiHeader>
-                <header>
-                  <h2>{profile ? profile.name : ''}</h2>
-                  <Button
-                    onClick={onParticipate}
-                    $primary
-                    $width="160px"
-                    $height="45px"
-                  >
-                    위키참여하기
-                  </Button>
-                </header>
+        {!isLoading && (
+          <StyledWekiWrap>
+            <StyledWekiContent>
+              {!isEditMode && (
+                <StyledWekiHeader>
+                  <header>
+                    <h2>{profile ? profile.name : ''}</h2>
+                    <Button
+                      onClick={onParticipate}
+                      $primary
+                      $width="160px"
+                      $height="45px"
+                    >
+                      위키참여하기
+                    </Button>
+                  </header>
 
-                {typeof code === 'string' && (
-                  <StyledMyWikiUserLinkWrapper>
-                    <UserLink code={code} />
-                  </StyledMyWikiUserLinkWrapper>
-                )}
-              </StyledWekiHeader>
-            )}
-
-            {isModalOpen && (
-              <Modal
-                type={'question'}
-                securityQuestion={profile?.securityQuestion}
-                onClose={onModalClose}
-                answer={modalInput}
-                setAnswer={onChangeModalInput}
-                confirmAnswer={() => {
-                  setIsEditMode(true);
-                  onModalClose();
-                }}
-                onConfirm={() => postEditingProfile(code!, modalInput)}
-              />
-            )}
-
-            <StyledMarkUpWrap>
-              {!isEditMode && profile !== null && !profile?.content && (
-                <StyledNoContentWrapper>
-                  <p>아직 작성된 내용이 없네요. 위키에 참여해 보세요!</p>
-                  <Link to={'/mypage'}>시작하기</Link>
-                </StyledNoContentWrapper>
+                  {typeof code === 'string' && (
+                    <StyledMyWikiUserLinkWrapper>
+                      <UserLink code={code} />
+                    </StyledMyWikiUserLinkWrapper>
+                  )}
+                </StyledWekiHeader>
               )}
-              {!isEditMode && profile?.content && (
-                <main
-                  className="view ql-editor"
-                  dangerouslySetInnerHTML={{
-                    __html: profile ? profile.content : '',
+
+              {isModalOpen && (
+                <Modal
+                  type={'question'}
+                  securityQuestion={profile?.securityQuestion}
+                  onClose={onModalClose}
+                  answer={modalInput}
+                  setAnswer={onChangeModalInput}
+                  confirmAnswer={() => {
+                    setIsEditMode(true);
+                    onModalClose();
                   }}
-                ></main>
-              )}
-
-              {isEditMode && (
-                <EditorUI
-                  onSave={onSave}
-                  onCancel={onCancel}
-                  content={profile?.content as string}
-                  name={profile ? profile.name : ''}
-                  ref={ref}
+                  onConfirm={() => postEditingProfile(code!, modalInput)}
                 />
               )}
-            </StyledMarkUpWrap>
-          </StyledWekiContent>
 
-          <ProfileUI
-            editImage={editImage}
-            previewImage={previewImage}
-            onChangeProfileImage={onChangeProfileImage}
-            onChangeProfileInput={onChangeProfileInput}
-            isEditMode={isEditMode}
-            isMyprofile={isMyProfile}
-            nationality={profile?.nationality}
-            family={profile?.family}
-            bloodType={profile?.bloodType}
-            nickname={profile?.nickname}
-            birthday={profile?.birthday}
-            sns={profile?.sns}
-            job={profile?.job}
-            mbti={profile?.mbti}
-            city={profile?.city}
-            image={profile?.image ? profile.image : ''}
-          />
+              <StyledMarkUpWrap>
+                {!isEditMode && profile !== null && !profile?.content && (
+                  <StyledNoContentWrapper>
+                    <p>아직 작성된 내용이 없네요. 위키에 참여해 보세요!</p>
+                    <button onClick={onParticipate}>시작하기</button>
+                  </StyledNoContentWrapper>
+                )}
+                {!isEditMode && profile?.content && (
+                  <main
+                    className="view ql-editor"
+                    dangerouslySetInnerHTML={{
+                      __html: profile ? profile.content : '',
+                    }}
+                  ></main>
+                )}
 
-          {isEditMode && (
-            <StyledMarkUpHeader>
-              <h2>{profile?.name}</h2>
+                {isEditMode && (
+                  <EditorUI
+                    onSave={onSave}
+                    onCancel={onCancel}
+                    content={profile?.content as string}
+                    name={profile ? profile.name : ''}
+                    ref={ref}
+                  />
+                )}
+              </StyledMarkUpWrap>
+            </StyledWekiContent>
 
-              <div>
-                <Button
-                  onClick={onCancel}
-                  $width="65px"
-                  $secondary
-                  $height="40px"
-                >
-                  취소
-                </Button>
+            <ProfileUI
+              editImage={editImage}
+              previewImage={previewImage}
+              onChangeProfileImage={onChangeProfileImage}
+              onChangeProfileInput={onChangeProfileInput}
+              isEditMode={isEditMode}
+              isMyprofile={isMyProfile}
+              nationality={profile?.nationality}
+              family={profile?.family}
+              bloodType={profile?.bloodType}
+              nickname={profile?.nickname}
+              birthday={profile?.birthday}
+              sns={profile?.sns}
+              job={profile?.job}
+              mbti={profile?.mbti}
+              city={profile?.city}
+              image={profile?.image ? profile.image : ''}
+            />
 
-                <Button onClick={onSave} $primary $width="65px" $height="40px">
-                  저장
-                </Button>
-              </div>
-            </StyledMarkUpHeader>
-          )}
-        </StyledWekiWrap>
+            {isEditMode && (
+              <StyledMarkUpHeader>
+                <h2>{profile?.name}</h2>
+
+                <div>
+                  <Button
+                    onClick={onCancel}
+                    $width="65px"
+                    $secondary
+                    $height="40px"
+                  >
+                    취소
+                  </Button>
+
+                  <Button
+                    onClick={onSave}
+                    $primary
+                    $width="65px"
+                    $height="40px"
+                  >
+                    저장
+                  </Button>
+                </div>
+              </StyledMarkUpHeader>
+            )}
+          </StyledWekiWrap>
+        )}
       </main>
     );
   },

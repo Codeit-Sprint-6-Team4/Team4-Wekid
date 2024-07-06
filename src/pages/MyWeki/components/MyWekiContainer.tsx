@@ -17,6 +17,7 @@ const MyWekiContainer = () => {
     receiveProfile,
     isEditMode,
     setIsEditMode,
+    isLoading,
   } = useMywekiAPi();
   const userData = useContext<userType | null>(MyWekiDataContext);
 
@@ -92,6 +93,7 @@ const MyWekiContainer = () => {
 
   return (
     <MyWekiUI
+      isLoading={isLoading}
       ref={quailRef}
       profile={profile}
       isEditMode={isEditMode}
