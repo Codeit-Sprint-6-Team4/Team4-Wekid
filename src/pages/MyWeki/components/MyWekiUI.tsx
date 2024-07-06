@@ -2,7 +2,7 @@ import React, { ChangeEvent, forwardRef, useContext } from 'react';
 import ReactQuill from 'react-quill';
 import { Link, useParams } from 'react-router-dom';
 import { MyWekiDataContext } from '@context/myWekiDataContext';
-import { profileType, profileCheckType } from '@api/profile';
+import { profileType } from '@api/profile';
 import { postEditingProfile } from '@api/profile';
 import { userType } from '@api/user';
 import Button from '@components/button/Button';
@@ -24,7 +24,6 @@ interface MyeWekiUIProps {
   profile: profileType | null;
   modalInput: string;
   isEditMode: boolean;
-  isEditNow: string | profileCheckType;
   isModalOpen: boolean;
   onParticipate: () => void;
   onSave: () => void;
@@ -45,7 +44,6 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
       previewImage,
       onChangeProfileImage,
       profile,
-      isEditNow,
       isEditMode,
       isModalOpen,
       modalInput,
@@ -115,7 +113,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
             {!isEditMode && profile !== null && !profile?.content && (
               <StyledNoContentWrapper>
                 <p>아직 작성된 내용이 없네요. 위키에 참여해 보세요!</p>
-                <Link to={'/mypage'}>시작하기</Link>
+                <button onClick={onParticipate}>시작하기</button>
               </StyledNoContentWrapper>
             )}
 

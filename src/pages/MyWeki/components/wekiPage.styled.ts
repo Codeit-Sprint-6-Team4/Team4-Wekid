@@ -87,7 +87,7 @@ export const StyledNoContentWrapper = styled.div`
     font-size: 16px;
     color: ${theme.colors.gray[600]};
   }
-  a {
+  button {
     width: 89px;
     height: 40px;
     display: flex;

@@ -2,12 +2,10 @@ import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from '@context/AuthProvider';
-import { MyWekiDataContext } from '@context/myWekiDataContext';
 import { MyDataContext } from '@context/myWekiDataContext';
 import { ThemeProvider } from 'styled-components';
 import Footer from '@components/layout/Footer';
 import HeaderContainer from '@components/layout/Header/HeaderContainer';
-import useGetUserData from '@hooks/useGetUserData';
 import AccountSetting from '@pages/AccountSetting/AccountSetting';
 import Board from '@pages/Board/Board';
 import Boards from '@pages/Boards/Boards';
@@ -18,6 +16,7 @@ import SignUp from '@pages/SignUp/SignUp';
 import UpLoadBoard from '@pages/UpLoadBoard/UpLoadBoard';
 import Wiki from '@pages/Weki/Wiki';
 import WikiList from '@pages/WekiList/WikiList';
+import GlobalStyle from '@styles/global-styles';
 import { theme } from '@styles/theme';
 
 function App() {
@@ -27,6 +26,7 @@ function App() {
         <ThemeProvider theme={theme}>
           <AuthProvider>
             <BrowserRouter>
+              <GlobalStyle />
               <HeaderContainer />
               <Routes>
                 <Route path="/" element={<Home />} />

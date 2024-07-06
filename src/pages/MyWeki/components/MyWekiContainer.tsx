@@ -95,7 +95,6 @@ const MyWekiContainer = () => {
       ref={quailRef}
       profile={profile}
       isEditMode={isEditMode}
-      isEditNow={isEditNow}
       isModalOpen={isModalOpen}
       modalInput={modalInput}
       editImage={editImage}
