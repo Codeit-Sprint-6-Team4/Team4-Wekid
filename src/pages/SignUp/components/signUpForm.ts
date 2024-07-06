@@ -7,7 +7,7 @@ export const StyledSignUpFrame = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 30px auto;
+  margin: auto;
 `;
 export const StyledSignUpName = styled.p`
   font-family: ${theme.fonts['pretendard/2xl-24px-semibold']};

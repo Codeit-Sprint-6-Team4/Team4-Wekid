@@ -4,12 +4,12 @@ import { theme } from '@styles/theme';
 import { media } from '@utils/media';
 
 export const StyledAccountSettingWrap = styled.div`
-  height: 100vh;
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20px;
+  margin: auto;
   ${media('mobile')`
     width: 90%;
   `}
@@ -36,7 +36,7 @@ export const StyledAccountSettingTitle = styled.h1`
 `;
 
 export const StyledInputSubtitle = styled.label`
-  font-style: ${theme.fonts['pretendard/md-14px-regular']};
+  font: ${theme.fonts['pretendard/md-14px-regular']};
   color: ${theme.colors.gray[800]};
   text-align: left;
   width: 100%;

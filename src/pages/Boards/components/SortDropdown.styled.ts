@@ -4,7 +4,9 @@ import { media } from '@utils/media';
 
 export const StyledDropdownContainer = styled.div`
   position: relative;
-  width: 140px;
+  ${media('mobile')`
+    width: 100%;
+  `}
 `;
 
 export const StyledDropdownButton = styled.button<{ $isOpen: boolean }>`
@@ -43,7 +45,7 @@ export const StyledDropdownButton = styled.button<{ $isOpen: boolean }>`
   `}
 
   ${media('mobile')`
-    width: 335px;
+    width: 100%;
   `}
 `;
 
@@ -62,7 +64,7 @@ export const StyledDropdownList = styled.ul`
   `}
 
   ${media('mobile')`
-    width: 335px;
+    width: 100%;
   `}
 `;
 

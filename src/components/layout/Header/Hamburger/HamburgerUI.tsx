@@ -29,7 +29,7 @@ const HamburgerUI: React.FC<HamburgerUIProps> = ({
     >
       <StyledMyMenu>
         <StyledMyMenuItem>
-          <Link to="/wekilist">위키목록</Link>
+          <Link to="/wikilist">위키목록</Link>
         </StyledMyMenuItem>
         <StyledMyMenuItem>
           <Link to="/boards">자유게시판</Link>
@@ -38,7 +38,7 @@ const HamburgerUI: React.FC<HamburgerUIProps> = ({
         {isLoggedIn ? (
           <>
             <StyledMyMenuItem>
-              <Link to="/weki/:code">내 위키</Link>
+              <Link to="/wiki/:code">내 위키</Link>
             </StyledMyMenuItem>
             <StyledMyMenuItem>
               <Link to="/mypage">마이페이지</Link>
