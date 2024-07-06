@@ -42,6 +42,9 @@ export const StyledColumn = styled.div<{ $isHead?: boolean }>`
     cursor: ${(props) => (props.$isHead ? 'default' : 'pointer')};
     width: 20%;
     flex: 3 0 14rem;
+    &:hover {
+      text-decoration: ${(props) => (props.$isHead ? 'none' : 'underline')};
+    }
   }
   &.writer {
     flex: 1 0 8rem;
