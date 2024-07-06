@@ -28,8 +28,13 @@ const CustomBoardToolBar = () => {
         </span>
 
         <span className="ql-formats">
-          <select className="ql-color" title="글자 색상"></select>
-          <button className="ql-image" title="이미지 삽입" />
+          <span
+            className="tooltip-container color-select"
+            data-title="글자 색상"
+          >
+            <select className="ql-color"></select>
+          </span>
+          <button className="ql-image image-button" title="이미지 삽입" />
         </span>
 
         <span className="ql-formats ql-toolbar-right">
