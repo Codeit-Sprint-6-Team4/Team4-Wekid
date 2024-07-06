@@ -3,10 +3,8 @@ import { theme } from '@styles/theme';
 import { media } from '@utils/media';
 
 export const StyledMarkUpWrap = styled.div`
-  margin-top: 50px;
-  min-height: 768px;
 
-  ${media('tablet')`
+  ${media('desktop')`
     margin-top: 10px;
     min-height: 704px;
   `}
@@ -20,9 +18,8 @@ export const StyledMarkUpHeader = styled.div`
   display: none;
   padding: 20px;
 
-  ${media('tablet')`
-    margin: 30px auto 0px;
-    width: 614px;
+  ${media('desktop')`
+    width: 100%;
     height: 60px;
     border-radius: 10px;
     background-color: ${theme.colors.gray[50]};
@@ -43,8 +40,5 @@ export const StyledMarkUpHeader = styled.div`
     width: 140px;
     height: 40px;
   }
-
-  ${media('mobile')`
-      width:335px`}
-  `}
+`}
 `;

@@ -16,7 +16,6 @@ import SignUp from '@pages/SignUp/SignUp';
 import UpLoadBoard from '@pages/UpLoadBoard/UpLoadBoard';
 import Wiki from '@pages/Weki/Wiki';
 import WikiList from '@pages/WekiList/WikiList';
-import GlobalStyle from '@styles/global-styles';
 import { theme } from '@styles/theme';
 
 function App() {
@@ -26,7 +25,6 @@ function App() {
         <ThemeProvider theme={theme}>
           <AuthProvider>
             <BrowserRouter>
-              <GlobalStyle />
               <HeaderContainer />
               <Routes>
                 <Route path="/" element={<Home />} />

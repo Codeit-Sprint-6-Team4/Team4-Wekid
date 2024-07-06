@@ -3,11 +3,11 @@ import { theme } from '@styles/theme';
 import { media } from '@utils/media';
 
 export const StyledSignInWrap = styled.div`
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: auto;
 `;
 
 export const StyledSignInForm = styled.form`
@@ -20,7 +20,7 @@ export const StyledSignInForm = styled.form`
   align-items: center;
   gap: 20px;
   ${media('tablet')`
-  padding:20px;
+  padding:20px 0;
 `}
 `;
 

@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 import { theme } from '@styles/theme';
 
-export const StyledInput = styled.input`
+export const StyledInput = styled.input.attrs((props) => ({
+  autoComplete: props.autoComplete || 'on',
+}))`
   border-radius: 10px;
   padding-left: 14px;
   width: ${({ width }) => `${width}px`};
   height: ${({ height }) => `${height}px`};
   background-color: ${theme.colors.gray[50]};
-  font-style: ${theme.fonts['pretendard/md-14px-regular']};
+  font: ${theme.fonts['pretendard/md-14px-regular']};
   color: ${theme.colors.gray[800]};
   font-weight: 500;
   box-sizing: border-box;

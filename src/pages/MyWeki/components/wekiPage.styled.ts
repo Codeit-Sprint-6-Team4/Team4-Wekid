@@ -6,23 +6,18 @@ import { media } from '@utils/media';
 
 export const StyledWekiWrap = styled.div`
   display: flex;
+  gap: 1rem 6rem;
+  align-items: flex-start;
+  width: 100%;
 
-  ${media('tablet')`
+  ${media('desktop')`
     flex-direction: column-reverse;
   `}
 `;
 
 export const StyledWekiContent = styled.div`
   position: relative;
-  margin: 0px auto 0px;
-  width: 1120px; /* width: 70vw; */
-  ${media('tablet')`
-    width:624px;
-  `}
-
-  ${media('mobile')`
-    width:335px;
-  `}
+  width: 100%;
 `;
 
 export const StyledWekiHeader = styled.div`
@@ -31,12 +26,13 @@ export const StyledWekiHeader = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-
+  gap: 16px;
+  margin-bottom: 4rem;
   div {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 
     h2 {
       font-family: ${theme.fonts['pretendard/5xl-48px-semibold']};
@@ -46,9 +42,10 @@ export const StyledWekiHeader = styled.div`
     }
   }
 
-  ${media('tablet')``}
+  ${media('desktop')``}
 
   ${media('mobile')`
+    margin-top: 40px;
      div {
         h2 {
           font-family: ${theme.fonts['pretendard/5xl-48px-semibold']};
@@ -69,7 +66,7 @@ export const StyledMyWikiUserLinkWrapper = styled(StyledUserLinkWrapper)`
 `;
 
 export const StyledNoContentWrapper = styled.div`
-  width: 859px;
+  width: 100%;
   height: 192px;
   border-radius: 10px;
   display: flex;
