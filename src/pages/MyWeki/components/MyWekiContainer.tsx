@@ -28,15 +28,6 @@ const MyWekiContainer = () => {
   const { code } = useParams();
   const quailRef = useRef<ReactQuill>(null);
 
-  const onChangeProfileImage = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files !== null) {
-      const value = e.target.files[0];
-      setEditImage(value);
-      const imageURL = URL.createObjectURL(value);
-      setPreviewImage(imageURL);
-    }
-  };
-
   const onParticipate = () => {
     if (typeof isEditNow !== 'string' && userData !== null) {
       if (isEditNow.userId === userData.id) {
@@ -47,6 +38,15 @@ const MyWekiContainer = () => {
       }
     }
     setIsModalOpen(true);
+  };
+
+  const onChangeProfileImage = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files !== null) {
+      const value = e.target.files[0];
+      setEditImage(value);
+      const imageURL = URL.createObjectURL(value);
+      setPreviewImage(imageURL);
+    }
   };
 
   const editPathProfile = async () => {
@@ -61,8 +61,16 @@ const MyWekiContainer = () => {
         }
         await patchProfile(code, profile, quailRef.current.value);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  const onSave = async () => {
+    await editPathProfile();
+    setIsEditMode(false);
+  };
+
   const onCancel = () => {
     URL.revokeObjectURL(previewImage);
     setPreviewImage('');
@@ -74,6 +82,7 @@ const MyWekiContainer = () => {
   const onChangeModalInput = (e: ChangeEvent<HTMLInputElement>) => {
     setModalInput(e.target.value);
   };
+
   const onChangeProfileInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
     if (profile) {
@@ -81,13 +90,17 @@ const MyWekiContainer = () => {
     }
   };
 
-  const onModalClose = () => {
+  const onModalClose = (closeType?: string) => {
+    if (closeType === 'permission') {
+      setIsModalOpen(false);
+      return;
+    }
     setModalInput('');
     setIsModalOpen(false);
   };
 
-  const onSave = async () => {
-    await editPathProfile();
+  const onTimeOut = () => {
+    setModalInput('');
     setIsEditMode(false);
   };
 
@@ -109,6 +122,7 @@ const MyWekiContainer = () => {
       onCancel={onCancel}
       onSave={onSave}
       onModalClose={onModalClose}
+      onTimeOut={onTimeOut}
     />
   );
 };

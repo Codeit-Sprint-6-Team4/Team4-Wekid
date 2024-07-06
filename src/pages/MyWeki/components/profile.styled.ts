@@ -37,8 +37,7 @@ export const StyeldProfileWrap = styled.div<buttonProps & profileModeProps>`
   }
 
   ${media('desktop')`
-    flex-direction:row;
-    flex-direction:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'column'};
+    flex-direction:${({ $isMyprofile, $isEdit }) => ($isMyprofile && $isEdit ? 'column' : 'row')};
     
     align-items: ${({ $isClicked }) => ($isClicked ? 'initial' : 'initial')};
     align-items: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'center'};

@@ -26,16 +26,17 @@ interface MyeWekiUIProps {
   modalInput: string;
   isEditMode: boolean;
   isModalOpen: boolean;
+  editImage: File | null;
+  previewImage: string;
   onParticipate: () => void;
   onSave: () => void;
   onCancel: () => void;
-  onModalClose: () => void;
+  onModalClose: (closeType?: string) => void;
   onChangeModalInput: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeProfileInput: (e: ChangeEvent<HTMLInputElement>) => void;
   setIsEditMode: React.Dispatch<React.SetStateAction<boolean>>;
-  editImage: File | null;
-  previewImage: string;
   onChangeProfileImage: (e: ChangeEvent<HTMLInputElement>) => void;
+  onTimeOut: () => void;
 }
 
 const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
@@ -56,6 +57,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
       onCancel,
       onParticipate,
       onModalClose,
+      onTimeOut,
     },
     ref,
   ) => {
@@ -100,14 +102,14 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
 
               {isModalOpen && (
                 <Modal
-                  type={'question'}
+                  type="question"
                   securityQuestion={profile?.securityQuestion}
                   onClose={onModalClose}
                   answer={modalInput}
                   setAnswer={onChangeModalInput}
                   confirmAnswer={() => {
                     setIsEditMode(true);
-                    onModalClose();
+                    onModalClose('permission');
                   }}
                   onConfirm={() => postEditingProfile(code!, modalInput)}
                 />
@@ -131,6 +133,8 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
 
                 {isEditMode && (
                   <EditorUI
+                    onTimeOut={onTimeOut}
+                    modalInput={modalInput}
                     onSave={onSave}
                     onCancel={onCancel}
                     content={profile?.content as string}
