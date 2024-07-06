@@ -10,17 +10,21 @@ const NotificationsDropdownContainer: React.FC = () => {
     list: [],
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getNotifications(1, 10);
-        setAlarms(data);
-      } catch (error) {
-        console.error('Failed to fetch notifications:', error);
-      }
-    };
+  const fetchNotifications = async () => {
+    try {
+      const data = await getNotifications(1, 10);
+      setAlarms(data);
+    } catch (error) {
+      console.error('Failed to fetch notifications:', error);
+    }
+  };
 
-    fetchData();
+  useEffect(() => {
+    fetchNotifications();
+
+    const intervalId = setInterval(fetchNotifications, 300000); // 5분마다 데이터 갱신
+
+    return () => clearInterval(intervalId); // 컴포넌트 언마운트 시 인터벌 제거
   }, []);
 
   const handleDeleteAlarm = async (id: number) => {

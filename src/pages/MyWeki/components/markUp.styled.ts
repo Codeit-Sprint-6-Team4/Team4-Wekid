@@ -6,11 +6,11 @@ export const StyledMarkUpWrap = styled.div`
 
   ${media('desktop')`
     margin-top: 10px;
-    min-height: 704px;
+    // min-height: 704px;
   `}
 
   ${media('mobile')`
-    min-height: 472px;
+    // min-height: 472px;
   `}
 `;
 

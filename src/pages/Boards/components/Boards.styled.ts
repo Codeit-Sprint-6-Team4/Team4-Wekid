@@ -20,13 +20,15 @@ export const StyledBoardsTitle = styled.span`
 `;
 
 export const StyledBestArticleContainer = styled.div`
-  width: 1060px;
-  margin: 60px auto 0px;
+  /* width: 1060px; */
+  width: 100%;
+  margin-top: 60px;
+  gap: 1.6rem;
   display: flex;
   justify-content: space-between;
 
   ${media('tablet')`
-    width: 624px;
+    // width: 624px;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-around;
@@ -54,6 +56,7 @@ export const StyledBestArticleContainer = styled.div`
 `;
 
 export const StyledBoardsFilterBar = styled.div`
+  flex: 1 0;
   width: 100%;
   height: 45px;
   margin-top: 60px;
