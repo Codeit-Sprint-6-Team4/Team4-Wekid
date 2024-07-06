@@ -15,6 +15,10 @@ export const StyledWekiListPageContainer = styled.div`
   `}
 `;
 
+export const StyledSearchBarAndResultContainer = styled.div`
+  height: 87px;
+`
+
 export const StyledSearchResultsMessage = styled.div`
   font: ${(props) => props.theme.fonts['pretendard/lg-16px-regular']};
   color:  ${(props) => props.theme.colors.gray[600]};
@@ -49,6 +53,7 @@ export const StyledNoResultImage = styled.div`
 export const StyledWekiListContainer = styled.div`
   margin-top: 57px;
   margin-bottom: 121px;
+  height: 474px;
   ${media('tablet')`
     margin-bottom: 81px;
   `}

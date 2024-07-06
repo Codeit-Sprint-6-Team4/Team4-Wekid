@@ -114,6 +114,7 @@ const BoardsUI: React.FC<BoardsUIProps> = ({
               writer={article.writer.name}
               likeCount={String(article.likeCount)}
               createAt={new Date(article.createdAt).toLocaleDateString()}
+              myUserData={myUserData}
             />
           ))}
         </StyledBoardsTableContainer>

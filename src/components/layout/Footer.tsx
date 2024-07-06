@@ -58,6 +58,9 @@ const StyledUl = styled.ul`
     padding:0;
     font:${theme.fonts['pretendard/xs-12px-medium']};
   `}
+    ${media('mobile')`
+    font-size:10px;
+  `}
   }
 `;
 

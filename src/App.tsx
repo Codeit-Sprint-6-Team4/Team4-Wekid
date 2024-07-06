@@ -1,3 +1,4 @@
+import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from '@context/AuthProvider';
@@ -42,6 +43,7 @@ function App() {
                   <Route index element={<Boards />} />
                   <Route path=":id" element={<Board />} />
                   <Route path="upload" element={<UpLoadBoard />} />
+                  <Route path="upload/:id" element={<UpLoadBoard />} />
                 </Route>
               </Routes>
               <Footer />

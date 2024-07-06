@@ -27,7 +27,10 @@ const WekiListContainer = () => {
   const [profiles, setProfiles] = useState<ProfileType[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [searchKeyword, setSearchKeyword] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(() => {
+    const savedPage = sessionStorage.getItem('wikilistCurrentPage');
+    return savedPage ? Number(savedPage) : 1;
+  });
   const itemsPerPage = 3;
   const navigate = useNavigate();
 
@@ -51,8 +54,12 @@ const WekiListContainer = () => {
     }
   };
 
+  console.log(searchKeyword);
+  console.log(profiles);
+
   useEffect(() => {
     fetchProfiles();
+    sessionStorage.setItem('wikilistCurrentPage', String(currentPage));
   }, [currentPage, searchKeyword]);
 
   const handlePageChange = (page: number) => {

@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyledColumn, StyledContent, StyledHeartIcon, StyledInfo, StyledInfoContainer1, StyledInfoContainer2, StyledLikesContainer, StyledMobileRow, StyledRow, StyledTitle } from './ArticleRow.styled';
 import { useNavigate } from 'react-router-dom';
+import { fetchArticle } from '@api/article';
+import { AxiosError } from 'axios';
+import { userType } from '@api/user';
 
 interface ArticleRowProps {
   $isHead?: boolean;
@@ -10,6 +13,7 @@ interface ArticleRowProps {
   writer: string;
   likeCount: string;
   createAt: string;
+  myUserData?: userType | null;
 }
 
 const ArticleRow: React.FC<ArticleRowProps> = ({
@@ -20,13 +24,34 @@ const ArticleRow: React.FC<ArticleRowProps> = ({
   writer,
   likeCount,
   createAt,
+  myUserData,
 }) => {
   const navigate = useNavigate();
+  const [isLiked, setIsLiked] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const handleClick = () => {
     if (!$isHead && id) {
       navigate(`/boards/${id}`);
     }
   };
+
+  const getArticle = async (articleId: string) => {
+    try {
+      const data = await fetchArticle(articleId);
+      setIsLiked(data.isLiked);
+    } catch (err) {
+      const axiosError = err as AxiosError;
+      setError(axiosError.message);
+    }
+  };
+
+  useEffect(() => {
+    if (myUserData) {
+      getArticle(String(id));
+    }
+  }, []);
+
   return (
     <>
       <StyledRow $isHead={$isHead}>
@@ -59,7 +84,7 @@ const ArticleRow: React.FC<ArticleRowProps> = ({
             <StyledInfo>{createAt}</StyledInfo>
           </StyledInfoContainer2>
           <StyledLikesContainer>
-            <StyledHeartIcon />
+            <StyledHeartIcon $isLiked={isLiked}/>
             <StyledInfo>{likeCount}</StyledInfo>
           </StyledLikesContainer>
         </StyledInfoContainer1>

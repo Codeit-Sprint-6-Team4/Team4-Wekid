@@ -1,61 +1,79 @@
 import React, { ChangeEvent } from 'react';
-import { id } from 'date-fns/locale';
 import {
   StyledModalOverlay,
   StyledModalContainer,
   StyledCloseButton,
 } from '@components/modal/modal.styled';
 import ImageUploadModalContent from './ImageUploadModalFrame';
+import LoginPromtModalContent from './LoginPromptModalFrame';
 import NoticeModalContent from './NoticeModalFrame';
 import QuestionModalContent from './QuestionModalFrame';
-import LoginPromtModalContent from './LoginPromptModalFrame';
 
-interface ModalProps {
-  type: 'imageUpload' | 'question' | 'disconnect' | 'cancelSave' | 'loginPrompt';
-  onClose: () => void;
-  onConfirm?: (answer: string, id: string) => Promise<string | undefined>;
-  setAnswer?: (e: ChangeEvent<HTMLInputElement>) => void;
-  confirmAnswer?: () => void;
-  navigateToLogin?: () => void;
-  securityQuestion?: string;
-  answer?: string;
-  id?: string;
-}
+type ModalProps =
+  | {
+      type: 'imageUpload';
+      onClose: () => void;
+      onConfirm: (imageUrl: string) => void;
+    }
+  | {
+      type: 'disconnect' | 'cancelSave';
+      onClose: () => void;
+      onConfirm: () => void;
+    }
+  | {
+      type: 'question' | 'loginPrompt';
+      onClose: () => void;
+      onConfirm?: (
+        answer?: string,
+        id?: string,
+      ) => Promise<string | undefined> | void;
+      setAnswer?: (e: ChangeEvent<HTMLInputElement>) => void;
+      confirmAnswer?: () => void;
+      navigateToLogin?: () => void;
+      securityQuestion?: string;
+      answer?: string;
+      id?: string;
+    };
 
-const Modal = ({
-  type,
-  onClose,
-  onConfirm,
-  securityQuestion,
-  answer,
-  id,
-  confirmAnswer,
-  setAnswer,
-  navigateToLogin,
-}: ModalProps) => {
+const Modal = (props: ModalProps) => {
+  const { type, onClose } = props;
+
   let content;
   switch (type) {
     case 'imageUpload':
-      content = <ImageUploadModalContent onClose={onClose} />;
+      content = (
+        <ImageUploadModalContent
+          onClose={onClose}
+          onConfirm={props.onConfirm}
+        />
+      );
       break;
     case 'question':
       content = (
         <QuestionModalContent
-          onConfirm={onConfirm!}
-          securityQuestion={securityQuestion!}
-          answer={answer!}
-          confirmAnswer={confirmAnswer!}
-          id={id!}
-          setAnswer={setAnswer!}
+          onConfirm={props.onConfirm!}
+          securityQuestion={props.securityQuestion!}
+          answer={props.answer!}
+          confirmAnswer={props.confirmAnswer!}
+          id={props.id!}
+          setAnswer={props.setAnswer!}
         />
       );
       break;
     case 'disconnect':
     case 'cancelSave':
-      content = <NoticeModalContent type={type} onClose={onClose} />;
+      content = (
+        <NoticeModalContent
+          type={type}
+          onClose={onClose}
+          onConfirm={props.onConfirm}
+        />
+      );
       break;
     case 'loginPrompt':
-      content = <LoginPromtModalContent navigateToLogin={navigateToLogin}/>
+      content = (
+        <LoginPromtModalContent navigateToLogin={props.navigateToLogin} />
+      );
       break;
     default:
       content = null;

@@ -27,7 +27,10 @@ const BoardsContainer = () => {
   const [bestArticles, setBestArticles] = useState<Article[]>([]);
   const [sortType, setSortType] = useState<'recent' | 'like'>('recent');
   const [searchKeyword, setSearchKeyword] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(() => {
+    const savedPage = sessionStorage.getItem('boardsCurrentPage');
+    return savedPage ? Number(savedPage) : 1;
+  });
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const itemsPerPage = 10;
 
@@ -82,7 +85,8 @@ const BoardsContainer = () => {
 
   useEffect(() => {
     fetchArticles();
-  }, [currentPage, sortType]);
+    sessionStorage.setItem('boardsCurrentPage', String(currentPage));
+  }, [currentPage, sortType, searchKeyword]);
 
   useEffect(() => {
     fetchBestArticles();
