@@ -18,7 +18,7 @@ interface WritingUI {
 }
 
 CUSTUM_ICONS;
-const Five_MINUTES = 300000;
+const FIVE_MINUTES = 300000;
 
 const EditorUI = forwardRef<ReactQuill, WritingUI>(
   ({ content, name, modalInput, onSave, onCancel, onTimeOut }, ref) => {
@@ -39,7 +39,7 @@ const EditorUI = forwardRef<ReactQuill, WritingUI>(
           }
           timerRef.current = setTimeout(() => {
             setIsModalOpen(true);
-          }, Five_MINUTES);
+          }, FIVE_MINUTES);
           await postEditingProfile(code, modalInput);
         } catch (error) {}
       }
