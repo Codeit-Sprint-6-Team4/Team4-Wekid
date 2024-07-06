@@ -78,12 +78,10 @@ const UploadBoardContainer: React.FC = () => {
     try {
       if (isEditMode && id) {
         await patchArticle(id, payload);
-        alert('게시물이 수정되었습니다.');
         navigate(`/boards/${id}`);
       } else {
         const response = await postArticle(payload);
         const articleId = `${response.id}`;
-        alert('게시물이 등록되었습니다.');
         navigate(`/boards/${articleId}`);
       }
       isDirty.current = false;

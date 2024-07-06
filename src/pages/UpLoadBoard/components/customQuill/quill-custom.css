@@ -92,3 +92,31 @@
     padding: 0;
   }
 }
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-container:hover::after {
+  content: attr(data-title);
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  transform: translateX(-50%, 0);
+  background-color: #fff;
+  color: #000;
+  padding: 5px;
+  border: 1px solid #000;
+  white-space: nowrap;
+  z-index: 1000;
+  font-size: 12px;
+}
+
+.image-button {
+  order: 2;
+}
+
+.color-select {
+  order: 1;
+}
