@@ -5,7 +5,7 @@ const WikiList = () => {
   return (
     <>
       <Helmet>
-        <title>위키리스트</title>
+        <title>Wikied - 위키리스트</title>
         <meta
           name="description"
           content="전체 위키 리스트, 위키리스트 바로가기"

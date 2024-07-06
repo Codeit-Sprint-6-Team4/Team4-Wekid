@@ -36,8 +36,7 @@ instance.interceptors.response.use(
 
     if (
       error.response?.status === 401 &&
-      (responseData?.message === 'jwt expired' ||
-        responseData?.message === 'Unauthorized') &&
+      responseData?.message === 'jwt expired' &&
       !originalRequest._retry
     ) {
       originalRequest._retry = true;

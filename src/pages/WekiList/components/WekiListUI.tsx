@@ -4,6 +4,7 @@ import UserCardFrame from './UserCardFrame';
 import {
   StyledNoResultContainer,
   StyledNoResultImage,
+  StyledSearchBarAndResultContainer,
   StyledSearchNoResultsMessage,
   StyledSearchResultsMessage,
   StyledUserCardWrapper,
@@ -36,24 +37,26 @@ const WekiListUI: React.FC<WekiListUIProps> = ({
 }) => {
   return (
     <StyledWekiListPageContainer>
-      <WekiSeacrhBar
-        placeholder="제목을 검색해 주세요"
-        onChange={handleSearchChange}
-        value={searchKeyword}
-      />
-      {searchKeyword &&
-        (totalCount > 0 ? (
-          <StyledSearchResultsMessage>
-            "{searchKeyword}"님을 총 <span>{totalCount}</span>명 찾았습니다.
-          </StyledSearchResultsMessage>
-        ) : (
-          <StyledNoResultContainer>
-            <StyledSearchNoResultsMessage>
-              "{searchKeyword}"과 일치하는 검색 결과가 없어요.
-            </StyledSearchNoResultsMessage>
-            <StyledNoResultImage />
-          </StyledNoResultContainer>
-        ))}
+      <StyledSearchBarAndResultContainer>
+        <WekiSeacrhBar
+          placeholder="제목을 검색해 주세요"
+          onChange={handleSearchChange}
+          value={searchKeyword}
+        />
+        {searchKeyword &&
+          (totalCount > 0 ? (
+            <StyledSearchResultsMessage>
+              "{searchKeyword}"님을 총 <span>{totalCount}</span>명 찾았습니다.
+            </StyledSearchResultsMessage>
+          ) : (
+            <StyledNoResultContainer>
+              <StyledSearchNoResultsMessage>
+                "{searchKeyword}"과 일치하는 검색 결과가 없어요.
+              </StyledSearchNoResultsMessage>
+              <StyledNoResultImage />
+            </StyledNoResultContainer>
+          ))}
+      </StyledSearchBarAndResultContainer>
       <StyledWekiListContainer>
         {profiles &&
           profiles.length > 0 &&
@@ -72,19 +75,6 @@ const WekiListUI: React.FC<WekiListUIProps> = ({
               />
             </StyledUserCardWrapper>
           ))}
-        {/* {profiles.map((profile) => (
-          <StyledUserCardWrapper key={profile.id} onClick={() => handleProfileCardClick(profile)}>
-          <UserCardFrame
-            key={profile.id}
-            image={profile.image}
-            name={profile.name}
-            city={profile.city}
-            nationality={profile.nationality}
-            job={profile.job}
-            code={profile.code}
-          />
-          </StyledUserCardWrapper>
-        ))} */}
       </StyledWekiListContainer>
       <Pagination
         totalCount={totalCount}

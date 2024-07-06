@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>메인</title>
+        <title>Wikied</title>
         <meta name="description" content="남들이 만드는 나만의 위키" />
         <meta name="keywords" content="위키드, 나만의 위키, 위키 커뮤니티" />
       </Helmet>

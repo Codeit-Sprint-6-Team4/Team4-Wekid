@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { postImage } from '@api/image';
+import Quill from 'quill';
+import Modal from '@components/modal/Modal';
 import { EditorContainer, QuillWrapper } from './UpLoadBoardEditor.styled';
 import './customQuill/quill-custom.css';
 import { CUSTUM_ICONS } from './customQuill/upLoadBoardCustomQuali.styled.icon';
@@ -16,30 +17,24 @@ interface BoardEditorUIProps {
 
 const BoardEditorUI = ({ value, onChange }: BoardEditorUIProps) => {
   const quillRef = useRef<ReactQuill | null>(null);
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [range, setRange] = useState<Quill.RangeStatic | null>(null);
 
   const imageHandler = () => {
-    const input = document.createElement('input');
-    input.setAttribute('type', 'file');
-    input.setAttribute('accept', 'image/*');
-    input.click();
+    const editor = quillRef.current?.getEditor();
+    const currentRange = editor?.getSelection();
+    if (currentRange) {
+      setRange(currentRange);
+      setShowImageModal(true);
+    }
+  };
 
-    input.onchange = async () => {
-      const file = input.files ? input.files[0] : null;
-      if (file) {
-        const editor = quillRef.current?.getEditor();
-        const range = editor?.getSelection();
-        if (range) {
-          try {
-            const url = await postImage(file);
-            if (url && editor) {
-              editor.insertEmbed(range.index, 'image', url);
-            }
-          } catch (error) {
-            console.error('Image upload failed:', error);
-          }
-        }
-      }
-    };
+  const handleImageUpload = (imageUrl: string) => {
+    if (range && quillRef.current) {
+      const editor = quillRef.current.getEditor();
+      editor.insertEmbed(range.index, 'image', imageUrl);
+    }
+    setShowImageModal(false);
   };
 
   useEffect(() => {
@@ -73,6 +68,13 @@ const BoardEditorUI = ({ value, onChange }: BoardEditorUIProps) => {
         />
         <CustomBoardToolBar />
       </QuillWrapper>
+      {showImageModal && (
+        <Modal
+          type="imageUpload"
+          onClose={() => setShowImageModal(false)}
+          onConfirm={handleImageUpload}
+        />
+      )}
     </EditorContainer>
   );
 };

@@ -21,7 +21,7 @@ export const StyledContainer = styled.div`
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   width: 100%;
   max-width: 1060px;
-  min-width: 480px;
+  min-width: 400px;
   padding: 30px;
   margin-bottom: 32px;
   ${media('mobile')`

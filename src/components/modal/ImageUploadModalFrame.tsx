@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { postImage } from '@api/image';
 import Button from '@components/button/Button';
 import {
   StyledContainer,
@@ -11,9 +12,13 @@ import {
 
 interface ImageUploadModalContentProps {
   onClose: () => void;
+  onConfirm: (imageUrl: string) => void;
 }
 
-const ImageUploadModalContent = ({ onClose }: ImageUploadModalContentProps) => {
+const ImageUploadModalContent = ({
+  onClose,
+  onConfirm,
+}: ImageUploadModalContentProps) => {
   const [fileSelected, setFileSelected] = useState(false);
   const [filePreviewUrl, setFilePreviewUrl] = useState<string | null>(null);
   const [imageLoad, setImageLoad] = useState(false);
@@ -30,23 +35,24 @@ const ImageUploadModalContent = ({ onClose }: ImageUploadModalContentProps) => {
 
       const filePreviewUrl = URL.createObjectURL(file);
       setFilePreviewUrl(filePreviewUrl);
-
-      //  uploadFile(file);
     } else {
       setFileSelected(false);
       setFilePreviewUrl(null);
     }
   };
 
-  // 파일 업로드 로직 필요
-
   const handleImageLoad = () => {
     setImageLoad(true);
   };
 
-  const handleInsertClick = () => {
-    if (fileSelected) {
-      onClose();
+  const handleInsertClick = async () => {
+    if (fileSelected && fileInputRef.current?.files?.[0]) {
+      const file = fileInputRef.current.files[0];
+      const imageUrl = await postImage(file);
+      if (imageUrl) {
+        onConfirm(imageUrl);
+        onClose();
+      }
     }
   };
 
