@@ -1,21 +1,14 @@
 import styled from 'styled-components';
 import { StyledInput } from '@components/input/input';
-import { media } from '@utils/media';
 
 export const StyledSeacrhInputConatiner = styled.div`
   position: relative;
 `;
 
 export const StyledSeacrhInput = styled(StyledInput)`
-  width: 860px;
+  width: 100%;
   height: 45px;
   padding-left: 40px;
-  ${media('tablet')`
-    width:704px;
-  `}
-  ${media('mobile')`
-    width:335px;
-  `}
 `;
 
 export const StyledSearchImg = styled.img`

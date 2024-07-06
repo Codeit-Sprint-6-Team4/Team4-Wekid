@@ -8,10 +8,7 @@ export const StyledContainerWapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 50px;
-  ${media('mobile')`
-    margin: 10px;
-  `}
+  width: 100%;
 `;
 
 export const StyledContainer = styled.div`
@@ -20,8 +17,6 @@ export const StyledContainer = styled.div`
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   width: 100%;
-  max-width: 1060px;
-  min-width: 400px;
   padding: 30px;
   margin-bottom: 32px;
   ${media('mobile')`
@@ -63,6 +58,8 @@ export const StyledTitleForm = styled.div`
 export const StyledTitleInput = styled.input`
   flex: 1;
   border: none;
+  font: ${theme.fonts['pretendard/xl-20px-medium']};
+  color: ${theme.colors.gray[900]};
 
   &::placeholder {
     font: ${theme.fonts['pretendard/xl-20px-medium']};
@@ -94,6 +91,7 @@ export const StyledCharCounter = styled.div`
 
 export const StyledTextCharCounter = styled.div`
   font: ${theme.fonts['pretendard/lg-16px-medium']};
+  color: ${theme.colors.gray[900]};
   ${media('mobile')`
     font: ${theme.fonts['pretendard/md-14px-medium']};
   `}
@@ -111,6 +109,8 @@ export const StyledTextarea = styled.textarea`
   resize: none;
   line-height: 2;
   margin-top: 10px;
+  color: ${theme.colors.gray[600]};
+  font: ${theme.fonts['pretendard/xl-20px-medium']};
 
   &::placeholder {
     font: ${theme.fonts['pretendard/xl-20px-medium']};

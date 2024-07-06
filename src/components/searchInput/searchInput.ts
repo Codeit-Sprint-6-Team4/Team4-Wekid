@@ -4,18 +4,17 @@ import { media } from '@utils/media';
 
 export const StyledSeacrhInputConatiner = styled.div`
   position: relative;
+  flex: 1;
 `;
 
 export const StyledSeacrhInput = styled(StyledInput)`
-  width: 800px;
+  width: 100%;
   height: 40px;
   padding-left: 40px;
   ${media('tablet')`
-    width:384px;
     height:42px;
   `}
   ${media('mobile')`
-    width:240px;
   `}
 `;
 

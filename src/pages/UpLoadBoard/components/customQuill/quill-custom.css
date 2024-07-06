@@ -1,7 +1,5 @@
 /* quill-custom.css */
 
-/* 여기에 원하는 스타일을 추가합니다 */
-
 .ql-toolbar {
   border: 1px solid #e2e8f0 !important;
   width: 100%;
@@ -10,19 +8,17 @@
   border-radius: 21.5px;
   display: flex;
   align-items: center;
-  /* 기타 등등 */
 }
 
 .ql-container {
   border: none !important;
-  min-height: 480px;
   height: auto;
   resize: none;
   margin-top: 10px;
 }
 
 .frame-ql-fromats {
-  flex: 2;
+  flex: 4;
 }
 
 .ql-formats {
@@ -38,12 +34,16 @@
   right: 10px;
 }
 
+.ql-toolbar button:hover {
+  color: inherit;
+}
+
 .ql-active {
   color: #474d66 !important;
 }
 
 .ql-active > img {
-  background-color: skyblue !important;
+  background-color: rgba(0, 0, 0, 5%) !important;
   border-radius: 5px;
 }
 
@@ -53,20 +53,50 @@
   min-height: 480px;
   height: auto;
   resize: none;
-  padding: 15px;
+  padding: 0;
   margin-top: 10px;
   box-sizing: border-box;
   line-height: 2;
+  font-size: 1.6rem;
+}
+
+.ql-editor.view {
+  min-height: auto;
 }
 
 .ql-editor.ql-blank::before {
   font-family: 'Pretendard';
   content: attr(data-placeholder);
-  font-size: 20px;
+  font-size: 1em;
   font-weight: 400;
   font-style: normal;
   color: #c6cada;
   top: 7px;
+}
+
+.ql-editor h1 {
+  font-size: 2em !important;
+}
+
+.ql-editor h2 {
+  font-size: 1.5em !important;
+}
+
+.ql-editor h3 {
+  font-size: 1.17em !important;
+}
+
+.ql-editor strong {
+  font-weight: bold !important;
+}
+
+.ql-editor em {
+  font-style: italic !important;
+}
+
+.ql-editor a {
+  text-decoration: underline !important;
+  color: #06c !important;
 }
 
 @media (max-width: 768px) {
