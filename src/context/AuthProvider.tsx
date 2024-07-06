@@ -1,7 +1,7 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import AuthContext from './authContext';
 import { userType, getUserMe } from '@api/user';
+import AuthContext from './authContext';
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -29,6 +29,8 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     setUser(null);
     Cookies.remove('accessToken');
     Cookies.remove('refreshToken');
+    sessionStorage.removeItem('boardsCurrentPage');
+    sessionStorage.removeItem('wekilistCurrentPage');
   };
 
   return (
