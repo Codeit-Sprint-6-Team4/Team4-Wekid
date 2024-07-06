@@ -27,13 +27,12 @@ export const StyledBestArticleContainer = styled.div`
   gap: 16px;
 
   ${media('tablet')`
-    // width: 624px;
     width: 100%;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-around;
     > * {
-    width: calc(50% - 8px); // 너비를 50%로 설정하고, gap으로 인한 공간 조정
+    width: calc(50% - 8px);
       margin-bottom: 20px;
     }
   `}
