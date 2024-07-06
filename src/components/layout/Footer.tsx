@@ -30,6 +30,9 @@ const StyledFooter = styled.footer`
     flex-wrap: wrap;
     li {
       font: ${theme.fonts['pretendard/lg-14px-semibold']};
+      ${media('mobile')`
+      font: ${theme.fonts['pretendard/xs-12px-regular']};
+    `}
     }
     &:last-child {
       gap: 20px;
@@ -39,6 +42,9 @@ const StyledFooter = styled.footer`
   padding: 20px;
 line-height:2;
   `}
+  ${media('mobile')`
+      font: ${theme.fonts['pretendard/xs-12px-regular']};
+    `}
 `;
 
 const StyledUl = styled.ul`
