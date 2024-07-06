@@ -87,7 +87,7 @@ const BoardsContainer = () => {
   useEffect(() => {
     fetchArticles();
     sessionStorage.setItem('boardsCurrentPage', String(currentPage));
-  }, [currentPage, sortType, searchKeyword]);
+  }, [currentPage, sortType]);
 
   useEffect(() => {
     fetchBestArticles();
