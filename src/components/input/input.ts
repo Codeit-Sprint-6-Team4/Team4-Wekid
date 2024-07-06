@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { theme } from '@styles/theme';
 
-export const StyledInput = styled.input`
+export const StyledInput = styled.input.attrs((props) => ({
+  autoComplete: props.autoComplete || 'on',
+}))`
   border-radius: 10px;
   padding-left: 14px;
   width: ${({ width }) => `${width}px`};
