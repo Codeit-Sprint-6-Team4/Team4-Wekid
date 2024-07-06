@@ -7,7 +7,7 @@ const AccountSetting = () => {
   return (
     <>
       <Helmet>
-        <title>계정설정</title>
+        <title>Wikied - 계정설정</title>
         <meta
           name="description"
           content="나의 위키드에서 계정 설정, 질문을 받아보세요. 계정 설정 바로가기"

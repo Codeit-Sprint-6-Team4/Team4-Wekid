@@ -5,7 +5,7 @@ const MyWeki = () => {
   return (
     <>
       <Helmet>
-        <title>나의위키</title>
+        <title>Wikied</title>
         <meta
           name="description"
           content="나의 위키에서 나를 표현하세요. 나의 위키 바로가기"
