@@ -1,7 +1,7 @@
 import React, { ChangeEvent, forwardRef, useContext } from 'react';
 import ReactQuill from 'react-quill';
 import { useParams } from 'react-router-dom';
-import { MyWekiDataContext } from '@context/myWekiDataContext';
+import { MyWekiDataContext, contextType } from '@context/myWekiDataContext';
 import { profileCheckType } from '@api/profile';
 import { profileType } from '@api/profile';
 import { postEditingProfile } from '@api/profile';
@@ -69,16 +69,16 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
     },
     ref,
   ) => {
-    const userData = useContext<userType | null>(MyWekiDataContext);
+    const context = useContext(MyWekiDataContext);
     const { code } = useParams();
     let isMyProfile: boolean = false;
 
     if (
-      userData !== null &&
-      typeof userData.profile?.code === 'string' &&
+      context !== undefined &&
+      typeof context.myUserData?.profile?.code === 'string' &&
       code
     ) {
-      isMyProfile = isSameProfile(userData.profile.code, code);
+      isMyProfile = isSameProfile(context.myUserData.profile.code, code);
     }
 
     return (
@@ -109,7 +109,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
               )}
               {!(
                 typeof isEditNow !== 'string' &&
-                isEditNow.userId === userData?.id
+                isEditNow.userId === context?.myUserData?.id
               ) && (
                 <Snackbar
                   type="error"

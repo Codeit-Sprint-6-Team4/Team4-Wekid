@@ -5,7 +5,7 @@ import { getUserMe } from '@api/user';
 
 const useGetUserData = () => {
   const [myUserData, setUserData] = useState<userType | null>(null);
-
+  const [isLogin, setIsLogin] = useState(false);
   const accessToken: string | undefined = Cookies.get('accessToken');
 
   const getServerUserMe = async () => {
@@ -32,8 +32,11 @@ const useGetUserData = () => {
     if (accessToken) {
       getServerUserMe();
     }
-  }, []);
-  return { myUserData };
+    if (!isLogin) {
+      setUserData(null);
+    }
+  }, [isLogin]);
+  return { myUserData, isLogin, setIsLogin };
 };
 
 export default useGetUserData;
