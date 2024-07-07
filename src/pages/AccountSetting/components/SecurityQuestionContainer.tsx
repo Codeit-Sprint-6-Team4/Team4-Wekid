@@ -96,7 +96,7 @@ const SecurityQuestionContainer = () => {
       try {
         const res = await postSecurityQuestion(question, answer);
         const userURL = `${res.code}`;
-        window.location.href = `/weki/${userURL}`;
+        window.location.href = `/wiki/${userURL}`;
         alert(
           `성공적으로 위키페이지를 만들었습니다.\n\n질문: ${question}\n답변: ${answer}`,
         );
