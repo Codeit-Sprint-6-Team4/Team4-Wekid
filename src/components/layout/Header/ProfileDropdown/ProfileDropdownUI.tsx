@@ -36,7 +36,7 @@ const ProfileDropdownUI: React.FC<ProfileDropdownUIProps> = ({
             <Link to={`/wiki/${user.profile.code}`}>내 위키</Link>
           </StyledMyMenuItem>
         ) : (<StyledMyMenuItem>
-          <Link to={`/wikilist`}>내 위키</Link>
+          <Link to={`/mypage`}>내 위키</Link>
         </StyledMyMenuItem>)}
         <StyledMyMenuItem>
           <Link to="/mypage">마이페이지</Link>
