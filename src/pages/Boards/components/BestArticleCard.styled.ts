@@ -63,7 +63,10 @@ export const StyledCardContent = styled.div`
 
   ${media('tablet')`
     // width: 262px;
-    margin: 20.07px auto;
+    margin: 20.07px 0;
+  `}
+  ${media('mobile')`
+    // width: 212px;
   `}
 `;
 
@@ -87,6 +90,20 @@ export const StyledCardInfo = styled.div`
 
   &.writer {
     margin-right: 8px;
+  }
+  &.date {
+    @media (max-width: 950px) {
+      display: none;
+    }
+    ${media('tablet')`
+      display: flex;
+    `}
+    @media (max-width: 500px) {
+      display: none;
+    }
+    ${media('mobile')`
+      display: flex;
+    `}
   }
 `;
 
@@ -118,8 +135,7 @@ export const StyledHeartIcon = styled.span<{ $isLiked: boolean }>`
   height: 16px;
   margin-right: 6px;
   background-image: url(${HeartIcon});
-  background-image: url(${(props) =>
-    props.$isLiked ? HeartIconFilled : HeartIcon});
+  background-image: url(${(props) => props.$isLiked ? HeartIconFilled : HeartIcon});
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;

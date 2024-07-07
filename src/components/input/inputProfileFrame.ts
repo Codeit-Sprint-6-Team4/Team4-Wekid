@@ -9,12 +9,7 @@ export const StyledProfileFrame = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  ${StyledInput} {
-  }
-  ${media('tablet')`
-    ${StyledInput}{
-    }
-  `}
+
   ${media('mobile')`
       ${StyledInput}{
     height:34px;

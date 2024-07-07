@@ -28,6 +28,7 @@ export const StyledWekiHeader = styled.div`
   flex-direction: column;
   gap: 16px;
   margin-bottom: 4rem;
+
   div {
     display: flex;
     align-items: center;
@@ -41,8 +42,6 @@ export const StyledWekiHeader = styled.div`
       color: ${theme.colors.gray[800]};
     }
   }
-
-  ${media('desktop')``}
 
   ${media('mobile')`
     margin-top: 40px;
@@ -75,6 +74,7 @@ export const StyledNoContentWrapper = styled.div`
   align-items: center;
   gap: 10px;
   background-color: ${theme.colors.gray[50]};
+
   p {
     width: 169px;
     height: 52px;
@@ -84,7 +84,8 @@ export const StyledNoContentWrapper = styled.div`
     font-size: 16px;
     color: ${theme.colors.gray[600]};
   }
-  a {
+
+  button {
     width: 89px;
     height: 40px;
     display: flex;

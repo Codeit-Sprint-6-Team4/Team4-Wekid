@@ -26,24 +26,28 @@ export const StyledBestArticleContainer = styled.div`
   gap: 1.6rem;
   display: flex;
   justify-content: space-between;
+  gap: 16px;
 
   ${media('tablet')`
-    // width: 624px;
+    // width: 100%;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-around;
     > * {
-      margin-bottom: 20px;
+    flex: 1 0 45%;
+    // width: calc(50% - 8px);
+      // margin-bottom: 20px;
     }
   `}
   ${media('mobile')`
-  margin: 40px auto 0px;
-    width: 100%;
+     margin: 40px auto 0px;
+    width: 100%; 
     flex-wrap: nowrap;
     overflow-x: auto;
+    padding: 10px 0px 2rem 1rem;
     & > * {
-      flex: 0 0 auto;
-      margin-right: 20px;
+      flex: 0 0 250px;
+      // margin-right: 20px;
     }
     -ms-overflow-style: none;
 

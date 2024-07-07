@@ -2,11 +2,10 @@ import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from '@context/AuthProvider';
-import { MyWekiDataContext } from '@context/myWekiDataContext';
+import { MyDataContext } from '@context/myWekiDataContext';
 import { ThemeProvider } from 'styled-components';
 import Footer from '@components/layout/Footer';
 import HeaderContainer from '@components/layout/Header/HeaderContainer';
-import useGetUserData from '@hooks/useGetUserData';
 import AccountSetting from '@pages/AccountSetting/AccountSetting';
 import Board from '@pages/Board/Board';
 import Boards from '@pages/Boards/Boards';
@@ -20,11 +19,9 @@ import WikiList from '@pages/WekiList/WikiList';
 import { theme } from '@styles/theme';
 
 function App() {
-  const { myUserData } = useGetUserData();
-
   return (
     <HelmetProvider>
-      <MyWekiDataContext.Provider value={myUserData}>
+      <MyDataContext>
         <ThemeProvider theme={theme}>
           <AuthProvider>
             <BrowserRouter>
@@ -50,7 +47,7 @@ function App() {
             </BrowserRouter>
           </AuthProvider>
         </ThemeProvider>
-      </MyWekiDataContext.Provider>
+      </MyDataContext>
     </HelmetProvider>
   );
 }

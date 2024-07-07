@@ -3,7 +3,6 @@ import { theme } from '@styles/theme';
 import { media } from '@utils/media';
 
 export const StyledMarkUpWrap = styled.div`
-
   ${media('desktop')`
     margin-top: 10px;
     // min-height: 704px;
@@ -13,6 +12,8 @@ export const StyledMarkUpWrap = styled.div`
     // min-height: 472px;
   `}
 `;
+
+export const StyledButtonsWrap = styled.div``;
 
 export const StyledMarkUpHeader = styled.div`
   display: none;
@@ -34,7 +35,7 @@ export const StyledMarkUpHeader = styled.div`
     color: ${theme.colors.gray[800]};
   }
 
-  div {
+  ${StyledButtonsWrap} {
     display: flex;
     gap: 10px;
     width: 140px;
