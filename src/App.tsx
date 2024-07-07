@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from '@context/AuthProvider';
 import { MyDataContext } from '@context/myWekiDataContext';
-import Cookies from 'js-cookie';
 import { ThemeProvider } from 'styled-components';
 import Footer from '@components/layout/Footer';
 import HeaderContainer from '@components/layout/Header/HeaderContainer';
@@ -20,25 +19,6 @@ import WikiList from '@pages/WekiList/WikiList';
 import { theme } from '@styles/theme';
 
 function App() {
-  useEffect(() => {
-    const deleteAllCookies = () => {
-      const allCookies = Cookies.get();
-      for (let cookie in allCookies) {
-        Cookies.remove(cookie);
-      }
-    };
-
-    const handleBeforeUnload = () => {
-      deleteAllCookies();
-    };
-
-    window.addEventListener('unload', handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener('unload', handleBeforeUnload);
-    };
-  }, []);
-
   return (
     <HelmetProvider>
       <MyDataContext>
