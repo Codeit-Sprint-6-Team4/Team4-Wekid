@@ -18,14 +18,11 @@ interface SecurityQuestionProps {
     event: React.MouseEvent<HTMLLIElement, MouseEvent>,
   ) => void;
   onQuestionChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isEditing: boolean;
+  options: { id: number; label: string }[];
+  isInputEnabled: boolean;
 }
-
-const options = [
-  { id: 1, label: '특별히 싫어하는 음식은?' },
-  { id: 2, label: '키우고 있는 반려동물의 이름은?' },
-  { id: 3, label: 'MBTI는?' },
-  { id: 4, label: '가장 좋아하는 색은?' },
-];
 
 const SecurityQuestionUI = ({
   question,
@@ -34,15 +31,36 @@ const SecurityQuestionUI = ({
   onQuestionSubmit,
   onSelect,
   onQuestionChange,
+  onInputChange,
+  isEditing,
+  options,
+  isInputEnabled,
 }: SecurityQuestionProps) => {
+  const initialSelectedOption =
+    options.find((option) => option.label === question) || null;
+
   return (
     <StyledQuestionForm onSubmit={onQuestionSubmit}>
-      <StyledInputSubtitle>위키 생성하기</StyledInputSubtitle>
+      <StyledInputSubtitle>
+        {isEditing ? '질문 수정하기' : '위키 생성하기'}
+      </StyledInputSubtitle>
       <Dropdown
         options={options}
         onSelect={onSelect}
+        initialSelectedOption={initialSelectedOption}
         placeholderText={question || '질문 선택하기'}
+        onInputChange={onInputChange}
+        isInputEnabled={isInputEnabled}
       />
+      {isInputEnabled && (
+        <StyledQuestionInput
+          type="text"
+          name="question"
+          placeholder="질문을 입력해 주세요"
+          value={question}
+          onChange={onInputChange}
+        />
+      )}
       <StyledQuestionInput
         type="text"
         name="answer"
@@ -57,7 +75,7 @@ const SecurityQuestionUI = ({
           type="submit"
           disabled={isQuestionSubmitDisabled}
         >
-          생성하기
+          {isEditing ? '수정하기' : '생성하기'}
         </Button>
       </StyledButtonContainer>
     </StyledQuestionForm>

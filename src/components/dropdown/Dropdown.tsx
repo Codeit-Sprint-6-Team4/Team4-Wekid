@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import {
   StyledDropdownButton,
   StyledDropdownContainer,
@@ -18,16 +18,23 @@ interface DropdownProps {
     event: React.MouseEvent<HTMLLIElement, MouseEvent>,
   ) => void;
   placeholderText: string;
+  initialSelectedOption?: OptionType | null;
+  onInputChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  isInputEnabled?: boolean;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options, onSelect }) => {
+const Dropdown: React.FC<DropdownProps> = ({
+  options,
+  onSelect,
+  initialSelectedOption,
+  placeholderText,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<OptionType | null>(null);
-  const placeholderText = isOpen
-    ? '질문 선택하기'
-    : selectedOption
-      ? selectedOption.label
-      : '질문 없음';
+
+  useEffect(() => {
+    setSelectedOption(initialSelectedOption || null);
+  }, [initialSelectedOption]);
 
   const toggleDropdown = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     event.stopPropagation();
@@ -52,7 +59,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onSelect }) => {
         $isOpen={isOpen}
         onClick={(event) => toggleDropdown(event)}
       >
-        {placeholderText}
+        {selectedOption ? selectedOption.label : placeholderText}
         <div className="icon" />
       </StyledDropdownButton>
       {isOpen && (
@@ -65,6 +72,13 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onSelect }) => {
               {option.label}
             </StyledDropdownItem>
           ))}
+          <StyledDropdownItem
+            onClick={(event) =>
+              handleSelectOption({ id: -1, label: '직접 입력' }, event)
+            }
+          >
+            직접 입력
+          </StyledDropdownItem>
         </StyledDropdownList>
       )}
     </StyledDropdownContainer>

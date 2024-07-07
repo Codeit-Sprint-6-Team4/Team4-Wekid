@@ -122,3 +122,51 @@ export const postRefreshToken = async () => {
     throw error;
   }
 };
+
+export const patchSecurityQuestion = async (
+  code: string,
+  securityQuestion: string,
+  securityAnswer: string,
+) => {
+  const URL = `/profiles/${code}`;
+  try {
+    const token = Cookies.get('accessToken');
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+
+    const response = await instance.patch(
+      URL,
+      { securityQuestion, securityAnswer },
+      { headers },
+    );
+    return response.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.error('Response error:', error.response?.status);
+      console.error('Response data:', error.response?.data);
+      throw error;
+    } else {
+      console.error('Error updating security question:', error);
+      throw error;
+    }
+  }
+};
+
+export const getSecurityQuestion = async (code: string) => {
+  const URL = `/profiles/${code}`;
+  try {
+    const token = Cookies.get('accessToken');
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+
+    const response = await instance.get(URL, { headers });
+    return response.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.error('Response error:', error.response?.status);
+      console.error('Response data:', error.response?.data);
+      throw error;
+    } else {
+      console.error('Error fetching security question:', error);
+      throw error;
+    }
+  }
+};

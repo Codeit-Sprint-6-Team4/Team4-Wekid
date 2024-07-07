@@ -50,8 +50,7 @@ export const StyledPasswordInput = styled(StyledInput)<{ $hasError: boolean }>`
   flex-direction: column;
   gap: 10px;
   border: 1px solid
-    ${(props) =>
-      props.$hasError ? theme.colors.red[500] : theme.colors.gray[300]};
+    ${(props) => (props.$hasError ? theme.colors.red[500] : 'transparent')};
 
   &:disabled {
     color: ${theme.colors.gray[50]};
