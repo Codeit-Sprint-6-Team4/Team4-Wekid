@@ -84,7 +84,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
             <StyledWekiContent>
               {!isEditMode && (
                 <StyledWekiHeader>
-                  <header>
+                  <div>
                     <h2>{profile ? profile.name : ''}</h2>
                     <Button
                       onClick={onParticipate}
@@ -94,7 +94,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
                     >
                       위키참여하기
                     </Button>
-                  </header>
+                  </div>
 
                   {typeof code === 'string' && (
                     <StyledMyWikiUserLinkWrapper>
