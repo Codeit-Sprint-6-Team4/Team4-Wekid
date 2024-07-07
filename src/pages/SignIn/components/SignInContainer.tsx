@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@context/authContext';
 import { postSignIn } from '@api/auth';
 import SignInUI from '@pages/SignIn/components/SignInUI';
-import { useAuth } from '@context/authContext';
 
 export interface logInDataTypes {
   email: string;
@@ -30,7 +30,7 @@ const SignInContainer = () => {
       alert('로그인이 완료되었습니다.');
       navigate(-1); // 메인 페이지로 리디렉션
     } catch (error) {
-      console.log('로그인 에러!');
+      alert('비밀번호가 일치하지 않습니다.');
     }
   };
 
