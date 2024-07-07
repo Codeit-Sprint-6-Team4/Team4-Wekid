@@ -1,5 +1,5 @@
 import HeartIcon from '@assets/icons/icon-heart.svg';
-import ImageIcon from '@assets/assets/icons/icon-image.svg';
+import ImageIcon from '@assets/icons/icon-image.svg';
 import styled from 'styled-components';
 import HeartIconFilled from '@assets/icons/icon-heart-fill.svg';
 import { media } from '@utils/media';
