@@ -21,6 +21,7 @@ export const StyledCardContainer = styled.div`
   `}
 
   ${media('tablet')`
+    flex: 1 0 48%;
     &:last-child {
     display: block;
     }
@@ -62,8 +63,7 @@ export const StyledCardContent = styled.div`
   padding: 0 2rem;
 
   ${media('tablet')`
-    // width: 262px;
-    margin: 20.07px 0;
+    margin: 20.07px auto;
   `}
   ${media('mobile')`
     // width: 212px;

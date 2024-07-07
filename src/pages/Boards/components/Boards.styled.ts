@@ -24,12 +24,14 @@ export const StyledBestArticleContainer = styled.div`
   width: 100%;
   margin-top: 60px;
   gap: 1.6rem;
+  width: 100%;
+  margin: 60px auto 0px;
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+//   gap: 16px;
 
   ${media('tablet')`
-    // width: 100%;
+    width: 100%;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-around;
