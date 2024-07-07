@@ -1,8 +1,7 @@
 import React, { ChangeEvent, useState, useRef, useContext } from 'react';
 import ReactQuill from 'react-quill';
 import { useParams } from 'react-router-dom';
-import { MyWekiDataContext } from '@context/myWekiDataContext';
-import { set } from 'date-fns';
+import { MyWekiDataContext, contextType } from '@context/myWekiDataContext';
 import { postImage } from '@api/image';
 import { patchProfile } from '@api/profile';
 import { userType } from '@api/user';
@@ -19,7 +18,7 @@ const MyWekiContainer = () => {
     setIsEditMode,
     isLoading,
   } = useMywekiAPi();
-  const userData = useContext<userType | null>(MyWekiDataContext);
+  const context = useContext(MyWekiDataContext);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInput, setModalInput] = useState('');
@@ -29,11 +28,11 @@ const MyWekiContainer = () => {
   const quailRef = useRef<ReactQuill>(null);
 
   const onParticipate = () => {
-    if (typeof isEditNow !== 'string' && userData !== null) {
-      if (isEditNow.userId === userData.id) {
+    if (typeof isEditNow !== 'string' && context !== undefined) {
+      if (isEditNow.userId === context.myUserData?.id) {
         setIsModalOpen(true);
         return;
-      } else if (isEditNow.userId !== userData.id) {
+      } else if (isEditNow.userId !== context.myUserData?.id) {
         return;
       }
     }
@@ -52,7 +51,7 @@ const MyWekiContainer = () => {
   const editPathProfile = async () => {
     try {
       if (typeof code === 'string' && quailRef.current && profile !== null) {
-        if (code === userData?.profile?.code && editImage != null) {
+        if (code === context?.myUserData?.profile?.code && editImage != null) {
           const response = await postImage(editImage);
           if (typeof response === 'string') {
             await patchProfile(code, profile, quailRef.current.value, response);
@@ -69,6 +68,7 @@ const MyWekiContainer = () => {
   const onSave = async () => {
     await editPathProfile();
     setIsEditMode(false);
+    setModalInput('');
   };
 
   const onCancel = () => {
@@ -77,6 +77,7 @@ const MyWekiContainer = () => {
     setEditImage(null);
     setIsEditMode(false);
     receiveProfile();
+    setModalInput('');
   };
 
   const onChangeModalInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -109,6 +110,7 @@ const MyWekiContainer = () => {
       isLoading={isLoading}
       ref={quailRef}
       profile={profile}
+      isEditNow={isEditNow}
       isEditMode={isEditMode}
       isModalOpen={isModalOpen}
       modalInput={modalInput}

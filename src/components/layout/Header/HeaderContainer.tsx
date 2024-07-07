@@ -1,14 +1,19 @@
-import React from 'react';
-import Header from './Header';
+import React, { useContext } from 'react';
 import { useAuth } from '@context/authContext';
+import { MyWekiDataContext } from '@context/myWekiDataContext';
+import Header from './Header';
 
 const HeaderContainer: React.FC = () => {
   const { isLoggedIn, logout } = useAuth();
+  const context = useContext(MyWekiDataContext);
 
   return (
     <Header
       isLoggedIn={isLoggedIn}
-      handleLogout={logout}
+      handleLogout={() => {
+        context?.setIsLogin(false);
+        logout();
+      }}
     />
   );
 };

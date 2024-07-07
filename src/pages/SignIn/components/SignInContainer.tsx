@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@context/authContext';
+import { MyWekiDataContext } from '@context/myWekiDataContext';
 import { postSignIn } from '@api/auth';
 import SignInUI from '@pages/SignIn/components/SignInUI';
 
@@ -12,6 +13,7 @@ export interface logInDataTypes {
 const SignInContainer = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const context = useContext(MyWekiDataContext);
   const [userData, setUserDate] = useState<logInDataTypes>({
     email: '',
     password: '',
@@ -26,6 +28,7 @@ const SignInContainer = () => {
     try {
       const response = await postSignIn(userData);
       const { user } = response;
+      context?.setIsLogin(true);
       login(user); // 상태 업데이트
       alert('로그인이 완료되었습니다.');
       navigate(-1); // 메인 페이지로 리디렉션
