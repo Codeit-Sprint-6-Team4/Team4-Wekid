@@ -1,11 +1,12 @@
 import HeartIcon from 'public/assets/icons/icon-heart.svg';
-import HeartIconFilled from '@assets/icons/icon-heart-fill.svg';
 import ImageIcon from 'public/assets/icons/icon-image.svg';
 import styled from 'styled-components';
+import HeartIconFilled from '@assets/icons/icon-heart-fill.svg';
 import { media } from '@utils/media';
 
 export const StyledCardContainer = styled.div`
-  width: 250px;
+  /* width: 250px; */
+  flex: 1 0 20rem;
   height: 220px;
   background-color: ${(props) => props.theme.colors.gray[0]};
   border-radius: 10px;
@@ -13,9 +14,21 @@ export const StyledCardContainer = styled.div`
   box-shadow: 0px 4px 20px 0px #00000014;
   cursor: pointer;
 
+  ${media('desktop')`
+    &:last-child {
+    display: none;
+    }
+  `}
+
   ${media('tablet')`
-    width: 302px;
-    height: 220px;
+    flex: 1 0 48%;
+    &:last-child {
+    display: block;
+    }
+  `}
+
+${media('mobile')`
+  flex: 1 0 25rem;
   `}
 `;
 
@@ -24,7 +37,6 @@ export const StyledCardImage = styled.img`
   height: 131px;
   object-fit: cover;
 `;
-
 
 export const StyledCardNoImage = styled.div`
   width: 100%;
@@ -44,15 +56,17 @@ export const StyledNoImageIcon = styled.div`
   background-repeat: no-repeat;
 `;
 
-
 export const StyledCardContent = styled.div`
-  width: 212px;
+  /* width: 212px; */
   height: 56px;
   margin: 19px auto;
+  padding: 0 2rem;
 
   ${media('tablet')`
-    width: 262px;
     margin: 20.07px auto;
+  `}
+  ${media('mobile')`
+    // width: 212px;
   `}
 `;
 
@@ -76,6 +90,20 @@ export const StyledCardInfo = styled.div`
 
   &.writer {
     margin-right: 8px;
+  }
+  &.date {
+    @media (max-width: 950px) {
+      display: none;
+    }
+    ${media('tablet')`
+      display: flex;
+    `}
+    @media (max-width: 500px) {
+      display: none;
+    }
+    ${media('mobile')`
+      display: flex;
+    `}
   }
 `;
 

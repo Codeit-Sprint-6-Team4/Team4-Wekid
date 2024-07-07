@@ -78,7 +78,7 @@ const BestArticleCard: React.FC<BestPostCardProps> = ({
             <StyledCardInfo className="writer">
               {article.writer.name}
             </StyledCardInfo>
-            <StyledCardInfo>{formattedDate}</StyledCardInfo>
+            <StyledCardInfo className="date">{formattedDate}</StyledCardInfo>
           </StyledCardInfoContainer2>
           <StyledCardLikesContainer>
             <StyledHeartIcon $isLiked={isLiked}/>

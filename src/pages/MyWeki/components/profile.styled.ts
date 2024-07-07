@@ -37,10 +37,7 @@ export const StyeldProfileWrap = styled.div<buttonProps & profileModeProps>`
   }
 
   ${media('desktop')`
-    flex-direction:row;
-    flex-direction:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'column'};
-    
-    align-items: ${({ $isClicked }) => ($isClicked ? 'initial' : 'initial')};
+    flex-direction:${({ $isMyprofile, $isEdit }) => ($isMyprofile && $isEdit ? 'column' : 'row')};
     align-items: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'center'};
     padding: 3rem 1.6rem;
     gap:30px;
@@ -49,12 +46,8 @@ export const StyeldProfileWrap = styled.div<buttonProps & profileModeProps>`
     `}
 
   ${media('mobile')`
-    flex-direction:row;
-    flex-direction:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'column'};
-    
+    flex-direction:${({ $isMyprofile, $isEdit }) => ($isMyprofile && $isEdit ? 'column' : 'row')};
     align-items: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'center'};
-
-
     height:${({ $isClicked }) => ($isClicked ? 'auto' : '126px')};
     height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'auto'};
  
@@ -78,12 +71,8 @@ export const StyeldProfileImage = styled.img<buttonProps & profileModeProps>`
   display: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'none'};
 
   ${media('desktop')`
-    margin-top: ${({ $isClicked }) => ($isClicked ? '0' : '0')};
     margin-top:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '8px'};
-    
-    
     margin-left:15px;
-    
     width:71px;
     height:71px;
     border-radius: 100%;
@@ -112,13 +101,10 @@ export const StyeldProfileImageInputLabel = styled.label<
     width: 100%;
     height: 100%;
   }
+
   ${media('desktop')`
-    margin-top: ${({ $isClicked }) => ($isClicked ? '30px' : '30px')};
-    margin-top:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '8px'};
-    
-    
+    margin-top:${({ $isMyprofile, $isEdit }) => ($isMyprofile && $isEdit ? '8px' : '30px')};
     margin-left:15px;
-    
     width:71px;
     height:71px;
     border-radius: 100%;
@@ -144,20 +130,13 @@ export const StyledProfileDataWrap = styled.div<buttonProps & profileModeProps>`
   flex-wrap: wrap;
 
   ${media('desktop')`
-
     flex-direction: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'row'};
-
-    overflow: ${({ $isClicked }) => ($isClicked ? 'initial' : '')};
     overflow: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'initial'};
-    
     margin-top: 0;
-    margin-top: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '0px'};
-    
     width: 100%;
-    width: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '100%'};
-    
     height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'auto'};
   `}
+
   ${media('mobile')`
     flex-direction: column;
     width: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '100%'};
@@ -171,9 +150,11 @@ export const StyledProfileData = styled.div<profileModeProps>`
   align-items: center;
   gap: 15px;
   width: 100%;
+
   ${media('desktop')`
   flex: 1 0 40%;
   `}
+
   label {
     width: 60px;
     font: ${theme.fonts['pretendard/md-14px-regular']};
@@ -222,9 +203,4 @@ export const StyledProfileData = styled.div<profileModeProps>`
     height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && '34px'};
   }
     flex: 1;`}
-`;
-
-export const StyledVetorImage = styled.img`
-  width: 10.68px;
-  height: 6.02px;
 `;

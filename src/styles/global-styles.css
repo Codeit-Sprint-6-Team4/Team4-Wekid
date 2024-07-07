@@ -1,9 +1,4 @@
 @font-face {
-  font-family: 'Nexon';
-  src: url('/public/assets/fonts/NEXON Lv1 Gothic OTF.woff') format('woff');
-}
-
-@font-face {
   font-family: 'Pretendard';
   src: url('/public/assets/fonts/PretendardVariable.woff2') format('woff2');
 }
@@ -179,14 +174,14 @@ input::-webkit-outer-spin-button {
 
 @media (max-width: 1024px) {
   .layoutWrap {
-    margin: 4rem auto;
+    margin: 7rem auto;
     padding: 0 4rem;
   }
 }
 
 @media (max-width: 768px) {
   .layoutWrap {
-    margin: 3.2rem auto;
+    margin: 5rem auto;
     padding: 0 2rem;
   }
 }
