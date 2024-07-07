@@ -1,12 +1,14 @@
 import React, { ChangeEvent, forwardRef, useContext } from 'react';
 import ReactQuill from 'react-quill';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { MyWekiDataContext } from '@context/myWekiDataContext';
+import { profileCheckType } from '@api/profile';
 import { profileType } from '@api/profile';
 import { postEditingProfile } from '@api/profile';
 import { userType } from '@api/user';
 import Button from '@components/button/Button';
 import Modal from '@components/modal/Modal';
+import Snackbar from '@components/snackbar/Snackbar';
 import UserLink from '@components/userlink/UserLink';
 import isSameProfile from '@utils/isSameProfile';
 import EditorUI from './EditorUI';
@@ -25,6 +27,7 @@ import {
 } from './wekiPage.styled';
 
 interface MyeWekiUIProps {
+  isEditNow: string | profileCheckType;
   isLoading: boolean;
   profile: profileType | null;
   modalInput: string;
@@ -46,6 +49,7 @@ interface MyeWekiUIProps {
 const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
   (
     {
+      isEditNow,
       isLoading,
       editImage,
       previewImage,
@@ -102,6 +106,17 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
                     </StyledMyWikiUserLinkWrapper>
                   )}
                 </StyledWekiHeader>
+              )}
+              {!(
+                typeof isEditNow !== 'string' &&
+                isEditNow.userId === userData?.id
+              ) && (
+                <Snackbar
+                  type="error"
+                  position="absolute"
+                  top="10px"
+                  $visible={isEditNow ? true : false}
+                />
               )}
 
               {isModalOpen && (

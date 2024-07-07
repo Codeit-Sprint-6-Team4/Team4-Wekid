@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { AxiosError } from 'axios';
-import { set } from 'date-fns';
 import { getProfie } from '@api/profile';
 import { profileType } from '@api/profile';
 import { profileCheckType } from '@api/profile';
-import { getProfileEditCheck, postEditingProfile } from '@api/profile';
-import { userType } from '@api/user';
+import { getProfileEditCheck } from '@api/profile';
 
 const useMywekiAPi = () => {
   const { code } = useParams();
@@ -31,10 +29,12 @@ const useMywekiAPi = () => {
   };
 
   const receiveProfileEditCheck = async () => {
-    console.log('시작');
     try {
       if (typeof code === 'string') {
+        console.log('시작');
         const response = await getProfileEditCheck(code);
+        console.log(response);
+
         setIsEditNow(response);
       }
     } catch (error) {
@@ -46,7 +46,7 @@ const useMywekiAPi = () => {
   useEffect(() => {
     receiveProfile();
     receiveProfileEditCheck();
-    const timeCheck = setInterval(receiveProfileEditCheck, 300000);
+    const timeCheck = setInterval(receiveProfileEditCheck, 1500);
     return () => clearInterval(timeCheck);
   }, [isEditMode]);
   return {

@@ -2,7 +2,6 @@ import React, { ChangeEvent, useState, useRef, useContext } from 'react';
 import ReactQuill from 'react-quill';
 import { useParams } from 'react-router-dom';
 import { MyWekiDataContext } from '@context/myWekiDataContext';
-import { set } from 'date-fns';
 import { postImage } from '@api/image';
 import { patchProfile } from '@api/profile';
 import { userType } from '@api/user';
@@ -69,6 +68,7 @@ const MyWekiContainer = () => {
   const onSave = async () => {
     await editPathProfile();
     setIsEditMode(false);
+    setModalInput('');
   };
 
   const onCancel = () => {
@@ -77,6 +77,7 @@ const MyWekiContainer = () => {
     setEditImage(null);
     setIsEditMode(false);
     receiveProfile();
+    setModalInput('');
   };
 
   const onChangeModalInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -109,6 +110,7 @@ const MyWekiContainer = () => {
       isLoading={isLoading}
       ref={quailRef}
       profile={profile}
+      isEditNow={isEditNow}
       isEditMode={isEditMode}
       isModalOpen={isModalOpen}
       modalInput={modalInput}
