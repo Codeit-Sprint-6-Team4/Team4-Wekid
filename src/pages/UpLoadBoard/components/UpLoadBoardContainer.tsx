@@ -78,7 +78,14 @@ const UploadBoardContainer: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    const payload = { title, content, image: latestImageUrl };
+    const payload: { title: string; content: string; image?: string } = {
+      title,
+      content,
+    };
+
+    if (latestImageUrl) {
+      payload.image = latestImageUrl;
+    }
 
     try {
       if (isEditMode && id) {
