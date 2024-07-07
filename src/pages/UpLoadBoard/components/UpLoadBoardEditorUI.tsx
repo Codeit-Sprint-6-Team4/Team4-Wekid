@@ -3,7 +3,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Quill from 'quill';
 import Modal from '@components/modal/Modal';
-import { EditorContainer, QuillWrapper } from './UpLoadBoardEditor.styled';
+import { EditorContainer, QuillWrapper } from './UpLoadBoard.styled';
 import './customQuill/quill-custom.css';
 import { CUSTUM_ICONS } from './customQuill/upLoadBoardCustomQuali.styled.icon';
 import CustomBoardToolBar from './customQuill/upLoadBoardCustomToolBar';
