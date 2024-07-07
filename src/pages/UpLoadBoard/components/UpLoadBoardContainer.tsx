@@ -18,6 +18,7 @@ const UploadBoardContainer: React.FC = () => {
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [redirectPath, setRedirectPath] = useState<string | (() => void)>('');
+  const [latestImageUrl, setLatestImageUrl] = useState<string>('');
 
   const isDirty = useRef(false);
 
@@ -72,8 +73,12 @@ const UploadBoardContainer: React.FC = () => {
     isDirty.current = true;
   };
 
+  const handleImageUpload = (imageUrl: string) => {
+    setLatestImageUrl(imageUrl);
+  };
+
   const handleSubmit = async () => {
-    const payload = { title, content };
+    const payload = { title, content, image: latestImageUrl };
 
     try {
       if (isEditMode && id) {
@@ -130,6 +135,7 @@ const UploadBoardContainer: React.FC = () => {
         onSubmit={handleSubmit}
         onSave={handleSubmit}
         onCancel={() => handleNavigation('/boards')}
+        onImageUpload={handleImageUpload}
       />
       {showModal && (
         <Modal

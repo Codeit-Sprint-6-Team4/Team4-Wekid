@@ -13,9 +13,14 @@ CUSTUM_ICONS;
 interface BoardEditorUIProps {
   value: string;
   onChange: (value: string) => void;
+  onImageUpload: (imageUrl: string) => void;
 }
 
-const BoardEditorUI = ({ value, onChange }: BoardEditorUIProps) => {
+const BoardEditorUI = ({
+  value,
+  onChange,
+  onImageUpload,
+}: BoardEditorUIProps) => {
   const quillRef = useRef<ReactQuill | null>(null);
   const [showImageModal, setShowImageModal] = useState(false);
   const [range, setRange] = useState<Quill.RangeStatic | null>(null);
@@ -33,6 +38,7 @@ const BoardEditorUI = ({ value, onChange }: BoardEditorUIProps) => {
     if (range && quillRef.current) {
       const editor = quillRef.current.getEditor();
       editor.insertEmbed(range.index, 'image', imageUrl);
+      onImageUpload(imageUrl);
     }
     setShowImageModal(false);
   };

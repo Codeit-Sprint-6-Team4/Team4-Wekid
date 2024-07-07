@@ -29,6 +29,7 @@ interface BoardUIProps {
   onSubmit: () => void;
   onSave: () => void;
   onCancel: () => void;
+  onImageUpload: (imageUrl: string) => void;
 }
 
 const UploadBoardUI: React.FC<BoardUIProps> = ({
@@ -42,6 +43,7 @@ const UploadBoardUI: React.FC<BoardUIProps> = ({
   onContentChange,
   onSubmit,
   onCancel,
+  onImageUpload,
 }) => {
   const { id } = useParams<{ id: string }>();
 
@@ -72,7 +74,11 @@ const UploadBoardUI: React.FC<BoardUIProps> = ({
               <StyledTextCharCounter>
                 공백포함: 총 {totalChars}자 | 공백제외: 총 {nonSpaceChars}자
               </StyledTextCharCounter>
-              <BoardEditorUI value={content} onChange={onContentChange} />
+              <BoardEditorUI
+                value={content}
+                onChange={onContentChange}
+                onImageUpload={onImageUpload}
+              />
             </StyledTextForm>
           </StyledContainer>
           <Button $secondary onClick={onCancel}>
