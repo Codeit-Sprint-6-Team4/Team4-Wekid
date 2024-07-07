@@ -13,6 +13,7 @@ export const StyledInput = styled.input.attrs((props) => ({
   color: ${theme.colors.gray[800]};
   font-weight: 500;
   box-sizing: border-box;
+  border: 1px solid transparent;
   &:focus {
     border: 1px solid ${theme.colors.main[500]};
     outline: none;
