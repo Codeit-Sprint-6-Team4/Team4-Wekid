@@ -1,10 +1,13 @@
-import HeartIcon from '@assets/icons/icon-heart.svg';
-import ImageIcon from '@assets/assets/icons/icon-image.svg';
+// import HeartIcon from '/assets/icons/icon-heart.svg';
+import HeartIcon from '../../../../public/assets/icons/icon-heart.svg';
+import ImageIcon from '/public/assets/icons/icon-image.svg';
 import styled from 'styled-components';
-import HeartIconFilled from '@assets/icons/icon-heart-fill.svg';
+// import HeartIconFilled from '@assets/icons/icon-heart-fill.svg';
+import HeartIconFilled from '../../../../public/assets/icons/icon-heart-fill.svg';
 import { media } from '@utils/media';
 
 export const StyledCardContainer = styled.div`
+  /* width: 250px; */
   flex: 1 0 20rem;
   height: 220px;
   background-color: ${(props) => props.theme.colors.gray[0]};
@@ -56,6 +59,7 @@ export const StyledNoImageIcon = styled.div`
 `;
 
 export const StyledCardContent = styled.div`
+  /* width: 212px; */
   height: 56px;
   margin: 19px auto;
   padding: 0 2rem;
