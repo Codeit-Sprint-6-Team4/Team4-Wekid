@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import ArrowIcon from '@assets/icons/icon-arrow.svg';
+import { theme } from '@styles/theme';
 import { media } from '@utils/media';
 
 export const StyledDropdownContainer = styled.div`
@@ -13,7 +14,7 @@ export const StyledDropdownButton = styled.button<{ $isOpen: boolean }>`
   height: 49px;
   padding: 10.5px 15px;
   background-color: ${(props) => props.theme.colors.gray[50]};
-  border: none;
+  border: 1px solid ${theme.colors.gray[300]};
   border-radius: 10px;
   font: ${(props) => props.theme.fonts['pretendard/md-14px-regular']};
   color: ${(props) => props.theme.colors.gray[600]};

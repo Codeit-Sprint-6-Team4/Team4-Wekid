@@ -84,6 +84,7 @@ export const StyledQuestionInput = styled(StyledInput)`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border: 1px solid ${theme.colors.gray[300]};
 `;
 
 export const StyledButtonContainer = styled.div`
