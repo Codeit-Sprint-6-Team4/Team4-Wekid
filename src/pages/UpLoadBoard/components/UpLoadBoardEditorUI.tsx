@@ -3,7 +3,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Quill from 'quill';
 import Modal from '@components/modal/Modal';
-import { EditorContainer, QuillWrapper } from './UpLoadBoardEditor.styled';
+import { EditorContainer, QuillWrapper } from './UpLoadBoard.styled';
 import './customQuill/quill-custom.css';
 import { CUSTUM_ICONS } from './customQuill/upLoadBoardCustomQuali.styled.icon';
 import CustomBoardToolBar from './customQuill/upLoadBoardCustomToolBar';
@@ -13,9 +13,14 @@ CUSTUM_ICONS;
 interface BoardEditorUIProps {
   value: string;
   onChange: (value: string) => void;
+  onImageUpload: (imageUrl: string) => void;
 }
 
-const BoardEditorUI = ({ value, onChange }: BoardEditorUIProps) => {
+const BoardEditorUI = ({
+  value,
+  onChange,
+  onImageUpload,
+}: BoardEditorUIProps) => {
   const quillRef = useRef<ReactQuill | null>(null);
   const [showImageModal, setShowImageModal] = useState(false);
   const [range, setRange] = useState<Quill.RangeStatic | null>(null);
@@ -33,6 +38,7 @@ const BoardEditorUI = ({ value, onChange }: BoardEditorUIProps) => {
     if (range && quillRef.current) {
       const editor = quillRef.current.getEditor();
       editor.insertEmbed(range.index, 'image', imageUrl);
+      onImageUpload(imageUrl);
     }
     setShowImageModal(false);
   };
