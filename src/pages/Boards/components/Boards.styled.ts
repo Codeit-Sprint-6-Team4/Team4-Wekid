@@ -20,11 +20,15 @@ export const StyledBoardsTitle = styled.span`
 `;
 
 export const StyledBestArticleContainer = styled.div`
+  /* width: 1060px; */
+  width: 100%;
+  margin-top: 60px;
+  gap: 1.6rem;
   width: 100%;
   margin: 60px auto 0px;
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+//   gap: 16px;
 
   ${media('tablet')`
     width: 100%;
@@ -32,8 +36,9 @@ export const StyledBestArticleContainer = styled.div`
     align-items: flex-start;
     justify-content: space-around;
     > * {
-    width: calc(50% - 8px);
-      margin-bottom: 20px;
+    flex: 1 0 45%;
+    // width: calc(50% - 8px);
+      // margin-bottom: 20px;
     }
   `}
   ${media('mobile')`
@@ -41,9 +46,10 @@ export const StyledBestArticleContainer = styled.div`
     width: 100%; 
     flex-wrap: nowrap;
     overflow-x: auto;
+    padding: 10px 0px 2rem 1rem;
     & > * {
       flex: 0 0 250px;
-      margin-right: 20px;
+      // margin-right: 20px;
     }
     -ms-overflow-style: none;
 
@@ -56,6 +62,7 @@ export const StyledBestArticleContainer = styled.div`
 `;
 
 export const StyledBoardsFilterBar = styled.div`
+  flex: 1 0;
   width: 100%;
   height: 45px;
   margin-top: 60px;
