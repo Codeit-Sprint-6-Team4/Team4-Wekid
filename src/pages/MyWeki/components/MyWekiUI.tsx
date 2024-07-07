@@ -44,6 +44,7 @@ interface MyeWekiUIProps {
   setIsEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   onChangeProfileImage: (e: ChangeEvent<HTMLInputElement>) => void;
   onTimeOut: () => void;
+  editorImageHandler: () => void;
 }
 
 const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
@@ -66,6 +67,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
       onParticipate,
       onModalClose,
       onTimeOut,
+      editorImageHandler,
     },
     ref,
   ) => {
@@ -159,6 +161,7 @@ const MyWekiUI = forwardRef<ReactQuill, MyeWekiUIProps>(
                     onCancel={onCancel}
                     content={profile?.content as string}
                     name={profile ? profile.name : ''}
+                    editorImageHandler={editorImageHandler}
                     ref={ref}
                   />
                 )}
