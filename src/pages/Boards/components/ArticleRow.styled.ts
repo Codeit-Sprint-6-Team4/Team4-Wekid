@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { media } from '@utils/media';
-import HeartIcon from 'public/assets/icons/icon-heart.svg';
+import HeartIcon from '@assets/icons/icon-heart.svg';
 import HeartIconFilled from '@assets/icons/icon-heart-fill.svg';
 
 export const StyledRow = styled.div<{ $isHead?: boolean }>`
