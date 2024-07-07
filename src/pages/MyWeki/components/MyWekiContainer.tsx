@@ -47,6 +47,26 @@ const MyWekiContainer = () => {
       setPreviewImage(imageURL);
     }
   };
+  const editorImageHandler = () => {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/*');
+    input.click(); //toolbar 이미지를 누르게 되면 이 부분이 실행된다.
+    input.onchange = async () => {
+      /*이미지 선택에 따른 조건을 다시 한번 하게 된다.*/
+      if (input.files !== null) {
+        const file: File = input.files[0];
+
+        let quillObj = quailRef.current?.getEditor();
+        const range = quillObj?.getSelection()!;
+
+        const res = await postImage(file);
+        if (res !== undefined) {
+          quillObj?.insertEmbed(range.index, 'image', `${res}`);
+        }
+      }
+    };
+  };
 
   const editPathProfile = async () => {
     try {
@@ -124,6 +144,7 @@ const MyWekiContainer = () => {
       onCancel={onCancel}
       onSave={onSave}
       onModalClose={onModalClose}
+      editorImageHandler={editorImageHandler}
       onTimeOut={onTimeOut}
     />
   );

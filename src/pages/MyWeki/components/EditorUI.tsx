@@ -15,13 +15,25 @@ interface WritingUI {
   onSave: () => void;
   onCancel: () => void;
   onTimeOut: () => void;
+  editorImageHandler: () => void;
 }
 
 CUSTUM_ICONS;
 const FIVE_MINUTES = 300000;
 
 const EditorUI = forwardRef<ReactQuill, WritingUI>(
-  ({ content, name, modalInput, onSave, onCancel, onTimeOut }, ref) => {
+  (
+    {
+      content,
+      name,
+      modalInput,
+      onSave,
+      onCancel,
+      onTimeOut,
+      editorImageHandler,
+    },
+    ref,
+  ) => {
     const [values, setValues] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { code } = useParams();
@@ -47,7 +59,12 @@ const EditorUI = forwardRef<ReactQuill, WritingUI>(
 
     const modules = useMemo(() => {
       return {
-        toolbar: '#toolbar',
+        toolbar: {
+          container: '#toolbar',
+          handlers: {
+            image: editorImageHandler,
+          },
+        },
       };
     }, []);
 

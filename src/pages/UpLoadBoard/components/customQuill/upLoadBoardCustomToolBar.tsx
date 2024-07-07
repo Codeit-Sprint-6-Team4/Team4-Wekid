@@ -34,7 +34,11 @@ const CustomBoardToolBar = () => {
           >
             <select className="ql-color"></select>
           </span>
-          <button className="ql-image image-button" title="이미지 삽입" />
+          <button
+            className="ql-image image-button"
+            title="이미지 삽입"
+            onClick={() => console.log('hello')}
+          />
         </span>
 
         <span className="ql-formats ql-toolbar-right">
