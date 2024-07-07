@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import UserLink from '@components/userlink/UserLink';
 import DefaultProfileImg from '@assets/icons/icon-profile.svg';
+import UserLink from '@components/userlink/UserLink';
 import {
   StyledCardContainer,
   StyledUserImage,
@@ -46,9 +46,31 @@ const UserCardFrame: React.FC<UserCardProps> = ({
         <StyledUserName>{name}</StyledUserName>
         <StyledUserDetailsContainer>
           <StyledUserDetails>
-            {city}, {nationality}
-            <br />
-            {job}
+            {city && nationality ? (
+              <>
+                {city}, {nationality}
+                <br />
+                {}
+              </>
+            ) : city ? (
+              <>
+                {city}
+                <br />
+                {}
+              </>
+            ) : nationality ? (
+              <>
+                {nationality}
+                <br />
+                {}
+              </>
+            ) : null}
+            {job && (
+              <>
+                {job}
+                <br />
+              </>
+            )}
           </StyledUserDetails>
           <StyledUserLinkWrapper>
             <UserLink code={code} />
