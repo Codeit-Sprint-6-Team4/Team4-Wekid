@@ -23,7 +23,7 @@ const BoardEditorUI = ({
 }: BoardEditorUIProps) => {
   const quillRef = useRef<ReactQuill | null>(null);
   const [showImageModal, setShowImageModal] = useState(false);
-  const [range, setRange] = useState<Quill.RangeStatic | null>(null);
+  const [range, setRange] = useState<any>(null);
 
   const imageHandler = () => {
     const editor = quillRef.current?.getEditor();
