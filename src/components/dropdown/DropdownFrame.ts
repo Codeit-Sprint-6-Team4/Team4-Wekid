@@ -10,10 +10,10 @@ export const StyledDropdownContainer = styled.div`
 
 export const StyledDropdownButton = styled.button<{ $isOpen: boolean }>`
   width: 100%;
-  height: 45px;
-  padding: 10.5px 20px;
+  height: 49px;
+  padding: 10.5px 15px;
   background-color: ${(props) => props.theme.colors.gray[50]};
-  border: none;
+  border: 1px solid transparent;
   border-radius: 10px;
   font: ${(props) => props.theme.fonts['pretendard/md-14px-regular']};
   color: ${(props) => props.theme.colors.gray[600]};
