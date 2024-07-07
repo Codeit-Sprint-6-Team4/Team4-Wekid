@@ -48,9 +48,9 @@ export const StyeldProfileWrap = styled.div<buttonProps & profileModeProps>`
   ${media('mobile')`
     flex-direction:${({ $isMyprofile, $isEdit }) => ($isMyprofile && $isEdit ? 'column' : 'row')};
     align-items: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'center'};
-    height:${({ $isClicked }) => ($isClicked ? 'auto' : '126px')};
+    height:${({ $isClicked }) => ($isClicked ? 'auto' : 'auto')};
     height: ${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'auto'};
- 
+    align-items: flex-start;
     button{
     display: initial;
       display:${({ $isMyprofile, $isEdit }) => $isMyprofile && $isEdit && 'none'};
