@@ -1,6 +1,6 @@
 # Wekid 프로젝트
 
-[Wikied 프로젝트 바로가기]([http://example.com](https://team4wikied.netlify.app/))
+[Wikied 프로젝트 바로가기](https://team4wikied.netlify.app/)
 
 ## Member
 
